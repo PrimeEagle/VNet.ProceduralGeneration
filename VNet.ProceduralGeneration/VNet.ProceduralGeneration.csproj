@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Creatures\" />
+    <Folder Include="Cities\" />
     <Folder Include="Plants\" />
     <Folder Include="Rocks\" />
     <Folder Include="Trees\" />
