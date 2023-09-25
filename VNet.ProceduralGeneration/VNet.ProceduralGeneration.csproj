@@ -7,15 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Creatures\" />
-    <Folder Include="Cities\" />
-    <Folder Include="Dungeons\" />
-    <Folder Include="Caves\" />
-    <Folder Include="Plants\" />
-    <Folder Include="Rocks\" />
-    <Folder Include="Trees\" />
-    <Folder Include="Planets\" />
-    <Folder Include="Terrain\" />
+    <Folder Include="Terrestrial\Creatures\" />
+    <Folder Include="Terrestrial\Cities\" />
+    <Folder Include="Terrestrial\Dungeons\" />
+    <Folder Include="Terrestrial\Caves\" />
+    <Folder Include="Terrestrial\" />
+    <Folder Include="Terrestrial\Plants\" />
+    <Folder Include="Terrestrial\Rocks\" />
+    <Folder Include="Terrestrial\Trees\" />
+    <Folder Include="Terrestrial\Terrain\" />
   </ItemGroup>
 
 </Project>
