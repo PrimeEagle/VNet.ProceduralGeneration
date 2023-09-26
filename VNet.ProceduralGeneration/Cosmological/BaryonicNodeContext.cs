@@ -1,7 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public enum BoundednessType
+public class BaryonicNodeContext : BaseContext
 {
-    Finite,
-    Infinite
 }

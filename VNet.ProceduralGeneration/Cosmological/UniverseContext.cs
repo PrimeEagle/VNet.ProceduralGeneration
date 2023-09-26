@@ -1,13 +1,31 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
-
-public class UniverseContext : BaseContext
+﻿namespace VNet.ProceduralGeneration.Cosmological
 {
-    public double CosmicMicrowaveBackground { get; set; }
-    public bool CosmicInflation { get; set; }
-    public double ExpansionRate { get; set; }
-    public double DarkEnergy { get; set; }
-    public float Size { get; set; }
-    public CurvatureType Curvature { get; set; }
-    public BoundednessType Boundedness { get; set; }
-    public ConnectivityType Connectivity { get; set; }
+    public class UniverseContext : BaseContext
+    {
+        public double MinDarkEnergyPercent { get; set; }
+        public double MaxDarkEnergyPercent { get; set; }
+        public double MinDarkMatterPercent { get; set; }
+        public double MaxDarkMatterPercent { get; set; }
+        public double MinBaryonicMatterPercent { get; set; }
+        public double MaxBaryonicMatterPercent { get; set; }
+        public float MinUniverseAge { get; set; }
+        public float MaxUniverseAge { get; set; }
+        public double MinConnectivityFactor { get; set; }
+        public double MaxConnectivityFactor { get; set; }
+
+
+        public UniverseContext(GeneratorConfig config)
+        {
+            this.MinDarkEnergyPercent = config.MinDarkEnergyPercent;
+            this.MaxDarkEnergyPercent = config.MaxDarkEnergyPercent;
+            this.MinDarkMatterPercent = config.MinDarkMatterPercent;
+            this.MaxDarkMatterPercent = config.MaxDarkMatterPercent;
+            this.MinBaryonicMatterPercent = config.MinBaryonicMatterPercent;
+            this.MaxBaryonicMatterPercent = config.MaxBaryonicMatterPercent;
+            this.MinUniverseAge = config.MinUniverseAge;
+            this.MaxUniverseAge = config.MaxUniverseAge;
+            this.MinConnectivityFactor = config.MinConnectivityFactor;
+            this.MaxConnectivityFactor = config.MaxConnectivityFactor;
+        }
+    }
 }

@@ -2,12 +2,34 @@
 
 public class CosmicWebContext : BaseContext
 {
-    public double CosmicMicrowaveBackground { get; set; }
-    public bool CosmicInflation { get; set; }
-    public double ExpansionRate { get; set; }
-    public double DarkEnergy { get; set; }
-    public float Size { get; set; }
+    public double DarkEnergyPercent { get; set; }
+    public double DarkMatterPercent { get; set; }
+    public double BaryonicMatterPercent { get; set; }
     public CurvatureType Curvature { get; set; }
-    public BoundednessType Boundedness { get; set; }
-    public ConnectivityType Connectivity { get; set; }
+    public double ConnectivityFactor { get; set; }
+    public bool CosmicInflationOccurred { get; set; }
+    public bool CmbHasVariations { get; set; }
+    public double ExpansionRate { get; set; }
+    public double CosmicMicrowaveBackground { get; set; }
+    public bool IsInInflationPhase { get; set; }
+
+
+    public CosmicWebContext()
+    {
+
+    }
+
+    public CosmicWebContext(Universe universe)
+    {
+        this.DarkEnergyPercent = universe.DarkEnergyPercent;
+        this.DarkMatterPercent = universe.DarkMatterPercent;
+        this.BaryonicMatterPercent = universe.BaryonicMatterPercent;
+        this.Curvature = universe.Curvature;
+        this.ConnectivityFactor = universe.ConnectivityFactor;
+        this.CosmicInflationOccurred = universe.CosmicInflationOccurred;
+        this.CmbHasVariations = universe.CmbHasVariations;
+        this.ExpansionRate = universe.ExpansionRate;
+        this.CosmicMicrowaveBackground = universe.CosmicMicrowaveBackground;
+        this.IsInInflationPhase = universe.IsInInflationPhase;
+    }
 }

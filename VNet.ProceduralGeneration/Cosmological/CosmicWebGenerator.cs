@@ -2,48 +2,88 @@
 
 public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 {
-    private readonly FilamentGenerator _filamentGenerator;
+    private readonly BaryonicFilamentGenerator _baryonicFilamentGenerator;
+    private readonly DarkMatterFilamentGenerator _darkMatterFilamentGenerator;
+    private readonly BaryonicNodeGenerator _baryonicNodeGenerator;
+    private readonly DarkMatterNodeGenerator _darkMatterNodeGenerator;
+    private readonly BaryonicVoidGenerator _baryonicVoidGenerator;
+    private readonly DarkMatterVoidGenerator _darkMatterVoidGenerator;
 
 
     public override CosmicWeb Generate(CosmicWebContext context)
     {
         var cosmicWeb = new CosmicWeb();
 
-        int filamentCount = GetFilamentCount(context);
-        for (int i = 0; i < filamentCount; i++)
+        int baryonicFilamentCount = GetBaryonicFilamentCount(context);
+        for (int i = 0; i < baryonicFilamentCount; i++)
         {
-            cosmicWeb.Filaments.Add(_filamentGenerator.Generate(new FilamentContext()));
+            cosmicWeb.BaryonicFilaments.Add(_baryonicFilamentGenerator.Generate(new BaryonicFilamentContext(cosmicWeb)));
+        }
+
+        int darkMatterFilamentCount = GetDarkMatterFilamentCount(context);
+        for (int i = 0; i < darkMatterFilamentCount; i++)
+        {
+            cosmicWeb.DarkMatterFilaments.Add(_darkMatterFilamentGenerator.Generate(new DarkMatterFilamentContext(cosmicWeb)));
+        }
+
+        int baryonicNodeCount = GetBaryonicNodeCount(context);
+        for (int i = 0; i < baryonicNodeCount; i++)
+        {
+            cosmicWeb.BaryonicNodes.Add(_baryonicNodeGenerator.Generate(new BaryonicNodeContext(cosmicWeb)));
+        }
+
+        int darkMatterNodeCount = GetDarkMatterNodeCount(context);
+        for (int i = 0; i < darkMatterNodeCount; i++)
+        {
+            cosmicWeb.DarkMatterNodes.Add(_darkMatterNodeGenerator.Generate(new DarkMatterNodeContext(cosmicWeb)));
+        }
+
+        int baryonicVoidCount = GetBaryonicVoidCount(context);
+        for (int i = 0; i < baryonicVoidCount; i++)
+        {
+            cosmicWeb.BaryonicVoids.Add(_baryonicVoidGenerator.Generate(new BaryonicVoidContext(cosmicWeb)));
+        }
+
+        int darkMatterVoidCount = GetDarkMatterVoidCount(context);
+        for (int i = 0; i < darkMatterVoidCount; i++)
+        {
+            cosmicWeb.DarkMatterVoids.Add(_darkMatterVoidGenerator.Generate(new DarkMatterVoidContext(cosmicWeb)));
         }
 
         return cosmicWeb;
     }
 
-    public int GetFilamentCount(CosmicWebContext context)
+    public int GetBaryonicFilamentCount(CosmicWebContext context)
     {
         const int BASE_COUNT = 100;
 
-        // Use a function of the context size. This can be a simple linear scale or other function. 
-        // For simplicity, assume the size value will be between 0 and 1000 (or whatever maximum makes sense in your application).
-        double sizeFactor = Math.Max(0.1, context.Size / 1000.0); // Ensuring a minimum scaling factor
+        var sizeFactor = Math.Max(0.1, context.Size / 1000.0);
+        var ageFactor = Math.Max(0.1, context.Age / 100.0);
 
-        // Age might influence the filament count. Using a simple function can ensure it's not zero.
-        double ageFactor = Math.Max(0.1, context.Age / 100.0); // Here we're considering a Universe age range up to 100 units.
+        var darkMatterEffect = context.DarkMatterPercent / 100.0;  // Normalize to [0, 1] range
+        var darkEnergyEffect = context.DarkEnergyPercent / 100.0;  // Normalize to [0, 1] range
+        var energyFactor = darkMatterEffect * (1 - darkEnergyEffect);  // Interaction where high dark energy reduces the effect of dark matter
 
-        double energyFactor = Math.Max(0.1, 1 - context.DarkEnergy / config.MaxDarkEnergyValue); // Assuming DarkEnergy value is between 0 and MAX_DARK_ENERGY_VALUE.
-        double expansionFactor = Math.Max(0.1, 1 - context.ExpansionRate / config.MaxExpansionRate); // Assuming ExpansionRate is between 0 and MAX_EXPANSION_RATE.
+        var averageExpansionRate = 70.0;  // Assumed average in km/s/Mpc
+        var expansionRatio = context.ExpansionRate / averageExpansionRate;
+        var expansionFactor = 1.0 / expansionRatio;  // Faster expansion results in a lower factor, slower expansion results in a higher factor
 
-        // Use all the factors to calculate the final count
-        int count = (int)(BASE_COUNT * sizeFactor * ageFactor * energyFactor * expansionFactor);
-
-        Random rnd = new Random();
-        double randomFactor = 1 + (rnd.NextDouble() * 0.2 - 0.1); // Random value between -10% and +10%
+        var count = (int)(BASE_COUNT * sizeFactor * ageFactor * energyFactor * expansionFactor);
+        var randomFactor = 1 + (config.RandomGenerator.NextDouble() * 0.2 - 0.1);
         count = (int)(count * randomFactor);
 
         return count;
     }
 
+
+
     public CosmicWebGenerator(GeneratorConfig config) : base(config)
     {
-        _filamentGenerator = new FilamentGenerator(config);
+        _baryonicFilamentGenerator = new BaryonicFilamentGenerator(config);
+        _darkMatterFilamentGenerator = new DarkMatterFilamentGenerator(config);
+        _baryonicNodeGenerator = new BaryonicNodeGenerator(config);
+        _darkMatterNodeGenerator = new DarkMatterNodeGenerator(config);
+        _baryonicVoidGenerator = new BaryonicVoidGenerator(config);
+        _darkMatterVoidGenerator = new DarkMatterVoidGenerator(config);
     }
 }

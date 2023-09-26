@@ -4,7 +4,7 @@ using VNet.Scientific.Noise;
 
 namespace VNet.ProceduralGeneration.Cosmological;
 
-public class FilamentGenerator : BaseGenerator<Filament, FilamentContext>
+public class BaryonicFilamentGenerator : BaseGenerator<BaryonicFilament, BaryonicFilamentContext>
 {
     private readonly SuperclusterGenerator _superclusterGenerator;
     private readonly GalaxyClusterGenerator _galaxyClusterGenerator;
@@ -21,7 +21,7 @@ public class FilamentGenerator : BaseGenerator<Filament, FilamentContext>
     private const float angleZ = 1.0f;
 
 
-    public FilamentGenerator(GeneratorConfig config) : base(config)
+    public BaryonicFilamentGenerator(GeneratorConfig config) : base(config)
     {
         _superclusterGenerator = new SuperclusterGenerator(config);
         _galaxyClusterGenerator = new GalaxyClusterGenerator(config);
@@ -36,12 +36,12 @@ public class FilamentGenerator : BaseGenerator<Filament, FilamentContext>
         _orientationNoiseLayer.AddLayer(new SomeOrientationNoiseAlgorithm(), new OverlayBlendMode());
     }
 
-    public override Filament Generate(FilamentContext context)
+    public override BaryonicFilament Generate(BaryonicFilamentContext context)
     {
         var filamentPositionValue = _positionNoiseLayer.GenerateSingleSample();
         var filamentOrientationValue = _orientationNoiseLayer.GenerateSingleSample();
 
-        var filament = new Filament
+        var filament = new BaryonicFilament
         {
             Position = ConvertNoiseToPosition(filamentPositionValue),
             Orientation = ConvertNoiseToOrientation(filamentOrientationValue),
@@ -97,22 +97,22 @@ public class FilamentGenerator : BaseGenerator<Filament, FilamentContext>
         return new Vector3((float)(noiseValue * angleX), (float)(noiseValue * angleY), (float)(noiseValue * angleZ));
     }
 
-    private int GetSuperclusterCount(FilamentContext context)
+    private int GetSuperclusterCount(BaryonicFilamentContext context)
     {
         return 0;
     }
 
-    private int GetGalaxyClusterCount(FilamentContext context)
+    private int GetGalaxyClusterCount(BaryonicFilamentContext context)
     {
         return 0;
     }
 
-    private int GetGalaxyGroupCount(FilamentContext context)
+    private int GetGalaxyGroupCount(BaryonicFilamentContext context)
     {
         return 0;
     }
 
-    private int GetGalaxyCount(FilamentContext context)
+    private int GetGalaxyCount(BaryonicFilamentContext context)
     {
         return 0;
     }

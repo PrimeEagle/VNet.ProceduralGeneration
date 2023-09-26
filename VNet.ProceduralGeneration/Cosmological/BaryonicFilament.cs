@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace VNet.ProceduralGeneration.Cosmological;
 
-public class Filament : AstronomicalObject
+public class BaryonicFilament : AstronomicalObject
 {
     public ConcurrentBag<Supercluster> Superclusters { get; set; } = new ConcurrentBag<Supercluster>();
     public ConcurrentBag<GalaxyCluster> GalaxyClusters { get; set; } = new ConcurrentBag<GalaxyCluster>();

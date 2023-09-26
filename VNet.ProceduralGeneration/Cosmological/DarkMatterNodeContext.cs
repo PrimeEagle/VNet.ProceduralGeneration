@@ -1,5 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class FilamentContext : BaseContext
+public class DarkMatterNodeContext : BaseContext
 {
 }
