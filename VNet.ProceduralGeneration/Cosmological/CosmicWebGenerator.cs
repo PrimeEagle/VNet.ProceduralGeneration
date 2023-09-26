@@ -8,14 +8,14 @@ public class CosmicWebGenerator : IGeneratable<CosmicWeb, CosmicWebContext>
     {
         var cosmicWeb = new CosmicWeb
         {
-            // ... Generate properties specific to CosmicWeb
+
         };
 
-        // Generate Filaments for this CosmicWeb
-        int filamentCount = 0/* determine count based on some logic */;
+
+        int filamentCount = 0;
         for (int i = 0; i < filamentCount; i++)
         {
-            cosmicWeb.Filaments.Add(_filamentGenerator.Generate());
+            cosmicWeb.Filaments.Add(_filamentGenerator.Generate(new FilamentContext()));
         }
 
         return cosmicWeb;

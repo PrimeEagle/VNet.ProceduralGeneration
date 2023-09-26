@@ -8,14 +8,12 @@ public class SuperclusterGenerator : IGeneratable<Supercluster, SuperclusterCont
     {
         var supercluster = new Supercluster
         {
-            // ... Generate properties specific to Supercluster
         };
 
-        // Generate GalaxyClusters for this Supercluster
-        int galaxyClusterCount = 0/* determine count based on some logic */;
+        int galaxyClusterCount = 0;
         for (int i = 0; i < galaxyClusterCount; i++)
         {
-            supercluster.GalaxyClusters.Add(_galaxyClusterGenerator.Generate());
+            supercluster.GalaxyClusters.Add(_galaxyClusterGenerator.Generate(new GalaxyClusterContext()));
         }
 
         return supercluster;

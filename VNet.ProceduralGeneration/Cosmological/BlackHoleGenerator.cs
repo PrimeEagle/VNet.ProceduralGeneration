@@ -6,8 +6,9 @@ public class BlackHoleGenerator : IGeneratable<BlackHole, BlackHoleContext>
     {
         var blackHole = new BlackHole
         {
-            // ... Generate properties specific to Black Hole
+
         };
+
         return blackHole;
     }
 }

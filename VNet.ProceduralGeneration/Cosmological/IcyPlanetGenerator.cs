@@ -6,8 +6,9 @@ public class IcyPlanetGenerator : IGeneratable<IcyPlanet, IcyPlanetContext>
     {
         var icyPlanet = new IcyPlanet
         {
-            // ... Generate properties specific to IcyPlanet
+
         };
+
         return icyPlanet;
     }
 }

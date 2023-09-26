@@ -6,8 +6,9 @@ public class NebulaGenerator : IGeneratable<Nebula, NebulaContext>
     {
         var nebula = new Nebula
         {
-            // ... Generate properties specific to Nebula
+
         };
+
         return nebula;
     }
 }

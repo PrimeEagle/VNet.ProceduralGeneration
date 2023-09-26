@@ -8,14 +8,13 @@ public class GalaxyGenerator : IGeneratable<Galaxy, GalaxyContext>
     {
         var galaxy = new Galaxy
         {
-            // ... Generate properties specific to Galaxy
+
         };
 
-        // Generate StarClusters for this Galaxy
-        int starClusterCount = 0/* determine count based on some logic */;
+        int starClusterCount = 0;
         for (int i = 0; i < starClusterCount; i++)
         {
-            galaxy.StarClusters.Add(_starClusterGenerator.Generate());
+            galaxy.StarClusters.Add(_starClusterGenerator.Generate(new StarClusterContext()));
         }
 
         return galaxy;

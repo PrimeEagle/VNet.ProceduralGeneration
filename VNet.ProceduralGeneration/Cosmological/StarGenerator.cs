@@ -6,8 +6,9 @@ public class StarGenerator : IGeneratable<Star, StarContext>
     {
         var star = new Star
         {
-            // ... Generate properties specific to Star
+
         };
+
         return star;
     }
 }

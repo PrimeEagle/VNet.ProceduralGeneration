@@ -12,7 +12,7 @@ public class AsteroidBeltGenerator : IGeneratable<AsteroidBelt, AsteroidBeltCont
         int asteroidCount = 0/* determine count based on some logic */;
         for (int i = 0; i < asteroidCount; i++)
         {
-            asteroidBelt.Asteroids.Add(_asteroidGenerator.Generate());
+            asteroidBelt.Asteroids.Add(_asteroidGenerator.Generate(new AsteroidContext()));
         }
 
         // Other generation logic for AsteroidBelt

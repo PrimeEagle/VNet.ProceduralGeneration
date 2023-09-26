@@ -9,14 +9,12 @@ public class PlanetGenerator : IGeneratable<Planet, PlanetContext>
     {
         var planet = new Planet();
 
-        // Generate Stars for this StarSystem
-        int satelliteCount = 0/* determine count based on some logic */;
+
+        int satelliteCount = 0;
         for (int i = 0; i < satelliteCount; i++)
         {
-            planet.Moons.Add(_sateliteGenerator.Generate());
+            planet.Moons.Add(_sateliteGenerator.Generate(new MoonContext()));
         }
-
-        // Other generation logic for additional celestial objects within the StarSystem
 
         return planet;
     }

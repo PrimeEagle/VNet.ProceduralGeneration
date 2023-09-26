@@ -8,14 +8,13 @@ public class FilamentGenerator : IGeneratable<Filament, FilamentContext>
     {
         var filament = new Filament
         {
-            // ... Generate properties specific to Filament
+
         };
 
-        // Generate Superclusters for this Filament
-        int superclusterCount = 0/* determine count based on some logic */;
+        int superclusterCount = 0;
         for (int i = 0; i < superclusterCount; i++)
         {
-            filament.Superclusters.Add(_superclusterGenerator.Generate());
+            filament.Superclusters.Add(_superclusterGenerator.Generate(new SuperclusterContext()));
         }
 
         return filament;

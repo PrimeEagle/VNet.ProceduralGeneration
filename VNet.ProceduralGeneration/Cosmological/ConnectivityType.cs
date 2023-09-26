@@ -1,6 +1,6 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public enum Connectivity
+public enum ConnectivityType
 {
     SimplyConnected,
     MultiplyConnected

@@ -6,8 +6,9 @@ public class SupernovaGenerator : IGeneratable<Supernova, SupernovaContext>
     {
         var supernova = new Supernova
         {
-            // ... Generate properties specific to Supernova
+
         };
+
         return supernova;
     }
 }

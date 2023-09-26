@@ -12,40 +12,35 @@ public class StarSystemGenerator : IGeneratable<StarSystem, StarSystemContext>
     {
         var starSystem = new StarSystem();
 
-        // Generate Stars for this StarSystem
-        int starCount = 0/* determine count based on some logic */;
+        int starCount = 0;
         for (int i = 0; i < starCount; i++)
         {
-            starSystem.Stars.Add(_starGenerator.Generate());
+            starSystem.Stars.Add(_starGenerator.Generate(new StarContext()));
         }
 
-        // Generate Planets for this StarSystem
-        int planetCount = 0/* determine count based on some logic */;
+        int planetCount = 0;
         for (int i = 0; i < planetCount; i++)
         {
-            starSystem.Planets.Add(_planetGenerator.Generate());
+            starSystem.Planets.Add(_planetGenerator.Generate(new PlanetContext()));
         }
 
-        int icyPlanetCount = 0/* determine count based on some logic */;
+        int icyPlanetCount = 0;
         for (int i = 0; i < icyPlanetCount; i++)
         {
-            starSystem.IcyPlanets.Add(_icyPlanetGenerator.Generate());
+            starSystem.IcyPlanets.Add(_icyPlanetGenerator.Generate(new IcyPlanetContext()));
         }
 
-        int icyCloudCount = 0/* determine count based on some logic */;
+        int icyCloudCount = 0;
         for (int i = 0; i < icyCloudCount; i++)
         {
-            starSystem.IcyClouds.Add(_icyCloudGenerator.Generate());
+            starSystem.IcyClouds.Add(_icyCloudGenerator.Generate(new IcyCloudContext()));
         }
 
-        // Generate Asteroid Belts for this StarSystem
-        int asteroidBeltCount = 0/* determine count based on some logic */;
+        int asteroidBeltCount = 0;
         for (int i = 0; i < asteroidBeltCount; i++)
         {
-            starSystem.AsteroidBelts.Add(_asteroidBeltGenerator.Generate());
+            starSystem.AsteroidBelts.Add(_asteroidBeltGenerator.Generate(new AsteroidBeltContext()));
         }
-
-        // Other generation logic for additional celestial objects within the StarSystem
 
         return starSystem;
     }

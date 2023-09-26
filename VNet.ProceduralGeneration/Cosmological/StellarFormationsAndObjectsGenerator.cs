@@ -11,31 +11,26 @@ public class StellarFormationsAndObjectsGenerator : IGeneratable<StellarFormatio
     {
         var formationsAndObjects = new StellarFormationsAndObjects
         {
-            // ... Generate properties specific to StellarFormationsAndObjects
         };
 
-        // Generate Nebulae for this StellarFormationsAndObjects
-        int nebulaCount = 0/* determine count based on some logic */;
+        int nebulaCount = 0;
         for (int i = 0; i < nebulaCount; i++)
         {
-            formationsAndObjects.Nebulae.Add(_nebulaGenerator.Generate());
+            formationsAndObjects.Nebulae.Add(_nebulaGenerator.Generate(new NebulaContext()));
         }
 
-        // Generate Supernovae for this StellarFormationsAndObjects
-        int supernovaCount = 0/* determine count based on some logic */;
+        int supernovaCount = 0;
         for (int i = 0; i < supernovaCount; i++)
         {
-            formationsAndObjects.Supernovae.Add(_supernovaGenerator.Generate());
+            formationsAndObjects.Supernovae.Add(_supernovaGenerator.Generate(new SupernovaContext()));
         }
 
-        // Generate a single Black Hole for this StellarFormationsAndObjects
-        formationsAndObjects.BlackHole = _blackHoleGenerator.Generate();
+        formationsAndObjects.BlackHole = _blackHoleGenerator.Generate(new BlackHoleContext());
 
-        // Generate Neutron Stars for this StellarFormationsAndObjects
-        int neutronStarCount = 0/* determine count based on some logic */;
+        int neutronStarCount = 0;
         for (int i = 0; i < neutronStarCount; i++)
         {
-            formationsAndObjects.NeutronStars.Add(_neutronStarGenerator.Generate());
+            formationsAndObjects.NeutronStars.Add(_neutronStarGenerator.Generate(new NeutronStarContext()));
         }
 
         return formationsAndObjects;

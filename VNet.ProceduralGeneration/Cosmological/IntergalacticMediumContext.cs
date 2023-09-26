@@ -1,7 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public enum Boundedness
+public class IntergalacticMediumContext
 {
-    Finite,
-    Infinite
 }

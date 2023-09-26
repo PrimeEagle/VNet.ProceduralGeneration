@@ -6,8 +6,9 @@ public class CometGenerator : IGeneratable<Comet, CometContext>
     {
         var comet = new Comet
         {
-            // ... Generate properties specific to Comet
+
         };
+
         return comet;
     }
 }

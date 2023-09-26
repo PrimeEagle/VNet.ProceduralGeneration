@@ -8,14 +8,14 @@ public class GalaxyClusterGenerator : IGeneratable<GalaxyCluster, GalaxyClusterC
     {
         var galaxyCluster = new GalaxyCluster
         {
-            // ... Generate properties specific to GalaxyCluster
+
         };
 
-        // Generate Galaxies for this GalaxyCluster
-        int galaxyCount = 0/* determine count based on some logic */;
+
+        int galaxyCount = 0;
         for (int i = 0; i < galaxyCount; i++)
         {
-            galaxyCluster.Galaxies.Add(_galaxyGenerator.Generate());
+            galaxyCluster.Galaxies.Add(_galaxyGenerator.Generate(new GalaxyContext()));
         }
 
         return galaxyCluster;

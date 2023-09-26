@@ -1,6 +1,6 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public enum Curvature
+public enum CurvatureType
 {
     Flat,
     Spherical,

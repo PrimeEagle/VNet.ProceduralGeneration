@@ -6,8 +6,8 @@ public class AsteroidGenerator : IGeneratable<Asteroid, AsteroidContext>
     {
         var asteroid = new Asteroid
         {
-            // ... Generate properties specific to Asteroid
         };
+
         return asteroid;
     }
 }

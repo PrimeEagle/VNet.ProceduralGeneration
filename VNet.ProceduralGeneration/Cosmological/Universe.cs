@@ -2,9 +2,9 @@
 
 public class Universe : AstronomicalObject
 {
-    public Boundedness UniverseBoundedness { get; set; }
-    public Curvature UniverseCurvature { get; set; }
-    public Connectivity UniverseConnectivity { get; set; }
+    public BoundednessType Boundedness { get; set; }
+    public CurvatureType Curvature { get; set; }
+    public ConnectivityType Connectivity { get; set; }
     public double CosmicMicrowaveBackground { get; set; }
     public bool CosmicInflation { get; set; }
     public double ExpansionRate { get; set; }

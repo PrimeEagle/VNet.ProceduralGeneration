@@ -6,8 +6,9 @@ public class IcyCloudGenerator : IGeneratable<IcyCloud, IcyCloudContext>
     {
         var icyCloud = new IcyCloud
         {
-            // ... Generate properties specific to IcyCloud
+
         };
+
         return icyCloud;
     }
 }

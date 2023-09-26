@@ -1,6 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class IntergalacticMedium : AstronomicalObject
+public class LargeQuasarGroupContext
 {
-
 }
