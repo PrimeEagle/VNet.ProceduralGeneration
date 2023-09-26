@@ -1,10 +1,11 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class FilamentGenerator : IGeneratable<Filament, FilamentContext>
+public class FilamentGenerator : BaseGenerator<Filament, FilamentContext>
 {
-    private readonly SuperclusterGenerator _superclusterGenerator = new SuperclusterGenerator();
+    private readonly SuperclusterGenerator _superclusterGenerator;
 
-    public Filament Generate(FilamentContext context)
+
+    public override Filament Generate(FilamentContext context)
     {
         var filament = new Filament
         {
@@ -18,5 +19,10 @@ public class FilamentGenerator : IGeneratable<Filament, FilamentContext>
         }
 
         return filament;
+    }
+
+    public FilamentGenerator(GeneratorConfig config) : base(config)
+    {
+        _superclusterGenerator = new SuperclusterGenerator(config);
     }
 }

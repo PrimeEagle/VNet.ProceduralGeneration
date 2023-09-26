@@ -1,10 +1,11 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class StarClusterGenerator : IGeneratable<StarCluster, StarClusterContext>
+public class StarClusterGenerator : BaseGenerator<StarCluster, StarClusterContext>
 {
-    private readonly StarSystemGenerator _starSystemGenerator = new StarSystemGenerator();
+    private readonly StarSystemGenerator _starSystemGenerator;
 
-    public StarCluster Generate(StarClusterContext context)
+
+    public override StarCluster Generate(StarClusterContext context)
     {
         StarCluster cluster;
 
@@ -25,5 +26,10 @@ public class StarClusterGenerator : IGeneratable<StarCluster, StarClusterContext
         }
 
         return cluster;
+    }
+
+    public StarClusterGenerator(GeneratorConfig config) : base(config)
+    {
+        _starSystemGenerator = new StarSystemGenerator(config);
     }
 }

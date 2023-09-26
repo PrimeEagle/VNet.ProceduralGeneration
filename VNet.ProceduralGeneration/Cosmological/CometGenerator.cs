@@ -1,8 +1,8 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class CometGenerator : IGeneratable<Comet, CometContext>
+public class CometGenerator : BaseGenerator<Comet, CometContext>
 {
-    public Comet Generate(CometContext context)
+    public override Comet Generate(CometContext context)
     {
         var comet = new Comet
         {
@@ -10,5 +10,9 @@ public class CometGenerator : IGeneratable<Comet, CometContext>
         };
 
         return comet;
+    }
+
+    public CometGenerator(GeneratorConfig config) : base(config)
+    {
     }
 }

@@ -1,11 +1,11 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class PlanetGenerator : IGeneratable<Planet, PlanetContext>
+public class PlanetGenerator : BaseGenerator<Planet, PlanetContext>
 {
-    private readonly MoonGenerator _sateliteGenerator = new MoonGenerator();
+    private readonly MoonGenerator _sateliteGenerator;
 
 
-    public Planet Generate(PlanetContext context)
+    public override Planet Generate(PlanetContext context)
     {
         var planet = new Planet();
 
@@ -17,5 +17,10 @@ public class PlanetGenerator : IGeneratable<Planet, PlanetContext>
         }
 
         return planet;
+    }
+
+    public PlanetGenerator(GeneratorConfig config) : base(config)
+    {
+        _sateliteGenerator = new MoonGenerator(config);
     }
 }

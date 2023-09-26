@@ -1,14 +1,15 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class StarSystemGenerator : IGeneratable<StarSystem, StarSystemContext>
+public class StarSystemGenerator : BaseGenerator<StarSystem, StarSystemContext>
 {
-    private readonly StarGenerator _starGenerator = new StarGenerator();
-    private readonly PlanetGenerator _planetGenerator = new PlanetGenerator();
-    private readonly IcyPlanetGenerator _icyPlanetGenerator = new IcyPlanetGenerator();
-    private readonly IcyCloudGenerator _icyCloudGenerator = new IcyCloudGenerator();
-    private readonly AsteroidBeltGenerator _asteroidBeltGenerator = new AsteroidBeltGenerator();
+    private readonly StarGenerator _starGenerator;
+    private readonly PlanetGenerator _planetGenerator;
+    private readonly IcyPlanetGenerator _icyPlanetGenerator;
+    private readonly IcyCloudGenerator _icyCloudGenerator;
+    private readonly AsteroidBeltGenerator _asteroidBeltGenerator;
 
-    public StarSystem Generate(StarSystemContext context)
+
+    public override StarSystem Generate(StarSystemContext context)
     {
         var starSystem = new StarSystem();
 
@@ -43,5 +44,14 @@ public class StarSystemGenerator : IGeneratable<StarSystem, StarSystemContext>
         }
 
         return starSystem;
+    }
+
+    public StarSystemGenerator(GeneratorConfig config) : base(config)
+    {
+        _starGenerator = new StarGenerator(config);
+        _planetGenerator = new PlanetGenerator(config);
+        _icyPlanetGenerator = new IcyPlanetGenerator(config);
+        _icyCloudGenerator = new IcyCloudGenerator(config);
+        _asteroidBeltGenerator = new AsteroidBeltGenerator(config);
     }
 }

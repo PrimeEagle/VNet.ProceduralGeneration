@@ -1,8 +1,8 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class IcyPlanetGenerator : IGeneratable<IcyPlanet, IcyPlanetContext>
+public class IcyPlanetGenerator : BaseGenerator<IcyPlanet, IcyPlanetContext>
 {
-    public IcyPlanet Generate(IcyPlanetContext context)
+    public override IcyPlanet Generate(IcyPlanetContext context)
     {
         var icyPlanet = new IcyPlanet
         {
@@ -10,5 +10,9 @@ public class IcyPlanetGenerator : IGeneratable<IcyPlanet, IcyPlanetContext>
         };
 
         return icyPlanet;
+    }
+
+    public IcyPlanetGenerator(GeneratorConfig config) : base(config)
+    {
     }
 }

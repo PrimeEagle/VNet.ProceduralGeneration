@@ -1,10 +1,11 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class SuperclusterGenerator : IGeneratable<Supercluster, SuperclusterContext>
+public class SuperclusterGenerator : BaseGenerator<Supercluster, SuperclusterContext>
 {
-    private readonly GalaxyClusterGenerator _galaxyClusterGenerator = new GalaxyClusterGenerator();
+    private readonly GalaxyClusterGenerator _galaxyClusterGenerator;
 
-    public Supercluster Generate(SuperclusterContext context)
+
+    public override Supercluster Generate(SuperclusterContext context)
     {
         var supercluster = new Supercluster
         {
@@ -17,5 +18,10 @@ public class SuperclusterGenerator : IGeneratable<Supercluster, SuperclusterCont
         }
 
         return supercluster;
+    }
+
+    public SuperclusterGenerator(GeneratorConfig config) : base(config)
+    {
+        _galaxyClusterGenerator = new GalaxyClusterGenerator(config);
     }
 }

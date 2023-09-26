@@ -17,4 +17,8 @@
     <Folder Include="Terrestrial\Terrain\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Diagnostics.Sizeof" Version="1.0.1" />
+  </ItemGroup>
+
 </Project>

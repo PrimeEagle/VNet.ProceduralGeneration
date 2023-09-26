@@ -1,13 +1,17 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class AsteroidGenerator : IGeneratable<Asteroid, AsteroidContext>
+public class AsteroidGenerator : BaseGenerator<Asteroid, AsteroidContext>
 {
-    public Asteroid Generate(AsteroidContext context)
+    public override Asteroid Generate(AsteroidContext context)
     {
         var asteroid = new Asteroid
         {
         };
 
         return asteroid;
+    }
+
+    public AsteroidGenerator(GeneratorConfig config) : base(config)
+    {
     }
 }

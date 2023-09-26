@@ -1,11 +1,15 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class MoonGenerator : IGeneratable<Moon, MoonContext>
+public class MoonGenerator : BaseGenerator<Moon, MoonContext>
 {
-    public Moon Generate(MoonContext context)
+    public override Moon Generate(MoonContext context)
     {
         var moon = new Moon();
 
         return moon;
+    }
+
+    public MoonGenerator(GeneratorConfig config) : base(config)
+    {
     }
 }

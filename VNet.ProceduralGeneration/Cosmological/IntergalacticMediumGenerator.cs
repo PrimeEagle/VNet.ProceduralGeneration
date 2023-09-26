@@ -1,8 +1,8 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class IntergalacticMediumGenerator : IGeneratable<IntergalacticMedium, IntergalacticMediumContext>
+public class IntergalacticMediumGenerator : BaseGenerator<IntergalacticMedium, IntergalacticMediumContext>
 {
-    public IntergalacticMedium Generate(IntergalacticMediumContext context)
+    public override IntergalacticMedium Generate(IntergalacticMediumContext context)
     {
         var intergalacticMedium = new IntergalacticMedium
         {
@@ -11,5 +11,9 @@ public class IntergalacticMediumGenerator : IGeneratable<IntergalacticMedium, In
 
 
         return intergalacticMedium;
+    }
+
+    public IntergalacticMediumGenerator(GeneratorConfig config) : base(config)
+    {
     }
 }

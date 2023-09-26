@@ -1,10 +1,11 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class UniverseGenerator : IGeneratable<Universe, UniverseContext>
+public class UniverseGenerator : BaseGenerator<Universe, UniverseContext>
 {
-    private readonly CosmicWebGenerator _cosmicWebGenerator = new CosmicWebGenerator();
+    private readonly CosmicWebGenerator _cosmicWebGenerator;
 
-    public Universe Generate(UniverseContext context)
+
+    public override Universe Generate(UniverseContext context)
     {
         var universe = new Universe
         {
@@ -71,5 +72,10 @@ public class UniverseGenerator : IGeneratable<Universe, UniverseContext>
     public Universe Generate()
     {
         throw new NotImplementedException();
+    }
+
+    public UniverseGenerator(GeneratorConfig config) : base(config)
+    {
+        _cosmicWebGenerator = new CosmicWebGenerator(config);
     }
 }

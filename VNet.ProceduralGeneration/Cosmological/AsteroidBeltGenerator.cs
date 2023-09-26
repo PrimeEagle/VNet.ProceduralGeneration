@@ -1,10 +1,11 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class AsteroidBeltGenerator : IGeneratable<AsteroidBelt, AsteroidBeltContext>
+public class AsteroidBeltGenerator : BaseGenerator<AsteroidBelt, AsteroidBeltContext>
 {
-    private readonly AsteroidGenerator _asteroidGenerator = new AsteroidGenerator();
+    private readonly AsteroidGenerator _asteroidGenerator;
 
-    public AsteroidBelt Generate(AsteroidBeltContext context)
+
+    public override AsteroidBelt Generate(AsteroidBeltContext context)
     {
         var asteroidBelt = new AsteroidBelt();
 
@@ -18,5 +19,10 @@ public class AsteroidBeltGenerator : IGeneratable<AsteroidBelt, AsteroidBeltCont
         // Other generation logic for AsteroidBelt
 
         return asteroidBelt;
+    }
+
+    public AsteroidBeltGenerator(GeneratorConfig config) : base(config)
+    {
+        _asteroidGenerator = new AsteroidGenerator(config);
     }
 }

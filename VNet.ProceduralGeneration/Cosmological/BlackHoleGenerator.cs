@@ -1,8 +1,8 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class BlackHoleGenerator : IGeneratable<BlackHole, BlackHoleContext>
+public class BlackHoleGenerator : BaseGenerator<BlackHole, BlackHoleContext>
 {
-    public BlackHole Generate(BlackHoleContext context)
+    public override BlackHole Generate(BlackHoleContext context)
     {
         var blackHole = new BlackHole
         {
@@ -10,5 +10,9 @@ public class BlackHoleGenerator : IGeneratable<BlackHole, BlackHoleContext>
         };
 
         return blackHole;
+    }
+
+    public BlackHoleGenerator(GeneratorConfig config) : base(config)
+    {
     }
 }

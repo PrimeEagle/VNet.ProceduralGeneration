@@ -1,10 +1,11 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class GalaxyClusterGenerator : IGeneratable<GalaxyCluster, GalaxyClusterContext>
+public class GalaxyClusterGenerator : BaseGenerator<GalaxyCluster, GalaxyClusterContext>
 {
-    private readonly GalaxyGenerator _galaxyGenerator = new GalaxyGenerator();
+    private readonly GalaxyGenerator _galaxyGenerator;
 
-    public GalaxyCluster Generate(GalaxyClusterContext context)
+
+    public override GalaxyCluster Generate(GalaxyClusterContext context)
     {
         var galaxyCluster = new GalaxyCluster
         {
@@ -19,5 +20,10 @@ public class GalaxyClusterGenerator : IGeneratable<GalaxyCluster, GalaxyClusterC
         }
 
         return galaxyCluster;
+    }
+
+    public GalaxyClusterGenerator(GeneratorConfig config) : base(config)
+    {
+        _galaxyGenerator = new GalaxyGenerator(config);
     }
 }

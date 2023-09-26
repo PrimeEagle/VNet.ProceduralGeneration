@@ -1,8 +1,8 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class LargeQuasarGroupGenerator : IGeneratable<LargeQuasarGroup, LargeQuasarGroupContext>
+public class LargeQuasarGroupGenerator : BaseGenerator<LargeQuasarGroup, LargeQuasarGroupContext>
 {
-    public LargeQuasarGroup Generate(LargeQuasarGroupContext context)
+    public override LargeQuasarGroup Generate(LargeQuasarGroupContext context)
     {
         var largeQuasarGroup = new LargeQuasarGroup
         {
@@ -11,5 +11,9 @@ public class LargeQuasarGroupGenerator : IGeneratable<LargeQuasarGroup, LargeQua
 
 
         return largeQuasarGroup;
+    }
+
+    public LargeQuasarGroupGenerator(GeneratorConfig config) : base(config)
+    {
     }
 }

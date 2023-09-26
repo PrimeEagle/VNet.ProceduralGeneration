@@ -1,8 +1,8 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class StarGenerator : IGeneratable<Star, StarContext>
+public class StarGenerator : BaseGenerator<Star, StarContext>
 {
-    public Star Generate(StarContext context)
+    public override Star Generate(StarContext context)
     {
         var star = new Star
         {
@@ -10,5 +10,9 @@ public class StarGenerator : IGeneratable<Star, StarContext>
         };
 
         return star;
+    }
+
+    public StarGenerator(GeneratorConfig config) : base(config)
+    {
     }
 }

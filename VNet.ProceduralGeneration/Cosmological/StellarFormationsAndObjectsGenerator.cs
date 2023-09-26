@@ -1,13 +1,14 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class StellarFormationsAndObjectsGenerator : IGeneratable<StellarFormationsAndObjects, StellarFormationsAndObjectsContext>
+public class StellarFormationsAndObjectsGenerator : BaseGenerator<StellarFormationsAndObjects, StellarFormationsAndObjectsContext>
 {
-    private readonly NebulaGenerator _nebulaGenerator = new NebulaGenerator();
-    private readonly SupernovaGenerator _supernovaGenerator = new SupernovaGenerator();
-    private readonly BlackHoleGenerator _blackHoleGenerator = new BlackHoleGenerator();
-    private readonly NeutronStarGenerator _neutronStarGenerator = new NeutronStarGenerator();
+    private readonly NebulaGenerator _nebulaGenerator;
+    private readonly SupernovaGenerator _supernovaGenerator;
+    private readonly BlackHoleGenerator _blackHoleGenerator;
+    private readonly NeutronStarGenerator _neutronStarGenerator;
 
-    public StellarFormationsAndObjects Generate(StellarFormationsAndObjectsContext context)
+
+    public override StellarFormationsAndObjects Generate(StellarFormationsAndObjectsContext context)
     {
         var formationsAndObjects = new StellarFormationsAndObjects
         {
@@ -34,5 +35,13 @@ public class StellarFormationsAndObjectsGenerator : IGeneratable<StellarFormatio
         }
 
         return formationsAndObjects;
+    }
+
+    public StellarFormationsAndObjectsGenerator(GeneratorConfig config) : base(config)
+    {
+        _nebulaGenerator = new NebulaGenerator(config);
+        _supernovaGenerator = new SupernovaGenerator(config);
+        _blackHoleGenerator = new BlackHoleGenerator(config);
+        _neutronStarGenerator = new NeutronStarGenerator(config);
     }
 }

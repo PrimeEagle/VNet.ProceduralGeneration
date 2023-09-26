@@ -1,8 +1,8 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class NebulaGenerator : IGeneratable<Nebula, NebulaContext>
+public class NebulaGenerator : BaseGenerator<Nebula, NebulaContext>
 {
-    public Nebula Generate(NebulaContext context)
+    public override Nebula Generate(NebulaContext context)
     {
         var nebula = new Nebula
         {
@@ -10,5 +10,9 @@ public class NebulaGenerator : IGeneratable<Nebula, NebulaContext>
         };
 
         return nebula;
+    }
+
+    public NebulaGenerator(GeneratorConfig config) : base(config)
+    {
     }
 }

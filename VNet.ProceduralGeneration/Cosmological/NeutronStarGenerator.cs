@@ -1,8 +1,8 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class NeutronStarGenerator : IGeneratable<NeutronStar, NeutronStarContext>
+public class NeutronStarGenerator : BaseGenerator<NeutronStar, NeutronStarContext>
 {
-    public NeutronStar Generate(NeutronStarContext context)
+    public override NeutronStar Generate(NeutronStarContext context)
     {
         var neutronStar = new NeutronStar
         {
@@ -10,5 +10,9 @@ public class NeutronStarGenerator : IGeneratable<NeutronStar, NeutronStarContext
         };
 
         return neutronStar;
+    }
+
+    public NeutronStarGenerator(GeneratorConfig config) : base(config)
+    {
     }
 }

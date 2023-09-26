@@ -1,8 +1,8 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class SupernovaGenerator : IGeneratable<Supernova, SupernovaContext>
+public class SupernovaGenerator : BaseGenerator<Supernova, SupernovaContext>
 {
-    public Supernova Generate(SupernovaContext context)
+    public override Supernova Generate(SupernovaContext context)
     {
         var supernova = new Supernova
         {
@@ -10,5 +10,9 @@ public class SupernovaGenerator : IGeneratable<Supernova, SupernovaContext>
         };
 
         return supernova;
+    }
+
+    public SupernovaGenerator(GeneratorConfig config) : base(config)
+    {
     }
 }
