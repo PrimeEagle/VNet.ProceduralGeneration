@@ -7,12 +7,9 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 
     public override CosmicWeb Generate(CosmicWebContext context)
     {
-        var cosmicWeb = new CosmicWeb
-        {
+        var cosmicWeb = new CosmicWeb();
 
-        };
-
-        int filamentCount = 0;
+        int filamentCount = GetFilamentCount(context);
         for (int i = 0; i < filamentCount; i++)
         {
             cosmicWeb.Filaments.Add(_filamentGenerator.Generate(new FilamentContext()));
@@ -38,7 +35,8 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         // Use all the factors to calculate the final count
         int count = (int)(BASE_COUNT * sizeFactor * ageFactor * energyFactor * expansionFactor);
 
-        double randomFactor = 1 + (RandomValue() * 0.2 - 0.1); // Random value between -10% and +10%
+        Random rnd = new Random();
+        double randomFactor = 1 + (rnd.NextDouble() * 0.2 - 0.1); // Random value between -10% and +10%
         count = (int)(count * randomFactor);
 
         return count;
