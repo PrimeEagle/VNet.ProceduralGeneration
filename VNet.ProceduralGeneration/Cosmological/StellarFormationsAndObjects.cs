@@ -1,6 +1,6 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class StellarFormationsAndObjects
+public class StellarFormationsAndObjects : AstronomicalObject
 {
     public bool NonClustered { get; set; }
     public bool Clusters { get; set; }

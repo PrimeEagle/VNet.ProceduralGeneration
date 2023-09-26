@@ -1,5 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class AsteroidContext
+public class AsteroidContext : BaseContext
 {
 }

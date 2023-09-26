@@ -1,5 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class StellarFormationsAndObjectsContext
+public class StellarFormationsAndObjectsContext : BaseContext
 {
 }

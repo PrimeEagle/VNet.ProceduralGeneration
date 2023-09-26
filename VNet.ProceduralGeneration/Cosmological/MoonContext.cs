@@ -1,5 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class MoonContext
+public class MoonContext : BaseContext
 {
 }

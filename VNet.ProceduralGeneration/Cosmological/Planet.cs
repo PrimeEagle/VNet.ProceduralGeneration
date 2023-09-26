@@ -1,6 +1,6 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class Planet
+public class Planet : AstronomicalObject
 {
     public int Age { get; set; }
     public PlanetType Type { get; set; }
