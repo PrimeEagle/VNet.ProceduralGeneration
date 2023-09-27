@@ -1,14 +1,17 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿using System.Collections.Concurrent;
+
+namespace VNet.ProceduralGeneration.Cosmological;
 
 public class CosmicWeb : AstronomicalObject
 {
+    public CosmicTopology Topology { get; set; }
     public IntergalacticMedium IntergalacticMedium { get; set; }
-    public List<BaryonicFilament> BaryonicFilaments { get; set; } = new List<BaryonicFilament>();
-    public List<DarkMatterFilament> DarkMatterFilaments { get; set; } = new List<DarkMatterFilament>();
-    public List<BaryonicNode> BaryonicNodes { get; set; } = new List<BaryonicNode>();
-    public List<DarkMatterNode> DarkMatterNodes { get; set; } = new List<DarkMatterNode>();
-    public List<BaryonicVoid> BaryonicVoids { get; set; } = new List<BaryonicVoid>();
-    public List<DarkMatterVoid> DarkMatterVoids { get; set; } = new List<DarkMatterVoid>();
-    public List<BaryonicSheet> BaryonicSheets { get; set; } = new List<BaryonicSheet>();
-    public List<DarkMatterSheet> DarkMatterSheets { get; set; } = new List<DarkMatterSheet>();
+    public ConcurrentBag<BaryonicFilament> BaryonicFilaments { get; set; } = new ConcurrentBag<BaryonicFilament>();
+    public ConcurrentBag<DarkMatterFilament> DarkMatterFilaments { get; set; } = new ConcurrentBag<DarkMatterFilament>();
+    public ConcurrentBag<BaryonicMatterNode> BaryonicNodes { get; set; } = new ConcurrentBag<BaryonicMatterNode>();
+    public ConcurrentBag<DarkMatterNode> DarkMatterNodes { get; set; } = new ConcurrentBag<DarkMatterNode>();
+    public ConcurrentBag<BaryonicVoid> BaryonicVoids { get; set; } = new ConcurrentBag<BaryonicVoid>();
+    public ConcurrentBag<DarkMatterVoid> DarkMatterVoids { get; set; } = new ConcurrentBag<DarkMatterVoid>();
+    public ConcurrentBag<BaryonicSheet> BaryonicSheets { get; set; } = new ConcurrentBag<BaryonicSheet>();
+    public ConcurrentBag<DarkMatterSheet> DarkMatterSheets { get; set; } = new ConcurrentBag<DarkMatterSheet>();
 }

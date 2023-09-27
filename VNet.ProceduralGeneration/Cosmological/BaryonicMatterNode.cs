@@ -1,5 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class BaryonicNode : AstronomicalObject
+public class BaryonicMatterNode : AstronomicalObject
 {
 }

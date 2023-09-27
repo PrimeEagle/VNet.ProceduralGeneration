@@ -1,8 +1,8 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class BaryonicSheetGenerator : BaseGenerator<BaryonicSheet, BaryonicSheetContext>
+public class BaryonicMatterSheetGenerator : BaseGenerator<BaryonicSheet, BaryonicSheetContext>
 {
-    public BaryonicSheetGenerator(GeneratorConfig config) : base(config)
+    public BaryonicMatterSheetGenerator(GeneratorConfig config) : base(config)
     {
     }
 

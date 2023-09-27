@@ -90,5 +90,22 @@ namespace VNet.ProceduralGeneration.Cosmological
 
             return gradientMap;
         }
+
+        public static float GetAverageIntensity(Image<Rgba32> heightMap)
+        {
+            float totalIntensity = 0;
+            var pixelCount = 0;
+
+            for (var y = 0; y < heightMap.Height; y++)
+            {
+                for (var x = 0; x < heightMap.Width; x++)
+                {
+                    totalIntensity += heightMap[x, y].R; // Assuming grayscale, so R=G=B.
+                    pixelCount++;
+                }
+            }
+
+            return totalIntensity / pixelCount;
+        }
     }
 }
