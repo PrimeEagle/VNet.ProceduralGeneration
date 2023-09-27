@@ -1,4 +1,7 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿using System.Collections.Concurrent;
+using System.Numerics;
+
+namespace VNet.ProceduralGeneration.Cosmological;
 
 public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 {
@@ -11,6 +14,8 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
     private readonly DarkMatterVoidGenerator _darkMatterVoidGenerator;
     private readonly BaryonicMatterSheetGenerator _baryonicSheetGenerator;
     private readonly DarkMatterSheetGenerator _darkMatterSheetGenerator;
+
+    private SpatialGrid _spatialGrid;
 
 
     public override CosmicWeb Generate(CosmicWebContext context)
@@ -28,14 +33,21 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         var volumeMap = HeightmapUtil.ExtrudeHeightmapToVolumeMap(heightMap, 1);
         var gradientMap = HeightmapUtil.VolumeMapToGradientMap(volumeMap);
         var averageIntensity = HeightmapUtil.GetAverageIntensity(heightMapImage);
+        var maxGradientMagnitude = gradientMap.Cast<Vector3>().Max(v => v.Length());
 
         cosmicWeb.Topology = new CosmicTopology()
         {
             AverageIntensity = averageIntensity,
             Heightmap = heightMap,
             VolumeMap = volumeMap,
-            GradientMap = gradientMap
+            GradientMap = gradientMap,
+            MaxGradientMagnitude = maxGradientMagnitude
         };
+
+        var nodeSeeds = GenerateNodeSeeds(cosmicWeb.Topology, GetBaryonicMatterNodeCount(context, cosmicWeb.Topology.AverageIntensity));
+        var filamentSeeds = GenerateFilamentSeeds(cosmicWeb.Topology);
+        var sheetSeeds = GenerateSheetSeeds(cosmicWeb.Topology);
+        var voidSeeds = GenerateVoidSeeds(cosmicWeb.Topology);
 
         Parallel.For(0, GetBaryonicMatterFilamentCount(context, averageIntensity), i =>
         {
@@ -101,6 +113,189 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
     {
 
     }
+
+    private void IterativeRefinement(CosmicWeb cosmicWeb)
+    {
+        EnsureConnectivity(cosmicWeb);
+        AdjustDensities(cosmicWeb);
+        HandleCollisions(cosmicWeb);
+    }
+
+    private void EnsureConnectivity(CosmicWeb cosmicWeb)
+    {
+    }
+
+    private void AdjustDensities(CosmicWeb cosmicWeb)
+    {
+    }
+
+    private void HandleCollisions(CosmicWeb cosmicWeb)
+    {
+    }
+
+    private ConcurrentBag<NodeSeed> GenerateNodeSeeds(CosmicTopology topology, int numberToGenerate)
+    {
+        var nodeSeeds = new ConcurrentBag<NodeSeed>();
+
+        var densityThreshold = topology.AverageIntensity * config.TopologyBaryonicMatterNodeDensityThresholdFactor;
+        var gradientMagnitudeThreshold = topology.MaxGradientMagnitude * config.TopologyBaryonicMatterNodeGradientMagnitudeThresholdFactor;
+
+        var width = topology.VolumeMap.GetLength(0);
+        var height = topology.VolumeMap.GetLength(1);
+        var depth = topology.VolumeMap.GetLength(2);
+
+        Parallel.For(0, width, x =>
+        {
+            for (var y = 0; y < height; y++)
+            {
+                for (var z = 0; z < depth; z++)
+                {
+                    var intensity = topology.VolumeMap[x, y, z];
+                    if (intensity <= densityThreshold) continue;
+
+                    var gradient = topology.GradientMap[x, y, z];
+                    if (gradient.Length() > gradientMagnitudeThreshold)
+                    {
+                        var position = new Vector3(x, y, z) + GetRandomOffset(config.TopologyBaryonicMatterNodeMaxPositionalOffset);
+                        nodeSeeds.Add(new NodeSeed(position, intensity));
+                    }
+                }
+            }
+        });
+
+
+        // Merging nearby seeds
+        var seedsList = nodeSeeds.ToList();
+        for (var i = 0; i < seedsList.Count; i++)
+        {
+            for (var j = i + 1; j < seedsList.Count; j++)
+            {
+                var distance = Vector3.Distance(seedsList[i].Position, seedsList[j].Position);
+                if (distance >= config.TopologyBaryonicMatterNodeSeedMergeDistanceThreshold) continue;
+
+                var mergedPosition = (seedsList[i].Position + seedsList[j].Position) / 2;
+                var mergedIntensity = (seedsList[i].Intensity + seedsList[j].Intensity) / 2;
+
+                seedsList[i] = new NodeSeed(mergedPosition, mergedIntensity);
+                seedsList.RemoveAt(j);
+                j--;
+            }
+        }
+
+        // Ensuring minimum distance
+        for (var i = 0; i < seedsList.Count; i++)
+        {
+            for (var j = i + 1; j < seedsList.Count; j++)
+            {
+                var distance = Vector3.Distance(seedsList[i].Position, seedsList[j].Position);
+                if (distance >= config.TopologyBaryonicMatterNodeSeedMinDistanceThreshold) continue;
+
+                if (seedsList[i].Intensity > seedsList[j].Intensity)
+                {
+                    seedsList.RemoveAt(j);
+                    j--;
+                }
+                else
+                {
+                    seedsList.RemoveAt(i);
+                    i--;
+                    break;
+                }
+            }
+        }
+
+        var minAllowedNodes = (int)(numberToGenerate * 0.9);
+        var maxAllowedNodes = (int)(numberToGenerate * 1.1);
+
+        if (seedsList.Count > maxAllowedNodes)
+        {
+            var randomNodeCount = config.RandomGenerator.Next(minAllowedNodes, maxAllowedNodes + 1);
+            seedsList = seedsList.OrderByDescending(seed => seed.Intensity).Take(randomNodeCount).ToList();
+        }
+
+        var targetNodeCount = config.RandomGenerator.Next(minAllowedNodes, maxAllowedNodes + 1);
+
+        while (seedsList.Count < targetNodeCount)
+        {
+            // Assuming you can make a list of potential seeds that weren't added
+            var potentialSeeds = GetPotentialSeeds(seedsList, topology);
+            if (potentialSeeds.Count() == 0) break; // Exit if no more potential seeds
+
+            var randomSeed = potentialSeeds[config.RandomGenerator.Next(potentialSeeds.Count)];
+            seedsList.Add(randomSeed);
+        }
+
+        return new ConcurrentBag<NodeSeed>(seedsList);
+    }
+
+    private List<NodeSeed> GetPotentialSeeds(List<NodeSeed> currentSeeds, CosmicTopology topology)
+    {
+        var potentialSeeds = new List<NodeSeed>();
+        var densityThreshold = topology.AverageIntensity * config.TopologyBaryonicMatterNodeDensityThresholdFactor;
+        var gradientMagnitudeThreshold = topology.MaxGradientMagnitude * config.TopologyBaryonicMatterNodeGradientMagnitudeThresholdFactor;
+
+        var width = topology.VolumeMap.GetLength(0);
+        var height = topology.VolumeMap.GetLength(1);
+        var depth = topology.VolumeMap.GetLength(2);
+
+        for (var x = 0; x < width; x++)
+        {
+            for (var y = 0; y < height; y++)
+            {
+                for (var z = 0; z < depth; z++)
+                {
+                    var intensity = topology.VolumeMap[x, y, z];
+                    if (intensity <= densityThreshold) continue;
+
+                    var gradient = topology.GradientMap[x, y, z];
+                    if (gradient.Length() <= gradientMagnitudeThreshold) continue;
+
+                    // Now check if it's too close to the already added seeds:
+                    var potentialSeedPosition = new Vector3(x, y, z);
+                    if (currentSeeds.Any(seed => Vector3.Distance(seed.Position, potentialSeedPosition) < config.TopologyBaryonicMatterNodeSeedMinDistanceThreshold))
+                        continue;
+
+                    potentialSeeds.Add(new NodeSeed(potentialSeedPosition, intensity));
+                }
+            }
+        }
+
+        return potentialSeeds;
+    }
+
+    private Vector3 GetRandomOffset(float maxOffset)
+    {
+        Random random = new Random();
+        float offsetX = (float)(random.NextDouble() * 2 - 1) * maxOffset; // Random value between -maxOffset and maxOffset
+        float offsetY = (float)(random.NextDouble() * 2 - 1) * maxOffset;
+        float offsetZ = (float)(random.NextDouble() * 2 - 1) * maxOffset;
+
+        return new Vector3(offsetX, offsetY, offsetZ);
+    }
+
+
+    private ConcurrentBag<FilamentSeed> GenerateFilamentSeeds(CosmicTopology topology)
+    {
+        var filamentSeeds = new ConcurrentBag<FilamentSeed>();
+
+        return filamentSeeds;
+    }
+
+    private ConcurrentBag<SheetSeed> GenerateSheetSeeds(CosmicTopology topology)
+    {
+        var sheetSeeds = new ConcurrentBag<SheetSeed>();
+
+        return sheetSeeds;
+    }
+
+    private ConcurrentBag<VoidSeed> GenerateVoidSeeds(CosmicTopology topology)
+    {
+        var voidSeeds = new ConcurrentBag<VoidSeed>();
+
+        return voidSeeds;
+    }
+
+
 
     private int GetBaryonicMatterFilamentCount(CosmicWebContext context, float averageIntensity)
     {
