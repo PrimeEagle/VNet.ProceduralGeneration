@@ -1,7 +1,9 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿using System.Collections.Concurrent;
+
+namespace VNet.ProceduralGeneration.Cosmological;
 
 public abstract class StarCluster : AstronomicalObject
 {
-    public List<StarSystem> StarSystems { get; set; } = new List<StarSystem>();
+    public ConcurrentBag<StarSystem> StarSystems { get; set; } = new ConcurrentBag<StarSystem>();
     public double Diameter { get; set; }
 }

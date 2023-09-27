@@ -1,13 +1,13 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class BaryonicSheetContext : BaseContext
+public class BaryonicMatterSheetContext : BaseContext
 {
-    public BaryonicSheetContext()
+    public BaryonicMatterSheetContext()
     {
 
     }
 
-    public BaryonicSheetContext(CosmicWeb cosmicWeb)
+    public BaryonicMatterSheetContext(CosmicWeb cosmicWeb)
     {
 
     }

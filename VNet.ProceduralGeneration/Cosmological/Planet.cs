@@ -1,4 +1,6 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿using System.Collections.Concurrent;
+
+namespace VNet.ProceduralGeneration.Cosmological;
 
 public class Planet : AstronomicalObject
 {
@@ -10,7 +12,7 @@ public class Planet : AstronomicalObject
     public TemperatureRange Temperature { get; set; }
     public double RotationPeriod { get; set; }
     public OrbitDetails Orbit { get; set; }
-    public List<Moon> Moons { get; set; } = new List<Moon>();
+    public ConcurrentBag<Moon> Moons { get; set; } = new ConcurrentBag<Moon>();
     public SurfaceDetails Surface { get; set; }
     public InteriorDetails Interior { get; set; }
     public MagneticPoles MagneticPoles { get; set; }

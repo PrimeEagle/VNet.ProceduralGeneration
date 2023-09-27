@@ -1,5 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class BaryonicMatterSheet : AstronomicalObject
+public class AccretionDiskContext : BaseContext
 {
 }

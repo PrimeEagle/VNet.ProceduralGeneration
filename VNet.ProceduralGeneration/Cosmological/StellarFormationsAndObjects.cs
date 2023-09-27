@@ -1,11 +1,13 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿using System.Collections.Concurrent;
+
+namespace VNet.ProceduralGeneration.Cosmological;
 
 public class StellarFormationsAndObjects : AstronomicalObject
 {
     public bool NonClustered { get; set; }
     public bool Clusters { get; set; }
-    public List<Nebula> Nebulae { get; set; } = new List<Nebula>();
-    public List<Supernova> Supernovae { get; set; } = new List<Supernova>();
+    public ConcurrentBag<Nebula> Nebulae { get; set; } = new ConcurrentBag<Nebula>();
+    public ConcurrentBag<Supernova> Supernovae { get; set; } = new ConcurrentBag<Supernova>();
     public BlackHole BlackHole { get; set; }
-    public List<NeutronStar> NeutronStars { get; set; } = new List<NeutronStar>();
+    public ConcurrentBag<NeutronStar> NeutronStars { get; set; } = new ConcurrentBag<NeutronStar>();
 }

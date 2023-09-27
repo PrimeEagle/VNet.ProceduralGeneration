@@ -1,4 +1,6 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿using System.Collections.Concurrent;
+
+namespace VNet.ProceduralGeneration.Cosmological;
 
 public class Galaxy : AstronomicalObject
 {
@@ -8,5 +10,5 @@ public class Galaxy : AstronomicalObject
     public double StarFormationRate { get; set; }
     public double Metallicity { get; set; }
     public double InterstellarMedium { get; set; }
-    public List<StarCluster> StarClusters { get; set; } = new List<StarCluster>();
+    public ConcurrentBag<StarCluster> StarClusters { get; set; } = new ConcurrentBag<StarCluster>();
 }

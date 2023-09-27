@@ -1,12 +1,12 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class BaryonicVoidGenerator : BaseGenerator<BaryonicVoid, BaryonicVoidContext>
+public class BaryonicMatterVoidGenerator : BaseGenerator<BaryonicMatterVoid, BaryonicMatterVoidContext>
 {
-    public BaryonicVoidGenerator(GeneratorConfig config) : base(config)
+    public BaryonicMatterVoidGenerator(GeneratorConfig config) : base(config)
     {
     }
 
-    public override BaryonicVoid Generate(BaryonicVoidContext context)
+    public override BaryonicMatterVoid Generate(BaryonicMatterVoidContext context)
     {
         throw new NotImplementedException();
     }

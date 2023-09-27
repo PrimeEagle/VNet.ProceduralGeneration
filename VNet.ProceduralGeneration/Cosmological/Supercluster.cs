@@ -1,6 +1,8 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿using System.Collections.Concurrent;
+
+namespace VNet.ProceduralGeneration.Cosmological;
 
 public class Supercluster : AstronomicalObject
 {
-    public List<GalaxyCluster> GalaxyClusters { get; set; } = new List<GalaxyCluster>();
+    public ConcurrentBag<GalaxyCluster> GalaxyClusters { get; set; } = new ConcurrentBag<GalaxyCluster>();
 }

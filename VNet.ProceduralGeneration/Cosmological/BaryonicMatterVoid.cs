@@ -1,5 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class BaryonicVoid : AstronomicalObject
+public class BaryonicMatterVoid : AstronomicalObject
 {
 }
