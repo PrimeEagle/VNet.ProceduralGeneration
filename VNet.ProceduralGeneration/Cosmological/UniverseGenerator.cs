@@ -39,8 +39,19 @@ public class UniverseGenerator : BaseGenerator<Universe, UniverseContext>
         universe.ApplyInflationEffects();
 
         var cosmicWebContext = new CosmicWebContext(universe);
-        universe.CosmicWeb = _cosmicWebGenerator.Generate(cosmicWebContext);
+        var imgTask = Task.Run(() => _cosmicWebGenerator.Generate(cosmicWebContext));
+
+        Task.WaitAll(imgTask);
+
+        universe.CosmicWeb = imgTask.Result;
+
+        PostProcess();
 
         return universe;
+    }
+
+    private void PostProcess()
+    {
+
     }
 }

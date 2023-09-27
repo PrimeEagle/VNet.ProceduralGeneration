@@ -2,4 +2,13 @@
 
 public class BaryonicNodeContext : BaseContext
 {
+    public BaryonicNodeContext()
+    {
+
+    }
+
+    public BaryonicNodeContext(CosmicWeb cosmicWeb)
+    {
+
+    }
 }

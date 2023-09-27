@@ -10,7 +10,6 @@ public class BaryonicFilamentGenerator : BaseGenerator<BaryonicFilament, Baryoni
     private readonly GalaxyClusterGenerator _galaxyClusterGenerator;
     private readonly GalaxyGroupGenerator _galaxyGroupGenerator;
     private readonly GalaxyGenerator _galaxyGenerator;
-    private readonly IntergalacticMediumGenerator _intergalacticMediumGenerator;
     private readonly NoiseLayer _positionNoiseLayer;
     private readonly NoiseLayer _orientationNoiseLayer;
     private const float scaleX = 1.0f;
@@ -27,13 +26,6 @@ public class BaryonicFilamentGenerator : BaseGenerator<BaryonicFilament, Baryoni
         _galaxyClusterGenerator = new GalaxyClusterGenerator(config);
         _galaxyGroupGenerator = new GalaxyGroupGenerator(config);
         _galaxyGenerator = new GalaxyGenerator(config);
-        _intergalacticMediumGenerator = new IntergalacticMediumGenerator(config);
-
-        _positionNoiseLayer = new NoiseLayer();
-        _positionNoiseLayer.AddLayer(new SomePositionNoiseAlgorithm(), new OverlayBlendMode());
-
-        _orientationNoiseLayer = new NoiseLayer();
-        _orientationNoiseLayer.AddLayer(new SomeOrientationNoiseAlgorithm(), new OverlayBlendMode());
     }
 
     public override BaryonicFilament Generate(BaryonicFilamentContext context)
@@ -74,13 +66,6 @@ public class BaryonicFilamentGenerator : BaseGenerator<BaryonicFilament, Baryoni
             var galaxy = _galaxyGenerator.Generate(galaxyContext);
             filament.Galaxies.Add(galaxy);
         });
-
-        var intergalacticMediumContext = new IntergalacticMediumContext();
-        var imgTask = Task.Run(() => _intergalacticMediumGenerator.Generate(intergalacticMediumContext));
-
-        Task.WaitAll(imgTask);
-
-        filament.IntergalacticMedium = imgTask.Result;
 
         PostProcess();
 
