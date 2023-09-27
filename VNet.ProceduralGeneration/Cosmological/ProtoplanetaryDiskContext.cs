@@ -1,5 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class AccretionDiskContext : BaseContext
+public class ProtoplanetaryDiskContext : BaseContext
 {
 }
