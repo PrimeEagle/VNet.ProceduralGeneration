@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Heightmap\" />
     <Folder Include="Terrestrial\Creatures\" />
     <Folder Include="Terrestrial\Cities\" />
     <Folder Include="Terrestrial\Dungeons\" />
