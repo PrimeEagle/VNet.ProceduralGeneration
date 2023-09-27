@@ -16,5 +16,4 @@ public class Planet : AstronomicalObject
     public SurfaceDetails Surface { get; set; }
     public InteriorDetails Interior { get; set; }
     public MagneticPoles MagneticPoles { get; set; }
-    public TectonicActivity TectonicActivity { get; set; }
 }
