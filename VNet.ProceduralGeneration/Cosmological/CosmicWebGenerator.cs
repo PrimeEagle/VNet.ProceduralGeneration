@@ -177,7 +177,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
                     var gradient = topology.GradientMap[x, y, z];
                     if (gradient.Length() <= gradientMagnitudeThreshold) continue;
 
-                    var position = new Vector3(x, y, z) + GetRandomOffset(nodeConfig.NodeMaxPositionalOffset);
+                    var position = new Vector3(x, y, z) + Util.GetRandomOffset(nodeConfig.NodeMaxPositionalOffset);
                     nodeSeeds.Add(new NodeSeed(position, intensity));
                 }
             }
@@ -280,15 +280,6 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         return potentialSeeds;
     }
 
-    private Vector3 GetRandomOffset(float maxOffset)
-    {
-        var random = new Random();
-        var offsetX = (float)(random.NextDouble() * 2 - 1) * maxOffset;
-        var offsetY = (float)(random.NextDouble() * 2 - 1) * maxOffset;
-        var offsetZ = (float)(random.NextDouble() * 2 - 1) * maxOffset;
-
-        return new Vector3(offsetX, offsetY, offsetZ);
-    }
 
 
 

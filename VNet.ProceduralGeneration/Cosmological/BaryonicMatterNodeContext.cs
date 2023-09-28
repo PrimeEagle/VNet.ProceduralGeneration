@@ -12,6 +12,6 @@ public class BaryonicMatterNodeContext : BaseContext
 
     public BaryonicMatterNodeContext(CosmicWeb cosmicWeb)
     {
-
+        LoadBaseProperties((AstronomicalObject)cosmicWeb);
     }
 }

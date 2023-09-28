@@ -21,6 +21,8 @@ public class CosmicWebContext : BaseContext
 
     public CosmicWebContext(Universe universe)
     {
+        LoadBaseProperties((AstronomicalObject)universe);
+
         this.DarkEnergyPercent = universe.DarkEnergyPercent;
         this.DarkMatterPercent = universe.DarkMatterPercent;
         this.BaryonicMatterPercent = universe.BaryonicMatterPercent;
