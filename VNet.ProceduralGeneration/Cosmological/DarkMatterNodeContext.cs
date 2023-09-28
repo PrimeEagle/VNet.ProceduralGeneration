@@ -2,6 +2,9 @@
 
 public class DarkMatterNodeContext : BaseContext
 {
+    public SpatialGrid SpatialGrid { get; set; }
+
+
     public DarkMatterNodeContext()
     {
 

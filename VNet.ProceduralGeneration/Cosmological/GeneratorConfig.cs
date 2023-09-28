@@ -75,6 +75,13 @@ namespace VNet.ProceduralGeneration.Cosmological
         private const float TOPOLOGY_BARYONIC_MATTER_NODE_INTENSITY_THRESHOLD_FACTOR = 1.2f;
         private const float TOPOLOGY_BARYONIC_MATTER_NODE_SEED_MERGE_DISTANCE_THRESHOLD_FACTOR = 0.2f;
         private const float TOPOLOGY_BARYONIC_MATTER_NODE_SEED_MIN_DISTANCE_THRESHOLD_FACTOR = 1.2f;
+        private const float TOPOLOGY_BARYONIC_MATTER_NODE_MAX_POSITIONAL_OFFSET = 0.2f;
+        private const float TOPOLOGY_DARK_MATTER_NODE_DENSITY_THRESHOLD_FACTOR = 1.2f;
+        private const float TOPOLOGY_DARK_MATTER_NODE_GRADIENT_MAGNITUDE_THRESHOLD_FACTOR = 0.2f;
+        private const float TOPOLOGY_DARK_MATTER_NODE_INTENSITY_THRESHOLD_FACTOR = 1.2f;
+        private const float TOPOLOGY_DARK_MATTER_NODE_SEED_MERGE_DISTANCE_THRESHOLD_FACTOR = 0.2f;
+        private const float TOPOLOGY_DARK_MATTER_NODE_SEED_MIN_DISTANCE_THRESHOLD_FACTOR = 1.2f;
+        private const float TOPOLOGY_DARK_MATTER_NODE_MAX_POSITIONAL_OFFSET = 0.2f;
 
 
         public float DimX { get; set; }
@@ -172,7 +179,32 @@ namespace VNet.ProceduralGeneration.Cosmological
         }
         public float TopologyBaryonicMatterNodeSeedMergeDistanceThresholdFactor { get; set; }
         public float TopologyBaryonicMatterNodeSeedMinDistanceThresholdFactor { get; set; }
-    
+        public float TopologyBaryonicMatterNodeMaxPositionalOffset { get; set; }
+
+
+        public float TopologyDarkMatterNodeDensityThresholdFactor { get; set; }
+        public float TopologyDarkMatterNodeGradientMagnitudeThresholdFactor { get; set; }
+        public float TopologyDarkMatterNodeIntensityThresholdFactor { get; set; }
+        public float TopologyDarkMatterNodeSeedMergeDistanceThreshold
+        {
+            get
+            {
+                return this.TopologyDarkMatterNodeSeedMergeDistanceThresholdFactor * this.AverageDim;
+            }
+        }
+
+        public float TopologyDarkMatterNodeSeedMinDistanceThreshold
+        {
+            get
+            {
+                return this.TopologyDarkMatterNodeSeedMergeDistanceThreshold * this.TopologyDarkMatterNodeSeedMinDistanceThresholdFactor;
+            }
+        }
+        public float TopologyDarkMatterNodeSeedMergeDistanceThresholdFactor { get; set; }
+        public float TopologyDarkMatterNodeSeedMinDistanceThresholdFactor { get; set; }
+        public float TopologyDarkMatterNodeMaxPositionalOffset { get; set; }
+
+
         public IRandomGenerationAlgorithm RandomGenerator { get; set; }
 
 
@@ -251,6 +283,13 @@ namespace VNet.ProceduralGeneration.Cosmological
             this.TopologyBaryonicMatterNodeIntensityThresholdFactor = TOPOLOGY_BARYONIC_MATTER_NODE_INTENSITY_THRESHOLD_FACTOR;
             this.TopologyBaryonicMatterNodeSeedMergeDistanceThresholdFactor = TOPOLOGY_BARYONIC_MATTER_NODE_SEED_MERGE_DISTANCE_THRESHOLD_FACTOR;
             this.TopologyBaryonicMatterNodeSeedMinDistanceThresholdFactor = TOPOLOGY_BARYONIC_MATTER_NODE_SEED_MIN_DISTANCE_THRESHOLD_FACTOR;
+            this.TopologyBaryonicMatterNodeMaxPositionalOffset = TOPOLOGY_BARYONIC_MATTER_NODE_MAX_POSITIONAL_OFFSET;
+            this.TopologyDarkMatterNodeDensityThresholdFactor = TOPOLOGY_DARK_MATTER_NODE_DENSITY_THRESHOLD_FACTOR;
+            this.TopologyDarkMatterNodeGradientMagnitudeThresholdFactor = TOPOLOGY_DARK_MATTER_NODE_GRADIENT_MAGNITUDE_THRESHOLD_FACTOR;
+            this.TopologyDarkMatterNodeIntensityThresholdFactor = TOPOLOGY_DARK_MATTER_NODE_INTENSITY_THRESHOLD_FACTOR;
+            this.TopologyDarkMatterNodeSeedMergeDistanceThresholdFactor = TOPOLOGY_DARK_MATTER_NODE_SEED_MERGE_DISTANCE_THRESHOLD_FACTOR;
+            this.TopologyDarkMatterNodeSeedMinDistanceThresholdFactor = TOPOLOGY_DARK_MATTER_NODE_SEED_MIN_DISTANCE_THRESHOLD_FACTOR;
+            this.TopologyDarkMatterNodeMaxPositionalOffset = TOPOLOGY_DARK_MATTER_NODE_MAX_POSITIONAL_OFFSET;
         }
 
         private float CalculateAverageDim()

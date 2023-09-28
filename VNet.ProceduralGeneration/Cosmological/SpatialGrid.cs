@@ -1,44 +1,72 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological
+﻿namespace VNet.ProceduralGeneration.Cosmological;
+
+public class SpatialGrid
 {
-    public class SpatialGrid
+    private readonly SpatialGridCell[,,] _grid;
+    private readonly object _lockObject = new object();
+
+    public SpatialGridCell this[int x, int y, int z] => _grid[x, y, z];
+
+
+    public SpatialGrid(float[,,] sourceArray)
     {
-        private int _resolutionX;
-        private int _resolutionY;
-        private int _resolutionZ;
+        var xDim = sourceArray.GetLength(0);
+        var yDim = sourceArray.GetLength(1);
+        var zDim = sourceArray.GetLength(2);
 
-        public SpatialGridCell[,,] Cells { get; private set; }
+        _grid = new SpatialGridCell[xDim, yDim, zDim];
 
-        public SpatialGrid(int resolutionX, int resolutionY, int resolutionZ)
+        for (var x = 0; x < xDim; x++)
         {
-            _resolutionX = resolutionX;
-            _resolutionY = resolutionY;
-            _resolutionZ = resolutionZ;
-
-            Cells = new SpatialGridCell[_resolutionX, _resolutionY, _resolutionZ];
-            for (var x = 0; x < _resolutionX; x++)
+            for (var y = 0; y < yDim; y++)
             {
-                for (var y = 0; y < _resolutionY; y++)
+                for (var z = 0; z < zDim; z++)
                 {
-                    for (var z = 0; z < _resolutionZ; z++)
+                    _grid[x, y, z] = new SpatialGridCell();
+                }
+            }
+        }
+    }
+
+    public SpatialGrid(int xDim, int yDim, int zDim)
+    {
+        _grid = new SpatialGridCell[xDim, yDim, zDim];
+
+        for (var x = 0; x < xDim; x++)
+        {
+            for (var y = 0; y < yDim; y++)
+            {
+                for (var z = 0; z < zDim; z++)
+                {
+                    _grid[x, y, z] = new SpatialGridCell();
+                }
+            }
+        }
+    }
+
+    public (int, int, int)? GetNextAvailable()
+    {
+        lock (_lockObject)
+        {
+            for (var x = 0; x < _grid.GetLength(0); x++)
+            {
+                for (var y = 0; y < _grid.GetLength(1); y++)
+                {
+                    for (var z = 0; z < _grid.GetLength(2); z++)
                     {
-                        Cells[x, y, z] = new SpatialGridCell();
+                        if (!_grid[x, y, z].IsAvailable()) continue;
+
+                        _grid[x, y, z].MarkProcessing();
+                        return (x, y, z);
                     }
                 }
             }
         }
+        return null;
+    }
 
-        public SpatialGridCell GetCell(int x, int y, int z)
-        {
-            if (x >= 0 && x < _resolutionX &&
-                y >= 0 && y < _resolutionY &&
-                z >= 0 && z < _resolutionZ)
-            {
-                return Cells[x, y, z];
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException("Indices out of grid bounds.");
-            }
-        }
+    public void MarkDone(int x, int y, int z)
+    {
+        _grid[x, y, z].MarkDone();
     }
 }

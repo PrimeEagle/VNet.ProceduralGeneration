@@ -2,6 +2,9 @@
 
 public class BaryonicMatterNodeContext : BaseContext
 {
+    public SpatialGrid SpatialGrid { get; set; }
+
+
     public BaryonicMatterNodeContext()
     {
 
