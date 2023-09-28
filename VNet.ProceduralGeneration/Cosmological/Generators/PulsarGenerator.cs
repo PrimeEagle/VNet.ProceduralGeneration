@@ -1,4 +1,4 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class PulsarGenerator : BaseGenerator<Pulsar, PulsarContext>
 {

@@ -17,79 +17,26 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 
 
 
+    public CosmicWebGenerator(GeneratorConfig config) : base(config)
+    {
+        _intergalacticMediumGenerator = new IntergalacticMediumGenerator(config);
+        _baryonicFilamentGenerator = new BaryonicMatterFilamentGenerator(config);
+        _darkMatterFilamentGenerator = new DarkMatterFilamentGenerator(config);
+        _baryonicNodeGenerator = new BaryonicMatterNodeGenerator(config);
+        _darkMatterNodeGenerator = new DarkMatterNodeGenerator(config);
+        _baryonicVoidGenerator = new BaryonicMatterVoidGenerator(config);
+        _darkMatterVoidGenerator = new DarkMatterVoidGenerator(config);
+        _baryonicSheetGenerator = new BaryonicMatterSheetGenerator(config);
+        _darkMatterSheetGenerator = new DarkMatterSheetGenerator(config);
+    }
+
     public override CosmicWeb Generate(CosmicWebContext context)
     {
-        var cosmicWeb = new CosmicWeb();
+        var cosmicWeb = new CosmicWeb();     
 
-        var heightMapImage = HeightmapUtil.LoadImage(config.HeightmapImageFile);
-
-        if (config.GaussianSigma > 0f)
-        {
-            heightMapImage = HeightmapUtil.GaussianBlur(heightMapImage, config.GaussianSigma);
-        }
-
-        var heightMap = HeightmapUtil.ImageToHeightmap(heightMapImage);
-        var volumeMap = HeightmapUtil.ExtrudeHeightmapToVolumeMap(heightMap, 1);
-        var gradientMap = HeightmapUtil.VolumeMapToGradientMap(volumeMap);
-        var averageIntensity = HeightmapUtil.GetAverageIntensity(heightMapImage);
-        var maxGradientMagnitude = gradientMap.Cast<Vector3>().Max(v => v.Length());
-
-        cosmicWeb.Topology = new CosmicTopology()
-        {
-            AverageIntensity = averageIntensity,
-            Heightmap = heightMap,
-            VolumeMap = volumeMap,
-            GradientMap = gradientMap,
-            MaxGradientMagnitude = maxGradientMagnitude
-        };
-
-
-        
-        var baryonicMatterNodeConfig = new NodeConfiguration()
-        {
-            NodeSeedMinDistanceThreshold = config.TopologyBaryonicMatterNodeSeedMinDistanceThreshold,
-            NodeDensityThresholdFactor = config.TopologyBaryonicMatterNodeDensityThresholdFactor,
-            NodeGradientMagnitudeThresholdFactor = config.TopologyBaryonicMatterNodeGradientMagnitudeThresholdFactor,
-            NodeMaxPositionalOffset = config.TopologyBaryonicMatterNodeMaxPositionalOffset,
-            NodeSeedMergeDistanceThreshold = config.TopologyBaryonicMatterNodeSeedMergeDistanceThreshold
-        };
-        var baryonicMatterNodeCount = GetBaryonicMatterNodeCount(context, cosmicWeb.Topology.AverageIntensity); 
-        var baryonicMatterNodeSpatialGrid = InitializeSpatialGrid(cosmicWeb, baryonicMatterNodeConfig);
-        var baryonicMatterNodeContext = new BaryonicMatterNodeContext(cosmicWeb)
-        {
-            SpatialGrid = baryonicMatterNodeSpatialGrid,
-        };
-
-        Parallel.For(0, baryonicMatterNodeCount, i =>
-        {
-            var baryonicNode = _baryonicNodeGenerator.Generate(baryonicMatterNodeContext);
-            cosmicWeb.BaryonicNodes.Add(baryonicNode);
-        });
-
-
-
-        var darkMatterNodeConfig = new NodeConfiguration()
-        {
-            NodeSeedMinDistanceThreshold = config.TopologyDarkMatterNodeSeedMinDistanceThreshold,
-            NodeDensityThresholdFactor = config.TopologyDarkMatterNodeDensityThresholdFactor,
-            NodeGradientMagnitudeThresholdFactor = config.TopologyDarkMatterNodeGradientMagnitudeThresholdFactor,
-            NodeMaxPositionalOffset = config.TopologyDarkMatterNodeMaxPositionalOffset,
-            NodeSeedMergeDistanceThreshold = config.TopologyDarkMatterNodeSeedMergeDistanceThreshold
-        };
-        var darkMatterNodeCount = GetDarkMatterNodeCount(context, cosmicWeb.Topology.AverageIntensity); 
-        var darkMatterNodeSpatialGrid = InitializeSpatialGrid(cosmicWeb, darkMatterNodeConfig);
-        var darkMatterNodeContext = new DarkMatterNodeContext(cosmicWeb)
-        {
-            SpatialGrid = darkMatterNodeSpatialGrid,
-        };
-
-        Parallel.For(0, darkMatterNodeCount, i =>
-        {
-            var darkMatterNode = _darkMatterNodeGenerator.Generate(darkMatterNodeContext);
-            cosmicWeb.DarkMatterNodes.Add(darkMatterNode);
-        });
-
-
+        LoadCosmicTopology(cosmicWeb);
+        GenerateBaryonicMatterNodes(cosmicWeb, context);
+        GenerateDarkMatterNodes(cosmicWeb, context);
 
         //var intergalacticMediumContext = new IntergalacticMediumContext();
         //var imgTask = Task.Run(() => _intergalacticMediumGenerator.Generate(intergalacticMediumContext));
@@ -103,12 +50,84 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         return cosmicWeb;
     }
 
+
+    private void LoadCosmicTopology(CosmicWeb cosmicWeb)
+    {
+        var heightMapImage = HeightmapUtil.LoadImage(config.HeightmapImageFile);
+
+        if (config.GaussianSigma > 0f)
+        {
+            heightMapImage = HeightmapUtil.GaussianBlur(heightMapImage, config.GaussianSigma);
+        }
+
+        var heightMap = HeightmapUtil.ImageToHeightmap(heightMapImage);
+        var volumeMap = HeightmapUtil.ExtrudeHeightmapToVolumeMap(heightMap, 1);
+        var gradientMap = HeightmapUtil.VolumeMapToGradientMap(volumeMap);
+        var averageIntensity = HeightmapUtil.GetAverageIntensity(heightMapImage);
+        var maxGradientMagnitude = gradientMap.Cast<Vector3>().Max(v => v.Length());
+
+        cosmicWeb.Topology = new CosmicWebTopology()
+        {
+            AverageIntensity = averageIntensity,
+            Heightmap = heightMap,
+            VolumeMap = volumeMap,
+            GradientMap = gradientMap,
+            MaxGradientMagnitude = maxGradientMagnitude
+        };
+    }
+
+
+    private void GenerateBaryonicMatterNodes(CosmicWeb cosmicWeb, CosmicWebContext context)
+    {
+        var baryonicMatterNodeConfig = new NodeConfiguration()
+        {
+            NodeSeedMinDistanceThreshold = config.TopologyBaryonicMatterNodeSeedMinDistanceThreshold,
+            NodeDensityThresholdFactor = config.TopologyBaryonicMatterNodeDensityThresholdFactor,
+            NodeGradientMagnitudeThresholdFactor = config.TopologyBaryonicMatterNodeGradientMagnitudeThresholdFactor,
+            NodeMaxPositionalOffset = config.TopologyBaryonicMatterNodeMaxPositionalOffset,
+            NodeSeedMergeDistanceThreshold = config.TopologyBaryonicMatterNodeSeedMergeDistanceThreshold
+        };
+        var baryonicMatterNodeCount = GetBaryonicMatterNodeCount(context, cosmicWeb.Topology.AverageIntensity);
+        var baryonicMatterNodeSpatialGrid = InitializeSpatialGrid(cosmicWeb, baryonicMatterNodeConfig);
+        var baryonicMatterNodeContext = new BaryonicMatterNodeContext(cosmicWeb)
+        {
+            SpatialGrid = baryonicMatterNodeSpatialGrid,
+        };
+
+        Parallel.For(0, baryonicMatterNodeCount, i =>
+        {
+            var baryonicNode = _baryonicNodeGenerator.Generate(baryonicMatterNodeContext);
+            cosmicWeb.BaryonicNodes.Add(baryonicNode);
+        });
+    }
+    private void GenerateDarkMatterNodes(CosmicWeb cosmicWeb, CosmicWebContext context)
+    {
+        var darkMatterNodeConfig = new NodeConfiguration()
+        {
+            NodeSeedMinDistanceThreshold = config.TopologyDarkMatterNodeSeedMinDistanceThreshold,
+            NodeDensityThresholdFactor = config.TopologyDarkMatterNodeDensityThresholdFactor,
+            NodeGradientMagnitudeThresholdFactor = config.TopologyDarkMatterNodeGradientMagnitudeThresholdFactor,
+            NodeMaxPositionalOffset = config.TopologyDarkMatterNodeMaxPositionalOffset,
+            NodeSeedMergeDistanceThreshold = config.TopologyDarkMatterNodeSeedMergeDistanceThreshold
+        };
+        var darkMatterNodeCount = GetDarkMatterNodeCount(context, cosmicWeb.Topology.AverageIntensity);
+        var darkMatterNodeSpatialGrid = InitializeSpatialGrid(cosmicWeb, darkMatterNodeConfig);
+        var darkMatterNodeContext = new DarkMatterNodeContext(cosmicWeb)
+        {
+            SpatialGrid = darkMatterNodeSpatialGrid,
+        };
+
+        Parallel.For(0, darkMatterNodeCount, i =>
+        {
+            var darkMatterNode = _darkMatterNodeGenerator.Generate(darkMatterNodeContext);
+            cosmicWeb.DarkMatterNodes.Add(darkMatterNode);
+        });
+    }
+
     private SpatialGrid InitializeSpatialGrid(CosmicWeb cosmicWeb, NodeConfiguration nodeConfig)
     {
         var volumeMap = cosmicWeb.Topology.VolumeMap;
-        var gradientMap = cosmicWeb.Topology.GradientMap;
         var densityThreshold = cosmicWeb.Topology.AverageIntensity * nodeConfig.NodeDensityThresholdFactor;
-        var gradientMagnitudeThreshold = cosmicWeb.Topology.MaxGradientMagnitude * nodeConfig.NodeGradientMagnitudeThresholdFactor;
 
         var spatialGrid = new SpatialGrid(volumeMap);
 
@@ -130,31 +149,13 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         return spatialGrid;
     }
 
+
     private void PostProcess()
     {
-
     }
 
-    private void IterativeRefinement(CosmicWeb cosmicWeb)
-    {
-        EnsureConnectivity(cosmicWeb);
-        AdjustDensities(cosmicWeb);
-        HandleCollisions(cosmicWeb);
-    }
 
-    private void EnsureConnectivity(CosmicWeb cosmicWeb)
-    {
-    }
-
-    private void AdjustDensities(CosmicWeb cosmicWeb)
-    {
-    }
-
-    private void HandleCollisions(CosmicWeb cosmicWeb)
-    {
-    }
-
-    private ConcurrentBag<NodeSeed> GenerateNodeSeeds(CosmicTopology topology, int numberToGenerate, NodeConfiguration nodeConfig)
+    private ConcurrentBag<NodeSeed> GenerateNodeSeeds(CosmicWebTopology topology, int numberToGenerate, NodeConfiguration nodeConfig)
     {
         var nodeSeeds = new ConcurrentBag<NodeSeed>();
 
@@ -245,8 +246,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 
         return new ConcurrentBag<NodeSeed>(seedsList);
     }
-
-    private List<NodeSeed> GetPotentialNodeSeeds(IReadOnlyCollection<NodeSeed> currentSeeds, CosmicTopology topology, NodeConfiguration nodeConfig)
+    private List<NodeSeed> GetPotentialNodeSeeds(IReadOnlyCollection<NodeSeed> currentSeeds, CosmicWebTopology topology, NodeConfiguration nodeConfig)
     {
         var potentialSeeds = new List<NodeSeed>();
         var densityThreshold = topology.AverageIntensity * nodeConfig.NodeDensityThresholdFactor;
@@ -281,8 +281,6 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
     }
 
 
-
-
     private int GetBaryonicMatterFilamentCount(CosmicWebContext context, float averageIntensity)
     {
         var baseCount = config.BaryonicMatterFilamentBaseCount;
@@ -311,7 +309,6 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 
         return baseCount;
     }
-
     private int GetDarkMatterFilamentCount(CosmicWebContext context, float averageIntensity)
     {
         var baseCount = config.DarkMatterFilamentBaseCount;
@@ -340,7 +337,6 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 
         return baseCount;
     }
-
     private int GetBaryonicMatterNodeCount(CosmicWebContext context, float averageIntensity)
     {
         var baseCount = config.BaryonicMatterNodeBaseCount;
@@ -369,7 +365,6 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 
         return baseCount;
     }
-
     private int GetDarkMatterNodeCount(CosmicWebContext context, float averageIntensity)
     {
         var baseCount = config.DarkMatterNodeBaseCount;
@@ -398,62 +393,6 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 
         return baseCount;
     }
-
-    private int GetBaryonicMatterVoidCount(CosmicWebContext context, float averageIntensity)
-    {
-        var baseCount = config.BaryonicMatterVoidBaseCount;
-
-        switch (context.Curvature)
-        {
-            case CurvatureType.Flat:
-                baseCount += 100;
-                break;
-            case CurvatureType.Spherical:
-                baseCount -= 50;
-                break;
-            case CurvatureType.Hyperbolic:
-                baseCount += 50;
-                break;
-        }
-
-        baseCount += (int)(context.Age * config.BaryonicMatterVoidAgeFactor);
-        baseCount = (int)(baseCount * (context.Mass * config.BaryonicMatterVoidAgeFactor) * (context.Size * config.BaryonicMatterVoidSizeFactor));
-        baseCount = (int)(baseCount * (context.ExpansionRate / config.BaselineExpansionRate));
-        baseCount = (int)(baseCount * (config.BaselineCosmicMicrowaveBackground / context.CosmicMicrowaveBackground));
-        baseCount = (int)(baseCount * (1 - averageIntensity / 255.0));
-        baseCount = (int)(baseCount * (1 - context.BaryonicMatterPercent / config.BaryonicMatterVoidBaryonicMatterPercentFactor));
-        baseCount = (int)(baseCount * (1 + context.DarkEnergyPercent / config.BaryonicMatterVoidDarkEnergyPercentFactor));
-
-        return baseCount;
-    }
-
-    private int GetDarkMatterVoidCount(CosmicWebContext context, float averageIntensity)
-    {
-        var baseCount = config.DarkMatterVoidBaseCount;
-
-        switch (context.Curvature)
-        {
-            case CurvatureType.Flat:
-                baseCount += 120;
-                break;
-            case CurvatureType.Spherical:
-                baseCount -= 60;
-                break;
-            case CurvatureType.Hyperbolic:
-                baseCount += 60;
-                break;
-        }
-        baseCount += (int)(context.Age * config.DarkMatterVoidAgeFactor);
-        baseCount = (int)(baseCount * (context.Mass * config.DarkMatterVoidMassFactor) * (context.Size * config.DarkMatterVoidSizeFactor));
-        baseCount = (int)(baseCount * (context.ExpansionRate / config.BaselineExpansionRate));
-        baseCount = (int)(baseCount * (config.BaselineCosmicMicrowaveBackground / context.CosmicMicrowaveBackground));
-        baseCount = (int)(baseCount * (1 - averageIntensity / 255.0));
-        baseCount = (int)(baseCount * (1 - context.DarkMatterPercent / config.DarkMatterVoidDarkMatterPercentFactor));
-        baseCount = (int)(baseCount * (1 + context.DarkEnergyPercent / config.DarkMatterVoidDarkEnergyPercentFactor));
-
-        return baseCount;
-    }
-
     private int GetBaryonicMatterSheetCount(CosmicWebContext context, float averageIntensity)
     {
         var baseCount = config.BaryonicMatterSheetBaseCount;
@@ -482,7 +421,6 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 
         return baseCount;
     }
-
     private int GetDarkMatterSheetCount(CosmicWebContext context, float averageIntensity)
     {
         var baseCount = config.DarkMatterSheetBaseCount;
@@ -511,17 +449,57 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 
         return baseCount;
     }
-
-    public CosmicWebGenerator(GeneratorConfig config) : base(config)
+    private int GetBaryonicMatterVoidCount(CosmicWebContext context, float averageIntensity)
     {
-        _intergalacticMediumGenerator = new IntergalacticMediumGenerator(config);
-        _baryonicFilamentGenerator = new BaryonicMatterFilamentGenerator(config);
-        _darkMatterFilamentGenerator = new DarkMatterFilamentGenerator(config);
-        _baryonicNodeGenerator = new BaryonicMatterNodeGenerator(config);
-        _darkMatterNodeGenerator = new DarkMatterNodeGenerator(config);
-        _baryonicVoidGenerator = new BaryonicMatterVoidGenerator(config);
-        _darkMatterVoidGenerator = new DarkMatterVoidGenerator(config);
-        _baryonicSheetGenerator = new BaryonicMatterSheetGenerator(config);
-        _darkMatterSheetGenerator = new DarkMatterSheetGenerator(config);
+        var baseCount = config.BaryonicMatterVoidBaseCount;
+
+        switch (context.Curvature)
+        {
+            case CurvatureType.Flat:
+                baseCount += 100;
+                break;
+            case CurvatureType.Spherical:
+                baseCount -= 50;
+                break;
+            case CurvatureType.Hyperbolic:
+                baseCount += 50;
+                break;
+        }
+
+        baseCount += (int)(context.Age * config.BaryonicMatterVoidAgeFactor);
+        baseCount = (int)(baseCount * (context.Mass * config.BaryonicMatterVoidAgeFactor) * (context.Size * config.BaryonicMatterVoidSizeFactor));
+        baseCount = (int)(baseCount * (context.ExpansionRate / config.BaselineExpansionRate));
+        baseCount = (int)(baseCount * (config.BaselineCosmicMicrowaveBackground / context.CosmicMicrowaveBackground));
+        baseCount = (int)(baseCount * (1 - averageIntensity / 255.0));
+        baseCount = (int)(baseCount * (1 - context.BaryonicMatterPercent / config.BaryonicMatterVoidBaryonicMatterPercentFactor));
+        baseCount = (int)(baseCount * (1 + context.DarkEnergyPercent / config.BaryonicMatterVoidDarkEnergyPercentFactor));
+
+        return baseCount;
+    }
+    private int GetDarkMatterVoidCount(CosmicWebContext context, float averageIntensity)
+    {
+        var baseCount = config.DarkMatterVoidBaseCount;
+
+        switch (context.Curvature)
+        {
+            case CurvatureType.Flat:
+                baseCount += 120;
+                break;
+            case CurvatureType.Spherical:
+                baseCount -= 60;
+                break;
+            case CurvatureType.Hyperbolic:
+                baseCount += 60;
+                break;
+        }
+        baseCount += (int)(context.Age * config.DarkMatterVoidAgeFactor);
+        baseCount = (int)(baseCount * (context.Mass * config.DarkMatterVoidMassFactor) * (context.Size * config.DarkMatterVoidSizeFactor));
+        baseCount = (int)(baseCount * (context.ExpansionRate / config.BaselineExpansionRate));
+        baseCount = (int)(baseCount * (config.BaselineCosmicMicrowaveBackground / context.CosmicMicrowaveBackground));
+        baseCount = (int)(baseCount * (1 - averageIntensity / 255.0));
+        baseCount = (int)(baseCount * (1 - context.DarkMatterPercent / config.DarkMatterVoidDarkMatterPercentFactor));
+        baseCount = (int)(baseCount * (1 + context.DarkEnergyPercent / config.DarkMatterVoidDarkEnergyPercentFactor));
+
+        return baseCount;
     }
 }

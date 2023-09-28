@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological
 {
-    public class CosmicTopology
+    public class CosmicWebTopology
     {
         public float AverageIntensity { get; set; }
         public float MaxGradientMagnitude { get; set; }

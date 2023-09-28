@@ -12,6 +12,6 @@ public class DarkMatterNodeContext : BaseContext
 
     public DarkMatterNodeContext(CosmicWeb cosmicWeb)
     {
-
+        LoadBaseProperties((AstronomicalObject)cosmicWeb);
     }
 }

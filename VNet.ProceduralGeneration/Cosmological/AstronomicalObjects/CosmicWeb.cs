@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class CosmicWeb : AstronomicalObject
 {
-    public CosmicTopology Topology { get; set; }
+    public CosmicWebTopology Topology { get; set; }
     public IntergalacticMedium IntergalacticMedium { get; set; }
     public ConcurrentBag<BaryonicMatterFilament> BaryonicFilaments { get; set; } = new ConcurrentBag<BaryonicMatterFilament>();
     public ConcurrentBag<DarkMatterFilament> DarkMatterFilaments { get; set; } = new ConcurrentBag<DarkMatterFilament>();
