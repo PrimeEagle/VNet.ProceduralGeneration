@@ -2,71 +2,154 @@
 
 public class SpatialGrid
 {
-    private readonly SpatialGridCell[,,] _grid;
-    private readonly object _lockObject = new object();
+    private SpatialGridCell[,,] cells;
+    private object lockObj = new object();
+    private ManualResetEventSlim signal = new ManualResetEventSlim(false);
 
-    public SpatialGridCell this[int x, int y, int z] => _grid[x, y, z];
+    private int currentX = 0;
+    private int currentY = 0;
+    private int currentZ = 0;
 
+    private (int, int, int)? nextAvailableCell;
 
-    public SpatialGrid(float[,,] sourceArray)
+    private int totalAvailableCells;
+    private int fetchedAvailableCells = 0;
+
+    public SpatialGrid(int dimX, int dimY, int dimZ)
     {
-        var xDim = sourceArray.GetLength(0);
-        var yDim = sourceArray.GetLength(1);
-        var zDim = sourceArray.GetLength(2);
+        cells = new SpatialGridCell[dimX, dimY, dimZ];
 
-        _grid = new SpatialGridCell[xDim, yDim, zDim];
-
-        for (var x = 0; x < xDim; x++)
+        for (int x = 0; x < dimX; x++)
         {
-            for (var y = 0; y < yDim; y++)
+            for (int y = 0; y < dimY; y++)
             {
-                for (var z = 0; z < zDim; z++)
+                for (int z = 0; z < dimZ; z++)
                 {
-                    _grid[x, y, z] = new SpatialGridCell();
+                    cells[x, y, z] = new SpatialGridCell();
+                    cells[x, y, z].Status = SpatialGridCellStatus.Available;
+
+                    totalAvailableCells++;
                 }
             }
         }
+
+        Task.Run(FindAvailableCell);
     }
 
-    public SpatialGrid(int xDim, int yDim, int zDim)
+    public SpatialGrid(float[,,] spatialArray, Func<int, int, int, SpatialGridCellStatus> availabilityFunc)
     {
-        _grid = new SpatialGridCell[xDim, yDim, zDim];
+        var dimX = spatialArray.GetLength(0);
+        var dimY = spatialArray.GetLength(1);
+        var dimZ = spatialArray.GetLength(2);
 
-        for (var x = 0; x < xDim; x++)
-        {
-            for (var y = 0; y < yDim; y++)
-            {
-                for (var z = 0; z < zDim; z++)
-                {
-                    _grid[x, y, z] = new SpatialGridCell();
-                }
-            }
-        }
-    }
+        cells = new SpatialGridCell[dimX, dimY, dimZ];
 
-    public (int, int, int)? GetNextAvailable()
-    {
-        lock (_lockObject)
+        for (int x = 0; x < dimX; x++)
         {
-            for (var x = 0; x < _grid.GetLength(0); x++)
+            for (int y = 0; y < dimY; y++)
             {
-                for (var y = 0; y < _grid.GetLength(1); y++)
+                for (int z = 0; z < dimZ; z++)
                 {
-                    for (var z = 0; z < _grid.GetLength(2); z++)
+                    cells[x, y, z] = new SpatialGridCell
                     {
-                        if (!_grid[x, y, z].IsAvailable()) continue;
+                        Status = availabilityFunc(x, y, z)
+                    };
 
-                        _grid[x, y, z].MarkProcessing();
-                        return (x, y, z);
+                    if (cells[x, y, z].Status == SpatialGridCellStatus.Available)
+                    {
+                        totalAvailableCells++;
                     }
                 }
             }
         }
-        return null;
+
+        Task.Run(FindAvailableCell);
     }
 
-    public void MarkDone(int x, int y, int z)
+    public (int, int, int)? FetchNextAvailableCell()
     {
-        _grid[x, y, z].MarkDone();
+        lock (lockObj)
+        {
+            if (nextAvailableCell == null) return null;
+            fetchedAvailableCells++;
+            var result = nextAvailableCell.Value;
+            cells[result.Item1, result.Item2, result.Item3].Status = SpatialGridCellStatus.Processing;
+            nextAvailableCell = null;
+        }
+        signal.Set();
+
+        return nextAvailableCell;
+    }
+
+    private void FindAvailableCell()
+    {
+        while (true)
+        {
+            lock (lockObj)
+            {
+                if (fetchedAvailableCells >= totalAvailableCells)
+                {
+                    nextAvailableCell = null;
+                    break;
+                }
+
+                if (cells[currentX, currentY, currentZ].IsAvailable())
+                {
+                    nextAvailableCell = (currentX, currentY, currentZ);
+                    break;
+                }
+
+                IncrementCurrentCell();
+            }
+            signal.Wait();
+            signal.Reset();
+        }
+    }
+
+    private void IncrementCurrentCell()
+    {
+        currentZ++;
+        if (currentZ >= cells.GetLength(2))
+        {
+            currentZ = 0;
+            currentY++;
+            if (currentY >= cells.GetLength(1))
+            {
+                currentY = 0;
+                currentX++;
+                if (currentX >= cells.GetLength(0))
+                {
+                    currentX = 0;
+                }
+            }
+        }
+    }
+
+    public void UpdateCellStatus(int x, int y, int z, SpatialGridCellStatus newStatus)
+    {
+        lock (lockObj)
+        {
+            var oldStatus = cells[x, y, z].Status;
+            if (oldStatus == SpatialGridCellStatus.Available && newStatus != SpatialGridCellStatus.Available)
+            {
+                fetchedAvailableCells++;
+            }
+            else if (oldStatus != SpatialGridCellStatus.Available && newStatus == SpatialGridCellStatus.Available)
+            {
+                fetchedAvailableCells--;
+            }
+
+            cells[x, y, z].Status = newStatus;
+        }
+    }
+
+    private class SpatialGridCell
+    {
+        internal SpatialGridCellStatus Status { get; set; }
+
+        internal bool IsAvailable()
+        {
+            return Status == SpatialGridCellStatus.Available;
+        }
     }
 }

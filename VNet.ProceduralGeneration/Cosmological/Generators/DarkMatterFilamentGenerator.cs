@@ -1,4 +1,6 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+
+namespace VNet.ProceduralGeneration.Cosmological;
 
 public class DarkMatterFilamentGenerator : BaseGenerator<DarkMatterFilament, DarkMatterFilamentContext>
 {

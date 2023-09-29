@@ -1,4 +1,6 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological
+﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+
+namespace VNet.ProceduralGeneration.Cosmological
 {
     public abstract class BaseGenerator<T, TContext> : IGeneratable<T, TContext> where T : AstronomicalObject
                                                                                  where TContext : BaseContext

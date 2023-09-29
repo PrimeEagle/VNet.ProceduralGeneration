@@ -1,4 +1,6 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+
+namespace VNet.ProceduralGeneration.Cosmological;
 
 public class StarClusterGenerator : BaseGenerator<StarCluster, StarClusterContext>
 {
@@ -7,23 +9,7 @@ public class StarClusterGenerator : BaseGenerator<StarCluster, StarClusterContex
 
     public override StarCluster Generate(StarClusterContext context)
     {
-        StarCluster cluster;
-
-
-        if (true)
-        {
-            cluster = new OpenCluster();
-        }
-        else
-        {
-            cluster = new GlobularCluster();
-        }
-
-        int starCount = 0;
-        for (int i = 0; i < starCount; i++)
-        {
-            cluster.StarSystems.Add(_starSystemGenerator.Generate(new StarSystemContext()));
-        }
+        StarCluster cluster = new StarCluster();
 
         return cluster;
     }

@@ -1,5 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class Wormhole : TheoreticalAstronomicalObject
+public class SupernovaRemnantContext : BaseContext
 {
 }

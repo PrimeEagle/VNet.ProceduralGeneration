@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.Configuration;
 
 namespace VNet.ProceduralGeneration.Cosmological;
 
@@ -16,11 +17,11 @@ public class UniverseGenerator : BaseGenerator<Universe, UniverseContext>
     {
         var universe = new Universe
         {
-            Age = config.RandomGenerator.NextSingle(config.MinUniverseAge, config.MaxUniverseAge),
-            DarkEnergyPercent = config.RandomGenerator.NextDouble(config.MinDarkEnergyPercent, config.MaxDarkEnergyPercent),
-            DarkMatterPercent = config.RandomGenerator.NextDouble(config.MinDarkMatterPercent, config.MaxDarkMatterPercent),
-            BaryonicMatterPercent = config.RandomGenerator.NextDouble(config.MinBaryonicMatterPercent, config.MaxBaryonicMatterPercent),
-            ConnectivityFactor = config.RandomGenerator.NextDouble(config.MinConnectivityFactor, config.MaxConnectivityFactor),
+            Age = config.RandomGenerator.NextSingle(config.Constants.MinUniverseAge, config.Constants.MaxUniverseAge),
+            DarkEnergyPercent = config.RandomGenerator.NextDouble(config.Constants.MinDarkEnergyPercent, config.Constants.MaxDarkEnergyPercent),
+            DarkMatterPercent = config.RandomGenerator.NextDouble(config.Constants.MinDarkMatterPercent, config.Constants.MaxDarkMatterPercent),
+            BaryonicMatterPercent = config.RandomGenerator.NextDouble(config.Constants.MinBaryonicMatterPercent, config.Constants.MaxBaryonicMatterPercent),
+            ConnectivityFactor = config.RandomGenerator.NextDouble(config.Constants.MinConnectivityFactor, config.Constants.MaxConnectivityFactor),
             Position = new Vector3(0, 0, 0)
         };
 

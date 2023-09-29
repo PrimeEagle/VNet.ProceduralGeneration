@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.Scientific.Noise;
 
 

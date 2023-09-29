@@ -1,5 +1,6 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological;
 
-public class WormholeContext : BaseContext
+public class GammaRayBurst : Star
 {
+
 }
