@@ -39,11 +39,11 @@ public class StellarFormationsAndObjectsGenerator : BaseGenerator<StellarFormati
         return formationsAndObjects;
     }
 
-    public StellarFormationsAndObjectsGenerator(GeneratorConfig config) : base(config)
+    public StellarFormationsAndObjectsGenerator()
     {
-        _nebulaGenerator = new NebulaGenerator(config);
-        _supernovaGenerator = new SupernovaGenerator(config);
-        _blackHoleGenerator = new BlackHoleGenerator(config);
-        _neutronStarGenerator = new NeutronStarGenerator(config);
+        _nebulaGenerator = new NebulaGenerator();
+        _supernovaGenerator = new SupernovaGenerator();
+        _blackHoleGenerator = new BlackHoleGenerator();
+        _neutronStarGenerator = new NeutronStarGenerator();
     }
 }

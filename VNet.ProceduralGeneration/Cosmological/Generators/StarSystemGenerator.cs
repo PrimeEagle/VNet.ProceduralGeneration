@@ -48,12 +48,12 @@ public class StarSystemGenerator : BaseGenerator<StarSystem, StarSystemContext>
         return starSystem;
     }
 
-    public StarSystemGenerator(GeneratorConfig config) : base(config)
+    public StarSystemGenerator()
     {
-        _starGenerator = new StarGenerator(config);
-        _planetGenerator = new PlanetGenerator(config);
-        _icyPlanetGenerator = new IcyPlanetGenerator(config);
-        _icyCloudGenerator = new IcyCloudGenerator(config);
-        _asteroidBeltGenerator = new AsteroidBeltGenerator(config);
+        _starGenerator = new StarGenerator();
+        _planetGenerator = new PlanetGenerator();
+        _icyPlanetGenerator = new IcyPlanetGenerator();
+        _icyCloudGenerator = new IcyCloudGenerator();
+        _asteroidBeltGenerator = new AsteroidBeltGenerator();
     }
 }

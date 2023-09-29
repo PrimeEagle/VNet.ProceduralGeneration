@@ -5,7 +5,7 @@ using VNet.Configuration;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
-    public class AstronomicalObjectToggleSettings
+    public class AstronomicalObjectToggleSettings : ISettings
     {
         [DisplayName("Accretion Disks")]
         [Tooltip("Flat, spiraled disk of matter that spirals inward onto a celestial body, often a black hole or star.")]

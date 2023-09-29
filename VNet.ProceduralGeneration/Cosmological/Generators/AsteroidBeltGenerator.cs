@@ -23,8 +23,8 @@ public class AsteroidBeltGenerator : BaseGenerator<AsteroidBelt, AsteroidBeltCon
         return asteroidBelt;
     }
 
-    public AsteroidBeltGenerator(GeneratorConfig config) : base(config)
+    public AsteroidBeltGenerator()
     {
-        _asteroidGenerator = new AsteroidGenerator(config);
+        _asteroidGenerator = new AsteroidGenerator();
     }
 }

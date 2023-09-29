@@ -14,7 +14,7 @@ public class AccretionDiskGenerator : BaseGenerator<AccretionDisk, AccretionDisk
         return disk;
     }
 
-    public AccretionDiskGenerator(GeneratorConfig config) : base(config)
+    public AccretionDiskGenerator()
     {
     }
 }

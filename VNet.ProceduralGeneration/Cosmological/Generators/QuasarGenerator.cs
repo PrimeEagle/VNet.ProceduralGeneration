@@ -8,7 +8,7 @@ public class QuasarGenerator : BaseGenerator<Quasar, QuasarContext>
     {
     }
 
-    public QuasarGenerator(GeneratorConfig config) : base(config)
+    public QuasarGenerator()
     {
     }
 }

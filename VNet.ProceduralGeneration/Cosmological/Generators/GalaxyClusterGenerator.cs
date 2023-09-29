@@ -24,8 +24,8 @@ public class GalaxyClusterGenerator : BaseGenerator<GalaxyCluster, GalaxyCluster
         return galaxyCluster;
     }
 
-    public GalaxyClusterGenerator(GeneratorConfig config) : base(config)
+    public GalaxyClusterGenerator()
     {
-        _galaxyGenerator = new GalaxyGenerator(config);
+        _galaxyGenerator = new GalaxyGenerator();
     }
 }

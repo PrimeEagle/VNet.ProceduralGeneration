@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class NakedSingularityGenerator : BaseGenerator<NakedSingularity, NakedSingularityContext>
 {
-    public NakedSingularityGenerator(GeneratorConfig config) : base(config)
+    public NakedSingularityGenerator()
     {
     }
 

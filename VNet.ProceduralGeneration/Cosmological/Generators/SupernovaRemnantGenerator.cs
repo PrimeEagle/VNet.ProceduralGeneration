@@ -14,7 +14,7 @@ public class SupernovaRemnantGenerator : BaseGenerator<SupernovaRemnant, Superno
         return remnant;
     }
 
-    public SupernovaRemnantGenerator(GeneratorConfig config) : base(config)
+    public SupernovaRemnantGenerator()
     {
     }
 }

@@ -14,7 +14,7 @@ public class IcyCloudGenerator : BaseGenerator<IcyCloud, IcyCloudContext>
         return icyCloud;
     }
 
-    public IcyCloudGenerator(GeneratorConfig config) : base(config)
+    public IcyCloudGenerator()
     {
     }
 }

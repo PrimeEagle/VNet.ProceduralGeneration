@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class SpatialWormholeGenerator : BaseGenerator<SpatialWormhole, SpatialWormholeContext>
 {
-    public SpatialWormholeGenerator(GeneratorConfig config) : base(config)
+    public SpatialWormholeGenerator()
     {
     }
 

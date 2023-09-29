@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class CosmicTopologicalDefectGenerator : BaseGenerator<CosmicTopologicalDefect, CosmicTopologicalDefectContext>
 {
-    public CosmicTopologicalDefectGenerator(GeneratorConfig config) : base(config)
+    public CosmicTopologicalDefectGenerator()
     {
     }
 

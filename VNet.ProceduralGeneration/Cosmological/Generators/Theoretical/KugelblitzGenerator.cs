@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class KugelblitzGenerator : BaseGenerator<Kugelblitz, KugelblitzContext>
 {
-    public KugelblitzGenerator(GeneratorConfig config) : base(config)
+    public KugelblitzGenerator()
     {
     }
 

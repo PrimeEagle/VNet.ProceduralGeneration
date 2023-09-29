@@ -14,7 +14,7 @@ public class PulsarGenerator : BaseGenerator<Pulsar, PulsarContext>
         return pulsar;
     }
 
-    public PulsarGenerator(GeneratorConfig config) : base(config)
+    public PulsarGenerator()
     {
     }
 }

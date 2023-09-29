@@ -14,7 +14,7 @@ public class QuasarJetGenerator : BaseGenerator<QuasarJet, QuasarJetContext>
         return quasarJet;
     }
 
-    public QuasarJetGenerator(GeneratorConfig config) : base(config)
+    public QuasarJetGenerator()
     {
     }
 }

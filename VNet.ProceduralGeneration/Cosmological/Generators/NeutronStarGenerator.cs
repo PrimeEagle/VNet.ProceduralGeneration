@@ -14,7 +14,7 @@ public class NeutronStarGenerator : BaseGenerator<NeutronStar, NeutronStarContex
         return neutronStar;
     }
 
-    public NeutronStarGenerator(GeneratorConfig config) : base(config)
+    public NeutronStarGenerator()
     {
     }
 }

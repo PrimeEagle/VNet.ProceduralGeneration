@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class TransdimensionalWormholeGenerator : BaseGenerator<TransdimensionalWormhole, TransdimensionalWormholeContext>
 {
-    public TransdimensionalWormholeGenerator(GeneratorConfig config) : base(config)
+    public TransdimensionalWormholeGenerator()
     {
     }
 

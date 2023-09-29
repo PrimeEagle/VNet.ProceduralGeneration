@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class BraneGenerator : BaseGenerator<Brane, BraneContext>
 {
-    public BraneGenerator(GeneratorConfig config) : base(config)
+    public BraneGenerator()
     {
     }
 

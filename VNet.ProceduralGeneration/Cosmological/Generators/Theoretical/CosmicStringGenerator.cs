@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class CosmicStringGenerator : BaseGenerator<CosmicString, CosmicStringContext>
 {
-    public CosmicStringGenerator(GeneratorConfig config) : base(config)
+    public CosmicStringGenerator()
     {
     }
 

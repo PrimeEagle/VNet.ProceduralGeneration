@@ -14,7 +14,7 @@ public class BlackHoleGenerator : BaseGenerator<BlackHole, BlackHoleContext>
         return blackHole;
     }
 
-    public BlackHoleGenerator(GeneratorConfig config) : base(config)
+    public BlackHoleGenerator()
     {
     }
 }

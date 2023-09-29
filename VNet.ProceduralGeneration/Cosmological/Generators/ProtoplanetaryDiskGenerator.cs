@@ -14,7 +14,7 @@ public class ProtoplanetaryDiskGenerator : BaseGenerator<ProtoplanetaryDisk, Pro
         return disk;
     }
 
-    public ProtoplanetaryDiskGenerator(GeneratorConfig config) : base(config)
+    public ProtoplanetaryDiskGenerator()
     {
     }
 }

@@ -5,8 +5,8 @@ using VNet.Configuration;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
-    public class TheoreticalAstronomicalObjectToggleSettings
-    {
+    public class TheoreticalAstronomicalObjectToggleSettings : ISettings
+{
         [DisplayName("Branes")]
         [Tooltip("Multidimensional structures postulated in string theory and other theoretical physics models.")]
         public bool BranesEnabled { get; set; }

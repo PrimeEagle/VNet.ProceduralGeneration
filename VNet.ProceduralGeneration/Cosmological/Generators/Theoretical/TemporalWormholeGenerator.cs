@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class TemporalWormholeGenerator : BaseGenerator<TemporalWormhole, TemporalWormholeContext>
 {
-    public TemporalWormholeGenerator(GeneratorConfig config) : base(config)
+    public TemporalWormholeGenerator()
     {
     }
 

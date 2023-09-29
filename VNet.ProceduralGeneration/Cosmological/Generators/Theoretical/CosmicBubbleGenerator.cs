@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class CosmicBubbleGenerator : BaseGenerator<CosmicBubble, CosmicBubbleContext>
 {
-    public CosmicBubbleGenerator(GeneratorConfig config) : base(config)
+    public CosmicBubbleGenerator()
     {
     }
 

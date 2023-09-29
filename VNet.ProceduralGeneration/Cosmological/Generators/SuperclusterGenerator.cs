@@ -22,8 +22,8 @@ public class SuperclusterGenerator : BaseGenerator<Supercluster, SuperclusterCon
         return supercluster;
     }
 
-    public SuperclusterGenerator(GeneratorConfig config) : base(config)
+    public SuperclusterGenerator()
     {
-        _galaxyClusterGenerator = new GalaxyClusterGenerator(config);
+        _galaxyClusterGenerator = new GalaxyClusterGenerator();
     }
 }

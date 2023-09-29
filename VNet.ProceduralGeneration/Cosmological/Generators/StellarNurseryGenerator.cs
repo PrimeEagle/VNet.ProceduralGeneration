@@ -14,7 +14,7 @@ public class StellarNurseryGenerator : BaseGenerator<StellarNursery, StellarNurs
         return nursery;
     }
 
-    public StellarNurseryGenerator(GeneratorConfig config) : base(config)
+    public StellarNurseryGenerator()
     {
     }
 }

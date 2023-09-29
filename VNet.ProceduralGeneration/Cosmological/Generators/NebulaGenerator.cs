@@ -14,7 +14,7 @@ public class NebulaGenerator : BaseGenerator<Nebula, NebulaContext>
         return nebula;
     }
 
-    public NebulaGenerator(GeneratorConfig config) : base(config)
+    public NebulaGenerator()
     {
     }
 }

@@ -13,7 +13,7 @@ public class AsteroidGenerator : BaseGenerator<Asteroid, AsteroidContext>
         return asteroid;
     }
 
-    public AsteroidGenerator(GeneratorConfig config) : base(config)
+    public AsteroidGenerator()
     {
     }
 }

@@ -14,7 +14,7 @@ public class IcyPlanetGenerator : BaseGenerator<IcyPlanet, IcyPlanetContext>
         return icyPlanet;
     }
 
-    public IcyPlanetGenerator(GeneratorConfig config) : base(config)
+    public IcyPlanetGenerator()
     {
     }
 }

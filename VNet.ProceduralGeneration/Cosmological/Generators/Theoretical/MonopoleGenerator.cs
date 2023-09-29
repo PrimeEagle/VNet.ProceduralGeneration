@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class MonopoleGenerator : BaseGenerator<Monopole, MonopoleContext>
 {
-    public MonopoleGenerator(GeneratorConfig config) : base(config)
+    public MonopoleGenerator()
     {
     }
 

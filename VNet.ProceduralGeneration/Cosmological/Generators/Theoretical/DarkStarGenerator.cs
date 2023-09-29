@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class DarkStarGenerator : BaseGenerator<DarkStar, DarkStarContext>
 {
-    public DarkStarGenerator(GeneratorConfig config) : base(config)
+    public DarkStarGenerator()
     {
     }
 

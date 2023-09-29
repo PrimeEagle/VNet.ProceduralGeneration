@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class DarkMatterFilamentGenerator : BaseGenerator<DarkMatterFilament, DarkMatterFilamentContext>
 {
-    public DarkMatterFilamentGenerator(GeneratorConfig config) : base(config)
+    public DarkMatterFilamentGenerator()
     {
     }
 

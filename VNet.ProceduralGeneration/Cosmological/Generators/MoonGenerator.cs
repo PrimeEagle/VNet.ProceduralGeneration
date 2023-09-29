@@ -11,7 +11,7 @@ public class MoonGenerator : BaseGenerator<Moon, MoonContext>
         return moon;
     }
 
-    public MoonGenerator(GeneratorConfig config) : base(config)
+    public MoonGenerator()
     {
     }
 }

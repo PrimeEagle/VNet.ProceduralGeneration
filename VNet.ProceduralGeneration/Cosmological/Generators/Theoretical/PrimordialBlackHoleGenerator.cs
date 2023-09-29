@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class PrimordialBlackHoleGenerator : BaseGenerator<PrimordialBlackHole, PrimordialBlackHoleContext>
 {
-    public PrimordialBlackHoleGenerator(GeneratorConfig config) : base(config)
+    public PrimordialBlackHoleGenerator()
     {
     }
 

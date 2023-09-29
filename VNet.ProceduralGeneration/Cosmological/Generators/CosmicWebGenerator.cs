@@ -1,6 +1,5 @@
 ﻿using System.Collections.Concurrent;
 using System.Numerics;
-using VNet.ProceduralGeneration.Cosmological.Configuration;
 
 namespace VNet.ProceduralGeneration.Cosmological;
 
@@ -18,17 +17,17 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 
 
 
-    public CosmicWebGenerator(GeneratorConfig config) : base(config)
+    public CosmicWebGenerator()
     {
-        _intergalacticMediumGenerator = new IntergalacticMediumGenerator(config);
-        _baryonicFilamentGenerator = new BaryonicMatterFilamentGenerator(config);
-        _darkMatterFilamentGenerator = new DarkMatterFilamentGenerator(config);
-        _baryonicNodeGenerator = new BaryonicMatterNodeGenerator(config);
-        _darkMatterNodeGenerator = new DarkMatterNodeGenerator(config);
-        _baryonicVoidGenerator = new BaryonicMatterVoidGenerator(config);
-        _darkMatterVoidGenerator = new DarkMatterVoidGenerator(config);
-        _baryonicSheetGenerator = new BaryonicMatterSheetGenerator(config);
-        _darkMatterSheetGenerator = new DarkMatterSheetGenerator(config);
+        _intergalacticMediumGenerator = new IntergalacticMediumGenerator();
+        _baryonicFilamentGenerator = new BaryonicMatterFilamentGenerator();
+        _darkMatterFilamentGenerator = new DarkMatterFilamentGenerator();
+        _baryonicNodeGenerator = new BaryonicMatterNodeGenerator();
+        _darkMatterNodeGenerator = new DarkMatterNodeGenerator();
+        _baryonicVoidGenerator = new BaryonicMatterVoidGenerator();
+        _darkMatterVoidGenerator = new DarkMatterVoidGenerator();
+        _baryonicSheetGenerator = new BaryonicMatterSheetGenerator();
+        _darkMatterSheetGenerator = new DarkMatterSheetGenerator();
     }
 
     public override CosmicWeb Generate(CosmicWebContext context)

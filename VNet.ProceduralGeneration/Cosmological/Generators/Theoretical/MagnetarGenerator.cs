@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class MagnetarGenerator : BaseGenerator<Magnetar, MagnetarContext>
 {
-    public MagnetarGenerator(GeneratorConfig config) : base(config)
+    public MagnetarGenerator()
     {
     }
 

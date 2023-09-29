@@ -15,7 +15,7 @@ public class LargeQuasarGroupGenerator : BaseGenerator<LargeQuasarGroup, LargeQu
         return largeQuasarGroup;
     }
 
-    public LargeQuasarGroupGenerator(GeneratorConfig config) : base(config)
+    public LargeQuasarGroupGenerator()
     {
     }
 }

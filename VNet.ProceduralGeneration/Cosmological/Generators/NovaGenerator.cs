@@ -14,7 +14,7 @@ public class NovaGenerator : BaseGenerator<Nova, NovaContext>
         return nova;
     }
 
-    public NovaGenerator(GeneratorConfig config) : base(config)
+    public NovaGenerator()
     {
     }
 }

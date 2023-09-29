@@ -14,7 +14,7 @@ public class CometGenerator : BaseGenerator<Comet, CometContext>
         return comet;
     }
 
-    public CometGenerator(GeneratorConfig config) : base(config)
+    public CometGenerator()
     {
     }
 }

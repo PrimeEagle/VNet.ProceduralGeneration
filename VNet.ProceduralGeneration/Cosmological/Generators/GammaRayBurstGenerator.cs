@@ -8,7 +8,7 @@ public class GammaRayBurstGenerator : BaseGenerator<GammaRayBurst, GammaRayBurst
     {
     }
 
-    public GammaRayBurstGenerator(GeneratorConfig config) : base(config)
+    public GammaRayBurstGenerator()
     {
     }
 }

@@ -16,7 +16,7 @@ namespace VNet.ProceduralGeneration.Cosmological
         public double MaxConnectivityFactor { get; set; }
 
 
-        public UniverseContext(GeneratorConfig config)
+        public UniverseContext(GeneratorSettings settings)
         {
             this.MinDarkEnergyPercent = config.MinDarkEnergyPercent;
             this.MaxDarkEnergyPercent = config.MaxDarkEnergyPercent;

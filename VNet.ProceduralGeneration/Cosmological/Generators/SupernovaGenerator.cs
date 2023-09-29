@@ -14,7 +14,7 @@ public class SupernovaGenerator : BaseGenerator<Supernova, SupernovaContext>
         return supernova;
     }
 
-    public SupernovaGenerator(GeneratorConfig config) : base(config)
+    public SupernovaGenerator()
     {
     }
 }

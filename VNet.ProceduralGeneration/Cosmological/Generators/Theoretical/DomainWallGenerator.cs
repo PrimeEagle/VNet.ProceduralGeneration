@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class DomainWallGenerator : BaseGenerator<DomainWall, DomainWallContext>
 {
-    public DomainWallGenerator(GeneratorConfig config) : base(config)
+    public DomainWallGenerator()
     {
     }
 

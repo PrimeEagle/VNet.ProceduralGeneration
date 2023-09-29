@@ -14,7 +14,7 @@ public class StarGenerator : BaseGenerator<Star, StarContext>
         return star;
     }
 
-    public StarGenerator(GeneratorConfig config) : base(config)
+    public StarGenerator()
     {
     }
 }

@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class PreonStarGenerator : BaseGenerator<PreonStar, PreonStarContext>
 {
-    public PreonStarGenerator(GeneratorConfig config) : base(config)
+    public PreonStarGenerator()
     {
     }
 

@@ -8,9 +8,9 @@ public class UniverseGenerator : BaseGenerator<Universe, UniverseContext>
     private readonly CosmicWebGenerator _cosmicWebGenerator;
 
 
-    public UniverseGenerator(GeneratorConfig config) : base(config)
+    public UniverseGenerator()
     {
-        _cosmicWebGenerator = new CosmicWebGenerator(config);
+        _cosmicWebGenerator = new CosmicWebGenerator();
     }
 
     public override Universe Generate(UniverseContext context)

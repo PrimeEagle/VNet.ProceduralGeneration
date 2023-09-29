@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class DarkMatterSheetGenerator : BaseGenerator<DarkMatterSheet, DarkMatterSheetContext>
 {
-    public DarkMatterSheetGenerator(GeneratorConfig config) : base(config)
+    public DarkMatterSheetGenerator()
     {
     }
 

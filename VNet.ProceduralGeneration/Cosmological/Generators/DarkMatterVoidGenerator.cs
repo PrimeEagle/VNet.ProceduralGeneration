@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class DarkMatterVoidGenerator : BaseGenerator<DarkMatterVoid, DarkMatterVoidContext>
 {
-    public DarkMatterVoidGenerator(GeneratorConfig config) : base(config)
+    public DarkMatterVoidGenerator()
     {
     }
 

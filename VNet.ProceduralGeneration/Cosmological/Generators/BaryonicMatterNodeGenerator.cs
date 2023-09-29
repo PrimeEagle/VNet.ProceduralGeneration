@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class BaryonicMatterNodeGenerator : BaseGenerator<BaryonicMatterNode, BaryonicMatterNodeContext>
 {
-    public BaryonicMatterNodeGenerator(GeneratorConfig config) : base(config)
+    public BaryonicMatterNodeGenerator()
     {
     }
 

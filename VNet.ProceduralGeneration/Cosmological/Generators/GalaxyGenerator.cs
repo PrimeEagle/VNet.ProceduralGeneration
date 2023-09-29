@@ -23,8 +23,8 @@ public class GalaxyGenerator : BaseGenerator<Galaxy, GalaxyContext>
         return galaxy;
     }
 
-    public GalaxyGenerator(GeneratorConfig config) : base(config)
+    public GalaxyGenerator()
     {
-        _starClusterGenerator = new StarClusterGenerator(config);
+        _starClusterGenerator = new StarClusterGenerator();
     }
 }

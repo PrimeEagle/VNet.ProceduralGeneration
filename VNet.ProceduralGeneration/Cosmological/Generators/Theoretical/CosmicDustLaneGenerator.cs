@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class CosmicDustLaneGenerator : BaseGenerator<CosmicDustLane, CosmicDustLaneContext>
 {
-    public CosmicDustLaneGenerator(GeneratorConfig config) : base(config)
+    public CosmicDustLaneGenerator()
     {
     }
 

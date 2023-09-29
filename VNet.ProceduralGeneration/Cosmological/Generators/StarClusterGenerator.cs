@@ -14,8 +14,8 @@ public class StarClusterGenerator : BaseGenerator<StarCluster, StarClusterContex
         return cluster;
     }
 
-    public StarClusterGenerator(GeneratorConfig config) : base(config)
+    public StarClusterGenerator()
     {
-        _starSystemGenerator = new StarSystemGenerator(config);
+        _starSystemGenerator = new StarSystemGenerator();
     }
 }

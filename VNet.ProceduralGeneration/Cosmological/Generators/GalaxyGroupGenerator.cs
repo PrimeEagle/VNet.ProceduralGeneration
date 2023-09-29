@@ -22,8 +22,8 @@ public class GalaxyGroupGenerator : BaseGenerator<GalaxyGroup, GalaxyGroupContex
         return galaxyGroup;
     }
 
-    public GalaxyGroupGenerator(GeneratorConfig config) : base(config)
+    public GalaxyGroupGenerator()
     {
-        _galaxyGenerator = new GalaxyGenerator(config);
+        _galaxyGenerator = new GalaxyGenerator();
     }
 }

@@ -21,12 +21,12 @@ public class BaryonicMatterFilamentGenerator : BaseGenerator<BaryonicMatterFilam
     private const float angleZ = 1.0f;
 
 
-    public BaryonicMatterFilamentGenerator(GeneratorConfig config) : base(config)
+    public BaryonicMatterFilamentGenerator()
     {
-        _superclusterGenerator = new SuperclusterGenerator(config);
-        _galaxyClusterGenerator = new GalaxyClusterGenerator(config);
-        _galaxyGroupGenerator = new GalaxyGroupGenerator(config);
-        _galaxyGenerator = new GalaxyGenerator(config);
+        _superclusterGenerator = new SuperclusterGenerator();
+        _galaxyClusterGenerator = new GalaxyClusterGenerator();
+        _galaxyGroupGenerator = new GalaxyGroupGenerator();
+        _galaxyGenerator = new GalaxyGenerator();
     }
 
     public override BaryonicMatterFilament Generate(BaryonicMatterFilamentContext context)

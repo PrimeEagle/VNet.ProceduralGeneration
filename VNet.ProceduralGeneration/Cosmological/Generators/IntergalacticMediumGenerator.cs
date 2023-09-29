@@ -15,7 +15,7 @@ public class IntergalacticMediumGenerator : BaseGenerator<IntergalacticMedium, I
         return intergalacticMedium;
     }
 
-    public IntergalacticMediumGenerator(GeneratorConfig config) : base(config)
+    public IntergalacticMediumGenerator()
     {
     }
 }

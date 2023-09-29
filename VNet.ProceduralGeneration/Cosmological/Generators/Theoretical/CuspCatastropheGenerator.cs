@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class CuspCatastropheGenerator : BaseGenerator<CuspCatastrophe, CuspCatastropheContext>
 {
-    public CuspCatastropheGenerator(GeneratorConfig config) : base(config)
+    public CuspCatastropheGenerator()
     {
     }
 

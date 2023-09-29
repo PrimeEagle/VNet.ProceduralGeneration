@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class TachyonicFieldGenerator : BaseGenerator<TachyonicField, TachyonicFieldContext>
 {
-    public TachyonicFieldGenerator(GeneratorConfig config) : base(config)
+    public TachyonicFieldGenerator()
     {
     }
 

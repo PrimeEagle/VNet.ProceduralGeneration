@@ -21,8 +21,8 @@ public class PlanetGenerator : BaseGenerator<Planet, PlanetContext>
         return planet;
     }
 
-    public PlanetGenerator(GeneratorConfig config) : base(config)
+    public PlanetGenerator()
     {
-        _sateliteGenerator = new MoonGenerator(config);
+        _sateliteGenerator = new MoonGenerator();
     }
 }
