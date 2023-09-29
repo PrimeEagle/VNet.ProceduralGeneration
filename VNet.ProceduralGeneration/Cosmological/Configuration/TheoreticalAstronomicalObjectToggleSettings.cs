@@ -44,7 +44,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         public bool DomainWallsEnabled { get; set; }
 
         [DisplayName("Dyson Spheres")]
-        [Tooltip("Hypothetical megastructures that encircle a star, capturing its energy output for advanced civilizations.")]
+        [Tooltip("Megastructures that encircle a star, capturing its energy output for advanced civilizations.")]
         public bool DysonSpheresEnabled { get; set; }
 
         [DisplayName("Fermi Bubbles")]
@@ -100,15 +100,15 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         public bool TachyonicFieldsEnabled { get; set; }
 
         [DisplayName("Wormholes (Temporal)")]
-        [Tooltip("Hypothetical tunnels in spacetime connecting different points in time.")]
+        [Tooltip("Tunnels in spacetime connecting different points in time.")]
         public bool TemporalWormholesEnabled { get; set; }
 
         [DisplayName("Wormholes (Transdimensional)")]
-        [Tooltip("Hypothetical connections between different universes or dimensions.")]
+        [Tooltip("Tunnels between different universes or dimensions.")]
         public bool TransdimensionalWormholesEnabled { get; set; }
 
         [DisplayName("White Holes")]
-        [Tooltip("Theoretical region of spacetime which cannot be entered from the outside, but from which matter and light may escape.")]
+        [Tooltip("Region of spacetime which cannot be entered from the outside, but from which matter and light may escape.")]
         public bool WhiteHolesEnabled { get; set; }
     }
 }
