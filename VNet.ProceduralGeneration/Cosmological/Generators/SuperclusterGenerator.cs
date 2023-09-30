@@ -7,7 +7,7 @@ public class SuperclusterGenerator : BaseGenerator<Supercluster, SuperclusterCon
     private readonly GalaxyClusterGenerator _galaxyClusterGenerator;
 
 
-    public override Supercluster Generate(SuperclusterContext context)
+    public async override Task<Supercluster> Generate(SuperclusterContext context)
     {
         var supercluster = new Supercluster
         {

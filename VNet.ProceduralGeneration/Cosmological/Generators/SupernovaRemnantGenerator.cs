@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class SupernovaRemnantGenerator : BaseGenerator<SupernovaRemnant, SupernovaRemnantContext>
 {
-    public override SupernovaRemnant Generate(SupernovaRemnantContext context)
+    public async override Task<SupernovaRemnant> Generate(SupernovaRemnantContext context)
     {
         var remnant = new SupernovaRemnant
         {

@@ -29,7 +29,7 @@ public class BaryonicMatterFilamentGenerator : BaseGenerator<BaryonicMatterFilam
         _galaxyGenerator = new GalaxyGenerator();
     }
 
-    public override BaryonicMatterFilament Generate(BaryonicMatterFilamentContext context)
+    public async override Task<BaryonicMatterFilament> Generate(BaryonicMatterFilamentContext context)
     {
         var filamentPositionValue = _positionNoiseLayer.GenerateSingleSample();
         var filamentOrientationValue = _orientationNoiseLayer.GenerateSingleSample();

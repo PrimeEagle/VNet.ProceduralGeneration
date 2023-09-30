@@ -30,7 +30,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         _darkMatterSheetGenerator = new DarkMatterSheetGenerator();
     }
 
-    public override CosmicWeb Generate(CosmicWebContext context)
+    public async override Task<CosmicWeb> Generate(CosmicWebContext context)
     {
         var cosmicWeb = new CosmicWeb();     
 
@@ -81,11 +81,11 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
     {
         var baryonicMatterNodeConfig = new NodeConfiguration()
         {
-            NodeSeedMinDistanceThreshold = basicSettings.TopologyBaryonicMatterNodeSeedMinDistanceThreshold,
+            NodeSeedMinDistanceThreshold = basicSettings.TopologyBaryonicMatterNodeMinDistanceThreshold,
             NodeDensityThresholdFactor = advancedSettings.TopologyBaryonicMatterNodeDensityThresholdFactor,
             NodeGradientMagnitudeThresholdFactor = advancedSettings.TopologyBaryonicMatterNodeGradientMagnitudeThresholdFactor,
             NodeMaxPositionalOffset = advancedSettings.TopologyBaryonicMatterNodeMaxPositionalOffset,
-            NodeSeedMergeDistanceThreshold = basicSettings.TopologyBaryonicMatterNodeSeedMergeDistanceThreshold
+            NodeSeedMergeDistanceThreshold = basicSettings.TopologyBaryonicMatterNodeMergeDistanceThreshold
         };
         var baryonicMatterNodeCount = GetBaryonicMatterNodeCount(context, cosmicWeb.Topology.AverageIntensity);
         var baryonicMatterNodeSpatialGrid = InitializeSpatialGrid(cosmicWeb, baryonicMatterNodeConfig);
@@ -104,11 +104,11 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
     {
         var darkMatterNodeConfig = new NodeConfiguration()
         {
-            NodeSeedMinDistanceThreshold = basicSettings.TopologyDarkMatterNodeSeedMinDistanceThreshold,
+            NodeSeedMinDistanceThreshold = basicSettings.TopologyDarkMatterNodeMinDistanceThreshold,
             NodeDensityThresholdFactor = advancedSettings.TopologyDarkMatterNodeDensityThresholdFactor,
             NodeGradientMagnitudeThresholdFactor = advancedSettings.TopologyDarkMatterNodeGradientMagnitudeThresholdFactor,
             NodeMaxPositionalOffset = advancedSettings.TopologyDarkMatterNodeMaxPositionalOffset,
-            NodeSeedMergeDistanceThreshold = basicSettings.TopologyDarkMatterNodeSeedMergeDistanceThreshold
+            NodeSeedMergeDistanceThreshold = basicSettings.TopologyDarkMatterNodeMergeDistanceThreshold
         };
         var darkMatterNodeCount = GetDarkMatterNodeCount(context, cosmicWeb.Topology.AverageIntensity);
         var darkMatterNodeSpatialGrid = InitializeSpatialGrid(cosmicWeb, darkMatterNodeConfig);

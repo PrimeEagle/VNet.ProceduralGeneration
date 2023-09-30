@@ -8,7 +8,7 @@ public class DarkMatterNodeGenerator : BaseGenerator<DarkMatterNode, DarkMatterN
     {
     }
 
-    public override DarkMatterNode Generate(DarkMatterNodeContext context)
+    public async override Task<DarkMatterNode> Generate(DarkMatterNodeContext context)
     {
         throw new NotImplementedException();
     }

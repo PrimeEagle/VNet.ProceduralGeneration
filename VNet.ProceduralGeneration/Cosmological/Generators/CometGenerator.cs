@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class CometGenerator : BaseGenerator<Comet, CometContext>
 {
-    public override Comet Generate(CometContext context)
+    public async override Task<Comet> Generate(CometContext context)
     {
         var comet = new Comet
         {

@@ -1,5 +1,4 @@
 ﻿using System.Numerics;
-using VNet.ProceduralGeneration.Cosmological.Configuration;
 
 namespace VNet.ProceduralGeneration.Cosmological;
 
@@ -13,19 +12,21 @@ public class UniverseGenerator : BaseGenerator<Universe, UniverseContext>
         _cosmicWebGenerator = new CosmicWebGenerator();
     }
 
-    public override Universe Generate(UniverseContext context)
+    public async override Task<Universe> Generate(UniverseContext context)
     {
+        if(!objectToggles.UniverseEnabled) { return new Universe(); }
+
         var universe = new Universe
         {
-            Age = config.RandomGenerator.NextSingle(config.Constants.MinUniverseAge, config.Constants.MaxUniverseAge),
-            DarkEnergyPercent = config.RandomGenerator.NextDouble(config.Constants.MinDarkEnergyPercent, config.Constants.MaxDarkEnergyPercent),
-            DarkMatterPercent = config.RandomGenerator.NextDouble(config.Constants.MinDarkMatterPercent, config.Constants.MaxDarkMatterPercent),
-            BaryonicMatterPercent = config.RandomGenerator.NextDouble(config.Constants.MinBaryonicMatterPercent, config.Constants.MaxBaryonicMatterPercent),
-            ConnectivityFactor = config.RandomGenerator.NextDouble(config.Constants.MinConnectivityFactor, config.Constants.MaxConnectivityFactor),
+            Age = advancedSettings.RandomGenerator.NextSingle(basicSettings.MinUniverseAge, basicSettings.MaxUniverseAge),
+            DarkEnergyPercent = advancedSettings.RandomGenerator.NextDouble(basicSettings.MinDarkEnergyPercent, basicSettings.MaxDarkEnergyPercent),
+            DarkMatterPercent = advancedSettings.RandomGenerator.NextDouble(basicSettings.MinDarkMatterPercent, basicSettings.MaxDarkMatterPercent),
+            BaryonicMatterPercent = advancedSettings.RandomGenerator.NextDouble(basicSettings.MinBaryonicMatterPercent, basicSettings.MaxBaryonicMatterPercent),
+            ConnectivityFactor = advancedSettings.RandomGenerator.NextDouble(advancedSettings.MinConnectivityFactor, advancedSettings.MaxConnectivityFactor),
             Position = new Vector3(0, 0, 0)
         };
 
-        var randValue = config.RandomGenerator.NextDouble();
+        var randValue = advancedSettings.RandomGenerator.NextDouble();
         universe.Curvature = randValue switch
         {
             < 0.90 => CurvatureType.Flat,
@@ -40,11 +41,7 @@ public class UniverseGenerator : BaseGenerator<Universe, UniverseContext>
         universe.ApplyInflationEffects();
 
         var cosmicWebContext = new CosmicWebContext(universe);
-        var imgTask = Task.Run(() => _cosmicWebGenerator.Generate(cosmicWebContext));
-
-        Task.WaitAll(imgTask);
-
-        universe.CosmicWeb = imgTask.Result;
+        universe.CosmicWeb = await Task.Run(() => _cosmicWebGenerator.Generate(cosmicWebContext));
 
         PostProcess();
 

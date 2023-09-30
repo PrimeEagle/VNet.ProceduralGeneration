@@ -11,7 +11,7 @@ public class StarSystemGenerator : BaseGenerator<StarSystem, StarSystemContext>
     private readonly AsteroidBeltGenerator _asteroidBeltGenerator;
 
 
-    public override StarSystem Generate(StarSystemContext context)
+    public async override Task<StarSystem> Generate(StarSystemContext context)
     {
         var starSystem = new StarSystem();
 

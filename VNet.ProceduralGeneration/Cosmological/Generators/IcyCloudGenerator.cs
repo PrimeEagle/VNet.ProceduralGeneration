@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class IcyCloudGenerator : BaseGenerator<IcyCloud, IcyCloudContext>
 {
-    public override IcyCloud Generate(IcyCloudContext context)
+    public async override Task<IcyCloud> Generate(IcyCloudContext context)
     {
         var icyCloud = new IcyCloud
         {

@@ -7,7 +7,7 @@ public class AsteroidBeltGenerator : BaseGenerator<AsteroidBelt, AsteroidBeltCon
     private readonly AsteroidGenerator _asteroidGenerator;
 
 
-    public override AsteroidBelt Generate(AsteroidBeltContext context)
+    public async override Task<AsteroidBelt> Generate(AsteroidBeltContext context)
     {
         var asteroidBelt = new AsteroidBelt();
 

@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class GammaRayBurstGenerator : BaseGenerator<GammaRayBurst, GammaRayBurstContext>
 {
-    public override GammaRayBurst Generate(GammaRayBurstContext context)
+    public async override Task<GammaRayBurst> Generate(GammaRayBurstContext context)
     {
     }
 

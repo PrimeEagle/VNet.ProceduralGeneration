@@ -1,6 +1,4 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
-
-namespace VNet.ProceduralGeneration.Cosmological;
+﻿namespace VNet.ProceduralGeneration.Cosmological;
 
 public class DarkMatterSheetGenerator : BaseGenerator<DarkMatterSheet, DarkMatterSheetContext>
 {
@@ -8,7 +6,7 @@ public class DarkMatterSheetGenerator : BaseGenerator<DarkMatterSheet, DarkMatte
     {
     }
 
-    public override DarkMatterSheet Generate(DarkMatterSheetContext context)
+    public async override Task<DarkMatterSheet> Generate(DarkMatterSheetContext context)
     {
         throw new NotImplementedException();
     }

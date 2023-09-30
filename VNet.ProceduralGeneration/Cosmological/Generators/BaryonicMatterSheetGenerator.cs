@@ -8,7 +8,7 @@ public class BaryonicMatterSheetGenerator : BaseGenerator<BaryonicMatterSheet, B
     {
     }
 
-    public override BaryonicMatterSheet Generate(BaryonicMatterSheetContext context)
+    public async override Task<BaryonicMatterSheet> Generate(BaryonicMatterSheetContext context)
     {
         throw new NotImplementedException();
     }

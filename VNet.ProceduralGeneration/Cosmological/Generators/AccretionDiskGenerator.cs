@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class AccretionDiskGenerator : BaseGenerator<AccretionDisk, AccretionDiskContext>
 {
-    public override AccretionDisk Generate(AccretionDiskContext context)
+    public async override Task<AccretionDisk> Generate(AccretionDiskContext context)
     {
         var disk = new AccretionDisk
         {

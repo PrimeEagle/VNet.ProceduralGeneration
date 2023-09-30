@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class StarGenerator : BaseGenerator<Star, StarContext>
 {
-    public override Star Generate(StarContext context)
+    public async override Task<Star> Generate(StarContext context)
     {
         var star = new Star
         {

@@ -7,7 +7,7 @@ public class PlanetGenerator : BaseGenerator<Planet, PlanetContext>
     private readonly MoonGenerator _sateliteGenerator;
 
 
-    public override Planet Generate(PlanetContext context)
+    public async override Task<Planet> Generate(PlanetContext context)
     {
         var planet = new Planet();
 

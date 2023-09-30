@@ -10,7 +10,7 @@ public class StellarFormationsAndObjectsGenerator : BaseGenerator<StellarFormati
     private readonly NeutronStarGenerator _neutronStarGenerator;
 
 
-    public override StellarFormationsAndObjects Generate(StellarFormationsAndObjectsContext context)
+    public async override Task<StellarFormationsAndObjects> Generate(StellarFormationsAndObjectsContext context)
     {
         var formationsAndObjects = new StellarFormationsAndObjects
         {

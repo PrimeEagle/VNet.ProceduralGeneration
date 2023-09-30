@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class QuasarGenerator : BaseGenerator<Quasar, QuasarContext>
 {
-    public override Quasar Generate(QuasarContext context)
+    public async override Task<Quasar> Generate(QuasarContext context)
     {
     }
 

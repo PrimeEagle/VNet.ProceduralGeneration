@@ -8,7 +8,7 @@ public class DarkMatterFilamentGenerator : BaseGenerator<DarkMatterFilament, Dar
     {
     }
 
-    public override DarkMatterFilament Generate(DarkMatterFilamentContext context)
+    public async override Task<DarkMatterFilament> Generate(DarkMatterFilamentContext context)
     {
         throw new NotImplementedException();
     }

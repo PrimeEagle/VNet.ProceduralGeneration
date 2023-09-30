@@ -7,7 +7,7 @@ public class StarClusterGenerator : BaseGenerator<StarCluster, StarClusterContex
     private readonly StarSystemGenerator _starSystemGenerator;
 
 
-    public override StarCluster Generate(StarClusterContext context)
+    public async override Task<StarCluster> Generate(StarClusterContext context)
     {
         StarCluster cluster = new StarCluster();
 

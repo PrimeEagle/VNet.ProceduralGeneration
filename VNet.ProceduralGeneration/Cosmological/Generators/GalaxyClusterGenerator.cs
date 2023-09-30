@@ -7,7 +7,7 @@ public class GalaxyClusterGenerator : BaseGenerator<GalaxyCluster, GalaxyCluster
     private readonly GalaxyGenerator _galaxyGenerator;
 
 
-    public override GalaxyCluster Generate(GalaxyClusterContext context)
+    public async override Task<GalaxyCluster> Generate(GalaxyClusterContext context)
     {
         var galaxyCluster = new GalaxyCluster
         {

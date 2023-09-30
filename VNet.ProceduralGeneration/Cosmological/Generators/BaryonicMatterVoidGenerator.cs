@@ -8,7 +8,7 @@ public class BaryonicMatterVoidGenerator : BaseGenerator<BaryonicMatterVoid, Bar
     {
     }
 
-    public override BaryonicMatterVoid Generate(BaryonicMatterVoidContext context)
+    public async override Task<BaryonicMatterVoid> Generate(BaryonicMatterVoidContext context)
     {
         throw new NotImplementedException();
     }

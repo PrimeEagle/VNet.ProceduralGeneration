@@ -7,7 +7,7 @@ public class GalaxyGroupGenerator : BaseGenerator<GalaxyGroup, GalaxyGroupContex
     private readonly GalaxyGenerator _galaxyGenerator;
 
 
-    public override GalaxyGroup Generate(GalaxyGroupContext context)
+    public async override Task<GalaxyGroup> Generate(GalaxyGroupContext context)
     {
         var galaxyGroup = new GalaxyGroup
         {

@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class IntergalacticMediumGenerator : BaseGenerator<IntergalacticMedium, IntergalacticMediumContext>
 {
-    public override IntergalacticMedium Generate(IntergalacticMediumContext context)
+    public async override Task<IntergalacticMedium> Generate(IntergalacticMediumContext context)
     {
         var intergalacticMedium = new IntergalacticMedium
         {

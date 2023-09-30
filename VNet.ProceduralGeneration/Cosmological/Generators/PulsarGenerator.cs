@@ -4,7 +4,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class PulsarGenerator : BaseGenerator<Pulsar, PulsarContext>
 {
-    public override Pulsar Generate(PulsarContext context)
+    public async override Task<Pulsar> Generate(PulsarContext context)
     {
         var pulsar = new Pulsar
         {

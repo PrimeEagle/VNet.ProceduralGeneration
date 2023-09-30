@@ -8,7 +8,7 @@ public class DarkMatterVoidGenerator : BaseGenerator<DarkMatterVoid, DarkMatterV
     {
     }
 
-    public override DarkMatterVoid Generate(DarkMatterVoidContext context)
+    public async override Task<DarkMatterVoid> Generate(DarkMatterVoidContext context)
     {
         throw new NotImplementedException();
     }
