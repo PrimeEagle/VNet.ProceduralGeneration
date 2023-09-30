@@ -1,12 +1,16 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
+
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class DarkMatterSheetGenerator : BaseGenerator<DarkMatterSheet, DarkMatterSheetContext>
 {
-    public DarkMatterSheetGenerator()
+    public DarkMatterSheetGenerator() : base(ParallelismLevel.Level1)
     {
     }
 
-    public async override Task<DarkMatterSheet> Generate(DarkMatterSheetContext context)
+    public override async Task<DarkMatterSheet> Generate(DarkMatterSheetContext context)
     {
         throw new NotImplementedException();
     }

@@ -1,9 +1,7 @@
-﻿using System.Collections.Concurrent;
-
-namespace VNet.ProceduralGeneration.Cosmological;
+﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
 public class GalaxyCluster : AstronomicalObject
 {
-    public List<Galaxy> Galaxies { get; set; } = new List<Galaxy>();
+    public List<Galaxy> Galaxies { get; set; } = new();
     public bool ContainsDarkMatter { get; set; }
 }

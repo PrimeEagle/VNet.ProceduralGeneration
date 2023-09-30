@@ -1,4 +1,6 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿using VNet.ProceduralGeneration.Cosmological.Enum;
+
+namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
 public class Nebula : AstronomicalObject
 {

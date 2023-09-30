@@ -1,7 +1,7 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿namespace VNet.ProceduralGeneration.Cosmological.Enum;
 
 public enum SupernovaType
 {
     TypeIa,
-    TypeII
+    TypeIi
 }

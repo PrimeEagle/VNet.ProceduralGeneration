@@ -6,16 +6,16 @@ namespace VNet.ProceduralGeneration.Heightmap
 {
     public class Web
     {
-        private static Random _random = new Random();
+        private static readonly Random _random = new();
 
         public static Bitmap GenerateNetHeightMap(int width, int height, int numberOfNodes)
         {
-            Bitmap heightMap = new Bitmap(width, height);
+            var heightMap = new Bitmap(width, height);
 
-            List<global::System.Drawing.PointF> nodes = new List<global::System.Drawing.PointF>();
+            var nodes = new List<global::System.Drawing.PointF>();
 
             // Scatter random points
-            for (int i = 0; i < numberOfNodes; i++)
+            for (var i = 0; i < numberOfNodes; i++)
             {
                 nodes.Add(new global::System.Drawing.PointF((float)(_random.NextDouble() * width), (float)(_random.NextDouble() * height)));
             }
@@ -42,11 +42,11 @@ namespace VNet.ProceduralGeneration.Heightmap
                 nodes.Remove(node);
 
                 global::System.Drawing.PointF? closestNeighbor = null;
-                float minDistance = float.MaxValue;
+                var minDistance = float.MaxValue;
 
                 foreach (var neighbor in nodes)
                 {
-                    float dist = Distance(node, neighbor);
+                    var dist = Distance(node, neighbor);
                     if (dist < minDistance)
                     {
                         closestNeighbor = neighbor;
@@ -70,7 +70,7 @@ namespace VNet.ProceduralGeneration.Heightmap
 
         private static void DrawLine(Bitmap img, global::System.Drawing.PointF start, global::System.Drawing.PointF end, global::System.Drawing.Color color)
         {
-            using (Graphics g = Graphics.FromImage(img))
+            using (var g = Graphics.FromImage(img))
             {
                 g.DrawLine(new Pen(color), start, end);
             }

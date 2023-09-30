@@ -1,10 +1,12 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class IntergalacticMediumGenerator : BaseGenerator<IntergalacticMedium, IntergalacticMediumContext>
 {
-    public async override Task<IntergalacticMedium> Generate(IntergalacticMediumContext context)
+    public override async Task<IntergalacticMedium> Generate(IntergalacticMediumContext context)
     {
         var intergalacticMedium = new IntergalacticMedium
         {
@@ -15,7 +17,7 @@ public class IntergalacticMediumGenerator : BaseGenerator<IntergalacticMedium, I
         return intergalacticMedium;
     }
 
-    public IntergalacticMediumGenerator()
+    public IntergalacticMediumGenerator() : base(ParallelismLevel.Level2)
     {
     }
 }

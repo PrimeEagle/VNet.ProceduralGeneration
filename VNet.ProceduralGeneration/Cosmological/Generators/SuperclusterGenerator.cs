@@ -1,29 +1,21 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class SuperclusterGenerator : BaseGenerator<Supercluster, SuperclusterContext>
 {
-    private readonly GalaxyClusterGenerator _galaxyClusterGenerator;
-
-
-    public async override Task<Supercluster> Generate(SuperclusterContext context)
+    public override async Task<Supercluster> Generate(SuperclusterContext context)
     {
         var supercluster = new Supercluster
         {
         };
 
-        int galaxyClusterCount = 0;
-        for (int i = 0; i < galaxyClusterCount; i++)
-        {
-            supercluster.GalaxyClusters.Add(_galaxyClusterGenerator.Generate(new GalaxyClusterContext()));
-        }
-
         return supercluster;
     }
 
-    public SuperclusterGenerator()
+    public SuperclusterGenerator() : base(ParallelismLevel.Level2)
     {
-        _galaxyClusterGenerator = new GalaxyClusterGenerator();
     }
 }

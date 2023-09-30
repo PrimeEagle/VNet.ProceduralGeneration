@@ -1,10 +1,12 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class NeutronStarGenerator : BaseGenerator<NeutronStar, NeutronStarContext>
 {
-    public async override Task<NeutronStar> Generate(NeutronStarContext context)
+    public override async Task<NeutronStar> Generate(NeutronStarContext context)
     {
         var neutronStar = new NeutronStar
         {
@@ -14,7 +16,7 @@ public class NeutronStarGenerator : BaseGenerator<NeutronStar, NeutronStarContex
         return neutronStar;
     }
 
-    public NeutronStarGenerator()
+    public NeutronStarGenerator() : base(ParallelismLevel.Level4)
     {
     }
 }

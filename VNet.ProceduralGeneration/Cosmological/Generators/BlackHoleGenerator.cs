@@ -1,10 +1,12 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class BlackHoleGenerator : BaseGenerator<BlackHole, BlackHoleContext>
 {
-    public async override Task<BlackHole> Generate(BlackHoleContext context)
+    public override async Task<BlackHole> Generate(BlackHoleContext context)
     {
         var blackHole = new BlackHole
         {
@@ -14,7 +16,7 @@ public class BlackHoleGenerator : BaseGenerator<BlackHole, BlackHoleContext>
         return blackHole;
     }
 
-    public BlackHoleGenerator()
+    public BlackHoleGenerator() : base(ParallelismLevel.Level4)
     {
     }
 }

@@ -1,8 +1,6 @@
-﻿using System.Collections.Concurrent;
-
-namespace VNet.ProceduralGeneration.Cosmological;
+﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
 public class Planet : AstronomicalObject
 {
-    public List<Moon> Moons { get; set; } = new List<Moon>();
+    public List<Moon> Moons { get; set; } = new();
 }

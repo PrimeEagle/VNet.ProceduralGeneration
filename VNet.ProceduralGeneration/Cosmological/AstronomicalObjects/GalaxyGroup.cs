@@ -1,9 +1,7 @@
-﻿using System.Collections.Concurrent;
-
-namespace VNet.ProceduralGeneration.Cosmological
+﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 {
     public class GalaxyGroup : AstronomicalObject
     {
-        public List<Galaxy> Galaxies { get; set; } = new List<Galaxy>();
+        public List<Galaxy> Galaxies { get; set; } = new();
     }
 }

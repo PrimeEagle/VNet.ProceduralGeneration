@@ -1,8 +1,10 @@
 ﻿using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological
+namespace VNet.ProceduralGeneration.Cosmological.Generators
 {
     public abstract class BaseGenerator<T, TContext> : IGeneratable<T, TContext>, IDisposable 
                                                                                  where T : AstronomicalObject
@@ -10,24 +12,23 @@ namespace VNet.ProceduralGeneration.Cosmological
     {
         private bool _disposed = false;
 
-        protected readonly GeneratorSettings settings;
-        protected readonly BasicGenerationSettings basicSettings;
-        protected readonly AdvancedGenerationSettings advancedSettings;
-        protected readonly AstronomicalObjectToggleSettings objectToggles;
-        protected readonly TheoreticalAstronomicalObjectToggleSettings theoreticalObjectToggles;
-        protected ParallelismLevel parallelismLevel = ParallelismLevel.Level0;
+        protected readonly GeneratorSettings Settings;
+        protected readonly BasicGenerationSettings BasicSettings;
+        protected readonly AdvancedGenerationSettings AdvancedSettings;
+        protected readonly AstronomicalObjectToggleSettings ObjectToggles;
+        protected readonly TheoreticalAstronomicalObjectToggleSettings TheoreticalObjectToggles;
+        private ParallelismLevel _parallelismLevel;
         private readonly SemaphoreSlim _semaphore;
 
 
-
-        public BaseGenerator(ParallelismLevel parallelismLevel)
+        protected BaseGenerator(ParallelismLevel parallelismLevel)
         {
-            this.settings = ConfigurationSettings<GeneratorSettings>.AppSettings;
-            this.basicSettings = settings.Basic;
-            this.advancedSettings = settings.Advanced;
-            this.objectToggles = settings.ObjectToggles;
-            this.theoreticalObjectToggles = settings.TheoreticalObjectToggles;
-            this.parallelismLevel = parallelismLevel;
+            this.Settings = ConfigurationSettings<GeneratorSettings>.AppSettings;
+            this.BasicSettings = Settings.Basic;
+            this.AdvancedSettings = Settings.Advanced;
+            this.ObjectToggles = Settings.ObjectToggles;
+            this.TheoreticalObjectToggles = Settings.TheoreticalObjectToggles;
+            this._parallelismLevel = parallelismLevel;
             _semaphore = new SemaphoreSlim(GetDegreesOfParallelism());
         }
 
@@ -44,12 +45,12 @@ namespace VNet.ProceduralGeneration.Cosmological
             }
         }
 
-        protected int GetDegreesOfParallelism()
+        private int GetDegreesOfParallelism()
         {
-            int calculated = 1;
-            int configured = 1;
+            var calculated = 1;
+            var configured = 1;
 
-            switch(parallelismLevel)
+            switch(_parallelismLevel)
             {
                 case ParallelismLevel.Level0:
                     calculated = 1;
@@ -57,30 +58,25 @@ namespace VNet.ProceduralGeneration.Cosmological
                     break;
                 case ParallelismLevel.Level1:
                     calculated = Environment.ProcessorCount;
-                    configured = advancedSettings.MaxDegreesOfParallelismLevel1;
+                    configured = AdvancedSettings.MaxDegreesOfParallelismLevel1;
                     break;
                 case ParallelismLevel.Level2:
                     calculated = Convert.ToInt32(0.75 * Environment.ProcessorCount);
-                    configured = advancedSettings.MaxDegreesOfParallelismLevel2;
+                    configured = AdvancedSettings.MaxDegreesOfParallelismLevel2;
                     break;
                 case ParallelismLevel.Level3:
                     calculated = Convert.ToInt32(0.5 * Environment.ProcessorCount);
-                    configured = advancedSettings.MaxDegreesOfParallelismLevel3;
+                    configured = AdvancedSettings.MaxDegreesOfParallelismLevel3;
                     break;
                 case ParallelismLevel.Level4:
                     calculated = Convert.ToInt32(0.25 * Environment.ProcessorCount);
-                    configured = advancedSettings.MaxDegreesOfParallelismLevel4;
+                    configured = AdvancedSettings.MaxDegreesOfParallelismLevel4;
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
-            if(configured < calculated)
-            {
-                return configured;
-            }
-            else
-            {
-                return calculated;
-            }
+            return configured < calculated ? configured : calculated;
         }
 
         public abstract Task<T> Generate(TContext context);
@@ -93,15 +89,14 @@ namespace VNet.ProceduralGeneration.Cosmological
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    _semaphore?.Dispose();
-                }
+            if (_disposed) return;
 
-                _disposed = true;
+            if (disposing)
+            {
+                _semaphore?.Dispose();
             }
+
+            _disposed = true;
         }
     }
 }

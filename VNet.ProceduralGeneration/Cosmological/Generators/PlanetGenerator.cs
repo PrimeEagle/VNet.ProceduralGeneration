@@ -1,28 +1,18 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class PlanetGenerator : BaseGenerator<Planet, PlanetContext>
 {
-    private readonly MoonGenerator _sateliteGenerator;
 
-
-    public async override Task<Planet> Generate(PlanetContext context)
+    public override async Task<Planet> Generate(PlanetContext context)
     {
-        var planet = new Planet();
-
-
-        int satelliteCount = 0;
-        for (int i = 0; i < satelliteCount; i++)
-        {
-            planet.Moons.Add(_sateliteGenerator.Generate(new MoonContext()));
-        }
-
-        return planet;
+        throw new NotImplementedException();
     }
 
-    public PlanetGenerator()
+    public PlanetGenerator() : base(ParallelismLevel.Level4)
     {
-        _sateliteGenerator = new MoonGenerator();
     }
 }

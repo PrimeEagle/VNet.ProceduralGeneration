@@ -1,10 +1,12 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class CometGenerator : BaseGenerator<Comet, CometContext>
 {
-    public async override Task<Comet> Generate(CometContext context)
+    public override async Task<Comet> Generate(CometContext context)
     {
         var comet = new Comet
         {
@@ -14,7 +16,7 @@ public class CometGenerator : BaseGenerator<Comet, CometContext>
         return comet;
     }
 
-    public CometGenerator()
+    public CometGenerator() : base(ParallelismLevel.Level4)
     {
     }
 }

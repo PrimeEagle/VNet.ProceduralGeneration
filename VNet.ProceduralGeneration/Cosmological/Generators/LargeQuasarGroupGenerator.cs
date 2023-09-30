@@ -1,10 +1,12 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class LargeQuasarGroupGenerator : BaseGenerator<LargeQuasarGroup, LargeQuasarGroupContext>
 {
-    public async override Task<LargeQuasarGroup> Generate(LargeQuasarGroupContext context)
+    public override async Task<LargeQuasarGroup> Generate(LargeQuasarGroupContext context)
     {
         var largeQuasarGroup = new LargeQuasarGroup
         {
@@ -15,7 +17,7 @@ public class LargeQuasarGroupGenerator : BaseGenerator<LargeQuasarGroup, LargeQu
         return largeQuasarGroup;
     }
 
-    public LargeQuasarGroupGenerator()
+    public LargeQuasarGroupGenerator() : base(ParallelismLevel.Level3)
     {
     }
 }

@@ -1,10 +1,12 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class NovaGenerator : BaseGenerator<Nova, NovaContext>
 {
-    public async override Task<Nova> Generate(NovaContext context)
+    public override async Task<Nova> Generate(NovaContext context)
     {
         var nova = new Nova
         {
@@ -14,7 +16,7 @@ public class NovaGenerator : BaseGenerator<Nova, NovaContext>
         return nova;
     }
 
-    public NovaGenerator()
+    public NovaGenerator() : base(ParallelismLevel.Level4)
     {
     }
 }

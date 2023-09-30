@@ -1,6 +1,6 @@
-﻿using System.Collections.Concurrent;
+﻿using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
 public class Galaxy : AstronomicalObject
 {
@@ -10,5 +10,5 @@ public class Galaxy : AstronomicalObject
     public double StarFormationRate { get; set; }
     public double Metallicity { get; set; }
     public double InterstellarMedium { get; set; }
-    public List<StarCluster> StarClusters { get; set; } = new List<StarCluster>();
+    public List<StarCluster> StarClusters { get; set; } = new();
 }

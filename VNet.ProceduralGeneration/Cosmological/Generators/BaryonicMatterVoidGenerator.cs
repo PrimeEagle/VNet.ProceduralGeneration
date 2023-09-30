@@ -1,14 +1,16 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class BaryonicMatterVoidGenerator : BaseGenerator<BaryonicMatterVoid, BaryonicMatterVoidContext>
 {
-    public BaryonicMatterVoidGenerator()
+    public BaryonicMatterVoidGenerator() : base(ParallelismLevel.Level1)
     {
     }
 
-    public async override Task<BaryonicMatterVoid> Generate(BaryonicMatterVoidContext context)
+    public override async Task<BaryonicMatterVoid> Generate(BaryonicMatterVoidContext context)
     {
         throw new NotImplementedException();
     }

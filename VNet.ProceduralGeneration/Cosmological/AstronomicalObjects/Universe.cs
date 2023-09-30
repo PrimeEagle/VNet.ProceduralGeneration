@@ -1,13 +1,15 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿using VNet.ProceduralGeneration.Cosmological.Enum;
+
+namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
 public class Universe : AstronomicalObject
 {
     private const double H0 = 70;                                                           // Present value of Hubble constant in km/s/Mpc (an approximate value for simplicity)
     private const double T0 = 2.725;                                                        // Present CMB temperature in Kelvin
     private const double A0 = 13.8e9;                                                       // Approximate current age of the universe in years
-    private const double cmbThreshold = 0.001;                                              // Arbitrarily chosen threshold. Adjust as needed. Temperature in Kelvin
-    private const double inflationStart = 0;                                                // start of inflation in years (essentially 0 for our purposes)
-    private const double inflationEnd = 1e-32;                                              // end of inflation in years (an estimate, adjust as needed)
+    private const double CmbThreshold = 0.001;                                              // Arbitrarily chosen threshold. Adjust as needed. Temperature in Kelvin
+    private const double InflationStart = 0;                                                // start of inflation in years (essentially 0 for our purposes)
+    private const double InflationEnd = 1e-32;                                              // end of inflation in years (an estimate, adjust as needed)
 
 
     public double DarkEnergyPercent { get; set; }
@@ -26,17 +28,17 @@ public class Universe : AstronomicalObject
 
     public double ExpansionRate => CalculateExpansionRate();                                // km/s/Mpc
     public double CosmicMicrowaveBackground => CalculateCmb();                              // temperature Kelvin
-    public bool IsInInflationPhase => Age >= inflationStart && Age <= inflationEnd;
+    public bool IsInInflationPhase => Age >= InflationStart && Age <= InflationEnd;
 
 
 
     private double CalculateExpansionRate()
     {
-        var omegaDE = DarkEnergyPercent / 100.0;
-        var omegaDM = DarkMatterPercent / 100.0;
+        var omegaDe = DarkEnergyPercent / 100.0;
+        var omegaDm = DarkMatterPercent / 100.0;
         var omegaB = BaryonicMatterPercent / 100.0;
 
-        return H0 * Math.Sqrt(omegaDE + omegaDM + omegaB);
+        return H0 * Math.Sqrt(omegaDe + omegaDm + omegaB);
     }
 
     private double CalculateCmb()
@@ -46,7 +48,7 @@ public class Universe : AstronomicalObject
 
     private bool CalculateCmbVariations()
     {
-        return Math.Abs(T0 - CalculateCmb()) > cmbThreshold;
+        return Math.Abs(T0 - CalculateCmb()) > CmbThreshold;
     }
 
     public void ApplyInflationEffects()

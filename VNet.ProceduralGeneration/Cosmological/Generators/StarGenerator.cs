@@ -1,10 +1,12 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class StarGenerator : BaseGenerator<Star, StarContext>
 {
-    public async override Task<Star> Generate(StarContext context)
+    public override async Task<Star> Generate(StarContext context)
     {
         var star = new Star
         {
@@ -14,7 +16,7 @@ public class StarGenerator : BaseGenerator<Star, StarContext>
         return star;
     }
 
-    public StarGenerator()
+    public StarGenerator() : base(ParallelismLevel.Level4)
     {
     }
 }

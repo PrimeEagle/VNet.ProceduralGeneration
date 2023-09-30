@@ -1,10 +1,12 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class IcyCloudGenerator : BaseGenerator<IcyCloud, IcyCloudContext>
 {
-    public async override Task<IcyCloud> Generate(IcyCloudContext context)
+    public override async Task<IcyCloud> Generate(IcyCloudContext context)
     {
         var icyCloud = new IcyCloud
         {
@@ -14,7 +16,7 @@ public class IcyCloudGenerator : BaseGenerator<IcyCloud, IcyCloudContext>
         return icyCloud;
     }
 
-    public IcyCloudGenerator()
+    public IcyCloudGenerator() : base(ParallelismLevel.Level4)
     {
     }
 }

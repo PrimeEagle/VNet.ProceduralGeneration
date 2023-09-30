@@ -1,10 +1,12 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class AsteroidGenerator : BaseGenerator<Asteroid, AsteroidContext>
 {
-    public async override Task<Asteroid> Generate(AsteroidContext context)
+    public override async Task<Asteroid> Generate(AsteroidContext context)
     {
         var asteroid = new Asteroid
         {
@@ -13,7 +15,7 @@ public class AsteroidGenerator : BaseGenerator<Asteroid, AsteroidContext>
         return asteroid;
     }
 
-    public AsteroidGenerator()
+    public AsteroidGenerator() : base(ParallelismLevel.Level4)
     {
     }
 }

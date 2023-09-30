@@ -1,14 +1,16 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class BaryonicMatterSheetGenerator : BaseGenerator<BaryonicMatterSheet, BaryonicMatterSheetContext>
 {
-    public BaryonicMatterSheetGenerator()
+    public BaryonicMatterSheetGenerator() : base(ParallelismLevel.Level1)
     {
     }
 
-    public async override Task<BaryonicMatterSheet> Generate(BaryonicMatterSheetContext context)
+    public override async Task<BaryonicMatterSheet> Generate(BaryonicMatterSheetContext context)
     {
         throw new NotImplementedException();
     }

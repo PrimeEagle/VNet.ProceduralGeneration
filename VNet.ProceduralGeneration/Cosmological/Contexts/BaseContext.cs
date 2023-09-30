@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
-namespace VNet.ProceduralGeneration.Cosmological
+namespace VNet.ProceduralGeneration.Cosmological.Contexts
 {
     public  abstract class BaseContext
     {

@@ -1,10 +1,12 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class SupernovaGenerator : BaseGenerator<Supernova, SupernovaContext>
 {
-    public async override Task<Supernova> Generate(SupernovaContext context)
+    public override async Task<Supernova> Generate(SupernovaContext context)
     {
         var supernova = new Supernova
         {
@@ -14,7 +16,7 @@ public class SupernovaGenerator : BaseGenerator<Supernova, SupernovaContext>
         return supernova;
     }
 
-    public SupernovaGenerator()
+    public SupernovaGenerator() : base(ParallelismLevel.Level4)
     {
     }
 }

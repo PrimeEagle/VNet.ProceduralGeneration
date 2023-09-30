@@ -1,4 +1,4 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological
+﻿namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
     public class NodeConfiguration
     {

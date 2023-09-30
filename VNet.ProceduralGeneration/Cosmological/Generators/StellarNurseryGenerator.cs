@@ -1,10 +1,12 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class StellarNurseryGenerator : BaseGenerator<StellarNursery, StellarNurseryContext>
 {
-    public async override Task<StellarNursery> Generate(StellarNurseryContext context)
+    public override async Task<StellarNursery> Generate(StellarNurseryContext context)
     {
         var nursery = new StellarNursery
         {
@@ -14,7 +16,7 @@ public class StellarNurseryGenerator : BaseGenerator<StellarNursery, StellarNurs
         return nursery;
     }
 
-    public StellarNurseryGenerator()
+    public StellarNurseryGenerator() : base(ParallelismLevel.Level4)
     {
     }
 }

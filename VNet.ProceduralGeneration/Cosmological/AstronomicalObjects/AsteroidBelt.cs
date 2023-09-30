@@ -1,8 +1,6 @@
-﻿using System.Collections.Concurrent;
-
-namespace VNet.ProceduralGeneration.Cosmological;
+﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
 public class AsteroidBelt : AstronomicalObject
 {
-    public List<Asteroid> Asteroids { get; set; } = new List<Asteroid>();
+    public List<Asteroid> Asteroids { get; set; } = new();
 }

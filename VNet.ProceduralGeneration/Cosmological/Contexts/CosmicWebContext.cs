@@ -1,4 +1,7 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Enum;
+
+namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
 public class CosmicWebContext : BaseContext
 {

@@ -1,7 +1,7 @@
-﻿using Diagnostics.Sizeof;
-using System.Numerics;
+﻿using System.Numerics;
+using Diagnostics.Sizeof;
 
-namespace VNet.ProceduralGeneration.Cosmological
+namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 {
     public abstract class AstronomicalObject
     {

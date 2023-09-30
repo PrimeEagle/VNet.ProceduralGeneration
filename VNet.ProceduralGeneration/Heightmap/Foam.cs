@@ -4,30 +4,30 @@ namespace VNet.ProceduralGeneration.Heightmap
 {
     public class Foam
     {
-        private static Random _random = new Random();
+        private static readonly Random _random = new();
 
         public static Bitmap GenerateBubbleHeightMap(int width, int height, int numberOfBubbles)
         {
-            Bitmap heightMap = new Bitmap(width, height);
+            var heightMap = new Bitmap(width, height);
 
-            List<global::System.Drawing.PointF> points = new List<global::System.Drawing.PointF>();
+            var points = new List<global::System.Drawing.PointF>();
 
             // Scatter random points
-            for (int i = 0; i < numberOfBubbles; i++)
+            for (var i = 0; i < numberOfBubbles; i++)
             {
                 points.Add(new global::System.Drawing.PointF((float)(_random.NextDouble() * width), (float)(_random.NextDouble() * height)));
             }
 
-            for (int y = 0; y < height; y++)
+            for (var y = 0; y < height; y++)
             {
-                for (int x = 0; x < width; x++)
+                for (var x = 0; x < width; x++)
                 {
-                    float minDist = float.MaxValue;
-                    float secondMinDist = float.MaxValue;
+                    var minDist = float.MaxValue;
+                    var secondMinDist = float.MaxValue;
 
                     foreach (var point in points)
                     {
-                        float dist = Distance(point, new global::System.Drawing.PointF(x, y));
+                        var dist = Distance(point, new global::System.Drawing.PointF(x, y));
                         if (dist < minDist)
                         {
                             secondMinDist = minDist;
@@ -40,8 +40,8 @@ namespace VNet.ProceduralGeneration.Heightmap
                     }
 
                     // Calculate color based on difference of distances
-                    float difference = secondMinDist - minDist;
-                    byte colorValue = (byte)(255 * (1 - Math.Min(1, difference * 3))); // The factor 3 can be adjusted
+                    var difference = secondMinDist - minDist;
+                    var colorValue = (byte)(255 * (1 - Math.Min(1, difference * 3))); // The factor 3 can be adjusted
                     heightMap.SetPixel(x, y, global::System.Drawing.Color.FromArgb(colorValue, colorValue, colorValue));
                 }
             }

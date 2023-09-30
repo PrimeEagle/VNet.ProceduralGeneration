@@ -5,7 +5,7 @@ namespace VNet.ProceduralGeneration.Heightmap
 {
     public class Honeycomb
     {
-        private static Random _random = new Random();
+        private static readonly Random _random = new();
 
         public static Bitmap GenerateHeightMap(
             int width,
@@ -15,30 +15,30 @@ namespace VNet.ProceduralGeneration.Heightmap
             int hexOffsetVariation,
             double maxDistColorFactor)
         {
-            Bitmap heightMap = new Bitmap(width, height);
-            int hexHeight = (int)(Math.Sqrt(3) * minHexSize);
+            var heightMap = new Bitmap(width, height);
+            var hexHeight = (int)(Math.Sqrt(3) * minHexSize);
 
-            for (int y = 0; y < height; y += hexHeight)
+            for (var y = 0; y < height; y += hexHeight)
             {
-                for (int x = 0; x < width; x += (int)Math.Round(maxHexSize * 1.5))
+                for (var x = 0; x < width; x += (int)Math.Round(maxHexSize * 1.5))
                 {
-                    int centerX = x + (_random.Next(-hexOffsetVariation, hexOffsetVariation));
-                    int centerY = y + (_random.Next(-hexOffsetVariation, hexOffsetVariation));
+                    var centerX = x + (_random.Next(-hexOffsetVariation, hexOffsetVariation));
+                    var centerY = y + (_random.Next(-hexOffsetVariation, hexOffsetVariation));
 
-                    int adjustedHexSize = _random.Next(minHexSize, maxHexSize);
+                    var adjustedHexSize = _random.Next(minHexSize, maxHexSize);
 
-                    for (int offsetY = -adjustedHexSize; offsetY <= adjustedHexSize; offsetY++)
+                    for (var offsetY = -adjustedHexSize; offsetY <= adjustedHexSize; offsetY++)
                     {
-                        for (int offsetX = -adjustedHexSize; offsetX <= adjustedHexSize; offsetX++)
+                        for (var offsetX = -adjustedHexSize; offsetX <= adjustedHexSize; offsetX++)
                         {
-                            int pixelX = centerX + offsetX;
-                            int pixelY = centerY + offsetY;
+                            var pixelX = centerX + offsetX;
+                            var pixelY = centerY + offsetY;
 
                             if (pixelX >= 0 && pixelX < width && pixelY >= 0 && pixelY < height)
                             {
-                                double dist = HexagonalDistance(pixelX - centerX, pixelY - centerY, adjustedHexSize);
+                                var dist = HexagonalDistance(pixelX - centerX, pixelY - centerY, adjustedHexSize);
 
-                                byte color = (byte)(255 * Math.Min(1, maxDistColorFactor * (1 - dist)));
+                                var color = (byte)(255 * Math.Min(1, maxDistColorFactor * (1 - dist)));
                                 heightMap.SetPixel(pixelX, pixelY, global::System.Drawing.Color.FromArgb(color, color, color));
                             }
                         }
@@ -56,10 +56,10 @@ namespace VNet.ProceduralGeneration.Heightmap
 
         private static double HexagonalDistance(int x, int y, int hexSize)
         {
-            double q2 = (2.0 / 3 * x) / hexSize;
-            double r2 = (-1.0 / 3 * x + Math.Sqrt(3) / 3 * y) / hexSize;
+            var q2 = (2.0 / 3 * x) / hexSize;
+            var r2 = (-1.0 / 3 * x + Math.Sqrt(3) / 3 * y) / hexSize;
 
-            double dist = Math.Max(Math.Abs(q2), Math.Max(Math.Abs(r2), Math.Abs(-q2 - r2)));
+            var dist = Math.Max(Math.Abs(q2), Math.Max(Math.Abs(r2), Math.Abs(-q2 - r2)));
 
             return dist;
         }

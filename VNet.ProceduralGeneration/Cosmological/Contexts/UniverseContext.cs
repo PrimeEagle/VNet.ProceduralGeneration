@@ -1,6 +1,6 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
 
-namespace VNet.ProceduralGeneration.Cosmological
+namespace VNet.ProceduralGeneration.Cosmological.Contexts
 {
     public class UniverseContext : BaseContext
     {
@@ -18,16 +18,16 @@ namespace VNet.ProceduralGeneration.Cosmological
 
         public UniverseContext(GeneratorSettings settings)
         {
-            this.MinDarkEnergyPercent = config.MinDarkEnergyPercent;
-            this.MaxDarkEnergyPercent = config.MaxDarkEnergyPercent;
-            this.MinDarkMatterPercent = config.MinDarkMatterPercent;
-            this.MaxDarkMatterPercent = config.MaxDarkMatterPercent;
-            this.MinBaryonicMatterPercent = config.MinBaryonicMatterPercent;
-            this.MaxBaryonicMatterPercent = config.MaxBaryonicMatterPercent;
-            this.MinUniverseAge = config.MinUniverseAge;
-            this.MaxUniverseAge = config.MaxUniverseAge;
-            this.MinConnectivityFactor = config.MinConnectivityFactor;
-            this.MaxConnectivityFactor = config.MaxConnectivityFactor;
+            this.MinDarkEnergyPercent = settings.Basic.MinDarkEnergyPercent;
+            this.MaxDarkEnergyPercent = settings.Basic.MaxDarkEnergyPercent;
+            this.MinDarkMatterPercent = settings.Basic.MinDarkMatterPercent;
+            this.MaxDarkMatterPercent = settings.Basic.MaxDarkMatterPercent;
+            this.MinBaryonicMatterPercent = settings.Basic.MinBaryonicMatterPercent;
+            this.MaxBaryonicMatterPercent = settings.Basic.MaxBaryonicMatterPercent;
+            this.MinUniverseAge = settings.Basic.MinUniverseAge;
+            this.MaxUniverseAge = settings.Basic.MaxUniverseAge;
+            this.MinConnectivityFactor = settings.Advanced.MinConnectivityFactor;
+            this.MaxConnectivityFactor = settings.Advanced.MaxConnectivityFactor;
         }
     }
 }

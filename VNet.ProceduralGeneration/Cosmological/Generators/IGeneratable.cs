@@ -1,7 +1,10 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public interface IGeneratable<T, TContext> where T        : AstronomicalObject 
-                                           where TContext : BaseContext
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
+
+public interface IGeneratable<T, in TContext> where T        : AstronomicalObject 
+                                              where TContext : BaseContext
 {
     Task<T> Generate(TContext context);
 }

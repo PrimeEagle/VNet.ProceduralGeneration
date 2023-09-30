@@ -1,4 +1,6 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+
+namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
 public class FuzzballContext : BaseContext
 {

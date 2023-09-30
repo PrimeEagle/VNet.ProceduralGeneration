@@ -1,4 +1,4 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological;
+﻿namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
 public class IcyCloudContext : BaseContext
 {

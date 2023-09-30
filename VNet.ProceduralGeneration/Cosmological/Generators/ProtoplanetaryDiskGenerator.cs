@@ -1,10 +1,12 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class ProtoplanetaryDiskGenerator : BaseGenerator<ProtoplanetaryDisk, ProtoplanetaryDiskContext>
 {
-    public async override Task<ProtoplanetaryDisk> Generate(ProtoplanetaryDiskContext context)
+    public override async Task<ProtoplanetaryDisk> Generate(ProtoplanetaryDiskContext context)
     {
         var disk = new ProtoplanetaryDisk
         {
@@ -14,7 +16,7 @@ public class ProtoplanetaryDiskGenerator : BaseGenerator<ProtoplanetaryDisk, Pro
         return disk;
     }
 
-    public ProtoplanetaryDiskGenerator()
+    public ProtoplanetaryDiskGenerator() : base(ParallelismLevel.Level4)
     {
     }
 }

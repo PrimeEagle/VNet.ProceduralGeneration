@@ -1,12 +1,10 @@
-﻿using System.Collections.Concurrent;
-
-namespace VNet.ProceduralGeneration.Cosmological;
+﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
 public class StarSystem : AstronomicalObject
 {
-    public List<Star> Stars { get; set; } = new List<Star>();
-    public List<Planet> Planets { get; set; } = new List<Planet>();
-    public List<IcyPlanet> IcyPlanets { get; set; } = new List<IcyPlanet>();
-    public List<IcyCloud> IcyClouds { get; set; } = new List<IcyCloud>();
-    public List<AsteroidBelt> AsteroidBelts { get; set; } = new List<AsteroidBelt>();
+    public List<Star> Stars { get; set; } = new();
+    public List<Planet> Planets { get; set; } = new();
+    public List<IcyPlanet> IcyPlanets { get; set; } = new();
+    public List<IcyCloud> IcyClouds { get; set; } = new();
+    public List<AsteroidBelt> AsteroidBelts { get; set; } = new();
 }

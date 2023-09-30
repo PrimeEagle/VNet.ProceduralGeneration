@@ -1,14 +1,16 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 
 public class CosmicBubbleGenerator : BaseGenerator<CosmicBubble, CosmicBubbleContext>
 {
-    public CosmicBubbleGenerator()
+    public CosmicBubbleGenerator() : base(ParallelismLevel.Level4)
     {
     }
 
-    public async override Task<CosmicBubble> Generate(CosmicBubbleContext context)
+    public override async Task<CosmicBubble> Generate(CosmicBubbleContext context)
     {
         var result = new CosmicBubble();
 

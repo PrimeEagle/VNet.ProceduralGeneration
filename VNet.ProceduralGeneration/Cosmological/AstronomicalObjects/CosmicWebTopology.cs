@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace VNet.ProceduralGeneration.Cosmological
+namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 {
     public class CosmicWebTopology
     {

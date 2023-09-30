@@ -1,10 +1,13 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Configuration;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class PulsarGenerator : BaseGenerator<Pulsar, PulsarContext>
 {
-    public async override Task<Pulsar> Generate(PulsarContext context)
+    public override async Task<Pulsar> Generate(PulsarContext context)
     {
         var pulsar = new Pulsar
         {
@@ -14,7 +17,7 @@ public class PulsarGenerator : BaseGenerator<Pulsar, PulsarContext>
         return pulsar;
     }
 
-    public PulsarGenerator()
+    public PulsarGenerator() : base(ParallelismLevel.Level4)
     {
     }
 }

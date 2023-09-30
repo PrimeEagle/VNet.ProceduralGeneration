@@ -1,14 +1,16 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
-namespace VNet.ProceduralGeneration.Cosmological;
+namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class DarkMatterFilamentGenerator : BaseGenerator<DarkMatterFilament, DarkMatterFilamentContext>
 {
-    public DarkMatterFilamentGenerator()
+    public DarkMatterFilamentGenerator() : base(ParallelismLevel.Level1)
     {
     }
 
-    public async override Task<DarkMatterFilament> Generate(DarkMatterFilamentContext context)
+    public override async Task<DarkMatterFilament> Generate(DarkMatterFilamentContext context)
     {
         throw new NotImplementedException();
     }
