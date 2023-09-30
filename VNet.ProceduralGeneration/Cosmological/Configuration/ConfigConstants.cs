@@ -13,8 +13,6 @@
         internal static double DefaultMaxBaryonicMatterPercent { get; } = 6.0;
         internal static float DefaultMinUniverseAge { get; } = 5e9f;                                    // years
         internal static float DefaultMaxUniverseAge { get; } = 20e9f;                                   // years
-        internal static double DefaultMinConnectivityFactor { get; } = 0.05;                            // 0.0 - 1.0
-        internal static double DefaultMaxConnectivityFactor { get; } = 0.50;                            // 0.0 - 1.0
         internal static double DefaultBaselineExpansionRate { get; } = 70.0;                            // km/s/Mpc
         internal static double DefaultBaselineCosmicMicrowaveBackground { get; } = 2.735;               // Kelvin
         internal static int BaryonicMatterNodeBaseCount { get; } = 300;
@@ -74,14 +72,14 @@
         internal static float TopologyBaryonicMatterNodeDensityThresholdFactor { get; } = 1.2f;
         internal static float TopologyBaryonicMatterNodeGradientMagnitudeThresholdFactor { get; } = 0.2f;
         internal static float TopologyBaryonicMatterNodeIntensityThresholdFactor { get; } = 1.2f;
-        internal static float TopologyBaryonicMatterNodeSeedMergeDistanceThresholdFactor { get; } = 0.2f;
-        internal static float TopologyBaryonicMatterNodeSeedMinDistanceThresholdFactor { get; } = 1.2f;
+        internal static float TopologyBaryonicMatterNodeMergeDistanceThresholdFactor { get; } = 0.2f;
+        internal static float TopologyBaryonicMatterNodeMinDistanceThresholdFactor { get; } = 1.2f;
         internal static float TopologyBaryonicMatterNodeMaxPositionalOffset { get; } = 0.2f;
         internal static float TopologyDarkMatterNodeDensityThresholdFactor { get; } = 1.2f;
         internal static float TopologyDarkMatterNodeGradientMagnitudeThresholdFactor { get; } = 0.2f;
         internal static float TopologyDarkMatterNodeIntensityThresholdFactor { get; } = 1.2f;
-        internal static float TopologyDarkMatterNodeSeedMergeDistanceThresholdFactor { get; } = 0.2f;
-        internal static float TopologyDarkMatterNodeSeedMinDistanceThresholdFactor { get; } = 1.2f;
+        internal static float TopologyDarkMatterNodeMergeDistanceThresholdFactor { get; } = 0.2f;
+        internal static float TopologyDarkMatterNodeMinDistanceThresholdFactor { get; } = 1.2f;
         internal static float TopologyDarkMatterNodeMaxPositionalOffset { get; } = 0.2f;
     }
 }

@@ -1,59 +1,164 @@
-﻿using VNet.Configuration;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using VNet.Configuration;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
     public class BasicGenerationSettings : ISettings
     {
+        [Range(1, float.MaxValue)]
+        [DisplayName("")]
+        [Tooltip("The size of the X-axis of the map (AU).")]
         public float DimensionX { get; set; }
+        
+        [Range(1, float.MaxValue)]
+        [DisplayName("")]
+        [Tooltip("The size of the Y-axis of the map (AU).")]
         public float DimensionY { get; set; }
+        
+        [Range(1, float.MaxValue)]
+        [DisplayName("")]
+        [Tooltip("The size of the Z-axis of the map (AU).")]
         public float DimensionZ { get; set; }
+        
+        [Range(0d, 100d)]
+        [PercentageWithProperties("MinDarkMatterPercent, MinBaryonicMatterPercent")]
+        [DisplayName("")]
+        [Tooltip("Minimum amount of dark energy in the universe, as a percentage.")]
         public double MinDarkEnergyPercent { get; set; }
+        
+        [Range(0d, 100d)]
+        [PercentageWithProperties("MaxDarkMatterPercent, MaxBaryonicMatterPercent")]
+        [DisplayName("")]
+        [Tooltip("Maximum amount of dark energy in the universe, as a percentage.")]
         public double MaxDarkEnergyPercent { get; set; }
+        
+        [Range(0d, 100d)]
+        [PercentageWithProperties("MinDarkEnergyPercent, MinBaryonicMatterPercent")]
+        [DisplayName("")]
+        [Tooltip("Minimum amount of dark matter in the universe, as a percentage.")]
         public double MinDarkMatterPercent { get; set; }
+        
+        [Range(0d, 100d)]
+        [PercentageWithProperties("MaxDarkEnergyPercent, MaxBaryonicMatterPercent")]
+        [DisplayName("")]
+        [Tooltip("Maximum amount of dark matter in the universe, as a percentage.")]
         public double MaxDarkMatterPercent { get; set; }
+        
+        [Range(0d, 100d)]
+        [PercentageWithProperties("MinDarkMatterPercent, MinDarkEnergyPercent")]
+        [DisplayName("")]
+        [Tooltip("Minimum amount of baryonic matter (normal matter) in the universe, as a percentage.")]
         public double MinBaryonicMatterPercent { get; set; }
+       
+        [Range(0d, 100d)]
+        [PercentageWithProperties("MaxDarkMatterPercent, MaxDarkEnergyPercent")]
+        [DisplayName("")]
+        [Tooltip("Maximum amount of baryonic matter (normal matter) in the universe, as a percentage.")]
         public double MaxBaryonicMatterPercent { get; set; }
+        
+        [Range(0, 100e9)]
+        [LessThanOrEqualToProperty("MaxUniverseAge")]
+        [DisplayName("")]
+        [Tooltip("Minimum age of the universe, in years.")]
         public float MinUniverseAge { get; set; }
+        
+        [Range(0, 100e9)]
+        [GreaterThanOrEqualToProperty("MinUniverseAge")]
+        [DisplayName("")]
+        [Tooltip("Maximum age of the universe, in years.")]
         public float MaxUniverseAge { get; set; }
+
+        [Required]
+        [FileExists]
+        [DisplayName("")]
+        [Tooltip("A grayscale heightmap file which will be extruded into 3D and used to create the cosmic web.")]
         public string HeightmapImageFile { get; set; }
+        
+        [Range(0, int.MaxValue)]
+        [DisplayName("")]
+        [Tooltip("The starting number of baryonic matter (normal matter) nodes, before being adjusted due to environmental factors.")]
         public int BaryonicMatterNodeBaseCount { get; set; }
+        
+        [Range(0, int.MaxValue)]
+        [DisplayName("")]
+        [Tooltip("The starting number of baryonic matter (normal matter) filaments, before being adjusted due to environmental factors.")]
         public int BaryonicMatterFilamentBaseCount { get; set; }
+        
+        [Range(0, int.MaxValue)]
+        [DisplayName("")]
+        [Tooltip("The starting number of baryonic matter (normal matter) sheets, before being adjusted due to environmental factors.")]
         public int BaryonicMatterSheetBaseCount { get; set; }
+        
+        [Range(0, int.MaxValue)]
+        [DisplayName("")]
+        [Tooltip("The starting number of baryonic matter (normal matter) voids, before being adjusted due to environmental factors.")]
         public int BaryonicMatterVoidBaseCount { get; set; }
+        
+        [Range(0, int.MaxValue)]
+        [DisplayName("")]
+        [Tooltip("The starting number of dark matter nodes, before being adjusted due to environmental factors.")]
         public int DarkMatterNodeBaseCount { get; set; }
+        
+        [Range(0, int.MaxValue)]
+        [DisplayName("")]
+        [Tooltip("The starting number of dark matter filaments, before being adjusted due to environmental factors.")]
         public int DarkMatterFilamentBaseCount { get; set; }
+        
+        [Range(0, int.MaxValue)]
+        [DisplayName("")]
+        [Tooltip("The starting number of dark matter sheets, before being adjusted due to environmental factors.")]
         public int DarkMatterSheetBaseCount { get; set; }
+        
+        [Range(0, int.MaxValue)]
+        [DisplayName("")]
+        [Tooltip("The starting number of dark matter voids, before being adjusted due to environmental factors.")]
         public int DarkMatterVoidBaseCount { get; set; }
+
+        [DisplayName("Average Dimension (Calculated)")]
+        [Tooltip("Average of the map X, Y, and Z dimensions.")]
         public float AverageDimension
         {
             get { return CalculateAverageDim(); }
         }
-        public float TopologyBaryonicMatterNodeSeedMergeDistanceThreshold
+
+        [DisplayName("Baryonic Matter Node Merge Distance Threshold (Calculated)")]
+        [Tooltip("The maximum distance at which nearby baryonic matter nodes will be merged.")]
+        public float TopologyBaryonicMatterNodeMergeDistanceThreshold
         {
             get
             {
-                return ConfigConstants.TopologyBaryonicMatterNodeSeedMergeDistanceThresholdFactor * this.AverageDimension;
+                return ConfigConstants.TopologyBaryonicMatterNodeMergeDistanceThresholdFactor * this.AverageDimension;
             }
         }
-        public float TopologyBaryonicMatterNodeSeedMinDistanceThreshold
+
+        [DisplayName("Baryonic Matter Node Max Distance (Calculated)")]
+        [Tooltip("The maximum distance allowed between baryonic matter nodes. After merging has been processed, for nodes closer than this value, the least intense one will be removed.")]
+        public float TopologyBaryonicMatterNodeMinDistanceThreshold
         {
             get
             {
-                return this.TopologyBaryonicMatterNodeSeedMergeDistanceThreshold * ConfigConstants.TopologyBaryonicMatterNodeSeedMinDistanceThresholdFactor;
+                return this.TopologyBaryonicMatterNodeMergeDistanceThreshold * ConfigConstants.TopologyBaryonicMatterNodeMinDistanceThresholdFactor;
             }
         }
-        public float TopologyDarkMatterNodeSeedMergeDistanceThreshold
+
+        [DisplayName("Dark Matter Node Merge Distance Threshold (Calculated)")]
+        [Tooltip("The maximum distance at which nearby dark matter nodes will be merged.")]
+        public float TopologyDarkMatterNodeMergeDistanceThreshold
         {
             get
             {
-                return ConfigConstants.TopologyDarkMatterNodeSeedMergeDistanceThresholdFactor * this.AverageDimension;
+                return ConfigConstants.TopologyDarkMatterNodeMergeDistanceThresholdFactor * this.AverageDimension;
             }
         }
-        public float TopologyDarkMatterNodeSeedMinDistanceThreshold
+
+        [DisplayName("Dark Matter Node Max Distance (Calculated)")]
+        [Tooltip("The maximum distance allowed between dark matter nodes. After merging has been processed, for nodes closer than this value, the least intense one will be removed.")]
+        public float TopologyDarkMatterNodeMinDistanceThreshold
         {
             get
             {
-                return this.TopologyDarkMatterNodeSeedMergeDistanceThreshold * ConfigConstants.TopologyDarkMatterNodeSeedMinDistanceThresholdFactor;
+                return this.TopologyDarkMatterNodeMergeDistanceThreshold * ConfigConstants.TopologyDarkMatterNodeMinDistanceThresholdFactor;
             }
         }
 
