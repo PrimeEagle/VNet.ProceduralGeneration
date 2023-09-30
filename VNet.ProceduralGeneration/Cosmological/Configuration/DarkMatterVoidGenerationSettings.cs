@@ -5,36 +5,36 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
     public class DarkMatterVoidGenerationSettings : ISettings
     {
-        [DisplayName("Dark Matter Void Count Age Factor")]
+        [DisplayName("Count Age Factor")]
         [Tooltip("")]
-        public double DarkMatterVoidCountAgeFactor { get; set; }
+        public double CountAgeFactor { get; set; }
 
-        [DisplayName("Dark Matter Void Count Mass Factor")]
+        [DisplayName("Count Mass Factor")]
         [Tooltip("")]
-        public double DarkMatterVoidCountMassFactor { get; set; }
+        public double CountMassFactor { get; set; }
 
-        [DisplayName("Dark Matter Void Count Size Factor")]
+        [DisplayName("Count Size Factor")]
         [Tooltip("")]
-        public double DarkMatterVoidCountSizeFactor { get; set; }
+        public double CountSizeFactor { get; set; }
 
-        [DisplayName("Dark Matter Void Count Dark Matter Percent Factor")]
+        [DisplayName("Count Dark Matter Percent Factor")]
         [Tooltip("")]
-        public double DarkMatterVoidCountDarkMatterPercentFactor { get; set; }
+        public double CountDarkMatterPercentFactor { get; set; }
 
-        [DisplayName("Dark Matter Void Count Dark Energy Percent Factor")]
+        [DisplayName("Count Dark Energy Percent Factor")]
         [Tooltip("")]
-        public double DarkMatterVoidCountDarkEnergyPercentFactor { get; set; }
+        public double CountDarkEnergyPercentFactor { get; set; }
 
         
 
 
         public DarkMatterVoidGenerationSettings()
         {
-            this.DarkMatterVoidCountAgeFactor = ConfigConstants.DarkMatterVoidCountAgeFactor;
-            this.DarkMatterVoidCountMassFactor = ConfigConstants.DarkMatterVoidCountMassFactor;
-            this.DarkMatterVoidCountSizeFactor = ConfigConstants.DarkMatterVoidCountSizeFactor;
-            this.DarkMatterVoidCountDarkMatterPercentFactor = ConfigConstants.DarkMatterVoidCountDarkMatterPercentFactor;
-            this.DarkMatterVoidCountDarkEnergyPercentFactor = ConfigConstants.DarkMatterVoidCountDarkEnergyPercentFactor;
+            this.CountAgeFactor = ConfigConstants.DarkMatterVoidCountAgeFactor;
+            this.CountMassFactor = ConfigConstants.DarkMatterVoidCountMassFactor;
+            this.CountSizeFactor = ConfigConstants.DarkMatterVoidCountSizeFactor;
+            this.CountDarkMatterPercentFactor = ConfigConstants.DarkMatterVoidCountDarkMatterPercentFactor;
+            this.CountDarkEnergyPercentFactor = ConfigConstants.DarkMatterVoidCountDarkEnergyPercentFactor;
         }
     }
 }

@@ -1,47 +1,45 @@
 ﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using VNet.Configuration;
-using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
     public class DarkMatterSheetGenerationSettings : ISettings
     {
-        [DisplayName("Dark Matter Sheet Count Age Factor")]
+        [DisplayName("Count Age Factor")]
         [Tooltip("")]
-        public double DarkMatterSheetCountAgeFactor { get; set; }
+        public double CountAgeFactor { get; set; }
 
-        [DisplayName("Dark Matter Sheet Count Mass Factor")]
+        [DisplayName("Count Mass Factor")]
         [Tooltip("")]
-        public double DarkMatterSheetCountMassFactor { get; set; }
+        public double CountMassFactor { get; set; }
 
-        [DisplayName("Dark Matter Sheet Count Size Factor")]
+        [DisplayName("Count Size Factor")]
         [Tooltip("")]
-        public double DarkMatterSheetCountSizeFactor { get; set; }
+        public double CountSizeFactor { get; set; }
 
-        [DisplayName("Dark Matter Sheet Count Baryonic Matter Percent Factor")]
+        [DisplayName("Count Baryonic Matter Percent Factor")]
         [Tooltip("")]
-        public double DarkMatterSheetCountBaryonicMatterPercentFactor { get; set; }
+        public double CountBaryonicMatterPercentFactor { get; set; }
 
-        [DisplayName("Dark Matter Sheet Count Dark Matter Percent Factor")]
+        [DisplayName("Count Dark Matter Percent Factor")]
         [Tooltip("")]
-        public double DarkMatterSheetCountDarkMatterPercentFactor { get; set; }
+        public double CountDarkMatterPercentFactor { get; set; }
 
-        [DisplayName("Dark Matter Sheet Count Dark Energy Percent Factor")]
+        [DisplayName("Count Dark Energy Percent Factor")]
         [Tooltip("")]
-        public double DarkMatterSheetCountDarkEnergyPercentFactor { get; set; }
+        public double CountDarkEnergyPercentFactor { get; set; }
 
         
 
 
         public DarkMatterSheetGenerationSettings()
         {
-            this.DarkMatterSheetCountAgeFactor = ConfigConstants.DarkMatterSheetCountAgeFactor;
-            this.DarkMatterSheetCountMassFactor = ConfigConstants.DarkMatterSheetCountMassFactor;
-            this.DarkMatterSheetCountSizeFactor = ConfigConstants.DarkMatterSheetCountSizeFactor;
-            this.DarkMatterSheetCountBaryonicMatterPercentFactor = ConfigConstants.DarkMatterSheetCountBaryonicMatterPercentFactor;
-            this.DarkMatterSheetCountDarkMatterPercentFactor = ConfigConstants.DarkMatterSheetCountDarkMatterPercentFactor;
-            this.DarkMatterSheetCountDarkEnergyPercentFactor = ConfigConstants.DarkMatterSheetCountDarkEnergyPercentFactor;
+            this.CountAgeFactor = ConfigConstants.DarkMatterSheetCountAgeFactor;
+            this.CountMassFactor = ConfigConstants.DarkMatterSheetCountMassFactor;
+            this.CountSizeFactor = ConfigConstants.DarkMatterSheetCountSizeFactor;
+            this.CountBaryonicMatterPercentFactor = ConfigConstants.DarkMatterSheetCountBaryonicMatterPercentFactor;
+            this.CountDarkMatterPercentFactor = ConfigConstants.DarkMatterSheetCountDarkMatterPercentFactor;
+            this.CountDarkEnergyPercentFactor = ConfigConstants.DarkMatterSheetCountDarkEnergyPercentFactor;
         }
     }
 }

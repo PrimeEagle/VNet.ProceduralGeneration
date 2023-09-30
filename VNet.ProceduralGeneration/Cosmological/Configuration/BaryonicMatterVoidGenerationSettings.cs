@@ -5,36 +5,36 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
     public class BaryonicMatterVoidGenerationSettings : ISettings
     {
-        [DisplayName("Baryonic Matter Void Count Age Factor")]
+        [DisplayName("Count Age Factor")]
         [Tooltip("")]
-        public double BaryonicMatterVoidCountAgeFactor { get; set; }
+        public double CountAgeFactor { get; set; }
 
-        [DisplayName("Baryonic Matter Void Count Mass Factor")]
+        [DisplayName("Count Mass Factor")]
         [Tooltip("")]
-        public double BaryonicMatterVoidCountMassFactor { get; set; }
+        public double CountMassFactor { get; set; }
 
-        [DisplayName("Baryonic Matter Void Count Size Factor")]
+        [DisplayName("Count Size Factor")]
         [Tooltip("")]
-        public double BaryonicMatterVoidCountSizeFactor { get; set; }
+        public double CountSizeFactor { get; set; }
 
-        [DisplayName("Baryonic Matter Void Count Baryonic Matter Percent Factor")]
+        [DisplayName("Count Baryonic Matter Percent Factor")]
         [Tooltip("")]
-        public double BaryonicMatterVoidCountBaryonicMatterPercentFactor { get; set; }
+        public double CountBaryonicMatterPercentFactor { get; set; }
 
-        [DisplayName("Baryonic Matter Void Count Dark Energy Percent Factor")]
+        [DisplayName("Count Dark Energy Percent Factor")]
         [Tooltip("")]
-        public double BaryonicMatterVoidCountDarkEnergyPercentFactor { get; set; }
+        public double CountDarkEnergyPercentFactor { get; set; }
 
        
 
 
         public BaryonicMatterVoidGenerationSettings()
         {
-            this.BaryonicMatterVoidCountAgeFactor = ConfigConstants.BaryonicMatterVoidCountAgeFactor;
-            this.BaryonicMatterVoidCountMassFactor = ConfigConstants.BaryonicMatterVoidCountMassFactor;
-            this.BaryonicMatterVoidCountSizeFactor = ConfigConstants.BaryonicMatterVoidCountSizeFactor;
-            this.BaryonicMatterVoidCountBaryonicMatterPercentFactor = ConfigConstants.BaryonicMatterVoidCountBaryonicMatterPercentFactor;
-            this.BaryonicMatterVoidCountDarkEnergyPercentFactor = ConfigConstants.BaryonicMatterVoidCountDarkEnergyPercentFactor;
+            this.CountAgeFactor = ConfigConstants.BaryonicMatterVoidCountAgeFactor;
+            this.CountMassFactor = ConfigConstants.BaryonicMatterVoidCountMassFactor;
+            this.CountSizeFactor = ConfigConstants.BaryonicMatterVoidCountSizeFactor;
+            this.CountBaryonicMatterPercentFactor = ConfigConstants.BaryonicMatterVoidCountBaryonicMatterPercentFactor;
+            this.CountDarkEnergyPercentFactor = ConfigConstants.BaryonicMatterVoidCountDarkEnergyPercentFactor;
         }
     }
 }

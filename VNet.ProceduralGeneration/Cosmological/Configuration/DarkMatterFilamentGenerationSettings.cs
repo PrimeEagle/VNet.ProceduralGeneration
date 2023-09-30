@@ -5,41 +5,41 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
     public class DarkMatterFilamentGenerationSettings : ISettings
     {
-        [DisplayName("Dark Matter Filament Count Age Factor")]
+        [DisplayName("Count Age Factor")]
         [Tooltip("")]
-        public double DarkMatterFilamentCountAgeFactor { get; set; }
+        public double CountAgeFactor { get; set; }
 
-        [DisplayName("Dark Matter Filament Count Mass Factor")]
+        [DisplayName("Count Mass Factor")]
         [Tooltip("")]
-        public double DarkMatterFilamentCountMassFactor { get; set; }
+        public double CountMassFactor { get; set; }
 
-        [DisplayName("Dark Matter Filament Count Size Factor")]
+        [DisplayName("Count Size Factor")]
         [Tooltip("")]
-        public double DarkMatterFilamentCountSizeFactor { get; set; }
+        public double CountSizeFactor { get; set; }
 
-        [DisplayName("Dark Matter Filament Count Baryonic Matter Percent Factor")]
+        [DisplayName("Count Baryonic Matter Percent Factor")]
         [Tooltip("")]
-        public double DarkMatterFilamentCountBaryonicMatterPercentFactor { get; set; }
+        public double CountBaryonicMatterPercentFactor { get; set; }
 
-        [DisplayName("Dark Matter Filament Count Dark Matter Percent Factor")]
+        [DisplayName("Count Dark Matter Percent Factor")]
         [Tooltip("")]
-        public double DarkMatterFilamentCountDarkMatterPercentFactor { get; set; }
+        public double CountDarkMatterPercentFactor { get; set; }
 
-        [DisplayName("Dark Matter Filament Count Dark Energy Percent Factor")]
+        [DisplayName("Count Dark Energy Percent Factor")]
         [Tooltip("")]
-        public double DarkMatterFilamentCountDarkEnergyPercentFactor { get; set; }
+        public double CountDarkEnergyPercentFactor { get; set; }
 
 
 
 
         public DarkMatterFilamentGenerationSettings()
         {
-            this.DarkMatterFilamentCountAgeFactor = ConfigConstants.DarkMatterFilamentCountAgeFactor;
-            this.DarkMatterFilamentCountMassFactor = ConfigConstants.DarkMatterFilamentCountMassFactor;
-            this.DarkMatterFilamentCountSizeFactor = ConfigConstants.DarkMatterFilamentCountSizeFactor;
-            this.DarkMatterFilamentCountBaryonicMatterPercentFactor = ConfigConstants.DarkMatterFilamentCountBaryonicMatterPercentFactor;
-            this.DarkMatterFilamentCountDarkMatterPercentFactor = ConfigConstants.DarkMatterFilamentCountDarkMatterPercentFactor;
-            this.DarkMatterFilamentCountDarkEnergyPercentFactor = ConfigConstants.DarkMatterFilamentCountDarkEnergyPercentFactor;
+            this.CountAgeFactor = ConfigConstants.DarkMatterFilamentCountAgeFactor;
+            this.CountMassFactor = ConfigConstants.DarkMatterFilamentCountMassFactor;
+            this.CountSizeFactor = ConfigConstants.DarkMatterFilamentCountSizeFactor;
+            this.CountBaryonicMatterPercentFactor = ConfigConstants.DarkMatterFilamentCountBaryonicMatterPercentFactor;
+            this.CountDarkMatterPercentFactor = ConfigConstants.DarkMatterFilamentCountDarkMatterPercentFactor;
+            this.CountDarkEnergyPercentFactor = ConfigConstants.DarkMatterFilamentCountDarkEnergyPercentFactor;
         }
     }
 }

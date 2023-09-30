@@ -5,29 +5,29 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
     public class DarkMatterNodeGenerationSettings : ISettings
     {
-        [DisplayName("Dark Matter Node Count Age Factor")]
+        [DisplayName("Count Age Factor")]
         [Tooltip("")]
-        public double DarkMatterNodeCountAgeFactor { get; set; }
+        public double CountAgeFactor { get; set; }
 
-        [DisplayName("Dark Matter Node Count Mass Factor")]
+        [DisplayName("Count Mass Factor")]
         [Tooltip("")]
-        public double DarkMatterNodeCountMassFactor { get; set; }
+        public double CountMassFactor { get; set; }
 
-        [DisplayName("Dark Matter Node Count Size Factor")]
+        [DisplayName("Count Size Factor")]
         [Tooltip("")]
-        public double DarkMatterNodeCountSizeFactor { get; set; }
+        public double CountSizeFactor { get; set; }
 
-        [DisplayName("Dark Matter Node Count Baryonic Matter Percent Factor")]
+        [DisplayName("Count Baryonic Matter Percent Factor")]
         [Tooltip("")]
-        public double DarkMatterNodeCountBaryonicMatterPercentFactor { get; set; }
+        public double CountBaryonicMatterPercentFactor { get; set; }
 
-        [DisplayName("Dark Matter Node Count Dark Matter Percent Factor")]
+        [DisplayName("Count Dark Matter Percent Factor")]
         [Tooltip("")]
-        public double DarkMatterNodeCountDarkMatterPercentFactor { get; set; }
+        public double CountDarkMatterPercentFactor { get; set; }
 
-        [DisplayName("Dark Matter Node Count Dark Energy Percent Factor")]
+        [DisplayName("Count Dark Energy Percent Factor")]
         [Tooltip("")]
-        public double DarkMatterNodeCountDarkEnergyPercentFactor { get; set; }
+        public double CountDarkEnergyPercentFactor { get; set; }
 
         
 
@@ -35,12 +35,12 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         public DarkMatterNodeGenerationSettings()
         {
             
-            this.DarkMatterNodeCountAgeFactor = ConfigConstants.DarkMatterNodeCountAgeFactor;
-            this.DarkMatterNodeCountMassFactor = ConfigConstants.DarkMatterNodeCountMassFactor;
-            this.DarkMatterNodeCountSizeFactor = ConfigConstants.DarkMatterNodeCountSizeFactor;
-            this.DarkMatterNodeCountBaryonicMatterPercentFactor = ConfigConstants.DarkMatterNodeCountBaryonicMatterPercentFactor;
-            this.DarkMatterNodeCountDarkMatterPercentFactor = ConfigConstants.DarkMatterNodeCountDarkMatterPercentFactor;
-            this.DarkMatterNodeCountDarkEnergyPercentFactor = ConfigConstants.DarkMatterNodeCountDarkEnergyPercentFactor;
+            this.CountAgeFactor = ConfigConstants.DarkMatterNodeCountAgeFactor;
+            this.CountMassFactor = ConfigConstants.DarkMatterNodeCountMassFactor;
+            this.CountSizeFactor = ConfigConstants.DarkMatterNodeCountSizeFactor;
+            this.CountBaryonicMatterPercentFactor = ConfigConstants.DarkMatterNodeCountBaryonicMatterPercentFactor;
+            this.CountDarkMatterPercentFactor = ConfigConstants.DarkMatterNodeCountDarkMatterPercentFactor;
+            this.CountDarkEnergyPercentFactor = ConfigConstants.DarkMatterNodeCountDarkEnergyPercentFactor;
         }
     }
 }
