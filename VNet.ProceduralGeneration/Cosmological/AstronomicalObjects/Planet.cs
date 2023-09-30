@@ -4,5 +4,5 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class Planet : AstronomicalObject
 {
-    public ConcurrentBag<Moon> Moons { get; set; } = new ConcurrentBag<Moon>();
+    public List<Moon> Moons { get; set; } = new List<Moon>();
 }

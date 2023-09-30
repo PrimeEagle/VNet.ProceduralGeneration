@@ -4,5 +4,5 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class AsteroidBelt : AstronomicalObject
 {
-    public ConcurrentBag<Asteroid> Asteroids { get; set; } = new ConcurrentBag<Asteroid>();
+    public List<Asteroid> Asteroids { get; set; } = new List<Asteroid>();
 }

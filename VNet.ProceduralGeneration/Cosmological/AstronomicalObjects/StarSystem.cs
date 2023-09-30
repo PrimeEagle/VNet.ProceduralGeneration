@@ -4,9 +4,9 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class StarSystem : AstronomicalObject
 {
-    public ConcurrentBag<Star> Stars { get; set; } = new ConcurrentBag<Star>();
-    public ConcurrentBag<Planet> Planets { get; set; } = new ConcurrentBag<Planet>();
-    public ConcurrentBag<IcyPlanet> IcyPlanets { get; set; } = new ConcurrentBag<IcyPlanet>();
-    public ConcurrentBag<IcyCloud> IcyClouds { get; set; } = new ConcurrentBag<IcyCloud>();
-    public ConcurrentBag<AsteroidBelt> AsteroidBelts { get; set; } = new ConcurrentBag<AsteroidBelt>();
+    public List<Star> Stars { get; set; } = new List<Star>();
+    public List<Planet> Planets { get; set; } = new List<Planet>();
+    public List<IcyPlanet> IcyPlanets { get; set; } = new List<IcyPlanet>();
+    public List<IcyCloud> IcyClouds { get; set; } = new List<IcyCloud>();
+    public List<AsteroidBelt> AsteroidBelts { get; set; } = new List<AsteroidBelt>();
 }

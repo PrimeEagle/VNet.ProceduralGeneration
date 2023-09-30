@@ -10,5 +10,5 @@ public class Galaxy : AstronomicalObject
     public double StarFormationRate { get; set; }
     public double Metallicity { get; set; }
     public double InterstellarMedium { get; set; }
-    public ConcurrentBag<StarCluster> StarClusters { get; set; } = new ConcurrentBag<StarCluster>();
+    public List<StarCluster> StarClusters { get; set; } = new List<StarCluster>();
 }

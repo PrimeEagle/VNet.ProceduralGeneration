@@ -5,10 +5,10 @@ namespace VNet.ProceduralGeneration.Cosmological;
 
 public class BaryonicMatterFilament : AstronomicalObject
 {
-    public ConcurrentBag<Supercluster> Superclusters { get; set; } = new ConcurrentBag<Supercluster>();
-    public ConcurrentBag<GalaxyCluster> GalaxyClusters { get; set; } = new ConcurrentBag<GalaxyCluster>();
-    public ConcurrentBag<GalaxyGroup> GalaxyGroups { get; set; } = new ConcurrentBag<GalaxyGroup>();
-    public ConcurrentBag<Galaxy> Galaxies { get; set; } = new ConcurrentBag<Galaxy>();
+    public List<Supercluster> Superclusters { get; set; } = new List<Supercluster>();
+    public List<GalaxyCluster> GalaxyClusters { get; set; } = new List<GalaxyCluster>();
+    public List<GalaxyGroup> GalaxyGroups { get; set; } = new List<GalaxyGroup>();
+    public List<Galaxy> Galaxies { get; set; } = new List<Galaxy>();
     public double Length { get; set; }
     public Vector3 Orientation { get; set; }
 }

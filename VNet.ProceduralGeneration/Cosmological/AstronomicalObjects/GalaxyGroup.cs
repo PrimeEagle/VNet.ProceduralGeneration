@@ -4,6 +4,6 @@ namespace VNet.ProceduralGeneration.Cosmological
 {
     public class GalaxyGroup : AstronomicalObject
     {
-        public ConcurrentBag<Galaxy> Galaxies { get; set; } = new ConcurrentBag<Galaxy>();
+        public List<Galaxy> Galaxies { get; set; } = new List<Galaxy>();
     }
 }

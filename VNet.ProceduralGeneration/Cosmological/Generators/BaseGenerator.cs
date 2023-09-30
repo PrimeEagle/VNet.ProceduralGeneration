@@ -4,28 +4,44 @@ using VNet.ProceduralGeneration.Cosmological.Enum;
 
 namespace VNet.ProceduralGeneration.Cosmological
 {
-    public abstract class BaseGenerator<T, TContext> : IGeneratable<T, TContext> where T : AstronomicalObject
+    public abstract class BaseGenerator<T, TContext> : IGeneratable<T, TContext>, IDisposable 
+                                                                                 where T : AstronomicalObject
                                                                                  where TContext : BaseContext
     {
+        private bool _disposed = false;
+
         protected readonly GeneratorSettings settings;
         protected readonly BasicGenerationSettings basicSettings;
         protected readonly AdvancedGenerationSettings advancedSettings;
         protected readonly AstronomicalObjectToggleSettings objectToggles;
         protected readonly TheoreticalAstronomicalObjectToggleSettings theoreticalObjectToggles;
-        protected ParallelismLevel parallelismLevel = ParallelismLevel.LimitOne;
+        protected ParallelismLevel parallelismLevel = ParallelismLevel.Level0;
+        private readonly SemaphoreSlim _semaphore;
 
 
 
-
-        public abstract Task<T> Generate(TContext context);
-
-        public BaseGenerator()
+        public BaseGenerator(ParallelismLevel parallelismLevel)
         {
             this.settings = ConfigurationSettings<GeneratorSettings>.AppSettings;
             this.basicSettings = settings.Basic;
             this.advancedSettings = settings.Advanced;
             this.objectToggles = settings.ObjectToggles;
             this.theoreticalObjectToggles = settings.TheoreticalObjectToggles;
+            this.parallelismLevel = parallelismLevel;
+            _semaphore = new SemaphoreSlim(GetDegreesOfParallelism());
+        }
+
+        protected async Task<T> ExecuteWithConcurrencyControlAsync<T>(Func<Task<T>> taskFactory)
+        {
+            await _semaphore.WaitAsync();
+            try
+            {
+                return await taskFactory();
+            }
+            finally
+            {
+                _semaphore.Release();
+            }
         }
 
         protected int GetDegreesOfParallelism()
@@ -35,6 +51,10 @@ namespace VNet.ProceduralGeneration.Cosmological
 
             switch(parallelismLevel)
             {
+                case ParallelismLevel.Level0:
+                    calculated = 1;
+                    configured = 1;
+                    break;
                 case ParallelismLevel.Level1:
                     calculated = Environment.ProcessorCount;
                     configured = advancedSettings.MaxDegreesOfParallelismLevel1;
@@ -60,6 +80,27 @@ namespace VNet.ProceduralGeneration.Cosmological
             else
             {
                 return calculated;
+            }
+        }
+
+        public abstract Task<T> Generate(TContext context);
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    _semaphore?.Dispose();
+                }
+
+                _disposed = true;
             }
         }
     }

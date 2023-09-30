@@ -1,49 +1,25 @@
-﻿using System.Collections.Concurrent;
-using System.Numerics;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
 namespace VNet.ProceduralGeneration.Cosmological;
 
 public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 {
-    private readonly IntergalacticMediumGenerator _intergalacticMediumGenerator;
-    private readonly BaryonicMatterFilamentGenerator _baryonicFilamentGenerator;
-    private readonly DarkMatterFilamentGenerator _darkMatterFilamentGenerator;
-    private readonly BaryonicMatterNodeGenerator _baryonicNodeGenerator;
-    private readonly DarkMatterNodeGenerator _darkMatterNodeGenerator;
-    private readonly BaryonicMatterVoidGenerator _baryonicVoidGenerator;
-    private readonly DarkMatterVoidGenerator _darkMatterVoidGenerator;
-    private readonly BaryonicMatterSheetGenerator _baryonicSheetGenerator;
-    private readonly DarkMatterSheetGenerator _darkMatterSheetGenerator;
-
-
-
-    public CosmicWebGenerator()
+    public CosmicWebGenerator() : base(ParallelismLevel.Level0)
     {
-        _intergalacticMediumGenerator = new IntergalacticMediumGenerator();
-        _baryonicFilamentGenerator = new BaryonicMatterFilamentGenerator();
-        _darkMatterFilamentGenerator = new DarkMatterFilamentGenerator();
-        _baryonicNodeGenerator = new BaryonicMatterNodeGenerator();
-        _darkMatterNodeGenerator = new DarkMatterNodeGenerator();
-        _baryonicVoidGenerator = new BaryonicMatterVoidGenerator();
-        _darkMatterVoidGenerator = new DarkMatterVoidGenerator();
-        _baryonicSheetGenerator = new BaryonicMatterSheetGenerator();
-        _darkMatterSheetGenerator = new DarkMatterSheetGenerator();
     }
 
     public async override Task<CosmicWeb> Generate(CosmicWebContext context)
     {
+        return await ExecuteWithConcurrencyControlAsync(() => GenerateCosmicWeb(context));
+    }
+    private async Task<CosmicWeb> GenerateCosmicWeb(CosmicWebContext context)
+    {
         var cosmicWeb = new CosmicWeb();     
 
         LoadCosmicTopology(cosmicWeb);
-        GenerateBaryonicMatterNodes(cosmicWeb, context);
-        GenerateDarkMatterNodes(cosmicWeb, context);
-
-        //var intergalacticMediumContext = new IntergalacticMediumContext();
-        //var imgTask = Task.Run(() => _intergalacticMediumGenerator.Generate(intergalacticMediumContext));
-
-        //Task.WaitAll(imgTask);
-
-        //cosmicWeb.IntergalacticMedium = imgTask.Result;
+        cosmicWeb.BaryonicMatterNodes = await GenerateBaryonicMatterNodes(cosmicWeb, context);
+        cosmicWeb.DarkMatterNodes = await GenerateDarkMatterNodes(cosmicWeb, context);
 
         PostProcess();
 
@@ -76,8 +52,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         };
     }
 
-
-    private void GenerateBaryonicMatterNodes(CosmicWeb cosmicWeb, CosmicWebContext context)
+    private async Task<List<BaryonicMatterNode>> GenerateBaryonicMatterNodes(CosmicWeb cosmicWeb, CosmicWebContext context)
     {
         var baryonicMatterNodeConfig = new NodeConfiguration()
         {
@@ -94,13 +69,18 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
             SpatialGrid = baryonicMatterNodeSpatialGrid,
         };
 
-        Parallel.For(0, baryonicMatterNodeCount, i =>
+        var tasks = new List<Task<BaryonicMatterNode>>();
+        for (int i = 0; i < baryonicMatterNodeCount; i++)
         {
-            var baryonicNode = _baryonicNodeGenerator.Generate(baryonicMatterNodeContext);
-            cosmicWeb.BaryonicNodes.Add(baryonicNode);
-        });
+            var _baryonicMatterNodeGenerator = new BaryonicMatterNodeGenerator();
+            tasks.Add(_baryonicMatterNodeGenerator.Generate(baryonicMatterNodeContext));
+        }
+        var results = await Task.WhenAll(tasks);
+
+        return results.ToList();
     }
-    private void GenerateDarkMatterNodes(CosmicWeb cosmicWeb, CosmicWebContext context)
+
+    private async Task<List<DarkMatterNode>> GenerateDarkMatterNodes(CosmicWeb cosmicWeb, CosmicWebContext context)
     {
         var darkMatterNodeConfig = new NodeConfiguration()
         {
@@ -117,11 +97,15 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
             SpatialGrid = darkMatterNodeSpatialGrid,
         };
 
-        Parallel.For(0, darkMatterNodeCount, i =>
+        var tasks = new List<Task<DarkMatterNode>>();
+        for (int i = 0; i < darkMatterNodeCount; i++)
         {
-            var darkMatterNode = _darkMatterNodeGenerator.Generate(darkMatterNodeContext);
-            cosmicWeb.DarkMatterNodes.Add(darkMatterNode);
-        });
+            var _darkMatterNodeGenerator = new DarkMatterNodeGenerator();
+            tasks.Add(_darkMatterNodeGenerator.Generate(darkMatterNodeContext));
+        }
+        var results = await Task.WhenAll(tasks);
+
+        return results.ToList();
     }
 
     private SpatialGrid InitializeSpatialGrid(CosmicWeb cosmicWeb, NodeConfiguration nodeConfig)
@@ -144,9 +128,9 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
     }
 
 
-    private ConcurrentBag<NodeSeed> GenerateNodeSeeds(CosmicWebTopology topology, int numberToGenerate, NodeConfiguration nodeConfig)
+    private List<NodeSeed> GenerateNodeSeeds(CosmicWebTopology topology, int numberToGenerate, NodeConfiguration nodeConfig)
     {
-        var nodeSeeds = new ConcurrentBag<NodeSeed>();
+        var nodeSeeds = new List<NodeSeed>();
 
         var densityThreshold = topology.AverageIntensity * nodeConfig.NodeDensityThresholdFactor;
         var gradientMagnitudeThreshold = topology.MaxGradientMagnitude * nodeConfig.NodeGradientMagnitudeThresholdFactor;
@@ -233,7 +217,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
             seedsList.Add(randomSeed);
         }
 
-        return new ConcurrentBag<NodeSeed>(seedsList);
+        return new List<NodeSeed>(seedsList);
     }
     private List<NodeSeed> GetPotentialNodeSeeds(IReadOnlyCollection<NodeSeed> currentSeeds, CosmicWebTopology topology, NodeConfiguration nodeConfig)
     {

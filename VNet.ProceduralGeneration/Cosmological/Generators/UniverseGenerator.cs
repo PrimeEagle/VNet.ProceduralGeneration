@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
 namespace VNet.ProceduralGeneration.Cosmological;
 
@@ -7,12 +8,17 @@ public class UniverseGenerator : BaseGenerator<Universe, UniverseContext>
     private readonly CosmicWebGenerator _cosmicWebGenerator;
 
 
-    public UniverseGenerator()
+    public UniverseGenerator() : base(ParallelismLevel.Level0)
     {
         _cosmicWebGenerator = new CosmicWebGenerator();
     }
 
     public async override Task<Universe> Generate(UniverseContext context)
+    {
+        return await ExecuteWithConcurrencyControlAsync(() => GenerateUniverse(context));
+    }
+
+    private async Task<Universe> GenerateUniverse(UniverseContext context)
     {
         if(!objectToggles.UniverseEnabled) { return new Universe(); }
 
