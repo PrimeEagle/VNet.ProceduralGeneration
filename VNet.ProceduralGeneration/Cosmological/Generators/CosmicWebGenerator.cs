@@ -271,14 +271,14 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
                 break;
         }
 
-        baseCount += (int)(context.Age * advancedSettings.BaryonicMatterFilamentAgeFactor);
-        baseCount = (int)(baseCount * (context.Mass * advancedSettings.BaryonicMatterFilamentMassFactor) * (context.Size * advancedSettings.BaryonicMatterFilamentSizeFactor));
+        baseCount += (int)(context.Age * 1e-9 * advancedSettings.BaryonicMatterFilament.BaryonicMatterFilamentCountAgeFactor);
+        baseCount = (int)(baseCount * (context.Mass * advancedSettings.BaryonicMatterFilament.BaryonicMatterFilamentCountMassFactor) * (context.Size * advancedSettings.BaryonicMatterFilament.BaryonicMatterFilamentCountSizeFactor));
         baseCount = (int)(baseCount * (advancedSettings.BaselineExpansionRate / context.ExpansionRate));
         baseCount = (int)(baseCount * (context.CosmicMicrowaveBackground / advancedSettings.BaselineCosmicMicrowaveBackground));
         baseCount = (int)(baseCount * (averageIntensity / 255.0));
-        baseCount = (int)(baseCount * context.BaryonicMatterPercent / advancedSettings.BaryonicMatterFilamentBaryonicMatterPercentFactor);
-        baseCount = (int)(baseCount * context.DarkMatterPercent / advancedSettings.BaryonicMatterFilamentDarkMatterPercentFactor);
-        baseCount = (int)(baseCount * (1 - context.DarkEnergyPercent / advancedSettings.BaryonicMatterFilamentDarkEnergyPercentFactor));
+        baseCount = (int)(baseCount * context.BaryonicMatterPercent / advancedSettings.BaryonicMatterFilament.BaryonicMatterFilamentCountBaryonicMatterPercentFactor);
+        baseCount = (int)(baseCount * context.DarkMatterPercent / advancedSettings.BaryonicMatterFilament.BaryonicMatterFilamentCountDarkMatterPercentFactor);
+        baseCount = (int)(baseCount * (1 - context.DarkEnergyPercent / advancedSettings.BaryonicMatterFilament.BaryonicMatterFilamentCountDarkEnergyPercentFactor));
 
         return baseCount;
     }
@@ -299,14 +299,14 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
                 break;
         }
 
-        baseCount += (int)(context.Age * advancedSettings.DarkMatterFilamentAgeFactor);
-        baseCount = (int)(baseCount * (context.Mass * advancedSettings.DarkMatterFilamentMassFactor) * (context.Size * advancedSettings.DarkMatterFilamentSizeFactor));
+        baseCount += (int)(context.Age * 1e-9 * advancedSettings.DarkMatterFilament.DarkMatterFilamentCountAgeFactor);
+        baseCount = (int)(baseCount * (context.Mass * advancedSettings.DarkMatterFilament.DarkMatterFilamentCountMassFactor) * (context.Size * advancedSettings.DarkMatterFilament.DarkMatterFilamentCountSizeFactor));
         baseCount = (int)(baseCount * (advancedSettings.BaselineExpansionRate / context.ExpansionRate));
         baseCount = (int)(baseCount * (context.CosmicMicrowaveBackground / advancedSettings.BaselineCosmicMicrowaveBackground));
         baseCount = (int)(baseCount * (averageIntensity / 255.0));
-        baseCount = (int)(baseCount * context.DarkMatterPercent / advancedSettings.DarkMatterFilamentDarkMatterPercentFactor);
-        baseCount = (int)(baseCount * context.BaryonicMatterPercent / advancedSettings.DarkMatterFilamentBaryonicMatterPercentFactor);
-        baseCount = (int)(baseCount * (1 - context.DarkEnergyPercent / advancedSettings.DarkMatterFilamentDarkEnergyPercentFactor));
+        baseCount = (int)(baseCount * context.DarkMatterPercent / advancedSettings.DarkMatterFilament.DarkMatterFilamentCountDarkMatterPercentFactor);
+        baseCount = (int)(baseCount * context.BaryonicMatterPercent / advancedSettings.DarkMatterFilament.DarkMatterFilamentCountBaryonicMatterPercentFactor);
+        baseCount = (int)(baseCount * (1 - context.DarkEnergyPercent / advancedSettings.DarkMatterFilament.DarkMatterFilamentCountDarkEnergyPercentFactor));
 
         return baseCount;
     }
@@ -327,14 +327,14 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
                 break;
         }
 
-        baseCount += (int)(context.Age * advancedSettings.BaryonicMatterNodeAgeFactor);
-        baseCount = (int)(baseCount * (context.Mass * advancedSettings.BaryonicMatterNodeMassFactor) * (context.Size * advancedSettings.BaryonicMatterNodeSizeFactor));
+        baseCount += (int)(context.Age * 1e-9 * advancedSettings.BaryonicMatterNode.BaryonicMatterNodeCountAgeFactor);
+        baseCount = (int)(baseCount * (context.Mass * advancedSettings.BaryonicMatterNode.BaryonicMatterNodeCountMassFactor) * (context.Size * advancedSettings.BaryonicMatterNode.BaryonicMatterNodeCountSizeFactor));
         baseCount = (int)(baseCount * (advancedSettings.BaselineExpansionRate / context.ExpansionRate));
         baseCount = (int)(baseCount * (context.CosmicMicrowaveBackground / advancedSettings.BaselineCosmicMicrowaveBackground));
         baseCount = (int)(baseCount * (averageIntensity / 255.0));
-        baseCount = (int)(baseCount * context.BaryonicMatterPercent / advancedSettings.BaryonicMatterNodeBaryonicMatterPercentFactor);
-        baseCount = (int)(baseCount * (1 - context.DarkMatterPercent / advancedSettings.BaryonicMatterNodeDarkMatterPercentFactor));
-        baseCount = (int)(baseCount * (1 - context.DarkEnergyPercent / advancedSettings.BaryonicMatterNodeDarkEnergyPercentFactor));
+        baseCount = (int)(baseCount * context.BaryonicMatterPercent / advancedSettings.BaryonicMatterNode.BaryonicMatterNodeCountBaryonicMatterPercentFactor);
+        baseCount = (int)(baseCount * (1 - context.DarkMatterPercent / advancedSettings.BaryonicMatterNode.BaryonicMatterNodeCountDarkMatterPercentFactor));
+        baseCount = (int)(baseCount * (1 - context.DarkEnergyPercent / advancedSettings.BaryonicMatterNode.BaryonicMatterNodeCountDarkEnergyPercentFactor));
 
         return baseCount;
     }
@@ -355,14 +355,14 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
                 break;
         }
 
-        baseCount += (int)(context.Age * advancedSettings.DarkMatterNodeAgeFactor);
-        baseCount = (int)(baseCount * (context.Mass * advancedSettings.DarkMatterNodeMassFactor) * (context.Size * advancedSettings.DarkMatterNodeSizeFactor));
+        baseCount += (int)(context.Age * 1e-9 * advancedSettings.DarkMatterNode.DarkMatterNodeCountAgeFactor);
+        baseCount = (int)(baseCount * (context.Mass * advancedSettings.DarkMatterNode.DarkMatterNodeCountMassFactor) * (context.Size * advancedSettings.DarkMatterNode.DarkMatterNodeCountSizeFactor));
         baseCount = (int)(baseCount * (advancedSettings.BaselineExpansionRate / context.ExpansionRate));
         baseCount = (int)(baseCount * (context.CosmicMicrowaveBackground / advancedSettings.BaselineCosmicMicrowaveBackground));
         baseCount = (int)(baseCount * (averageIntensity / 255.0));
-        baseCount = (int)(baseCount * context.DarkMatterPercent / advancedSettings.DarkMatterNodeDarkMatterPercentFactor);
-        baseCount = (int)(baseCount * (1 - context.BaryonicMatterPercent / advancedSettings.DarkMatterNodeBaryonicMatterPercentFactor));
-        baseCount = (int)(baseCount * (1 - context.DarkEnergyPercent / advancedSettings.DarkMatterNodeDarkEnergyPercentFactor));
+        baseCount = (int)(baseCount * context.DarkMatterPercent / advancedSettings.DarkMatterNode.DarkMatterNodeCountDarkMatterPercentFactor);
+        baseCount = (int)(baseCount * (1 - context.BaryonicMatterPercent / advancedSettings.DarkMatterNode.DarkMatterNodeCountBaryonicMatterPercentFactor));
+        baseCount = (int)(baseCount * (1 - context.DarkEnergyPercent / advancedSettings.DarkMatterNode.DarkMatterNodeCountDarkEnergyPercentFactor));
 
         return baseCount;
     }
@@ -383,14 +383,14 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
                 break;
         }
 
-        baseCount += (int)(context.Age * advancedSettings.BaryonicMatterSheetAgeFactor);
-        baseCount = (int)(baseCount * (context.Mass * advancedSettings.BaryonicMatterSheetMassFactor) * (context.Size * advancedSettings.BaryonicMatterSheetSizeFactor));
+        baseCount += (int)(context.Age * 1e-9 * advancedSettings.BaryonicMatterSheet.BaryonicMatterSheetCountAgeFactor);
+        baseCount = (int)(baseCount * (context.Mass * advancedSettings.BaryonicMatterSheet.BaryonicMatterSheetCountMassFactor) * (context.Size * advancedSettings.BaryonicMatterSheet.BaryonicMatterSheetCountSizeFactor));
         baseCount = (int)(baseCount * (advancedSettings.BaselineExpansionRate / context.ExpansionRate));
         baseCount = (int)(baseCount * (context.CosmicMicrowaveBackground / advancedSettings.BaselineCosmicMicrowaveBackground));
         baseCount = (int)(baseCount * (averageIntensity / 255.0));
-        baseCount = (int)(baseCount * context.BaryonicMatterPercent / advancedSettings.BaryonicMatterSheetBaryonicMatterPercentFactor);
-        baseCount = (int)(baseCount * (1 - context.DarkMatterPercent / advancedSettings.BaryonicMatterSheetDarkMatterPercentFactor));
-        baseCount = (int)(baseCount * (1 - context.DarkEnergyPercent / advancedSettings.BaryonicMatterSheetDarkEnergyPercentFactor));
+        baseCount = (int)(baseCount * context.BaryonicMatterPercent / advancedSettings.BaryonicMatterSheet.BaryonicMatterSheetCountBaryonicMatterPercentFactor);
+        baseCount = (int)(baseCount * (1 - context.DarkMatterPercent / advancedSettings.BaryonicMatterSheet.BaryonicMatterSheetCountDarkMatterPercentFactor));
+        baseCount = (int)(baseCount * (1 - context.DarkEnergyPercent / advancedSettings.BaryonicMatterSheet.BaryonicMatterSheetCountDarkEnergyPercentFactor));
 
         return baseCount;
     }
@@ -411,14 +411,14 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
                 break;
         }
 
-        baseCount += (int)(context.Age * advancedSettings.DarkMatterSheetAgeFactor);
-        baseCount = (int)(baseCount * (context.Mass * advancedSettings.DarkMatterSheetMassFactor) * (context.Size * advancedSettings.DarkMatterSheetSizeFactor));
+        baseCount += (int)(context.Age * 1e-9 * advancedSettings.DarkMatterSheet.DarkMatterSheetCountAgeFactor);
+        baseCount = (int)(baseCount * (context.Mass * advancedSettings.DarkMatterSheet.DarkMatterSheetCountMassFactor) * (context.Size * advancedSettings.DarkMatterSheet.DarkMatterSheetCountSizeFactor));
         baseCount = (int)(baseCount * (advancedSettings.BaselineExpansionRate / context.ExpansionRate));
         baseCount = (int)(baseCount * (context.CosmicMicrowaveBackground / advancedSettings.BaselineCosmicMicrowaveBackground));
         baseCount = (int)(baseCount * (averageIntensity / 255.0));
-        baseCount = (int)(baseCount * context.DarkMatterPercent / advancedSettings.DarkMatterSheetDarkMatterPercentFactor);
-        baseCount = (int)(baseCount * (1 - context.BaryonicMatterPercent / advancedSettings.DarkMatterSheetBaryonicMatterPercentFactor));
-        baseCount = (int)(baseCount * (1 - context.DarkEnergyPercent / advancedSettings.DarkMatterSheetDarkEnergyPercentFactor));
+        baseCount = (int)(baseCount * context.DarkMatterPercent / advancedSettings.DarkMatterSheet.DarkMatterSheetCountDarkMatterPercentFactor);
+        baseCount = (int)(baseCount * (1 - context.BaryonicMatterPercent / advancedSettings.DarkMatterSheet.DarkMatterSheetCountBaryonicMatterPercentFactor));
+        baseCount = (int)(baseCount * (1 - context.DarkEnergyPercent / advancedSettings.DarkMatterSheet.DarkMatterSheetCountDarkEnergyPercentFactor));
 
         return baseCount;
     }
@@ -439,13 +439,13 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
                 break;
         }
 
-        baseCount += (int)(context.Age * advancedSettings.BaryonicMatterVoidAgeFactor);
-        baseCount = (int)(baseCount * (context.Mass * advancedSettings.BaryonicMatterVoidAgeFactor) * (context.Size * advancedSettings.BaryonicMatterVoidSizeFactor));
+        baseCount += (int)(context.Age * 1e-9 * advancedSettings.BaryonicMatterVoid.BaryonicMatterVoidCountAgeFactor);
+        baseCount = (int)(baseCount * (context.Mass * advancedSettings.BaryonicMatterVoid.BaryonicMatterVoidCountAgeFactor) * (context.Size * advancedSettings.BaryonicMatterVoid.BaryonicMatterVoidCountSizeFactor));
         baseCount = (int)(baseCount * (context.ExpansionRate / advancedSettings.BaselineExpansionRate));
         baseCount = (int)(baseCount * (advancedSettings.BaselineCosmicMicrowaveBackground / context.CosmicMicrowaveBackground));
         baseCount = (int)(baseCount * (1 - averageIntensity / 255.0));
-        baseCount = (int)(baseCount * (1 - context.BaryonicMatterPercent / advancedSettings.BaryonicMatterVoidBaryonicMatterPercentFactor));
-        baseCount = (int)(baseCount * (1 + context.DarkEnergyPercent / advancedSettings.BaryonicMatterVoidDarkEnergyPercentFactor));
+        baseCount = (int)(baseCount * (1 - context.BaryonicMatterPercent / advancedSettings.BaryonicMatterVoid.BaryonicMatterVoidCountBaryonicMatterPercentFactor));
+        baseCount = (int)(baseCount * (1 + context.DarkEnergyPercent / advancedSettings.BaryonicMatterVoid.BaryonicMatterVoidCountDarkEnergyPercentFactor));
 
         return baseCount;
     }
@@ -465,13 +465,13 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
                 baseCount += 60;
                 break;
         }
-        baseCount += (int)(context.Age * advancedSettings.DarkMatterVoidAgeFactor);
-        baseCount = (int)(baseCount * (context.Mass * advancedSettings.DarkMatterVoidMassFactor) * (context.Size * advancedSettings.DarkMatterVoidSizeFactor));
+        baseCount += (int)(context.Age * 1e-9 * advancedSettings.DarkMatterVoid.DarkMatterVoidCountAgeFactor);
+        baseCount = (int)(baseCount * (context.Mass * advancedSettings.DarkMatterVoid.DarkMatterVoidCountMassFactor) * (context.Size * advancedSettings.DarkMatterVoid.DarkMatterVoidCountSizeFactor));
         baseCount = (int)(baseCount * (context.ExpansionRate / advancedSettings.BaselineExpansionRate));
         baseCount = (int)(baseCount * (advancedSettings.BaselineCosmicMicrowaveBackground / context.CosmicMicrowaveBackground));
         baseCount = (int)(baseCount * (1 - averageIntensity / 255.0));
-        baseCount = (int)(baseCount * (1 - context.DarkMatterPercent / advancedSettings.DarkMatterVoidDarkMatterPercentFactor));
-        baseCount = (int)(baseCount * (1 + context.DarkEnergyPercent / advancedSettings.DarkMatterVoidDarkEnergyPercentFactor));
+        baseCount = (int)(baseCount * (1 - context.DarkMatterPercent / advancedSettings.DarkMatterVoid.DarkMatterVoidCountDarkMatterPercentFactor));
+        baseCount = (int)(baseCount * (1 + context.DarkEnergyPercent / advancedSettings.DarkMatterVoid.DarkMatterVoidCountDarkEnergyPercentFactor));
 
         return baseCount;
     }

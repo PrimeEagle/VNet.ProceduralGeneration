@@ -7,6 +7,15 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
     public class AdvancedGenerationSettings : ISettings
     {
+        public BaryonicMatterNodeGenerationSettings BaryonicMatterNode { get; set; }
+        public BaryonicMatterFilamentGenerationSettings BaryonicMatterFilament { get; set; }
+        public BaryonicMatterSheetGenerationSettings BaryonicMatterSheet { get; set; }
+        public BaryonicMatterVoidGenerationSettings BaryonicMatterVoid { get; set; }
+        public DarkMatterNodeGenerationSettings DarkMatterNode { get; set; }
+        public DarkMatterFilamentGenerationSettings DarkMatterFilament { get; set; }
+        public DarkMatterSheetGenerationSettings DarkMatterSheet { get; set; }
+        public DarkMatterVoidGenerationSettings DarkMatterVoid { get; set; }
+
         [Required]
         [Range(1, 64)]
         [DisplayName("Max Degrees of Parallelism for Level 1 Objects")]
@@ -68,190 +77,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Tooltip("The maximum amount that the universes curves or folds to connect distant locations. Affect amount of wormholes. (0 = none, 100 = max)")]
         public float MaxConnectivityFactor { get; set; }
 
-        [DisplayName("Baryonic Matter Node Age Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterNodeAgeFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Node Mass Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterNodeMassFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Node Size Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterNodeSizeFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Node Baryonic Matter Percent Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterNodeBaryonicMatterPercentFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Node Dark Matter Percent Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterNodeDarkMatterPercentFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Node Dark Energy Percent Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterNodeDarkEnergyPercentFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Filament Age Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterFilamentAgeFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Filament Mass Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterFilamentMassFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Filament Size Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterFilamentSizeFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Filament Baryonic Matter Percent Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterFilamentBaryonicMatterPercentFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Filament Dark Matter Percent Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterFilamentDarkMatterPercentFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Filament Dark Energy Percent Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterFilamentDarkEnergyPercentFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Sheet Age Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterSheetAgeFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Sheet Mass Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterSheetMassFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Sheet Size Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterSheetSizeFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Sheet Baryonic Matter Percent Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterSheetBaryonicMatterPercentFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Sheet Dark Matter Percent Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterSheetDarkMatterPercentFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Sheet Dark Energy Percent Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterSheetDarkEnergyPercentFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Void Age Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterVoidAgeFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Void Mass Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterVoidMassFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Void Size Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterVoidSizeFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Void Baryonic Matter Percent Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterVoidBaryonicMatterPercentFactor { get; set; }
-
-        [DisplayName("Baryonic Matter Void Dark Energy Percent Factor")]
-        [Tooltip("")]
-        public double BaryonicMatterVoidDarkEnergyPercentFactor { get; set; }
-
-        [DisplayName("Dark Matter Node Age Factor")]
-        [Tooltip("")]
-        public double DarkMatterNodeAgeFactor { get; set; }
-
-        [DisplayName("Dark Matter Node Mass Factor")]
-        [Tooltip("")]
-        public double DarkMatterNodeMassFactor { get; set; }
-
-        [DisplayName("Dark Matter Node Size Factor")]
-        [Tooltip("")]
-        public double DarkMatterNodeSizeFactor { get; set; }
-
-        [DisplayName("Dark Matter Node Baryonic Matter Percent Factor")]
-        [Tooltip("")]
-        public double DarkMatterNodeBaryonicMatterPercentFactor { get; set; }
-
-        [DisplayName("Dark Matter Node Dark Matter Percent Factor")]
-        [Tooltip("")]
-        public double DarkMatterNodeDarkMatterPercentFactor { get; set; }
-
-        [DisplayName("Dark Matter Node Dark Energy Percent Factor")]
-        [Tooltip("")]
-        public double DarkMatterNodeDarkEnergyPercentFactor { get; set; }
-
-        [DisplayName("Dark Matter Filament Age Factor")]
-        [Tooltip("")]
-        public double DarkMatterFilamentAgeFactor { get; set; }
-
-        [DisplayName("Dark Matter Filament Mass Factor")]
-        [Tooltip("")]
-        public double DarkMatterFilamentMassFactor { get; set; }
-
-        [DisplayName("Dark Matter Filament Size Factor")]
-        [Tooltip("")]
-        public double DarkMatterFilamentSizeFactor { get; set; }
-
-        [DisplayName("Dark Matter Filament Baryonic Matter Percent Factor")]
-        [Tooltip("")]
-        public double DarkMatterFilamentBaryonicMatterPercentFactor { get; set; }
-
-        [DisplayName("Dark Matter Filament Dark Matter Percent Factor")]
-        [Tooltip("")]
-        public double DarkMatterFilamentDarkMatterPercentFactor { get; set; }
-
-        [DisplayName("Dark Matter Filament Dark Energy Percent Factor")]
-        [Tooltip("")]
-        public double DarkMatterFilamentDarkEnergyPercentFactor { get; set; }
-
-        [DisplayName("Dark Matter Sheet Age Factor")]
-        [Tooltip("")]
-        public double DarkMatterSheetAgeFactor { get; set; }
-
-        [DisplayName("Dark Matter Sheet Mass Factor")]
-        [Tooltip("")]
-        public double DarkMatterSheetMassFactor { get; set; }
-
-        [DisplayName("Dark Matter Sheet Size Factor")]
-        [Tooltip("")]
-        public double DarkMatterSheetSizeFactor { get; set; }
-
-        [DisplayName("Dark Matter Sheet Baryonic Matter Percent Factor")]
-        [Tooltip("")]
-        public double DarkMatterSheetBaryonicMatterPercentFactor { get; set; }
-
-        [DisplayName("Dark Matter Sheet Dark Matter Percent Factor")]
-        [Tooltip("")]
-        public double DarkMatterSheetDarkMatterPercentFactor { get; set; }
-
-        [DisplayName("Dark Matter Sheet Dark Energy Percent Factor")]
-        [Tooltip("")]
-        public double DarkMatterSheetDarkEnergyPercentFactor { get; set; }
-
-        [DisplayName("Dark Matter Void Age Factor")]
-        [Tooltip("")]
-        public double DarkMatterVoidAgeFactor { get; set; }
-
-        [DisplayName("Dark Matter Void Mass Factor")]
-        [Tooltip("")]
-        public double DarkMatterVoidMassFactor { get; set; }
-
-        [DisplayName("Dark Matter Void Size Factor")]
-        [Tooltip("")]
-        public double DarkMatterVoidSizeFactor { get; set; }
-
-        [DisplayName("Dark Matter Void Dark Matter Percent Factor")]
-        [Tooltip("")]
-        public double DarkMatterVoidDarkMatterPercentFactor { get; set; }
-
-        [DisplayName("Dark Matter Void Dark Energy Percent Factor")]
-        [Tooltip("")]
-        public double DarkMatterVoidDarkEnergyPercentFactor { get; set; }
-
         [DisplayName("Topology Baryonic Matter Node Density Threshold Factor")]
         [Tooltip("")]
         public float TopologyBaryonicMatterNodeDensityThresholdFactor { get; set; }
@@ -305,6 +130,15 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 
         public AdvancedGenerationSettings()
         {
+            this.BaryonicMatterNode = new BaryonicMatterNodeGenerationSettings();
+            this.BaryonicMatterFilament = new BaryonicMatterFilamentGenerationSettings();
+            this.BaryonicMatterSheet = new BaryonicMatterSheetGenerationSettings();
+            this.BaryonicMatterVoid = new BaryonicMatterVoidGenerationSettings();
+            this.DarkMatterNode = new DarkMatterNodeGenerationSettings();
+            this.DarkMatterFilament = new DarkMatterFilamentGenerationSettings();
+            this.DarkMatterSheet = new DarkMatterSheetGenerationSettings();
+            this.DarkMatterVoid = new DarkMatterVoidGenerationSettings();
+
             this.MaxDegreesOfParallelismLevel1 = ConfigConstants.MaxDegreesOfParallelismLevel1;
             this.MaxDegreesOfParallelismLevel2 = ConfigConstants.MaxDegreesOfParallelismLevel2;
             this.MaxDegreesOfParallelismLevel3 = ConfigConstants.MaxDegreesOfParallelismLevel3;
@@ -314,52 +148,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
             this.BaselineCosmicMicrowaveBackground = ConfigConstants.BaselineCosmicMicrowaveBackground;
             this.MinConnectivityFactor = ConfigConstants.MinConnectivityFactor;
             this.MaxConnectivityFactor = ConfigConstants.MaxConnectivityFactor;
-            this.BaryonicMatterFilamentAgeFactor = ConfigConstants.BaryonicMatterFilamentAgeFactor;
-            this.BaryonicMatterFilamentMassFactor = ConfigConstants.BaryonicMatterFilamentMassFactor;
-            this.BaryonicMatterFilamentSizeFactor = ConfigConstants.BaryonicMatterFilamentSizeFactor;
-            this.BaryonicMatterFilamentBaryonicMatterPercentFactor = ConfigConstants.BaryonicMatterFilamentBaryonicMatterPercentFactor;
-            this.BaryonicMatterFilamentDarkMatterPercentFactor = ConfigConstants.BaryonicMatterFilamentDarkMatterPercentFactor;
-            this.BaryonicMatterFilamentDarkEnergyPercentFactor = ConfigConstants.BaryonicMatterFilamentDarkEnergyPercentFactor;
-            this.DarkMatterFilamentAgeFactor = ConfigConstants.DarkMatterFilamentAgeFactor;
-            this.DarkMatterFilamentMassFactor = ConfigConstants.DarkMatterFilamentMassFactor;
-            this.DarkMatterFilamentSizeFactor = ConfigConstants.DarkMatterFilamentSizeFactor;
-            this.DarkMatterFilamentBaryonicMatterPercentFactor = ConfigConstants.DarkMatterFilamentBaryonicMatterPercentFactor;
-            this.DarkMatterFilamentDarkMatterPercentFactor = ConfigConstants.DarkMatterFilamentDarkMatterPercentFactor;
-            this.DarkMatterFilamentDarkEnergyPercentFactor = ConfigConstants.DarkMatterFilamentDarkEnergyPercentFactor;
-            this.BaryonicMatterNodeAgeFactor = ConfigConstants.BaryonicMatterNodeAgeFactor;
-            this.BaryonicMatterNodeMassFactor = ConfigConstants.BaryonicMatterNodeMassFactor;
-            this.BaryonicMatterNodeSizeFactor = ConfigConstants.BaryonicMatterNodeSizeFactor;
-            this.BaryonicMatterNodeBaryonicMatterPercentFactor = ConfigConstants.BaryonicMatterNodeBaryonicMatterPercentFactor;
-            this.BaryonicMatterNodeDarkMatterPercentFactor = ConfigConstants.BaryonicMatterNodeDarkMatterPercentFactor;
-            this.BaryonicMatterNodeDarkEnergyPercentFactor = ConfigConstants.BaryonicMatterNodeDarkEnergyPercentFactor;
-            this.DarkMatterNodeAgeFactor = ConfigConstants.DarkMatterNodeAgeFactor;
-            this.DarkMatterNodeMassFactor = ConfigConstants.DarkMatterNodeMassFactor;
-            this.DarkMatterNodeSizeFactor = ConfigConstants.DarkMatterNodeSizeFactor;
-            this.DarkMatterNodeBaryonicMatterPercentFactor = ConfigConstants.DarkMatterNodeBaryonicMatterPercentFactor;
-            this.DarkMatterNodeDarkMatterPercentFactor = ConfigConstants.DarkMatterNodeDarkMatterPercentFactor;
-            this.DarkMatterNodeDarkEnergyPercentFactor = ConfigConstants.DarkMatterNodeDarkEnergyPercentFactor;
-            this.BaryonicMatterSheetAgeFactor = ConfigConstants.BaryonicMatterSheetAgeFactor;
-            this.BaryonicMatterSheetMassFactor = ConfigConstants.BaryonicMatterSheetMassFactor;
-            this.BaryonicMatterSheetSizeFactor = ConfigConstants.BaryonicMatterSheetSizeFactor;
-            this.BaryonicMatterSheetBaryonicMatterPercentFactor = ConfigConstants.BaryonicMatterSheetBaryonicMatterPercentFactor;
-            this.BaryonicMatterSheetDarkMatterPercentFactor = ConfigConstants.BaryonicMatterSheetDarkMatterPercentFactor;
-            this.BaryonicMatterSheetDarkEnergyPercentFactor = ConfigConstants.BaryonicMatterSheetDarkEnergyPercentFactor;
-            this.DarkMatterSheetAgeFactor = ConfigConstants.DarkMatterSheetAgeFactor;
-            this.DarkMatterSheetMassFactor = ConfigConstants.DarkMatterSheetMassFactor;
-            this.DarkMatterSheetSizeFactor = ConfigConstants.DarkMatterSheetSizeFactor;
-            this.DarkMatterSheetBaryonicMatterPercentFactor = ConfigConstants.DarkMatterSheetBaryonicMatterPercentFactor;
-            this.DarkMatterSheetDarkMatterPercentFactor = ConfigConstants.DarkMatterSheetDarkMatterPercentFactor;
-            this.DarkMatterSheetDarkEnergyPercentFactor = ConfigConstants.DarkMatterSheetDarkEnergyPercentFactor;
-            this.BaryonicMatterVoidAgeFactor = ConfigConstants.BaryonicMatterVoidAgeFactor;
-            this.BaryonicMatterVoidMassFactor = ConfigConstants.BaryonicMatterVoidMassFactor;
-            this.BaryonicMatterVoidSizeFactor = ConfigConstants.BaryonicMatterVoidSizeFactor;
-            this.BaryonicMatterVoidBaryonicMatterPercentFactor = ConfigConstants.BaryonicMatterVoidBaryonicMatterPercentFactor;
-            this.BaryonicMatterVoidDarkEnergyPercentFactor = ConfigConstants.BaryonicMatterVoidDarkEnergyPercentFactor;
-            this.DarkMatterVoidAgeFactor = ConfigConstants.DarkMatterVoidAgeFactor;
-            this.DarkMatterVoidMassFactor = ConfigConstants.DarkMatterVoidMassFactor;
-            this.DarkMatterVoidSizeFactor = ConfigConstants.DarkMatterVoidSizeFactor;
-            this.DarkMatterVoidDarkMatterPercentFactor = ConfigConstants.DarkMatterVoidDarkMatterPercentFactor;
-            this.DarkMatterVoidDarkEnergyPercentFactor = ConfigConstants.DarkMatterVoidDarkEnergyPercentFactor;
             this.TopologyBaryonicMatterNodeDensityThresholdFactor = ConfigConstants.TopologyBaryonicMatterNodeDensityThresholdFactor;
             this.TopologyBaryonicMatterNodeGradientMagnitudeThresholdFactor = ConfigConstants.TopologyBaryonicMatterNodeGradientMagnitudeThresholdFactor;
             this.TopologyBaryonicMatterNodeIntensityThresholdFactor = ConfigConstants.TopologyBaryonicMatterNodeIntensityThresholdFactor;
