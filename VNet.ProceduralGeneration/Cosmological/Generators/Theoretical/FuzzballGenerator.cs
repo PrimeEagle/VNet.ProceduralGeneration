@@ -8,8 +8,9 @@ public class FuzzballGenerator : BaseGenerator<Fuzzball, FuzzballContext>
     {
     }
 
-    public override Fuzzball Generate(FuzzballContext context)
+    public async override Task<Fuzzball> Generate(FuzzballContext context)
     {
-        throw new NotImplementedException();
+        var result = new Fuzzball();
+        return result;
     }
 }

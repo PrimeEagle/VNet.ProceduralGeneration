@@ -8,8 +8,9 @@ public class SpatialWormholeGenerator : BaseGenerator<SpatialWormhole, SpatialWo
     {
     }
 
-    public override SpatialWormhole Generate(SpatialWormholeContext context)
+    public async override Task<SpatialWormhole> Generate(SpatialWormholeContext context)
     {
-        throw new NotImplementedException();
+        var result = new SpatialWormhole();
+        return result;
     }
 }

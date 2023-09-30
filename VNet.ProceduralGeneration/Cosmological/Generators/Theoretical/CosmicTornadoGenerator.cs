@@ -8,8 +8,9 @@ public class CosmicTornadoGenerator : BaseGenerator<CosmicTornado, CosmicTornado
     {
     }
 
-    public override CosmicTornado Generate(CosmicTornadoContext context)
+    public async override Task<CosmicTornado> Generate(CosmicTornadoContext context)
     {
-        throw new NotImplementedException();
+        var result = new CosmicTornado();
+        return result;
     }
 }

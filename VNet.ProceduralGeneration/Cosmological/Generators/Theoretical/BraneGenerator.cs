@@ -8,8 +8,10 @@ public class BraneGenerator : BaseGenerator<Brane, BraneContext>
     {
     }
 
-    public override Brane Generate(BraneContext context)
+    public async override Task<Brane> Generate(BraneContext context)
     {
-        throw new NotImplementedException();
+        var result = new Brane();
+
+        return result;
     }
 }

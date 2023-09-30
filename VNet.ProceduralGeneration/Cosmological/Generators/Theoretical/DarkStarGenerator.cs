@@ -8,8 +8,9 @@ public class DarkStarGenerator : BaseGenerator<DarkStar, DarkStarContext>
     {
     }
 
-    public override DarkStar Generate(DarkStarContext context)
+    public async override Task<DarkStar> Generate(DarkStarContext context)
     {
-        throw new NotImplementedException();
+        var result = new DarkStar();
+        return result;
     }
 }

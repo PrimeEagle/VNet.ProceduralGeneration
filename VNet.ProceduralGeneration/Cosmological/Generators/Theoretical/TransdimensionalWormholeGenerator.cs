@@ -8,8 +8,9 @@ public class TransdimensionalWormholeGenerator : BaseGenerator<TransdimensionalW
     {
     }
 
-    public override TransdimensionalWormhole Generate(TransdimensionalWormholeContext context)
+    public async override Task<TransdimensionalWormhole> Generate(TransdimensionalWormholeContext context)
     {
-        throw new NotImplementedException();
+        var result = new TransdimensionalWormhole();
+        return result;
     }
 }

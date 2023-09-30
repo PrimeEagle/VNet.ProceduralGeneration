@@ -8,8 +8,10 @@ public class WhiteHoleGenerator : BaseGenerator<WhiteHole, WhiteHoleContext>
     {
     }
 
-    public override WhiteHole Generate(WhiteHoleContext context)
+    public async override Task<WhiteHole> Generate(WhiteHoleContext context)
     {
-        throw new NotImplementedException();
+        var result = new WhiteHole();
+
+        return result;
     }
 }

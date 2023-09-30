@@ -8,8 +8,9 @@ public class QuantumBlackHoleGenerator : BaseGenerator<QuantumBlackHole, Quantum
     {
     }
 
-    public override QuantumBlackHole Generate(QuantumBlackHoleContext context)
+    public async override Task<QuantumBlackHole> Generate(QuantumBlackHoleContext context)
     {
-        throw new NotImplementedException();
+        var result = new QuantumBlackHole();
+        return result;
     }
 }

@@ -8,8 +8,9 @@ public class DomainWallGenerator : BaseGenerator<DomainWall, DomainWallContext>
     {
     }
 
-    public override DomainWall Generate(DomainWallContext context)
+    public async override Task<DomainWall> Generate(DomainWallContext context)
     {
-        throw new NotImplementedException();
+        var result = new DomainWall();
+        return result;
     }
 }

@@ -8,8 +8,9 @@ public class CosmicStringGenerator : BaseGenerator<CosmicString, CosmicStringCon
     {
     }
 
-    public override CosmicString Generate(CosmicStringContext context)
+    public async override Task<CosmicString> Generate(CosmicStringContext context)
     {
-        throw new NotImplementedException();
+        var result = new CosmicString();
+        return result;
     }
 }

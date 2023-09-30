@@ -8,8 +8,10 @@ public class CosmicBubbleGenerator : BaseGenerator<CosmicBubble, CosmicBubbleCon
     {
     }
 
-    public override CosmicBubble Generate(CosmicBubbleContext context)
+    public async override Task<CosmicBubble> Generate(CosmicBubbleContext context)
     {
-        throw new NotImplementedException();
+        var result = new CosmicBubble();
+
+        return result;
     }
 }

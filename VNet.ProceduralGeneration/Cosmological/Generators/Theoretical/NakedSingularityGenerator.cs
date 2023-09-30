@@ -8,8 +8,9 @@ public class NakedSingularityGenerator : BaseGenerator<NakedSingularity, NakedSi
     {
     }
 
-    public override NakedSingularity Generate(NakedSingularityContext context)
+    public async override Task<NakedSingularity> Generate(NakedSingularityContext context)
     {
-        throw new NotImplementedException();
+        var result = new NakedSingularity();
+        return result;
     }
 }

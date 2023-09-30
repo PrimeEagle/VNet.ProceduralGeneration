@@ -8,8 +8,10 @@ public class TachyonicFieldGenerator : BaseGenerator<TachyonicField, TachyonicFi
     {
     }
 
-    public override TachyonicField Generate(TachyonicFieldContext context)
+    public async override Task<TachyonicField> Generate(TachyonicFieldContext context)
     {
-        throw new NotImplementedException();
+        var result = new TachyonicField();
+
+        return result;
     }
 }

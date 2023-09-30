@@ -8,8 +8,9 @@ public class PreonStarGenerator : BaseGenerator<PreonStar, PreonStarContext>
     {
     }
 
-    public override PreonStar Generate(PreonStarContext context)
+    public async override Task<PreonStar> Generate(PreonStarContext context)
     {
-        throw new NotImplementedException();
+        var result = new PreonStar();
+        return result;
     }
 }

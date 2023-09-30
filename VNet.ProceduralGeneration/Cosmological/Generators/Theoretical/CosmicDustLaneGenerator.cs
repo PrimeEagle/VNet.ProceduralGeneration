@@ -8,8 +8,9 @@ public class CosmicDustLaneGenerator : BaseGenerator<CosmicDustLane, CosmicDustL
     {
     }
 
-    public override CosmicDustLane Generate(CosmicDustLaneContext context)
+    public async override Task<CosmicDustLane> Generate(CosmicDustLaneContext context)
     {
-        throw new NotImplementedException();
+        var result = new CosmicDustLane();
+        return result;
     }
 }

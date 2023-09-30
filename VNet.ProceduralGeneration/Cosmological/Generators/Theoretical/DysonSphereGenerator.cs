@@ -8,8 +8,9 @@ public class DysonSphereGenerator : BaseGenerator<DysonSphere, DysonSphereContex
     {
     }
 
-    public override DysonSphere Generate(DysonSphereContext context)
+    public async override Task<DysonSphere> Generate(DysonSphereContext context)
     {
-        throw new NotImplementedException();
+        var result = new DysonSphere();
+        return result;
     }
 }

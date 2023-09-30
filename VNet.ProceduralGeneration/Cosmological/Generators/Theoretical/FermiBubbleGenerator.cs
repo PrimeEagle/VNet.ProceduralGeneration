@@ -8,8 +8,9 @@ public class FermiBubbleGenerator : BaseGenerator<FermiBubble, FermiBubbleContex
     {
     }
 
-    public override FermiBubble Generate(FermiBubbleContext context)
+    public async override Task<FermiBubble> Generate(FermiBubbleContext context)
     {
-        throw new NotImplementedException();
+        var result = new FermiBubble();
+        return result;
     }
 }

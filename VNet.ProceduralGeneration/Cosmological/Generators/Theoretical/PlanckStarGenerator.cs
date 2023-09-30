@@ -8,8 +8,9 @@ public class PlanckStarGenerator : BaseGenerator<PlanckStar, PlanckStarContext>
     {
     }
 
-    public override PlanckStar Generate(PlanckStarContext context)
+    public async override Task<PlanckStar> Generate(PlanckStarContext context)
     {
-        throw new NotImplementedException();
+        var result = new PlanckStar();
+        return result;
     }
 }

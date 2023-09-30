@@ -8,8 +8,9 @@ public class MonopoleGenerator : BaseGenerator<Monopole, MonopoleContext>
     {
     }
 
-    public override Monopole Generate(MonopoleContext context)
+    public async override Task<Monopole> Generate(MonopoleContext context)
     {
-        throw new NotImplementedException();
+        var result = new Monopole();
+        return result;
     }
 }
