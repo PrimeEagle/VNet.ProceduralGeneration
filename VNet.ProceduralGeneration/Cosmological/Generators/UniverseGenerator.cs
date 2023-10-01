@@ -16,15 +16,15 @@ public class UniverseGenerator : BaseGenerator<Universe, UniverseContext>
     {
         var universe = new Universe
         {
-            Age = AdvancedSettings.RandomGenerator.NextSingle(BasicSettings.MinUniverseAge, BasicSettings.MaxUniverseAge),
-            DarkEnergyPercent = AdvancedSettings.RandomGenerator.NextDouble(BasicSettings.MinDarkEnergyPercent, BasicSettings.MaxDarkEnergyPercent),
-            DarkMatterPercent = AdvancedSettings.RandomGenerator.NextDouble(BasicSettings.MinDarkMatterPercent, BasicSettings.MaxDarkMatterPercent),
-            BaryonicMatterPercent = AdvancedSettings.RandomGenerator.NextDouble(BasicSettings.MinBaryonicMatterPercent, BasicSettings.MaxBaryonicMatterPercent),
-            ConnectivityFactor = AdvancedSettings.RandomGenerator.NextDouble(AdvancedSettings.MinConnectivityFactor, AdvancedSettings.MaxConnectivityFactor),
+            Age = AdvancedSettings.Application.RandomGenerator.NextSingle(BasicSettings.MinUniverseAge, BasicSettings.MaxUniverseAge),
+            DarkEnergyPercent = AdvancedSettings.Application.RandomGenerator.NextDouble(BasicSettings.MinDarkEnergyPercent, BasicSettings.MaxDarkEnergyPercent),
+            DarkMatterPercent = AdvancedSettings.Application.RandomGenerator.NextDouble(BasicSettings.MinDarkMatterPercent, BasicSettings.MaxDarkMatterPercent),
+            BaryonicMatterPercent = AdvancedSettings.Application.RandomGenerator.NextDouble(BasicSettings.MinBaryonicMatterPercent, BasicSettings.MaxBaryonicMatterPercent),
+            ConnectivityFactor = AdvancedSettings.Application.RandomGenerator.NextDouble(AdvancedSettings.Universe.MinConnectivityFactor, AdvancedSettings.Universe.MaxConnectivityFactor),
             Position = new Vector3(0, 0, 0)
         };
 
-        var randValue = AdvancedSettings.RandomGenerator.NextDouble();
+        var randValue = AdvancedSettings.Application.RandomGenerator.NextDouble();
         universe.Curvature = randValue switch
         {
             < 0.90 => CurvatureType.Flat,

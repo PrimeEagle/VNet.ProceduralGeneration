@@ -26,8 +26,8 @@ namespace VNet.ProceduralGeneration.Cosmological.Contexts
             this.MaxBaryonicMatterPercent = settings.Basic.MaxBaryonicMatterPercent;
             this.MinUniverseAge = settings.Basic.MinUniverseAge;
             this.MaxUniverseAge = settings.Basic.MaxUniverseAge;
-            this.MinConnectivityFactor = settings.Advanced.MinConnectivityFactor;
-            this.MaxConnectivityFactor = settings.Advanced.MaxConnectivityFactor;
+            this.MinConnectivityFactor = settings.Advanced.Universe.MinConnectivityFactor;
+            this.MaxConnectivityFactor = settings.Advanced.Universe.MaxConnectivityFactor;
         }
     }
 }

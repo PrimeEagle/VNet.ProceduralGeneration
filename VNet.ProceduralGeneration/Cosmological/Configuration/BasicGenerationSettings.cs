@@ -10,117 +10,117 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Range(1, float.MaxValue)]
         [DisplayName("Dimension X")]
         [Tooltip("The size of the X-axis of the map (AU).")]
-        public float DimensionX { get; set; }
+        public float DimensionX { get; init; }
 
         [Range(1, float.MaxValue)]
         [DisplayName("Dimension Y")]
         [Tooltip("The size of the Y-axis of the map (AU).")]
-        public float DimensionY { get; set; }
+        public float DimensionY { get; init; }
 
         [Range(1, float.MaxValue)]
         [DisplayName("Dimension Z")]
         [Tooltip("The size of the Z-axis of the map (AU).")]
-        public float DimensionZ { get; set; }
+        public float DimensionZ { get; init; }
 
         [Range(0d, 100d)]
         [LessThanOrEqualToProperty(nameof(MaxDarkEnergyPercent))]
         [PercentageWithProperties("MinDarkMatterPercent, MinBaryonicMatterPercent")]
         [DisplayName("Min Dark Energy Percent")]
         [Tooltip("Minimum amount of dark energy in the universe, as a percentage.")]
-        public double MinDarkEnergyPercent { get; set; }
+        public double MinDarkEnergyPercent { get; init; }
 
         [Range(0d, 100d)]
         [GreaterThanOrEqualToProperty(nameof(MinDarkEnergyPercent))]
         [PercentageWithProperties("MaxDarkMatterPercent, MaxBaryonicMatterPercent")]
         [DisplayName("Max Dark Energy Percent")]
         [Tooltip("Maximum amount of dark energy in the universe, as a percentage.")]
-        public double MaxDarkEnergyPercent { get; set; }
+        public double MaxDarkEnergyPercent { get; init; }
 
         [Range(0d, 100d)]
         [LessThanOrEqualToProperty(nameof(MaxDarkMatterPercent))]
         [PercentageWithProperties("MinDarkEnergyPercent, MinBaryonicMatterPercent")]
         [DisplayName("Min Dark Matter Percent")]
         [Tooltip("Minimum amount of dark matter in the universe, as a percentage.")]
-        public double MinDarkMatterPercent { get; set; }
+        public double MinDarkMatterPercent { get; init; }
 
         [Range(0d, 100d)]
         [GreaterThanOrEqualToProperty(nameof(MinDarkMatterPercent))]
         [PercentageWithProperties("MaxDarkEnergyPercent, MaxBaryonicMatterPercent")]
         [DisplayName("Max Dark Matter Percent")]
         [Tooltip("Maximum amount of dark matter in the universe, as a percentage.")]
-        public double MaxDarkMatterPercent { get; set; }
+        public double MaxDarkMatterPercent { get; init; }
 
         [Range(0d, 100d)]
         [LessThanOrEqualToProperty(nameof(MaxBaryonicMatterPercent))]
         [PercentageWithProperties("MinDarkMatterPercent, MinDarkEnergyPercent")]
         [DisplayName("Min Baryonic Matter Percent")]
         [Tooltip("Minimum amount of baryonic matter (normal matter) in the universe, as a percentage.")]
-        public double MinBaryonicMatterPercent { get; set; }
+        public double MinBaryonicMatterPercent { get; init; }
 
         [Range(0d, 100d)]
         [GreaterThanOrEqualToProperty(nameof(MinBaryonicMatterPercent))]
         [PercentageWithProperties("MaxDarkMatterPercent, MaxDarkEnergyPercent")]
         [DisplayName("Max Baryonic Matter Percent")]
         [Tooltip("Maximum amount of baryonic matter (normal matter) in the universe, as a percentage.")]
-        public double MaxBaryonicMatterPercent { get; set; }
+        public double MaxBaryonicMatterPercent { get; init; }
 
         [Range(0, 100e9)]
         [LessThanOrEqualToProperty(nameof(MaxUniverseAge))]
         [DisplayName("Min Universe Age")]
         [Tooltip("Minimum age of the universe, in years.")]
-        public float MinUniverseAge { get; set; }
+        public float MinUniverseAge { get; init; }
 
         [Range(0, 100e9)]
         [GreaterThanOrEqualToProperty(nameof(MinUniverseAge))]
         [DisplayName("Max Universe Age")]
         [Tooltip("Maximum age of the universe, in years.")]
-        public float MaxUniverseAge { get; set; }
+        public float MaxUniverseAge { get; init; }
 
         [Required]
         [FileExists]
         [DisplayName("Heightmap Image File")]
         [Tooltip("A grayscale heightmap file which will be extruded into 3D and used to create the cosmic web.")]
-        public string HeightmapImageFile { get; set; }
+        public string HeightmapImageFile { get; init; }
 
         [Range(0, int.MaxValue)]
         [DisplayName("Baryonic Matter Node Base Count")]
         [Tooltip("The starting number of baryonic matter (normal matter) nodes, before being adjusted due to environmental factors.")]
-        public int BaryonicMatterNodeBaseCount { get; set; }
+        public int BaryonicMatterNodeBaseCount { get; init; }
 
         [Range(0, int.MaxValue)]
         [DisplayName("Baryonic Matter Filament Base Count")]
         [Tooltip("The starting number of baryonic matter (normal matter) filaments, before being adjusted due to environmental factors.")]
-        public int BaryonicMatterFilamentBaseCount { get; set; }
+        public int BaryonicMatterFilamentBaseCount { get; init; }
 
         [Range(0, int.MaxValue)]
         [DisplayName("Baryonic Matter Sheet Base Count")]
         [Tooltip("The starting number of baryonic matter (normal matter) sheets, before being adjusted due to environmental factors.")]
-        public int BaryonicMatterSheetBaseCount { get; set; }
+        public int BaryonicMatterSheetBaseCount { get; init; }
 
         [Range(0, int.MaxValue)]
         [DisplayName("Baryonic Matter Void Base Count")]
         [Tooltip("The starting number of baryonic matter (normal matter) voids, before being adjusted due to environmental factors.")]
-        public int BaryonicMatterVoidBaseCount { get; set; }
+        public int BaryonicMatterVoidBaseCount { get; init; }
 
         [Range(0, int.MaxValue)]
         [DisplayName("Dark Matter Node Base Count")]
         [Tooltip("The starting number of dark matter nodes, before being adjusted due to environmental factors.")]
-        public int DarkMatterNodeBaseCount { get; set; }
+        public int DarkMatterNodeBaseCount { get; init; }
 
         [Range(0, int.MaxValue)]
         [DisplayName("Dark Matter Filament Base Count")]
         [Tooltip("The starting number of dark matter filaments, before being adjusted due to environmental factors.")]
-        public int DarkMatterFilamentBaseCount { get; set; }
+        public int DarkMatterFilamentBaseCount { get; init; }
 
         [Range(0, int.MaxValue)]
         [DisplayName("Dark Matter Sheet Base Count")]
         [Tooltip("The starting number of dark matter sheets, before being adjusted due to environmental factors.")]
-        public int DarkMatterSheetBaseCount { get; set; }
+        public int DarkMatterSheetBaseCount { get; init; }
 
         [Range(0, int.MaxValue)]
         [DisplayName("Dark Matter Void Base Count")]
         [Tooltip("The starting number of dark matter voids, before being adjusted due to environmental factors.")]
-        public int DarkMatterVoidBaseCount { get; set; }
+        public int DarkMatterVoidBaseCount { get; init; }
 
 
         [DisplayName("Average Dimension (Calculated)")]

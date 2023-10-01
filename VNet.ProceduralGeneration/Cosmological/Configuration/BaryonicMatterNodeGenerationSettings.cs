@@ -8,51 +8,51 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
     {
         [DisplayName("Count Age Factor")]
         [Tooltip("Weighting factor for the age of the universe on baryonic matter (normal matter) node count. Higher value results in more nodes.")]
-        public double CountAgeFactor { get; set; }
+        public double CountAgeFactor { get; init; }
 
         [DisplayName("Count Mass Factor")]
         [Tooltip("Weighting factor for the mass of the universe on baryonic matter (normal matter) node count. Higher value results in more nodes.")]
-        public double CountMassFactor { get; set; }
+        public double CountMassFactor { get; init; }
 
         [DisplayName("Count Size Factor")]
         [Tooltip("Weighting factor for the size of the universe on baryonic matter (normal matter) node count. Higher value results in more nodes.")]
-        public double CountSizeFactor { get; set; }
+        public double CountSizeFactor { get; init; }
 
         [DisplayName("Count Baryonic Matter Percent Factor")]
         [Tooltip("Weighting factor for the percentage of baryonic matter (normal matter) in the universe on baryonic matter (normal matter) node count. Higher value results in less nodes.")]
-        public double CountBaryonicMatterPercentFactor { get; set; }
+        public double CountBaryonicMatterPercentFactor { get; init; }
 
         [DisplayName("Count Dark Matter Percent Factor")]
         [Tooltip("Weighting factor for the percentage of dark matter in the universe on baryonic matter (normal matter) node count. Higher value results in less nodes.")]
-        public double CountDarkMatterPercentFactor { get; set; }
+        public double CountDarkMatterPercentFactor { get; init; }
 
         [DisplayName("Count Dark Energy Percent Factor")]
         [Tooltip("Weighting factor for the percentage of dark energy in the universe on baryonic matter (normal matter) node count. Higher value results in more nodes.")]
-        public double CountDarkEnergyPercentFactor { get; set; }
+        public double CountDarkEnergyPercentFactor { get; init; }
 
         [DisplayName("Topology Density Threshold Factor")]
         [Tooltip("")]
-        public float TopologyDensityThresholdFactor { get; set; }
+        public float TopologyDensityThresholdFactor { get; init; }
 
         [DisplayName("Topology Gradient Magnitude Threshold Factor")]
         [Tooltip("")]
-        public float TopologyGradientMagnitudeThresholdFactor { get; set; }
+        public float TopologyGradientMagnitudeThresholdFactor { get; init; }
 
         [DisplayName("Topology Intensity Threshold Factor")]
         [Tooltip("")]
-        public float TopologyIntensityThresholdFactor { get; set; }
+        public float TopologyIntensityThresholdFactor { get; init; }
 
         [DisplayName("Topology Merge Distance Threshold Factor")]
         [Tooltip("")]
-        public float TopologyMergeDistanceThresholdFactor { get; set; }
+        public float TopologyMergeDistanceThresholdFactor { get; init; }
 
         [DisplayName("Topology Min Distance Threshold Factor")]
         [Tooltip("")]
-        public float TopologyMinDistanceThresholdFactor { get; set; }
+        public float TopologyMinDistanceThresholdFactor { get; init; }
 
         [DisplayName("Topology Max Positional Offset")]
         [Tooltip("")]
-        public float TopologyMaxPositionalOffset { get; set; }
+        public float TopologyMaxPositionalOffset { get; init; }
 
 
 

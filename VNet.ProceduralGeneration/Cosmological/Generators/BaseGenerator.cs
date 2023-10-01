@@ -51,10 +51,10 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             var parallelismMap = new Dictionary<ParallelismLevel, (int calculated, int configured)>
             {
                 [ParallelismLevel.Level0] = (1, 1),
-                [ParallelismLevel.Level1] = (Environment.ProcessorCount, AdvancedSettings.MaxDegreesOfParallelismLevel1),
-                [ParallelismLevel.Level2] = (Convert.ToInt32(0.75 * Environment.ProcessorCount), AdvancedSettings.MaxDegreesOfParallelismLevel2),
-                [ParallelismLevel.Level3] = (Convert.ToInt32(0.5 * Environment.ProcessorCount), AdvancedSettings.MaxDegreesOfParallelismLevel3),
-                [ParallelismLevel.Level4] = (Convert.ToInt32(0.25 * Environment.ProcessorCount), AdvancedSettings.MaxDegreesOfParallelismLevel4)
+                [ParallelismLevel.Level1] = (Environment.ProcessorCount, AdvancedSettings.Application.MaxDegreesOfParallelismLevel1),
+                [ParallelismLevel.Level2] = (Convert.ToInt32(0.75 * Environment.ProcessorCount), AdvancedSettings.Application.MaxDegreesOfParallelismLevel2),
+                [ParallelismLevel.Level3] = (Convert.ToInt32(0.5 * Environment.ProcessorCount), AdvancedSettings.Application.MaxDegreesOfParallelismLevel3),
+                [ParallelismLevel.Level4] = (Convert.ToInt32(0.25 * Environment.ProcessorCount), AdvancedSettings.Application.MaxDegreesOfParallelismLevel4)
             };
 
             if (!parallelismMap.TryGetValue(_parallelismLevel, out var values))

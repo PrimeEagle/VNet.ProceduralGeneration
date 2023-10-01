@@ -5,10 +5,10 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
     public class GeneratorSettings : ISettings
     {
-        public BasicGenerationSettings Basic { get; set; }
-        public AdvancedGenerationSettings Advanced { get; set; }
-        public AstronomicalObjectToggleSettings ObjectToggles { get; set;}
-        public TheoreticalAstronomicalObjectToggleSettings TheoreticalObjectToggles { get; set; }
+        public BasicGenerationSettings Basic { get; init; }
+        public AdvancedGenerationSettings Advanced { get; init; }
+        public AstronomicalObjectToggleSettings ObjectToggles { get; init;}
+        public TheoreticalAstronomicalObjectToggleSettings TheoreticalObjectToggles { get; init; }
 
 
 

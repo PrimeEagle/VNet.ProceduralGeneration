@@ -15,8 +15,17 @@ public class SpatialGrid
     private readonly int _totalAvailableCells;
     private int _fetchedAvailableCells = 0;
 
+    public int X { get; }
+    public int Y { get; }
+    public int Z { get; }
+
+
     public SpatialGrid(int dimX, int dimY, int dimZ)
     {
+        this.X = dimX;
+        this.Y = dimY;
+        this.Z = dimZ;
+
         _cells = new SpatialGridCell[dimX, dimY, dimZ];
 
         for (var x = 0; x < dimX; x++)
@@ -43,6 +52,10 @@ public class SpatialGrid
         var dimX = spatialArray.GetLength(0);
         var dimY = spatialArray.GetLength(1);
         var dimZ = spatialArray.GetLength(2);
+
+        this.X = dimX;
+        this.Y = dimY;
+        this.Z = dimZ;
 
         _cells = new SpatialGridCell[dimX, dimY, dimZ];
 
@@ -111,19 +124,17 @@ public class SpatialGrid
     private void IncrementCurrentCell()
     {
         _currentZ++;
-        if (_currentZ >= _cells.GetLength(2))
+        if (_currentZ < _cells.GetLength(2)) return;
+
+        _currentZ = 0;
+        _currentY++;
+        if (_currentY < _cells.GetLength(1)) return;
+
+        _currentY = 0;
+        _currentX++;
+        if (_currentX >= _cells.GetLength(0))
         {
-            _currentZ = 0;
-            _currentY++;
-            if (_currentY >= _cells.GetLength(1))
-            {
-                _currentY = 0;
-                _currentX++;
-                if (_currentX >= _cells.GetLength(0))
-                {
-                    _currentX = 0;
-                }
-            }
+            _currentX = 0;
         }
     }
 
