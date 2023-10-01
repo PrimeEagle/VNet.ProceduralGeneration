@@ -2,4 +2,5 @@
 
 public class DarkMatterNode : AstronomicalObject
 {
+    public float Intensity { get; set; }
 }

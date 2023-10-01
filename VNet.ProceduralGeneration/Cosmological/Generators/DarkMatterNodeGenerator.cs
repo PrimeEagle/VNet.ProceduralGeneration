@@ -8,6 +8,7 @@ public class DarkMatterNodeGenerator : BaseGenerator<DarkMatterNode, DarkMatterN
 {
     public DarkMatterNodeGenerator() : base(ParallelismLevel.Level1)
     {
+        enabled = ObjectToggles.DarkMatterNodesEnabled;
     }
 
     protected override Task<DarkMatterNode> GenerateSelf(DarkMatterNodeContext context)
