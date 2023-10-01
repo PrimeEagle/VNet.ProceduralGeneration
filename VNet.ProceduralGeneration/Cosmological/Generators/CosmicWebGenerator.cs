@@ -30,13 +30,13 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         self.BaryonicMatterNodes = await GenerateBaryonicMatterNodes(self, context, baryonicMatterNodeCount);
         MergeBaryonicMatterNodes(self.BaryonicMatterNodes);
         ReduceBaryonicMatterNodes(self.BaryonicMatterNodes);
-        RebalanceBaryonicMatterNodes(self.BaryonicMatterNodes, self, baryonicMatterNodeCount);
+        RebalanceBaryonicMatterNodeCounts(self.BaryonicMatterNodes, self, baryonicMatterNodeCount);
 
         var darkMatterNodeCount = GetDarkMatterNodeCount(context, self.Topology.AverageIntensity);
         self.DarkMatterNodes = await GenerateDarkMatterNodes(self, context, darkMatterNodeCount);
         MergeDarkMatterNodes(self.DarkMatterNodes);
         ReduceDarkMatterNodes(self.DarkMatterNodes);
-        RebalanceDarkMatterNodes(self.DarkMatterNodes, self, darkMatterNodeCount);
+        RebalanceDarkMatterNodeCounts(self.DarkMatterNodes, self, darkMatterNodeCount);
     }
 
     protected override void PostProcess(CosmicWeb self, CosmicWebContext context)
@@ -187,7 +187,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         }
     }
 
-    private void RebalanceBaryonicMatterNodes(IList<BaryonicMatterNode> nodes, CosmicWeb cosmicWeb, int numberToGenerate)
+    private void RebalanceBaryonicMatterNodeCounts(IList<BaryonicMatterNode> nodes, CosmicWeb cosmicWeb, int numberToGenerate)
     {
         var minAllowedNodes = (int)(numberToGenerate * 0.9);
         var maxAllowedNodes = (int)(numberToGenerate * 1.1);
@@ -257,7 +257,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         }
     }
 
-    private void RebalanceDarkMatterNodes(IList<DarkMatterNode> nodes, CosmicWeb cosmicWeb, int numberToGenerate)
+    private void RebalanceDarkMatterNodeCounts(IList<DarkMatterNode> nodes, CosmicWeb cosmicWeb, int numberToGenerate)
     {
         var minAllowedNodes = (int)(numberToGenerate * 0.9);
         var maxAllowedNodes = (int)(numberToGenerate * 1.1);
