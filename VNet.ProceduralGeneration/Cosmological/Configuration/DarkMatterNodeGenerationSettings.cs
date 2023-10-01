@@ -7,7 +7,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
     public class DarkMatterNodeGenerationSettings : ISettings
     {
         [DisplayName("Count Age Factor")]
-        [Tooltip("Weighting factor for the age of the universe on baryonic matter (normal matter) node count. Higher value results in more nodes.")]
+        [Tooltip("Weighting factor for the age of the universe on dark matter node count. Higher value results in more nodes.")]
         public double CountAgeFactor { get; set; }
 
         [DisplayName("Count Mass Factor")]
@@ -19,7 +19,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         public double CountSizeFactor { get; set; }
 
         [DisplayName("Count Baryonic Matter Percent Factor")]
-        [Tooltip("Weighting factor for the percentage of baryonic matter (normal matter) in the universe on dark matter node count. Higher value results in more nodes.")]
+        [Tooltip("Weighting factor for the percentage of dark matter in the universe on dark matter node count. Higher value results in more nodes.")]
         public double CountBaryonicMatterPercentFactor { get; set; }
 
         [DisplayName("Count Dark Matter Percent Factor")]
