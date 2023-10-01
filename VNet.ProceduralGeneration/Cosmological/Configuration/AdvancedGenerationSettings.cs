@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using VNet.Configuration;
 using VNet.Mathematics.Randomization.Generation;
+using VNet.ProceduralGeneration.Cosmological.Configuration.Constants;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
@@ -76,55 +77,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [DisplayName("Max Connectivity Factor")]
         [Tooltip("The maximum amount that the universes curves or folds to connect distant locations. Affect amount of wormholes. (0 = none, 100 = max)")]
         public float MaxConnectivityFactor { get; set; }
-
-        [DisplayName("Topology Baryonic Matter Node Density Threshold Factor")]
-        [Tooltip("")]
-        public float TopologyBaryonicMatterNodeDensityThresholdFactor { get; set; }
-
-        [DisplayName("Topology Baryonic Matter Node Gradient Magnitude Threshold Factor")]
-        [Tooltip("")]
-        public float TopologyBaryonicMatterNodeGradientMagnitudeThresholdFactor { get; set; }
-
-        [DisplayName("Topology Baryonic Matter Node Intensity Threshold Factor")]
-        [Tooltip("")]
-        public float TopologyBaryonicMatterNodeIntensityThresholdFactor { get; set; }
-
-        [DisplayName("Topology Baryonic Matter Node Merge Distance Threshold Factor")]
-        [Tooltip("")]
-        public float TopologyBaryonicMatterNodeMergeDistanceThresholdFactor { get; set; }
-
-        [DisplayName("Topology Baryonic Matter Node Min Distance Threshold Factor")]
-        [Tooltip("")]
-        public float TopologyBaryonicMatterNodeMinDistanceThresholdFactor { get; set; }
-
-        [DisplayName("Topology Baryonic Matter Node Max Positional Offset")]
-        [Tooltip("")]
-        public float TopologyBaryonicMatterNodeMaxPositionalOffset { get; set; }
-
-        [DisplayName("Topology Dark Matter Node Density Threshold Factor")]
-        [Tooltip("")]
-        public float TopologyDarkMatterNodeDensityThresholdFactor { get; set; }
-
-        [DisplayName("Topology Dark Matter Node Gradient Magnitude Threshold Factor")]
-        [Tooltip("")]
-        public float TopologyDarkMatterNodeGradientMagnitudeThresholdFactor { get; set; }
-
-        [DisplayName("Topology Dark Matter Node Intensity Threshold Factor")]
-        [Tooltip("")]
-        public float TopologyDarkMatterNodeIntensityThresholdFactor { get; set; }
-
-        [DisplayName("Topology Dark Matter Node Merge Distance Threshold Factor")]
-        [Tooltip("")]
-        public float TopologyDarkMatterNodeMergeDistanceThresholdFactor { get; set; }
-
-        [DisplayName("Topology Dark Matter Node Min Distance Threshold Factor")]
-        [Tooltip("")]
-        public float TopologyDarkMatterNodeMinDistanceThresholdFactor { get; set; }
-
-        [DisplayName("Topology Dark Matter Node Max Positional Offset")]
-        [Tooltip("")]
-        public float TopologyDarkMatterNodeMaxPositionalOffset { get; set; }
-
+        
 
 
 
@@ -148,18 +101,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
             this.BaselineCosmicMicrowaveBackground = ConfigConstants.BaselineCosmicMicrowaveBackground;
             this.MinConnectivityFactor = ConfigConstants.MinConnectivityFactor;
             this.MaxConnectivityFactor = ConfigConstants.MaxConnectivityFactor;
-            this.TopologyBaryonicMatterNodeDensityThresholdFactor = ConfigConstants.TopologyBaryonicMatterNodeDensityThresholdFactor;
-            this.TopologyBaryonicMatterNodeGradientMagnitudeThresholdFactor = ConfigConstants.TopologyBaryonicMatterNodeGradientMagnitudeThresholdFactor;
-            this.TopologyBaryonicMatterNodeIntensityThresholdFactor = ConfigConstants.TopologyBaryonicMatterNodeIntensityThresholdFactor;
-            this.TopologyBaryonicMatterNodeMergeDistanceThresholdFactor = ConfigConstants.TopologyBaryonicMatterNodeMergeDistanceThresholdFactor;
-            this.TopologyBaryonicMatterNodeMinDistanceThresholdFactor = ConfigConstants.TopologyBaryonicMatterNodeMinDistanceThresholdFactor;
-            this.TopologyBaryonicMatterNodeMaxPositionalOffset = ConfigConstants.TopologyBaryonicMatterNodeMaxPositionalOffset;
-            this.TopologyDarkMatterNodeDensityThresholdFactor = ConfigConstants.TopologyDarkMatterNodeDensityThresholdFactor;
-            this.TopologyDarkMatterNodeGradientMagnitudeThresholdFactor = ConfigConstants.TopologyDarkMatterNodeGradientMagnitudeThresholdFactor;
-            this.TopologyDarkMatterNodeIntensityThresholdFactor = ConfigConstants.TopologyDarkMatterNodeIntensityThresholdFactor;
-            this.TopologyDarkMatterNodeMergeDistanceThresholdFactor = ConfigConstants.TopologyDarkMatterNodeMergeDistanceThresholdFactor;
-            this.TopologyDarkMatterNodeMinDistanceThresholdFactor = ConfigConstants.TopologyDarkMatterNodeMinDistanceThresholdFactor;
-            this.TopologyDarkMatterNodeMaxPositionalOffset = ConfigConstants.TopologyDarkMatterNodeMaxPositionalOffset;
         }
     }
 }

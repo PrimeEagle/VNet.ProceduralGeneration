@@ -61,9 +61,9 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         var baryonicMatterNodeConfig = new NodeConfiguration()
         {
             NodeSeedMinDistanceThreshold = BasicSettings.TopologyBaryonicMatterNodeMinDistanceThreshold,
-            NodeDensityThresholdFactor = AdvancedSettings.TopologyBaryonicMatterNodeDensityThresholdFactor,
-            NodeGradientMagnitudeThresholdFactor = AdvancedSettings.TopologyBaryonicMatterNodeGradientMagnitudeThresholdFactor,
-            NodeMaxPositionalOffset = AdvancedSettings.TopologyBaryonicMatterNodeMaxPositionalOffset,
+            NodeDensityThresholdFactor = AdvancedSettings.BaryonicMatterNode.TopologyDensityThresholdFactor,
+            NodeGradientMagnitudeThresholdFactor = AdvancedSettings.BaryonicMatterNode.TopologyGradientMagnitudeThresholdFactor,
+            NodeMaxPositionalOffset = AdvancedSettings.BaryonicMatterNode.TopologyMaxPositionalOffset,
             NodeSeedMergeDistanceThreshold = BasicSettings.TopologyBaryonicMatterNodeMergeDistanceThreshold
         };
         var baryonicMatterNodeCount = GetBaryonicMatterNodeCount(context, cosmicWeb.Topology.AverageIntensity);
@@ -89,9 +89,9 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         var darkMatterNodeConfig = new NodeConfiguration()
         {
             NodeSeedMinDistanceThreshold = BasicSettings.TopologyDarkMatterNodeMinDistanceThreshold,
-            NodeDensityThresholdFactor = AdvancedSettings.TopologyDarkMatterNodeDensityThresholdFactor,
-            NodeGradientMagnitudeThresholdFactor = AdvancedSettings.TopologyDarkMatterNodeGradientMagnitudeThresholdFactor,
-            NodeMaxPositionalOffset = AdvancedSettings.TopologyDarkMatterNodeMaxPositionalOffset,
+            NodeDensityThresholdFactor = AdvancedSettings.DarkMatterNode.TopologyDensityThresholdFactor,
+            NodeGradientMagnitudeThresholdFactor = AdvancedSettings.DarkMatterNode.TopologyGradientMagnitudeThresholdFactor,
+            NodeMaxPositionalOffset = AdvancedSettings.DarkMatterNode.TopologyMaxPositionalOffset,
             NodeSeedMergeDistanceThreshold = BasicSettings.TopologyDarkMatterNodeMergeDistanceThreshold
         };
         var darkMatterNodeCount = GetDarkMatterNodeCount(context, cosmicWeb.Topology.AverageIntensity);
@@ -273,6 +273,8 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
             case CurvatureType.Hyperbolic:
                 baseCount -= 100;
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
         baseCount += (int)(context.Age * 1e-9 * AdvancedSettings.BaryonicMatterFilament.CountAgeFactor);
@@ -301,6 +303,8 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
             case CurvatureType.Hyperbolic:
                 baseCount -= 150;
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
         baseCount += (int)(context.Age * 1e-9 * AdvancedSettings.DarkMatterFilament.CountAgeFactor);
@@ -329,6 +333,8 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
             case CurvatureType.Hyperbolic:
                 baseCount -= 20;
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
         baseCount += (int)(context.Age * 1e-9 * AdvancedSettings.BaryonicMatterNode.CountAgeFactor);
@@ -357,6 +363,8 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
             case CurvatureType.Hyperbolic:
                 baseCount -= 30;
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
         baseCount += (int)(context.Age * 1e-9 * AdvancedSettings.DarkMatterNode.CountAgeFactor);
@@ -385,6 +393,8 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
             case CurvatureType.Hyperbolic:
                 baseCount -= 20;
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
         baseCount += (int)(context.Age * 1e-9 * AdvancedSettings.BaryonicMatterSheet.CountAgeFactor);
@@ -413,6 +423,8 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
             case CurvatureType.Hyperbolic:
                 baseCount -= 30;
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
         baseCount += (int)(context.Age * 1e-9 * AdvancedSettings.DarkMatterSheet.CountAgeFactor);
@@ -441,6 +453,8 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
             case CurvatureType.Hyperbolic:
                 baseCount += 50;
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
         baseCount += (int)(context.Age * 1e-9 * AdvancedSettings.BaryonicMatterVoid.CountAgeFactor);
@@ -468,6 +482,8 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
             case CurvatureType.Hyperbolic:
                 baseCount += 60;
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
         baseCount += (int)(context.Age * 1e-9 * AdvancedSettings.DarkMatterVoid.CountAgeFactor);
         baseCount = (int)(baseCount * (context.Mass * AdvancedSettings.DarkMatterVoid.CountMassFactor) * (context.Size * AdvancedSettings.DarkMatterVoid.CountSizeFactor));

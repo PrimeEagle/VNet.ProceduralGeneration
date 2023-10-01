@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.Configuration.Constants;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
@@ -34,12 +35,12 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 
         public DarkMatterSheetGenerationSettings()
         {
-            this.CountAgeFactor = ConfigConstants.DarkMatterSheetCountAgeFactor;
-            this.CountMassFactor = ConfigConstants.DarkMatterSheetCountMassFactor;
-            this.CountSizeFactor = ConfigConstants.DarkMatterSheetCountSizeFactor;
-            this.CountBaryonicMatterPercentFactor = ConfigConstants.DarkMatterSheetCountBaryonicMatterPercentFactor;
-            this.CountDarkMatterPercentFactor = ConfigConstants.DarkMatterSheetCountDarkMatterPercentFactor;
-            this.CountDarkEnergyPercentFactor = ConfigConstants.DarkMatterSheetCountDarkEnergyPercentFactor;
+            this.CountAgeFactor = ConfigConstants.DarkMatterSheet.CountAgeFactor;
+            this.CountMassFactor = ConfigConstants.DarkMatterSheet.CountMassFactor;
+            this.CountSizeFactor = ConfigConstants.DarkMatterSheet.CountSizeFactor;
+            this.CountBaryonicMatterPercentFactor = ConfigConstants.DarkMatterSheet.CountBaryonicMatterPercentFactor;
+            this.CountDarkMatterPercentFactor = ConfigConstants.DarkMatterSheet.CountDarkMatterPercentFactor;
+            this.CountDarkEnergyPercentFactor = ConfigConstants.DarkMatterSheet.CountDarkEnergyPercentFactor;
         }
     }
 }

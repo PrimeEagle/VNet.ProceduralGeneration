@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.Configuration.Constants;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
@@ -34,12 +35,12 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 
         public BaryonicMatterFilamentGenerationSettings()
         {
-            this.CountAgeFactor = ConfigConstants.BaryonicMatterFilamentCountAgeFactor;
-            this.CountMassFactor = ConfigConstants.BaryonicMatterFilamentCountMassFactor;
-            this.CountSizeFactor = ConfigConstants.BaryonicMatterFilamentCountSizeFactor;
-            this.CountBaryonicMatterPercentFactor = ConfigConstants.BaryonicMatterFilamentCountBaryonicMatterPercentFactor;
-            this.CountDarkMatterPercentFactor = ConfigConstants.BaryonicMatterFilamentCountDarkMatterPercentFactor;
-            this.CountDarkEnergyPercentFactor = ConfigConstants.BaryonicMatterFilamentCountDarkEnergyPercentFactor;
+            this.CountAgeFactor = ConfigConstants.BaryonicMatterFilament.CountAgeFactor;
+            this.CountMassFactor = ConfigConstants.BaryonicMatterFilament.CountMassFactor;
+            this.CountSizeFactor = ConfigConstants.BaryonicMatterFilament.CountSizeFactor;
+            this.CountBaryonicMatterPercentFactor = ConfigConstants.BaryonicMatterFilament.CountBaryonicMatterPercentFactor;
+            this.CountDarkMatterPercentFactor = ConfigConstants.BaryonicMatterFilament.CountDarkMatterPercentFactor;
+            this.CountDarkEnergyPercentFactor = ConfigConstants.BaryonicMatterFilament.CountDarkEnergyPercentFactor;
         }
     }
 }

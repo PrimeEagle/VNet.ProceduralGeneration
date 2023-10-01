@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.Configuration.Constants;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
@@ -30,11 +31,11 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 
         public DarkMatterVoidGenerationSettings()
         {
-            this.CountAgeFactor = ConfigConstants.DarkMatterVoidCountAgeFactor;
-            this.CountMassFactor = ConfigConstants.DarkMatterVoidCountMassFactor;
-            this.CountSizeFactor = ConfigConstants.DarkMatterVoidCountSizeFactor;
-            this.CountDarkMatterPercentFactor = ConfigConstants.DarkMatterVoidCountDarkMatterPercentFactor;
-            this.CountDarkEnergyPercentFactor = ConfigConstants.DarkMatterVoidCountDarkEnergyPercentFactor;
+            this.CountAgeFactor = ConfigConstants.DarkMatterVoid.CountAgeFactor;
+            this.CountMassFactor = ConfigConstants.DarkMatterVoid.CountMassFactor;
+            this.CountSizeFactor = ConfigConstants.DarkMatterVoid.CountSizeFactor;
+            this.CountDarkMatterPercentFactor = ConfigConstants.DarkMatterVoid.CountDarkMatterPercentFactor;
+            this.CountDarkEnergyPercentFactor = ConfigConstants.DarkMatterVoid.CountDarkEnergyPercentFactor;
         }
     }
 }

@@ -11,6 +11,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
         public double Magnitude { get; set; }               // 
         public double Temperature { get; set; }             // Kelvin
         public Vector3 Position { get; set; }               // AU
+        public float Lifespan { get; set; }                 // years
 
 
         public float EstimateSize()

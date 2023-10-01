@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.Configuration.Constants;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
@@ -135,7 +136,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         {
             get
             {
-                return ConfigConstants.TopologyBaryonicMatterNodeMergeDistanceThresholdFactor * this.AverageDimension;
+                return ConfigConstants.BaryonicMatterNode.TopologyMergeDistanceThresholdFactor * this.AverageDimension;
             }
         }
 
@@ -145,7 +146,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         {
             get
             {
-                return this.TopologyBaryonicMatterNodeMergeDistanceThreshold * ConfigConstants.TopologyBaryonicMatterNodeMinDistanceThresholdFactor;
+                return this.TopologyBaryonicMatterNodeMergeDistanceThreshold * ConfigConstants.BaryonicMatterNode.TopologyMinDistanceThresholdFactor;
             }
         }
 
@@ -155,7 +156,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         {
             get
             {
-                return ConfigConstants.TopologyDarkMatterNodeMergeDistanceThresholdFactor * this.AverageDimension;
+                return ConfigConstants.DarkMatterNode.TopologyMergeDistanceThresholdFactor * this.AverageDimension;
             }
         }
 
@@ -165,7 +166,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         {
             get
             {
-                return this.TopologyDarkMatterNodeMergeDistanceThreshold * ConfigConstants.TopologyDarkMatterNodeMinDistanceThresholdFactor;
+                return this.TopologyDarkMatterNodeMergeDistanceThreshold * ConfigConstants.DarkMatterNode.TopologyMinDistanceThresholdFactor;
             }
         }
 
@@ -185,14 +186,14 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
             this.MaxBaryonicMatterPercent = ConfigConstants.MaxBaryonicMatterPercent;
             this.MinUniverseAge = ConfigConstants.MinUniverseAge;
             this.MaxUniverseAge = ConfigConstants.MaxUniverseAge;
-            this.BaryonicMatterFilamentBaseCount = ConfigConstants.BaryonicMatterFilamentBaseCount;
-            this.DarkMatterFilamentBaseCount = ConfigConstants.DarkMatterFilamentBaseCount;
-            this.BaryonicMatterNodeBaseCount = ConfigConstants.BaryonicMatterNodeBaseCount;
-            this.DarkMatterNodeBaseCount = ConfigConstants.DarkMatterNodeBaseCount;
-            this.BaryonicMatterSheetBaseCount = ConfigConstants.BaryonicMatterSheetBaseCount;
-            this.DarkMatterSheetBaseCount = ConfigConstants.DarkMatterSheetBaseCount;
-            this.BaryonicMatterVoidBaseCount = ConfigConstants.BaryonicMatterVoidBaseCount;
-            this.DarkMatterVoidBaseCount = ConfigConstants.DarkMatterVoidBaseCount;
+            this.BaryonicMatterFilamentBaseCount = ConfigConstants.BaryonicMatterFilament.BaseCount;
+            this.DarkMatterFilamentBaseCount = ConfigConstants.DarkMatterFilament.BaseCount;
+            this.BaryonicMatterNodeBaseCount = ConfigConstants.BaryonicMatterNode.BaseCount;
+            this.DarkMatterNodeBaseCount = ConfigConstants.DarkMatterNode.BaseCount;
+            this.BaryonicMatterSheetBaseCount = ConfigConstants.BaryonicMatterSheet.BaseCount;
+            this.DarkMatterSheetBaseCount = ConfigConstants.DarkMatterSheet.BaseCount;
+            this.BaryonicMatterVoidBaseCount = ConfigConstants.BaryonicMatterVoid.BaseCount;
+            this.DarkMatterVoidBaseCount = ConfigConstants.DarkMatterVoid.BaseCount;
         }
 
         private float CalculateAverageDim()

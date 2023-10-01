@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.Configuration.Constants;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
@@ -30,11 +31,11 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 
         public BaryonicMatterVoidGenerationSettings()
         {
-            this.CountAgeFactor = ConfigConstants.BaryonicMatterVoidCountAgeFactor;
-            this.CountMassFactor = ConfigConstants.BaryonicMatterVoidCountMassFactor;
-            this.CountSizeFactor = ConfigConstants.BaryonicMatterVoidCountSizeFactor;
-            this.CountBaryonicMatterPercentFactor = ConfigConstants.BaryonicMatterVoidCountBaryonicMatterPercentFactor;
-            this.CountDarkEnergyPercentFactor = ConfigConstants.BaryonicMatterVoidCountDarkEnergyPercentFactor;
+            this.CountAgeFactor = ConfigConstants.BaryonicMatterVoid.CountAgeFactor;
+            this.CountMassFactor = ConfigConstants.BaryonicMatterVoid.CountMassFactor;
+            this.CountSizeFactor = ConfigConstants.BaryonicMatterVoid.CountSizeFactor;
+            this.CountBaryonicMatterPercentFactor = ConfigConstants.BaryonicMatterVoid.CountBaryonicMatterPercentFactor;
+            this.CountDarkEnergyPercentFactor = ConfigConstants.BaryonicMatterVoid.CountDarkEnergyPercentFactor;
         }
     }
 }
