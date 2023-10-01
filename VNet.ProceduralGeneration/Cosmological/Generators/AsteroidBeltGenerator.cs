@@ -6,14 +6,19 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class AsteroidBeltGenerator : BaseGenerator<AsteroidBelt, AsteroidBeltContext>
 {
-
-
-    public override async Task<AsteroidBelt> Generate(AsteroidBeltContext context)
+    protected override Task<AsteroidBelt> GenerateSelf(AsteroidBeltContext context)
     {
-        var asteroidBelt = new AsteroidBelt();
+        throw new NotImplementedException();
+    }
 
+    protected override Task GenerateChildren(AsteroidBelt self, AsteroidBeltContext context)
+    {
+        throw new NotImplementedException();
+    }
 
-        return asteroidBelt;
+    protected override void PostProcess(AsteroidBelt self, AsteroidBeltContext context)
+    {
+        throw new NotImplementedException();
     }
 
     public AsteroidBeltGenerator() : base(ParallelismLevel.Level4)

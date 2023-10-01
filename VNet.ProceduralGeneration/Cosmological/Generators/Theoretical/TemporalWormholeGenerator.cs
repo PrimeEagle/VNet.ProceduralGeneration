@@ -10,9 +10,18 @@ public class TemporalWormholeGenerator : BaseGenerator<TemporalWormhole, Tempora
     {
     }
 
-    public override async Task<TemporalWormhole> Generate(TemporalWormholeContext context)
+    protected override Task<TemporalWormhole> GenerateSelf(TemporalWormholeContext context)
     {
-        var result = new TemporalWormhole();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(TemporalWormhole self, TemporalWormholeContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(TemporalWormhole self, TemporalWormholeContext context)
+    {
+        throw new NotImplementedException();
     }
 }

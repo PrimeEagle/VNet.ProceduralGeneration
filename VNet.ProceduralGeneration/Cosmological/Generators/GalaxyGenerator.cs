@@ -6,12 +6,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class GalaxyGenerator : BaseGenerator<Galaxy, GalaxyContext>
 {
-    public override async Task<Galaxy> Generate(GalaxyContext context)
+    public GalaxyGenerator() : base(ParallelismLevel.Level4)
+    {
+    }
+
+    protected override Task<Galaxy> GenerateSelf(GalaxyContext context)
     {
         throw new NotImplementedException();
     }
 
-    public GalaxyGenerator() : base(ParallelismLevel.Level2)
+    protected override Task GenerateChildren(Galaxy self, GalaxyContext context)
     {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(Galaxy self, GalaxyContext context)
+    {
+        throw new NotImplementedException();
     }
 }

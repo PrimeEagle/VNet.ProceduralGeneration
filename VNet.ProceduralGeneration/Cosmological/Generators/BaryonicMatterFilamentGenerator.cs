@@ -6,18 +6,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class BaryonicMatterFilamentGenerator : BaseGenerator<BaryonicMatterFilament, BaryonicMatterFilamentContext>
 {
-
     public BaryonicMatterFilamentGenerator() : base(ParallelismLevel.Level1)
     {
-
     }
 
-    public override async Task<BaryonicMatterFilament> Generate(BaryonicMatterFilamentContext context)
+    protected override Task<BaryonicMatterFilament> GenerateSelf(BaryonicMatterFilamentContext context)
     {
         throw new NotImplementedException();
     }
 
-    private void PostProcess()
+    protected override Task GenerateChildren(BaryonicMatterFilament self, BaryonicMatterFilamentContext context)
     {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(BaryonicMatterFilament self, BaryonicMatterFilamentContext context)
+    {
+        throw new NotImplementedException();
     }
 }

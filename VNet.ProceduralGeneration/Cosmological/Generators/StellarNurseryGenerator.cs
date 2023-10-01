@@ -6,17 +6,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class StellarNurseryGenerator : BaseGenerator<StellarNursery, StellarNurseryContext>
 {
-    public override async Task<StellarNursery> Generate(StellarNurseryContext context)
-    {
-        var nursery = new StellarNursery
-        {
-
-        };
-
-        return nursery;
-    }
-
     public StellarNurseryGenerator() : base(ParallelismLevel.Level4)
     {
+    }
+
+    protected override Task<StellarNursery> GenerateSelf(StellarNurseryContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(StellarNursery self, StellarNurseryContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(StellarNursery self, StellarNurseryContext context)
+    {
+        throw new NotImplementedException();
     }
 }

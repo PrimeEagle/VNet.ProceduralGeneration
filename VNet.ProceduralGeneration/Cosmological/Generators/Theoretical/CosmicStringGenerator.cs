@@ -10,9 +10,18 @@ public class CosmicStringGenerator : BaseGenerator<CosmicString, CosmicStringCon
     {
     }
 
-    public override async Task<CosmicString> Generate(CosmicStringContext context)
+    protected override Task<CosmicString> GenerateSelf(CosmicStringContext context)
     {
-        var result = new CosmicString();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(CosmicString self, CosmicStringContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(CosmicString self, CosmicStringContext context)
+    {
+        throw new NotImplementedException();
     }
 }

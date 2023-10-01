@@ -10,7 +10,17 @@ public class BaryonicMatterNodeGenerator : BaseGenerator<BaryonicMatterNode, Bar
     {
     }
 
-    public override async Task<BaryonicMatterNode> Generate(BaryonicMatterNodeContext context)
+    protected override Task<BaryonicMatterNode> GenerateSelf(BaryonicMatterNodeContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(BaryonicMatterNode self, BaryonicMatterNodeContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(BaryonicMatterNode self, BaryonicMatterNodeContext context)
     {
         throw new NotImplementedException();
     }

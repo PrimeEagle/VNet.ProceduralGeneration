@@ -10,10 +10,18 @@ public class CosmicBubbleGenerator : BaseGenerator<CosmicBubble, CosmicBubbleCon
     {
     }
 
-    public override async Task<CosmicBubble> Generate(CosmicBubbleContext context)
+    protected override Task<CosmicBubble> GenerateSelf(CosmicBubbleContext context)
     {
-        var result = new CosmicBubble();
+        throw new NotImplementedException();
+    }
 
-        return result;
+    protected override Task GenerateChildren(CosmicBubble self, CosmicBubbleContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(CosmicBubble self, CosmicBubbleContext context)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -10,9 +10,18 @@ public class QuantumBlackHoleGenerator : BaseGenerator<QuantumBlackHole, Quantum
     {
     }
 
-    public override async Task<QuantumBlackHole> Generate(QuantumBlackHoleContext context)
+    protected override Task<QuantumBlackHole> GenerateSelf(QuantumBlackHoleContext context)
     {
-        var result = new QuantumBlackHole();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(QuantumBlackHole self, QuantumBlackHoleContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(QuantumBlackHole self, QuantumBlackHoleContext context)
+    {
+        throw new NotImplementedException();
     }
 }

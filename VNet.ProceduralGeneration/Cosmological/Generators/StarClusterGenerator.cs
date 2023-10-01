@@ -6,18 +6,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class StarClusterGenerator : BaseGenerator<StarCluster, StarClusterContext>
 {
-    private readonly StarSystemGenerator _starSystemGenerator;
-
-
-    public override async Task<StarCluster> Generate(StarClusterContext context)
+    public StarClusterGenerator() : base(ParallelismLevel.Level4)
     {
-        var cluster = new StarCluster();
-
-        return cluster;
     }
 
-    public StarClusterGenerator() : base(ParallelismLevel.Level3)
+    protected override Task<StarCluster> GenerateSelf(StarClusterContext context)
     {
-        _starSystemGenerator = new StarSystemGenerator();
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(StarCluster self, StarClusterContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(StarCluster self, StarClusterContext context)
+    {
+        throw new NotImplementedException();
     }
 }

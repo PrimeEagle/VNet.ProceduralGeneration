@@ -6,16 +6,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class AsteroidGenerator : BaseGenerator<Asteroid, AsteroidContext>
 {
-    public override async Task<Asteroid> Generate(AsteroidContext context)
-    {
-        var asteroid = new Asteroid
-        {
-        };
-
-        return asteroid;
-    }
-
     public AsteroidGenerator() : base(ParallelismLevel.Level4)
     {
+    }
+
+    protected override Task<Asteroid> GenerateSelf(AsteroidContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(Asteroid self, AsteroidContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(Asteroid self, AsteroidContext context)
+    {
+        throw new NotImplementedException();
     }
 }

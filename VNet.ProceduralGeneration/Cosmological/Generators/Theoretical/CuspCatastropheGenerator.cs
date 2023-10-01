@@ -10,9 +10,18 @@ public class CuspCatastropheGenerator : BaseGenerator<CuspCatastrophe, CuspCatas
     {
     }
 
-    public override async Task<CuspCatastrophe> Generate(CuspCatastropheContext context)
+    protected override Task<CuspCatastrophe> GenerateSelf(CuspCatastropheContext context)
     {
-        var result = new CuspCatastrophe();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(CuspCatastrophe self, CuspCatastropheContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(CuspCatastrophe self, CuspCatastropheContext context)
+    {
+        throw new NotImplementedException();
     }
 }

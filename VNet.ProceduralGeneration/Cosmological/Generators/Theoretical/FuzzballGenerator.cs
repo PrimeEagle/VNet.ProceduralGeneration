@@ -10,9 +10,18 @@ public class FuzzballGenerator : BaseGenerator<Fuzzball, FuzzballContext>
     {
     }
 
-    public override async Task<Fuzzball> Generate(FuzzballContext context)
+    protected override Task<Fuzzball> GenerateSelf(FuzzballContext context)
     {
-        var result = new Fuzzball();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(Fuzzball self, FuzzballContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(Fuzzball self, FuzzballContext context)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -6,12 +6,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class StarSystemGenerator : BaseGenerator<StarSystem, StarSystemContext>
 {
-    public override async Task<StarSystem> Generate(StarSystemContext context)
+    public StarSystemGenerator() : base(ParallelismLevel.Level4)
+    {
+    }
+
+    protected override Task<StarSystem> GenerateSelf(StarSystemContext context)
     {
         throw new NotImplementedException();
     }
 
-    public StarSystemGenerator() : base(ParallelismLevel.Level3)
+    protected override Task GenerateChildren(StarSystem self, StarSystemContext context)
     {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(StarSystem self, StarSystemContext context)
+    {
+        throw new NotImplementedException();
     }
 }

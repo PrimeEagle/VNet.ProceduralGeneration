@@ -6,18 +6,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class LargeQuasarGroupGenerator : BaseGenerator<LargeQuasarGroup, LargeQuasarGroupContext>
 {
-    public override async Task<LargeQuasarGroup> Generate(LargeQuasarGroupContext context)
+    public LargeQuasarGroupGenerator() : base(ParallelismLevel.Level4)
     {
-        var largeQuasarGroup = new LargeQuasarGroup
-        {
-
-        };
-
-
-        return largeQuasarGroup;
     }
 
-    public LargeQuasarGroupGenerator() : base(ParallelismLevel.Level3)
+    protected override Task<LargeQuasarGroup> GenerateSelf(LargeQuasarGroupContext context)
     {
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(LargeQuasarGroup self, LargeQuasarGroupContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(LargeQuasarGroup self, LargeQuasarGroupContext context)
+    {
+        throw new NotImplementedException();
     }
 }

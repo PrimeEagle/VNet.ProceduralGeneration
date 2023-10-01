@@ -6,17 +6,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class QuasarJetGenerator : BaseGenerator<QuasarJet, QuasarJetContext>
 {
-    public override async Task<QuasarJet> Generate(QuasarJetContext context)
+    public QuasarJetGenerator() : base(ParallelismLevel.Level4)
     {
-        var quasarJet = new QuasarJet
-        {
-
-        };
-
-        return quasarJet;
     }
 
-    public QuasarJetGenerator() : base(ParallelismLevel.Level3)
+    protected override Task<QuasarJet> GenerateSelf(QuasarJetContext context)
     {
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(QuasarJet self, QuasarJetContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(QuasarJet self, QuasarJetContext context)
+    {
+        throw new NotImplementedException();
     }
 }

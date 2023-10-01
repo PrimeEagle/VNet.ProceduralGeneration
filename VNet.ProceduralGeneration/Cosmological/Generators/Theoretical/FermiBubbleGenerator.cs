@@ -10,9 +10,18 @@ public class FermiBubbleGenerator : BaseGenerator<FermiBubble, FermiBubbleContex
     {
     }
 
-    public override async Task<FermiBubble> Generate(FermiBubbleContext context)
+    protected override Task<FermiBubble> GenerateSelf(FermiBubbleContext context)
     {
-        var result = new FermiBubble();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(FermiBubble self, FermiBubbleContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(FermiBubble self, FermiBubbleContext context)
+    {
+        throw new NotImplementedException();
     }
 }

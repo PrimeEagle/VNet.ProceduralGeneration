@@ -10,9 +10,18 @@ public class TransdimensionalWormholeGenerator : BaseGenerator<TransdimensionalW
     {
     }
 
-    public override async Task<TransdimensionalWormhole> Generate(TransdimensionalWormholeContext context)
+    protected override Task<TransdimensionalWormhole> GenerateSelf(TransdimensionalWormholeContext context)
     {
-        var result = new TransdimensionalWormhole();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(TransdimensionalWormhole self, TransdimensionalWormholeContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(TransdimensionalWormhole self, TransdimensionalWormholeContext context)
+    {
+        throw new NotImplementedException();
     }
 }

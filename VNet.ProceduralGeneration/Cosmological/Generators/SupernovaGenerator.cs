@@ -6,17 +6,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class SupernovaGenerator : BaseGenerator<Supernova, SupernovaContext>
 {
-    public override async Task<Supernova> Generate(SupernovaContext context)
-    {
-        var supernova = new Supernova
-        {
-
-        };
-
-        return supernova;
-    }
-
     public SupernovaGenerator() : base(ParallelismLevel.Level4)
     {
+    }
+
+    protected override Task<Supernova> GenerateSelf(SupernovaContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(Supernova self, SupernovaContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(Supernova self, SupernovaContext context)
+    {
+        throw new NotImplementedException();
     }
 }

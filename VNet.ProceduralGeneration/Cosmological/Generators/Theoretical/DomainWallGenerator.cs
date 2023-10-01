@@ -10,9 +10,18 @@ public class DomainWallGenerator : BaseGenerator<DomainWall, DomainWallContext>
     {
     }
 
-    public override async Task<DomainWall> Generate(DomainWallContext context)
+    protected override Task<DomainWall> GenerateSelf(DomainWallContext context)
     {
-        var result = new DomainWall();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(DomainWall self, DomainWallContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(DomainWall self, DomainWallContext context)
+    {
+        throw new NotImplementedException();
     }
 }

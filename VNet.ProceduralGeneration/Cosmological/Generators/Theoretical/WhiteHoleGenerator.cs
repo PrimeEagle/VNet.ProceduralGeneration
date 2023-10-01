@@ -10,10 +10,18 @@ public class WhiteHoleGenerator : BaseGenerator<WhiteHole, WhiteHoleContext>
     {
     }
 
-    public override async Task<WhiteHole> Generate(WhiteHoleContext context)
+    protected override Task<WhiteHole> GenerateSelf(WhiteHoleContext context)
     {
-        var result = new WhiteHole();
+        throw new NotImplementedException();
+    }
 
-        return result;
+    protected override Task GenerateChildren(WhiteHole self, WhiteHoleContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(WhiteHole self, WhiteHoleContext context)
+    {
+        throw new NotImplementedException();
     }
 }

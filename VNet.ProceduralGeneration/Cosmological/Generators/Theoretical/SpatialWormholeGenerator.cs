@@ -10,9 +10,18 @@ public class SpatialWormholeGenerator : BaseGenerator<SpatialWormhole, SpatialWo
     {
     }
 
-    public override async Task<SpatialWormhole> Generate(SpatialWormholeContext context)
+    protected override Task<SpatialWormhole> GenerateSelf(SpatialWormholeContext context)
     {
-        var result = new SpatialWormhole();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(SpatialWormhole self, SpatialWormholeContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(SpatialWormhole self, SpatialWormholeContext context)
+    {
+        throw new NotImplementedException();
     }
 }

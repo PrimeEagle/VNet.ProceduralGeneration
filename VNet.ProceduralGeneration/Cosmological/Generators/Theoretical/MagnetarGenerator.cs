@@ -10,9 +10,18 @@ public class MagnetarGenerator : BaseGenerator<Magnetar, MagnetarContext>
     {
     }
 
-    public override async Task<Magnetar> Generate(MagnetarContext context)
+    protected override Task<Magnetar> GenerateSelf(MagnetarContext context)
     {
-        var result = new Magnetar();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(Magnetar self, MagnetarContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(Magnetar self, MagnetarContext context)
+    {
+        throw new NotImplementedException();
     }
 }

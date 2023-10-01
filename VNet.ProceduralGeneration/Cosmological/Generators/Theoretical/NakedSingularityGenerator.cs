@@ -10,9 +10,18 @@ public class NakedSingularityGenerator : BaseGenerator<NakedSingularity, NakedSi
     {
     }
 
-    public override async Task<NakedSingularity> Generate(NakedSingularityContext context)
+    protected override Task<NakedSingularity> GenerateSelf(NakedSingularityContext context)
     {
-        var result = new NakedSingularity();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(NakedSingularity self, NakedSingularityContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(NakedSingularity self, NakedSingularityContext context)
+    {
+        throw new NotImplementedException();
     }
 }

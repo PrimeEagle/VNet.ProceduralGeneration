@@ -6,17 +6,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class NebulaGenerator : BaseGenerator<Nebula, NebulaContext>
 {
-    public override async Task<Nebula> Generate(NebulaContext context)
+    public NebulaGenerator() : base(ParallelismLevel.Level4)
     {
-        var nebula = new Nebula
-        {
-
-        };
-
-        return nebula;
     }
 
-    public NebulaGenerator() : base(ParallelismLevel.Level3)
+    protected override Task<Nebula> GenerateSelf(NebulaContext context)
     {
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(Nebula self, NebulaContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(Nebula self, NebulaContext context)
+    {
+        throw new NotImplementedException();
     }
 }

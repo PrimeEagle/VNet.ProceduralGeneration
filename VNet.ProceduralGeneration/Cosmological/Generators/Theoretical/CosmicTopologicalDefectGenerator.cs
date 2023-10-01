@@ -10,9 +10,18 @@ public class CosmicTopologicalDefectGenerator : BaseGenerator<CosmicTopologicalD
     {
     }
 
-    public override async Task<CosmicTopologicalDefect> Generate(CosmicTopologicalDefectContext context)
+    protected override Task<CosmicTopologicalDefect> GenerateSelf(CosmicTopologicalDefectContext context)
     {
-        var result = new CosmicTopologicalDefect();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(CosmicTopologicalDefect self, CosmicTopologicalDefectContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(CosmicTopologicalDefect self, CosmicTopologicalDefectContext context)
+    {
+        throw new NotImplementedException();
     }
 }

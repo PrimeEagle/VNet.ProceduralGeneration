@@ -10,7 +10,17 @@ public class DarkMatterSheetGenerator : BaseGenerator<DarkMatterSheet, DarkMatte
     {
     }
 
-    public override async Task<DarkMatterSheet> Generate(DarkMatterSheetContext context)
+    protected override Task<DarkMatterSheet> GenerateSelf(DarkMatterSheetContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(DarkMatterSheet self, DarkMatterSheetContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(DarkMatterSheet self, DarkMatterSheetContext context)
     {
         throw new NotImplementedException();
     }

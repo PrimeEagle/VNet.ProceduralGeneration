@@ -7,17 +7,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class PulsarGenerator : BaseGenerator<Pulsar, PulsarContext>
 {
-    public override async Task<Pulsar> Generate(PulsarContext context)
-    {
-        var pulsar = new Pulsar
-        {
-
-        };
-
-        return pulsar;
-    }
-
     public PulsarGenerator() : base(ParallelismLevel.Level4)
     {
+    }
+
+    protected override Task<Pulsar> GenerateSelf(PulsarContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(Pulsar self, PulsarContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(Pulsar self, PulsarContext context)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -10,9 +10,18 @@ public class PlanckStarGenerator : BaseGenerator<PlanckStar, PlanckStarContext>
     {
     }
 
-    public override async Task<PlanckStar> Generate(PlanckStarContext context)
+    protected override Task<PlanckStar> GenerateSelf(PlanckStarContext context)
     {
-        var result = new PlanckStar();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(PlanckStar self, PlanckStarContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(PlanckStar self, PlanckStarContext context)
+    {
+        throw new NotImplementedException();
     }
 }

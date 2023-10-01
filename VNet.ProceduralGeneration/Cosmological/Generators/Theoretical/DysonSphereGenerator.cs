@@ -10,9 +10,18 @@ public class DysonSphereGenerator : BaseGenerator<DysonSphere, DysonSphereContex
     {
     }
 
-    public override async Task<DysonSphere> Generate(DysonSphereContext context)
+    protected override Task<DysonSphere> GenerateSelf(DysonSphereContext context)
     {
-        var result = new DysonSphere();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(DysonSphere self, DysonSphereContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(DysonSphere self, DysonSphereContext context)
+    {
+        throw new NotImplementedException();
     }
 }

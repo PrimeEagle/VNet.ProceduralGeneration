@@ -6,12 +6,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class GammaRayBurstGenerator : BaseGenerator<GammaRayBurst, GammaRayBurstContext>
 {
-    public override async Task<GammaRayBurst> Generate(GammaRayBurstContext context)
+    public GammaRayBurstGenerator() : base(ParallelismLevel.Level4)
+    {
+    }
+
+    protected override Task<GammaRayBurst> GenerateSelf(GammaRayBurstContext context)
     {
         throw new NotImplementedException();
     }
 
-    public GammaRayBurstGenerator() : base(ParallelismLevel.Level4)
+    protected override Task GenerateChildren(GammaRayBurst self, GammaRayBurstContext context)
     {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(GammaRayBurst self, GammaRayBurstContext context)
+    {
+        throw new NotImplementedException();
     }
 }

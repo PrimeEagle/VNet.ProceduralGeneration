@@ -6,16 +6,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class SuperclusterGenerator : BaseGenerator<Supercluster, SuperclusterContext>
 {
-    public override async Task<Supercluster> Generate(SuperclusterContext context)
+    public SuperclusterGenerator() : base(ParallelismLevel.Level4)
     {
-        var supercluster = new Supercluster
-        {
-        };
-
-        return supercluster;
     }
 
-    public SuperclusterGenerator() : base(ParallelismLevel.Level2)
+    protected override Task<Supercluster> GenerateSelf(SuperclusterContext context)
     {
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(Supercluster self, SuperclusterContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(Supercluster self, SuperclusterContext context)
+    {
+        throw new NotImplementedException();
     }
 }

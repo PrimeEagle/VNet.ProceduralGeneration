@@ -10,10 +10,18 @@ public class BraneGenerator : BaseGenerator<Brane, BraneContext>
     {
     }
 
-    public override async Task<Brane> Generate(BraneContext context)
+    protected override Task<Brane> GenerateSelf(BraneContext context)
     {
-        var result = new Brane();
+        throw new NotImplementedException();
+    }
 
-        return result;
+    protected override Task GenerateChildren(Brane self, BraneContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(Brane self, BraneContext context)
+    {
+        throw new NotImplementedException();
     }
 }

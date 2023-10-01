@@ -10,10 +10,18 @@ public class TachyonicFieldGenerator : BaseGenerator<TachyonicField, TachyonicFi
     {
     }
 
-    public override async Task<TachyonicField> Generate(TachyonicFieldContext context)
+    protected override Task<TachyonicField> GenerateSelf(TachyonicFieldContext context)
     {
-        var result = new TachyonicField();
+        throw new NotImplementedException();
+    }
 
-        return result;
+    protected override Task GenerateChildren(TachyonicField self, TachyonicFieldContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(TachyonicField self, TachyonicFieldContext context)
+    {
+        throw new NotImplementedException();
     }
 }

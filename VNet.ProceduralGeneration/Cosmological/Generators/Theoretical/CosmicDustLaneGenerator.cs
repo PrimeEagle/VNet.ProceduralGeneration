@@ -10,9 +10,18 @@ public class CosmicDustLaneGenerator : BaseGenerator<CosmicDustLane, CosmicDustL
     {
     }
 
-    public override async Task<CosmicDustLane> Generate(CosmicDustLaneContext context)
+    protected override Task<CosmicDustLane> GenerateSelf(CosmicDustLaneContext context)
     {
-        var result = new CosmicDustLane();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(CosmicDustLane self, CosmicDustLaneContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(CosmicDustLane self, CosmicDustLaneContext context)
+    {
+        throw new NotImplementedException();
     }
 }

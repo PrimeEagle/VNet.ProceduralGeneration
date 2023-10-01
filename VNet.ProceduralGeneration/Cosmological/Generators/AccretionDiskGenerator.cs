@@ -6,14 +6,19 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class AccretionDiskGenerator : BaseGenerator<AccretionDisk, AccretionDiskContext>
 {
-    public override async Task<AccretionDisk> Generate(AccretionDiskContext context)
+    protected override Task<AccretionDisk> GenerateSelf(AccretionDiskContext context)
     {
-        var disk = new AccretionDisk
-        {
+        throw new NotImplementedException();
+    }
 
-        };
+    protected override Task GenerateChildren(AccretionDisk self, AccretionDiskContext context)
+    {
+        throw new NotImplementedException();
+    }
 
-        return disk;
+    protected override void PostProcess(AccretionDisk self, AccretionDiskContext context)
+    {
+        throw new NotImplementedException();
     }
 
     public AccretionDiskGenerator() : base(ParallelismLevel.Level4)

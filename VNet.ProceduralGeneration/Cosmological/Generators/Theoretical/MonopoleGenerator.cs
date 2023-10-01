@@ -10,9 +10,18 @@ public class MonopoleGenerator : BaseGenerator<Monopole, MonopoleContext>
     {
     }
 
-    public override async Task<Monopole> Generate(MonopoleContext context)
+    protected override Task<Monopole> GenerateSelf(MonopoleContext context)
     {
-        var result = new Monopole();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(Monopole self, MonopoleContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(Monopole self, MonopoleContext context)
+    {
+        throw new NotImplementedException();
     }
 }

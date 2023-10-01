@@ -6,18 +6,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class IntergalacticMediumGenerator : BaseGenerator<IntergalacticMedium, IntergalacticMediumContext>
 {
-    public override async Task<IntergalacticMedium> Generate(IntergalacticMediumContext context)
+    public IntergalacticMediumGenerator() : base(ParallelismLevel.Level4)
     {
-        var intergalacticMedium = new IntergalacticMedium
-        {
-
-        };
-
-
-        return intergalacticMedium;
     }
 
-    public IntergalacticMediumGenerator() : base(ParallelismLevel.Level2)
+    protected override Task<IntergalacticMedium> GenerateSelf(IntergalacticMediumContext context)
     {
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(IntergalacticMedium self, IntergalacticMediumContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(IntergalacticMedium self, IntergalacticMediumContext context)
+    {
+        throw new NotImplementedException();
     }
 }

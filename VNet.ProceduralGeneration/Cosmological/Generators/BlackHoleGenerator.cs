@@ -6,17 +6,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class BlackHoleGenerator : BaseGenerator<BlackHole, BlackHoleContext>
 {
-    public override async Task<BlackHole> Generate(BlackHoleContext context)
-    {
-        var blackHole = new BlackHole
-        {
-
-        };
-
-        return blackHole;
-    }
-
     public BlackHoleGenerator() : base(ParallelismLevel.Level4)
     {
+    }
+
+    protected override Task<BlackHole> GenerateSelf(BlackHoleContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(BlackHole self, BlackHoleContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(BlackHole self, BlackHoleContext context)
+    {
+        throw new NotImplementedException();
     }
 }

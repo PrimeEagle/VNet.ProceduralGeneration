@@ -6,17 +6,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class IcyCloudGenerator : BaseGenerator<IcyCloud, IcyCloudContext>
 {
-    public override async Task<IcyCloud> Generate(IcyCloudContext context)
-    {
-        var icyCloud = new IcyCloud
-        {
-
-        };
-
-        return icyCloud;
-    }
-
     public IcyCloudGenerator() : base(ParallelismLevel.Level4)
     {
+    }
+
+    protected override Task<IcyCloud> GenerateSelf(IcyCloudContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(IcyCloud self, IcyCloudContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(IcyCloud self, IcyCloudContext context)
+    {
+        throw new NotImplementedException();
     }
 }

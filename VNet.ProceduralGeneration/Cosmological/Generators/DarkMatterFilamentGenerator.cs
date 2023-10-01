@@ -10,7 +10,17 @@ public class DarkMatterFilamentGenerator : BaseGenerator<DarkMatterFilament, Dar
     {
     }
 
-    public override async Task<DarkMatterFilament> Generate(DarkMatterFilamentContext context)
+    protected override Task<DarkMatterFilament> GenerateSelf(DarkMatterFilamentContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(DarkMatterFilament self, DarkMatterFilamentContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(DarkMatterFilament self, DarkMatterFilamentContext context)
     {
         throw new NotImplementedException();
     }

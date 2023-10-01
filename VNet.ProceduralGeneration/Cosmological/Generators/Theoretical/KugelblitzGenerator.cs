@@ -10,9 +10,18 @@ public class KugelblitzGenerator : BaseGenerator<Kugelblitz, KugelblitzContext>
     {
     }
 
-    public override async Task<Kugelblitz> Generate(KugelblitzContext context)
+    protected override Task<Kugelblitz> GenerateSelf(KugelblitzContext context)
     {
-        var result = new Kugelblitz();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(Kugelblitz self, KugelblitzContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(Kugelblitz self, KugelblitzContext context)
+    {
+        throw new NotImplementedException();
     }
 }

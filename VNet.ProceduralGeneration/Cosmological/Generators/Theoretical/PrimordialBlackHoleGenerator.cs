@@ -10,9 +10,18 @@ public class PrimordialBlackHoleGenerator : BaseGenerator<PrimordialBlackHole, P
     {
     }
 
-    public override async Task<PrimordialBlackHole> Generate(PrimordialBlackHoleContext context)
+    protected override Task<PrimordialBlackHole> GenerateSelf(PrimordialBlackHoleContext context)
     {
-        var result = new PrimordialBlackHole();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(PrimordialBlackHole self, PrimordialBlackHoleContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(PrimordialBlackHole self, PrimordialBlackHoleContext context)
+    {
+        throw new NotImplementedException();
     }
 }

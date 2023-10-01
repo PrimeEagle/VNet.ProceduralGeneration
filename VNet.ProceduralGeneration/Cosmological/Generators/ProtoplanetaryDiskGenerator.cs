@@ -6,17 +6,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class ProtoplanetaryDiskGenerator : BaseGenerator<ProtoplanetaryDisk, ProtoplanetaryDiskContext>
 {
-    public override async Task<ProtoplanetaryDisk> Generate(ProtoplanetaryDiskContext context)
-    {
-        var disk = new ProtoplanetaryDisk
-        {
-
-        };
-
-        return disk;
-    }
-
     public ProtoplanetaryDiskGenerator() : base(ParallelismLevel.Level4)
     {
+    }
+
+    protected override Task<ProtoplanetaryDisk> GenerateSelf(ProtoplanetaryDiskContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(ProtoplanetaryDisk self, ProtoplanetaryDiskContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(ProtoplanetaryDisk self, ProtoplanetaryDiskContext context)
+    {
+        throw new NotImplementedException();
     }
 }

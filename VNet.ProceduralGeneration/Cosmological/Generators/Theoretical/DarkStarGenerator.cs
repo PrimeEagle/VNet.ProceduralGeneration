@@ -10,9 +10,18 @@ public class DarkStarGenerator : BaseGenerator<DarkStar, DarkStarContext>
     {
     }
 
-    public override async Task<DarkStar> Generate(DarkStarContext context)
+    protected override Task<DarkStar> GenerateSelf(DarkStarContext context)
     {
-        var result = new DarkStar();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(DarkStar self, DarkStarContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(DarkStar self, DarkStarContext context)
+    {
+        throw new NotImplementedException();
     }
 }

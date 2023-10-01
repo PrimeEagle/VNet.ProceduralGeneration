@@ -10,9 +10,18 @@ public class QuarkStarGenerator : BaseGenerator<QuarkStar, QuarkStarContext>
     {
     }
 
-    public override async Task<QuarkStar> Generate(QuarkStarContext context)
+    protected override Task<QuarkStar> GenerateSelf(QuarkStarContext context)
     {
-        var result = new QuarkStar();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(QuarkStar self, QuarkStarContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(QuarkStar self, QuarkStarContext context)
+    {
+        throw new NotImplementedException();
     }
 }

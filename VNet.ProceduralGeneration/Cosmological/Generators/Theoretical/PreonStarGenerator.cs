@@ -10,9 +10,18 @@ public class PreonStarGenerator : BaseGenerator<PreonStar, PreonStarContext>
     {
     }
 
-    public override async Task<PreonStar> Generate(PreonStarContext context)
+    protected override Task<PreonStar> GenerateSelf(PreonStarContext context)
     {
-        var result = new PreonStar();
-        return result;
+        throw new NotImplementedException();
+    }
+
+    protected override Task GenerateChildren(PreonStar self, PreonStarContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(PreonStar self, PreonStarContext context)
+    {
+        throw new NotImplementedException();
     }
 }
