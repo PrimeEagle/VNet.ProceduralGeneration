@@ -88,7 +88,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         for (var i = 0; i < numberToGenerate; i++)
         {
             var baryonicMatterNodeGenerator = new BaryonicMatterNodeGenerator();
-            tasks.Add(baryonicMatterNodeGenerator.Generate(baryonicMatterNodeContext));
+            tasks.Add(baryonicMatterNodeGenerator.Generate(baryonicMatterNodeContext, cosmicWeb));
         }
         var results = await Task.WhenAll(tasks);
 
@@ -113,7 +113,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         for (var i = 0; i < numberToGenerate; i++)
         {
             var darkMatterNodeGenerator = new DarkMatterNodeGenerator();
-            tasks.Add(darkMatterNodeGenerator.Generate(darkMatterNodeContext));
+            tasks.Add(darkMatterNodeGenerator.Generate(darkMatterNodeContext, cosmicWeb));
         }
         var results = await Task.WhenAll(tasks);
 

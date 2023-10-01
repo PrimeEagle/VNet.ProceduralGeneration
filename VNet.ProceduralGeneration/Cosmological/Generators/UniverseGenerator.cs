@@ -14,7 +14,7 @@ public class UniverseGenerator : BaseGenerator<Universe, UniverseContext>
 
     protected override async Task<Universe> GenerateSelf(UniverseContext context)
     {
-        var universe = new Universe
+        var universe = new Universe(null)
         {
             Age = AdvancedSettings.Application.RandomGenerator.NextSingle(BasicSettings.MinUniverseAge, BasicSettings.MaxUniverseAge),
             DarkEnergyPercent = AdvancedSettings.Application.RandomGenerator.NextDouble(BasicSettings.MinDarkEnergyPercent, BasicSettings.MaxDarkEnergyPercent),
@@ -46,7 +46,7 @@ public class UniverseGenerator : BaseGenerator<Universe, UniverseContext>
         var cosmicWebGenerator = new CosmicWebGenerator();
         var cosmicWebContext = new CosmicWebContext(self);
 
-        self.CosmicWeb = await Task.Run(() => cosmicWebGenerator.Generate(cosmicWebContext));
+        self.CosmicWeb = await Task.Run(() => cosmicWebGenerator.Generate(cosmicWebContext, self));
     }
 
     protected override void PostProcess(Universe self, UniverseContext context)
