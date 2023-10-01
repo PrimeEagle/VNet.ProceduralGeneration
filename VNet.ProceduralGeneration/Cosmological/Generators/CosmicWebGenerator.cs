@@ -11,27 +11,28 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 {
     public CosmicWebGenerator() : base(ParallelismLevel.Level0)
     {
+        enabled = ObjectToggles.CosmicWebEnabled;
     }
 
-    public override async Task<CosmicWeb> Generate(CosmicWebContext context)
+    protected override async Task<CosmicWeb> GenerateSelf(CosmicWebContext context)
     {
-        return await ExecuteWithConcurrencyControlAsync(() => GenerateCosmicWeb(context));
-    }
-    private async Task<CosmicWeb> GenerateCosmicWeb(CosmicWebContext context)
-    {
-        var cosmicWeb = new CosmicWeb();     
-
-        LoadCosmicTopology(cosmicWeb);
-        cosmicWeb.BaryonicMatterNodes = await GenerateBaryonicMatterNodes(cosmicWeb, context);
-        cosmicWeb.DarkMatterNodes = await GenerateDarkMatterNodes(cosmicWeb, context);
-
-        PostProcess();
+        var cosmicWeb = new CosmicWeb();
+        cosmicWeb.Topology = LoadCosmicTopology(cosmicWeb);
 
         return cosmicWeb;
     }
 
+    protected override async Task GenerateChildren(CosmicWeb self, CosmicWebContext context)
+    {
+        self.BaryonicMatterNodes = await GenerateBaryonicMatterNodes(self, context);
+        self.DarkMatterNodes = await GenerateDarkMatterNodes(self, context);
+    }
 
-    private void LoadCosmicTopology(CosmicWeb cosmicWeb)
+    protected override void PostProcess(CosmicWeb self, CosmicWebContext context)
+    {
+    }
+
+    private CosmicWebTopology LoadCosmicTopology(CosmicWeb cosmicWeb)
     {
         var heightMapImage = HeightmapUtil.LoadImage(BasicSettings.HeightmapImageFile);
 
@@ -46,7 +47,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         var averageIntensity = HeightmapUtil.GetAverageIntensity(heightMapImage);
         var maxGradientMagnitude = gradientMap.Cast<Vector3>().Max(v => v.Length());
 
-        cosmicWeb.Topology = new CosmicWebTopology()
+        var topology = new CosmicWebTopology()
         {
             AverageIntensity = averageIntensity,
             Heightmap = heightMap,
@@ -54,6 +55,8 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
             GradientMap = gradientMap,
             MaxGradientMagnitude = maxGradientMagnitude
         };
+
+        return topology;
     }
 
     private async Task<List<BaryonicMatterNode>> GenerateBaryonicMatterNodes(CosmicWeb cosmicWeb, CosmicWebContext context)
@@ -125,12 +128,6 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 
         return spatialGrid;
     }
-
-
-    private void PostProcess()
-    {
-    }
-
 
     private List<NodeSeed> GenerateNodeSeeds(CosmicWebTopology topology, int numberToGenerate, NodeConfiguration nodeConfig)
     {

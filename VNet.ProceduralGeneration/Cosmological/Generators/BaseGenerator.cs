@@ -7,17 +7,18 @@ using VNet.ProceduralGeneration.Cosmological.Enum;
 namespace VNet.ProceduralGeneration.Cosmological.Generators
 {
     public abstract class BaseGenerator<T, TContext> : IGeneratable<T, TContext>, IDisposable 
-                                                                                 where T : AstronomicalObject
-                                                                                 where TContext : BaseContext
+                                             where T : AstronomicalObject, new()
+                                             where TContext : BaseContext
     {
         private bool _disposed = false;
 
+        protected bool enabled;
         protected readonly GeneratorSettings Settings;
         protected readonly BasicGenerationSettings BasicSettings;
         protected readonly AdvancedGenerationSettings AdvancedSettings;
         protected readonly AstronomicalObjectToggleSettings ObjectToggles;
         protected readonly TheoreticalAstronomicalObjectToggleSettings TheoreticalObjectToggles;
-        private ParallelismLevel _parallelismLevel;
+        private readonly ParallelismLevel _parallelismLevel;
         private readonly SemaphoreSlim _semaphore;
 
 
@@ -37,7 +38,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             await _semaphore.WaitAsync();
             try
             {
-                return await taskFactory();
+                return await Task.Run(taskFactory);
             }
             finally
             {
@@ -47,39 +48,49 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
         private int GetDegreesOfParallelism()
         {
-            var calculated = 1;
-            var configured = 1;
-
-            switch(_parallelismLevel)
+            var parallelismMap = new Dictionary<ParallelismLevel, (int calculated, int configured)>
             {
-                case ParallelismLevel.Level0:
-                    calculated = 1;
-                    configured = 1;
-                    break;
-                case ParallelismLevel.Level1:
-                    calculated = Environment.ProcessorCount;
-                    configured = AdvancedSettings.MaxDegreesOfParallelismLevel1;
-                    break;
-                case ParallelismLevel.Level2:
-                    calculated = Convert.ToInt32(0.75 * Environment.ProcessorCount);
-                    configured = AdvancedSettings.MaxDegreesOfParallelismLevel2;
-                    break;
-                case ParallelismLevel.Level3:
-                    calculated = Convert.ToInt32(0.5 * Environment.ProcessorCount);
-                    configured = AdvancedSettings.MaxDegreesOfParallelismLevel3;
-                    break;
-                case ParallelismLevel.Level4:
-                    calculated = Convert.ToInt32(0.25 * Environment.ProcessorCount);
-                    configured = AdvancedSettings.MaxDegreesOfParallelismLevel4;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                [ParallelismLevel.Level0] = (1, 1),
+                [ParallelismLevel.Level1] = (Environment.ProcessorCount, AdvancedSettings.MaxDegreesOfParallelismLevel1),
+                [ParallelismLevel.Level2] = (Convert.ToInt32(0.75 * Environment.ProcessorCount), AdvancedSettings.MaxDegreesOfParallelismLevel2),
+                [ParallelismLevel.Level3] = (Convert.ToInt32(0.5 * Environment.ProcessorCount), AdvancedSettings.MaxDegreesOfParallelismLevel3),
+                [ParallelismLevel.Level4] = (Convert.ToInt32(0.25 * Environment.ProcessorCount), AdvancedSettings.MaxDegreesOfParallelismLevel4)
+            };
+
+            if (!parallelismMap.TryGetValue(_parallelismLevel, out var values))
+            {
+                throw new ArgumentOutOfRangeException();
             }
 
-            return configured < calculated ? configured : calculated;
+            return Math.Min(values.calculated, values.configured);
         }
 
-        public abstract Task<T> Generate(TContext context);
+        protected abstract Task<T> GenerateSelf(TContext context);
+        protected abstract Task GenerateChildren(T self, TContext context);
+        protected abstract void PostProcess(T self, TContext context);
+
+        public async Task<T> Generate(TContext context)
+        {
+            T self;
+
+            if (enabled)
+            {
+                self = await ExecuteWithConcurrencyControlAsync(() => GenerateSelf(context));
+            }
+            else
+            {
+                self = new T();
+            }
+
+            await GenerateChildren(self, context);
+
+            if (enabled)
+            {
+                PostProcess(self, context);
+            }
+
+            return self;
+        }
 
         public void Dispose()
         {
