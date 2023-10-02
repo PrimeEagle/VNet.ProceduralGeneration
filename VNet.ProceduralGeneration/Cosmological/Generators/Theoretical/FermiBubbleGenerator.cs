@@ -20,7 +20,7 @@ public class FermiBubbleGenerator : BaseGenerator<FermiBubble, FermiBubbleContex
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(FermiBubble self, FermiBubbleContext context)
+    protected override Task PostProcess(FermiBubble self, FermiBubbleContext context)
     {
         throw new NotImplementedException();
     }

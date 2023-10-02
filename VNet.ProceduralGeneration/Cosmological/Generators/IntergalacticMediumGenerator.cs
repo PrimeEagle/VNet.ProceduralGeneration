@@ -20,7 +20,7 @@ public class IntergalacticMediumGenerator : BaseGenerator<IntergalacticMedium, I
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(IntergalacticMedium self, IntergalacticMediumContext context)
+    protected override Task PostProcess(IntergalacticMedium self, IntergalacticMediumContext context)
     {
         throw new NotImplementedException();
     }

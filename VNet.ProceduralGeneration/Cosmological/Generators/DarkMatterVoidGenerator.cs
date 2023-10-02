@@ -20,7 +20,7 @@ public class DarkMatterVoidGenerator : BaseGenerator<DarkMatterVoid, DarkMatterV
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(DarkMatterVoid self, DarkMatterVoidContext context)
+    protected override Task PostProcess(DarkMatterVoid self, DarkMatterVoidContext context)
     {
         throw new NotImplementedException();
     }

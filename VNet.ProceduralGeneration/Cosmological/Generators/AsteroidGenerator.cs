@@ -20,7 +20,7 @@ public class AsteroidGenerator : BaseGenerator<Asteroid, AsteroidContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(Asteroid self, AsteroidContext context)
+    protected override Task PostProcess(Asteroid self, AsteroidContext context)
     {
         throw new NotImplementedException();
     }

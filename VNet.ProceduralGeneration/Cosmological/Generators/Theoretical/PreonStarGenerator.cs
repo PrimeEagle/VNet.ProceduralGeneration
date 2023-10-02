@@ -20,7 +20,7 @@ public class PreonStarGenerator : BaseGenerator<PreonStar, PreonStarContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(PreonStar self, PreonStarContext context)
+    protected override Task PostProcess(PreonStar self, PreonStarContext context)
     {
         throw new NotImplementedException();
     }

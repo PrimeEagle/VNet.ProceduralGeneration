@@ -20,7 +20,7 @@ public class CometGenerator : BaseGenerator<Comet, CometContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(Comet self, CometContext context)
+    protected override Task PostProcess(Comet self, CometContext context)
     {
         throw new NotImplementedException();
     }

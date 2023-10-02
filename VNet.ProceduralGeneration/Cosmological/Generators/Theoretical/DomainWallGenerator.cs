@@ -20,7 +20,7 @@ public class DomainWallGenerator : BaseGenerator<DomainWall, DomainWallContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(DomainWall self, DomainWallContext context)
+    protected override Task PostProcess(DomainWall self, DomainWallContext context)
     {
         throw new NotImplementedException();
     }

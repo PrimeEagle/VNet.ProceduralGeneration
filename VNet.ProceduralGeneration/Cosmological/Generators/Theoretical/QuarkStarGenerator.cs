@@ -20,7 +20,7 @@ public class QuarkStarGenerator : BaseGenerator<QuarkStar, QuarkStarContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(QuarkStar self, QuarkStarContext context)
+    protected override Task PostProcess(QuarkStar self, QuarkStarContext context)
     {
         throw new NotImplementedException();
     }

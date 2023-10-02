@@ -21,7 +21,7 @@ public class DarkMatterNodeGenerator : BaseGenerator<DarkMatterNode, DarkMatterN
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(DarkMatterNode self, DarkMatterNodeContext context)
+    protected override Task PostProcess(DarkMatterNode self, DarkMatterNodeContext context)
     {
         throw new NotImplementedException();
     }

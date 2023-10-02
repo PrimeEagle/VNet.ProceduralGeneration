@@ -20,7 +20,7 @@ public class DarkMatterFilamentGenerator : BaseGenerator<DarkMatterFilament, Dar
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(DarkMatterFilament self, DarkMatterFilamentContext context)
+    protected override Task PostProcess(DarkMatterFilament self, DarkMatterFilamentContext context)
     {
         throw new NotImplementedException();
     }

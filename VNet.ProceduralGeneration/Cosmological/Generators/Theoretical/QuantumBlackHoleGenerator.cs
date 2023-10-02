@@ -20,7 +20,7 @@ public class QuantumBlackHoleGenerator : BaseGenerator<QuantumBlackHole, Quantum
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(QuantumBlackHole self, QuantumBlackHoleContext context)
+    protected override Task PostProcess(QuantumBlackHole self, QuantumBlackHoleContext context)
     {
         throw new NotImplementedException();
     }

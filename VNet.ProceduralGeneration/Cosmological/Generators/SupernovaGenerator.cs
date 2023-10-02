@@ -20,7 +20,7 @@ public class SupernovaGenerator : BaseGenerator<Supernova, SupernovaContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(Supernova self, SupernovaContext context)
+    protected override Task PostProcess(Supernova self, SupernovaContext context)
     {
         throw new NotImplementedException();
     }

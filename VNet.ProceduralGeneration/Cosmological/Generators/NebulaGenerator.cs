@@ -20,7 +20,7 @@ public class NebulaGenerator : BaseGenerator<Nebula, NebulaContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(Nebula self, NebulaContext context)
+    protected override Task PostProcess(Nebula self, NebulaContext context)
     {
         throw new NotImplementedException();
     }

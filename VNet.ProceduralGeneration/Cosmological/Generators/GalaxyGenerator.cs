@@ -20,7 +20,7 @@ public class GalaxyGenerator : BaseGenerator<Galaxy, GalaxyContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(Galaxy self, GalaxyContext context)
+    protected override Task PostProcess(Galaxy self, GalaxyContext context)
     {
         throw new NotImplementedException();
     }

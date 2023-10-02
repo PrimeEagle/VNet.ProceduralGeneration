@@ -20,7 +20,7 @@ public class CosmicTornadoGenerator : BaseGenerator<CosmicTornado, CosmicTornado
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(CosmicTornado self, CosmicTornadoContext context)
+    protected override Task PostProcess(CosmicTornado self, CosmicTornadoContext context)
     {
         throw new NotImplementedException();
     }

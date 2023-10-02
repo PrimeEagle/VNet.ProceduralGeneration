@@ -21,7 +21,7 @@ public class PulsarGenerator : BaseGenerator<Pulsar, PulsarContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(Pulsar self, PulsarContext context)
+    protected override Task PostProcess(Pulsar self, PulsarContext context)
     {
         throw new NotImplementedException();
     }

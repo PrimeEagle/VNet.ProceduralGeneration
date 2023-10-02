@@ -20,7 +20,7 @@ public class CosmicStringGenerator : BaseGenerator<CosmicString, CosmicStringCon
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(CosmicString self, CosmicStringContext context)
+    protected override Task PostProcess(CosmicString self, CosmicStringContext context)
     {
         throw new NotImplementedException();
     }

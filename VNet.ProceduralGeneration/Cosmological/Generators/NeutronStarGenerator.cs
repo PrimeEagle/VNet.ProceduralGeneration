@@ -20,7 +20,7 @@ public class NeutronStarGenerator : BaseGenerator<NeutronStar, NeutronStarContex
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(NeutronStar self, NeutronStarContext context)
+    protected override Task PostProcess(NeutronStar self, NeutronStarContext context)
     {
         throw new NotImplementedException();
     }

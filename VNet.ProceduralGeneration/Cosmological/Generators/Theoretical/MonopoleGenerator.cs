@@ -20,7 +20,7 @@ public class MonopoleGenerator : BaseGenerator<Monopole, MonopoleContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(Monopole self, MonopoleContext context)
+    protected override Task PostProcess(Monopole self, MonopoleContext context)
     {
         throw new NotImplementedException();
     }

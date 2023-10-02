@@ -16,7 +16,7 @@ public class AccretionDiskGenerator : BaseGenerator<AccretionDisk, AccretionDisk
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(AccretionDisk self, AccretionDiskContext context)
+    protected override Task PostProcess(AccretionDisk self, AccretionDiskContext context)
     {
         throw new NotImplementedException();
     }

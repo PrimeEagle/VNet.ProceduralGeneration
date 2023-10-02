@@ -21,5 +21,6 @@
         internal static int DarkMatterFilamentBaseCount { get; } = 1500;
         internal static int DarkMatterSheetBaseCount { get; } = 500;
         internal static int DarkMatterVoidBaseCount { get; } = 1400;
+        internal static bool ApplyGravitationalEffectsToCosmicWeb { get; } = true;
     }
 }

@@ -20,7 +20,7 @@ public class DarkMatterSheetGenerator : BaseGenerator<DarkMatterSheet, DarkMatte
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(DarkMatterSheet self, DarkMatterSheetContext context)
+    protected override Task PostProcess(DarkMatterSheet self, DarkMatterSheetContext context)
     {
         throw new NotImplementedException();
     }

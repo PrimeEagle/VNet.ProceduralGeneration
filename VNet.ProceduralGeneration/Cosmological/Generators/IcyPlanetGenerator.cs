@@ -20,7 +20,7 @@ public class IcyPlanetGenerator : BaseGenerator<IcyPlanet, IcyPlanetContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(IcyPlanet self, IcyPlanetContext context)
+    protected override Task PostProcess(IcyPlanet self, IcyPlanetContext context)
     {
         throw new NotImplementedException();
     }

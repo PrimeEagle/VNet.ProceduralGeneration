@@ -20,7 +20,7 @@ public class GalaxyClusterGenerator : BaseGenerator<GalaxyCluster, GalaxyCluster
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(GalaxyCluster self, GalaxyClusterContext context)
+    protected override Task PostProcess(GalaxyCluster self, GalaxyClusterContext context)
     {
         throw new NotImplementedException();
     }

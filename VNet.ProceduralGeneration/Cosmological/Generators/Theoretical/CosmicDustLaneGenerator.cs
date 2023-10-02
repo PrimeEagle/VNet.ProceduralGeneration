@@ -20,7 +20,7 @@ public class CosmicDustLaneGenerator : BaseGenerator<CosmicDustLane, CosmicDustL
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(CosmicDustLane self, CosmicDustLaneContext context)
+    protected override Task PostProcess(CosmicDustLane self, CosmicDustLaneContext context)
     {
         throw new NotImplementedException();
     }

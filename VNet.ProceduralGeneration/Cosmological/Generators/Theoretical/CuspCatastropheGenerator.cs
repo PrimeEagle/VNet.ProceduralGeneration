@@ -20,7 +20,7 @@ public class CuspCatastropheGenerator : BaseGenerator<CuspCatastrophe, CuspCatas
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(CuspCatastrophe self, CuspCatastropheContext context)
+    protected override Task PostProcess(CuspCatastrophe self, CuspCatastropheContext context)
     {
         throw new NotImplementedException();
     }

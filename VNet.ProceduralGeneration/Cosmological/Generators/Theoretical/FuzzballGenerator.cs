@@ -20,7 +20,7 @@ public class FuzzballGenerator : BaseGenerator<Fuzzball, FuzzballContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(Fuzzball self, FuzzballContext context)
+    protected override Task PostProcess(Fuzzball self, FuzzballContext context)
     {
         throw new NotImplementedException();
     }

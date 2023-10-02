@@ -20,7 +20,7 @@ public class StarSystemGenerator : BaseGenerator<StarSystem, StarSystemContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(StarSystem self, StarSystemContext context)
+    protected override Task PostProcess(StarSystem self, StarSystemContext context)
     {
         throw new NotImplementedException();
     }

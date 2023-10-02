@@ -20,7 +20,7 @@ public class SupernovaRemnantGenerator : BaseGenerator<SupernovaRemnant, Superno
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(SupernovaRemnant self, SupernovaRemnantContext context)
+    protected override Task PostProcess(SupernovaRemnant self, SupernovaRemnantContext context)
     {
         throw new NotImplementedException();
     }

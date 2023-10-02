@@ -20,7 +20,7 @@ public class GammaRayBurstGenerator : BaseGenerator<GammaRayBurst, GammaRayBurst
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(GammaRayBurst self, GammaRayBurstContext context)
+    protected override Task PostProcess(GammaRayBurst self, GammaRayBurstContext context)
     {
         throw new NotImplementedException();
     }

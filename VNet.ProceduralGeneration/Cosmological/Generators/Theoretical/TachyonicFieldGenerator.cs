@@ -20,7 +20,7 @@ public class TachyonicFieldGenerator : BaseGenerator<TachyonicField, TachyonicFi
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(TachyonicField self, TachyonicFieldContext context)
+    protected override Task PostProcess(TachyonicField self, TachyonicFieldContext context)
     {
         throw new NotImplementedException();
     }

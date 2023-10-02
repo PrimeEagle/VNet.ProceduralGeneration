@@ -30,8 +30,8 @@ public class BaryonicMatterNodeGenerator : BaseGenerator<BaryonicMatterNode, Bar
         
     }
 
-    protected override void PostProcess(BaryonicMatterNode self, BaryonicMatterNodeContext context)
+    protected override Task PostProcess(BaryonicMatterNode self, BaryonicMatterNodeContext context)
     {
-        
+        return null;
     }
 }

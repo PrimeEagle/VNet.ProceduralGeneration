@@ -20,7 +20,7 @@ public class LargeQuasarGroupGenerator : BaseGenerator<LargeQuasarGroup, LargeQu
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(LargeQuasarGroup self, LargeQuasarGroupContext context)
+    protected override Task PostProcess(LargeQuasarGroup self, LargeQuasarGroupContext context)
     {
         throw new NotImplementedException();
     }

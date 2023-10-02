@@ -49,7 +49,8 @@ public class UniverseGenerator : BaseGenerator<Universe, UniverseContext>
         self.CosmicWeb = await Task.Run(() => cosmicWebGenerator.Generate(cosmicWebContext, self));
     }
 
-    protected override void PostProcess(Universe self, UniverseContext context)
+    protected override Task PostProcess(Universe self, UniverseContext context)
     {
+        return null;
     }
 }

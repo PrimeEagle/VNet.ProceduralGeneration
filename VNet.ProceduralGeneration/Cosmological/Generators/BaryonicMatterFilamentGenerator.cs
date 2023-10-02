@@ -20,7 +20,7 @@ public class BaryonicMatterFilamentGenerator : BaseGenerator<BaryonicMatterFilam
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(BaryonicMatterFilament self, BaryonicMatterFilamentContext context)
+    protected override Task PostProcess(BaryonicMatterFilament self, BaryonicMatterFilamentContext context)
     {
         throw new NotImplementedException();
     }

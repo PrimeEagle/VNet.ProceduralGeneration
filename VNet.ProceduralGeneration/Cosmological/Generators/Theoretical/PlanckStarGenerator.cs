@@ -20,7 +20,7 @@ public class PlanckStarGenerator : BaseGenerator<PlanckStar, PlanckStarContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(PlanckStar self, PlanckStarContext context)
+    protected override Task PostProcess(PlanckStar self, PlanckStarContext context)
     {
         throw new NotImplementedException();
     }

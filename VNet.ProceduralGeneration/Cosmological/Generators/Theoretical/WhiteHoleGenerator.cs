@@ -20,7 +20,7 @@ public class WhiteHoleGenerator : BaseGenerator<WhiteHole, WhiteHoleContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(WhiteHole self, WhiteHoleContext context)
+    protected override Task PostProcess(WhiteHole self, WhiteHoleContext context)
     {
         throw new NotImplementedException();
     }

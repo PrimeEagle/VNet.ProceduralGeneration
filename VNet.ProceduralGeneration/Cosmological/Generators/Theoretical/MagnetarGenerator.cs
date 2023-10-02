@@ -20,7 +20,7 @@ public class MagnetarGenerator : BaseGenerator<Magnetar, MagnetarContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(Magnetar self, MagnetarContext context)
+    protected override Task PostProcess(Magnetar self, MagnetarContext context)
     {
         throw new NotImplementedException();
     }

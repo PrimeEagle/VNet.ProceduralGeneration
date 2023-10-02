@@ -20,7 +20,7 @@ public class MoonGenerator : BaseGenerator<Moon, MoonContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(Moon self, MoonContext context)
+    protected override Task PostProcess(Moon self, MoonContext context)
     {
         throw new NotImplementedException();
     }

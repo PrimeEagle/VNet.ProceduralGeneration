@@ -20,7 +20,7 @@ public class SuperclusterGenerator : BaseGenerator<Supercluster, SuperclusterCon
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(Supercluster self, SuperclusterContext context)
+    protected override Task PostProcess(Supercluster self, SuperclusterContext context)
     {
         throw new NotImplementedException();
     }

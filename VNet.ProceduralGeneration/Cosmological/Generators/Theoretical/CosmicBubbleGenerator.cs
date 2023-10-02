@@ -20,7 +20,7 @@ public class CosmicBubbleGenerator : BaseGenerator<CosmicBubble, CosmicBubbleCon
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(CosmicBubble self, CosmicBubbleContext context)
+    protected override Task PostProcess(CosmicBubble self, CosmicBubbleContext context)
     {
         throw new NotImplementedException();
     }

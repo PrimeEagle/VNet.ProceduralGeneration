@@ -20,7 +20,7 @@ public class BraneGenerator : BaseGenerator<Brane, BraneContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(Brane self, BraneContext context)
+    protected override Task PostProcess(Brane self, BraneContext context)
     {
         throw new NotImplementedException();
     }

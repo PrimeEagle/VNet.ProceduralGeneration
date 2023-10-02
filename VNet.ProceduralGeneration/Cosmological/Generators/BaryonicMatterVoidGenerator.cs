@@ -20,7 +20,7 @@ public class BaryonicMatterVoidGenerator : BaseGenerator<BaryonicMatterVoid, Bar
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(BaryonicMatterVoid self, BaryonicMatterVoidContext context)
+    protected override Task PostProcess(BaryonicMatterVoid self, BaryonicMatterVoidContext context)
     {
         throw new NotImplementedException();
     }

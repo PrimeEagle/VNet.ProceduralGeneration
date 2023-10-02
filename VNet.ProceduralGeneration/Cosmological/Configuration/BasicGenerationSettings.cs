@@ -123,6 +123,12 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Tooltip("The starting number of dark matter voids, before being adjusted due to environmental factors.")]
         public int DarkMatterVoidBaseCount { get; init; }
 
+        [DisplayName("Apply Gravitational Effects to Cosmic Web")]
+        [Tooltip("Whether positions of nodes, filaments, sheets, and voids in the cosmic web should be adjusted due to gravity. Increases processing time.")]
+        public bool ApplyGravitationalEffectsToCosmicWeb { get; init; }
+
+
+
 
         [DisplayName("Average Dimension (Calculated)")]
         [Tooltip("Average of the map X, Y, and Z dimensions.")]
@@ -168,6 +174,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
             this.DarkMatterSheetBaseCount = ConfigConstants.DarkMatterSheetBaseCount;
             this.BaryonicMatterVoidBaseCount = ConfigConstants.BaryonicMatterVoidBaseCount;
             this.DarkMatterVoidBaseCount = ConfigConstants.DarkMatterVoidBaseCount;
+            this.ApplyGravitationalEffectsToCosmicWeb = ConfigConstants.ApplyGravitationalEffectsToCosmicWeb;
         }
 
         private float CalculateAverageDim()

@@ -20,7 +20,7 @@ public class ProtoplanetaryDiskGenerator : BaseGenerator<ProtoplanetaryDisk, Pro
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(ProtoplanetaryDisk self, ProtoplanetaryDiskContext context)
+    protected override Task PostProcess(ProtoplanetaryDisk self, ProtoplanetaryDiskContext context)
     {
         throw new NotImplementedException();
     }

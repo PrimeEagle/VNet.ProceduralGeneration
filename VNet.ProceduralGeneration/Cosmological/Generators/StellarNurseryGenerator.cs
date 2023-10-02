@@ -20,7 +20,7 @@ public class StellarNurseryGenerator : BaseGenerator<StellarNursery, StellarNurs
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(StellarNursery self, StellarNurseryContext context)
+    protected override Task PostProcess(StellarNursery self, StellarNurseryContext context)
     {
         throw new NotImplementedException();
     }

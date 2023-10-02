@@ -20,7 +20,7 @@ public class PlanetGenerator : BaseGenerator<Planet, PlanetContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(Planet self, PlanetContext context)
+    protected override Task PostProcess(Planet self, PlanetContext context)
     {
         throw new NotImplementedException();
     }

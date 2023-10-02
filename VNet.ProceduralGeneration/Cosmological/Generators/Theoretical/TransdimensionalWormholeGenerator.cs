@@ -20,7 +20,7 @@ public class TransdimensionalWormholeGenerator : BaseGenerator<TransdimensionalW
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(TransdimensionalWormhole self, TransdimensionalWormholeContext context)
+    protected override Task PostProcess(TransdimensionalWormhole self, TransdimensionalWormholeContext context)
     {
         throw new NotImplementedException();
     }

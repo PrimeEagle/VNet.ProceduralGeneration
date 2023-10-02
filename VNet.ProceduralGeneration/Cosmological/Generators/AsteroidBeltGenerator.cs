@@ -16,7 +16,7 @@ public class AsteroidBeltGenerator : BaseGenerator<AsteroidBelt, AsteroidBeltCon
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(AsteroidBelt self, AsteroidBeltContext context)
+    protected override Task PostProcess(AsteroidBelt self, AsteroidBeltContext context)
     {
         throw new NotImplementedException();
     }

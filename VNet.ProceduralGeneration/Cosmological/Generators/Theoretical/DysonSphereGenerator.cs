@@ -20,7 +20,7 @@ public class DysonSphereGenerator : BaseGenerator<DysonSphere, DysonSphereContex
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(DysonSphere self, DysonSphereContext context)
+    protected override Task PostProcess(DysonSphere self, DysonSphereContext context)
     {
         throw new NotImplementedException();
     }

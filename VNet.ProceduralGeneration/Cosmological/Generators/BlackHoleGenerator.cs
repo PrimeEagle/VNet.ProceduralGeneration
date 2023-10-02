@@ -20,7 +20,7 @@ public class BlackHoleGenerator : BaseGenerator<BlackHole, BlackHoleContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(BlackHole self, BlackHoleContext context)
+    protected override Task PostProcess(BlackHole self, BlackHoleContext context)
     {
         throw new NotImplementedException();
     }

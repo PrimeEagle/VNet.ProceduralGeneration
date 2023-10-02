@@ -20,7 +20,7 @@ public class CosmicTopologicalDefectGenerator : BaseGenerator<CosmicTopologicalD
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(CosmicTopologicalDefect self, CosmicTopologicalDefectContext context)
+    protected override Task PostProcess(CosmicTopologicalDefect self, CosmicTopologicalDefectContext context)
     {
         throw new NotImplementedException();
     }

@@ -20,7 +20,7 @@ public class StarClusterGenerator : BaseGenerator<StarCluster, StarClusterContex
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(StarCluster self, StarClusterContext context)
+    protected override Task PostProcess(StarCluster self, StarClusterContext context)
     {
         throw new NotImplementedException();
     }

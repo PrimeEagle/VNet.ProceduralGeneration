@@ -20,7 +20,7 @@ public class TemporalWormholeGenerator : BaseGenerator<TemporalWormhole, Tempora
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(TemporalWormhole self, TemporalWormholeContext context)
+    protected override Task PostProcess(TemporalWormhole self, TemporalWormholeContext context)
     {
         throw new NotImplementedException();
     }

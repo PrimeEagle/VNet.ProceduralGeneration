@@ -20,7 +20,7 @@ public class IcyCloudGenerator : BaseGenerator<IcyCloud, IcyCloudContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(IcyCloud self, IcyCloudContext context)
+    protected override Task PostProcess(IcyCloud self, IcyCloudContext context)
     {
         throw new NotImplementedException();
     }

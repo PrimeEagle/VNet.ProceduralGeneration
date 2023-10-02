@@ -20,7 +20,7 @@ public class KugelblitzGenerator : BaseGenerator<Kugelblitz, KugelblitzContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(Kugelblitz self, KugelblitzContext context)
+    protected override Task PostProcess(Kugelblitz self, KugelblitzContext context)
     {
         throw new NotImplementedException();
     }

@@ -20,7 +20,7 @@ public class QuasarGenerator : BaseGenerator<Quasar, QuasarContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(Quasar self, QuasarContext context)
+    protected override Task PostProcess(Quasar self, QuasarContext context)
     {
         throw new NotImplementedException();
     }

@@ -20,7 +20,7 @@ public class NakedSingularityGenerator : BaseGenerator<NakedSingularity, NakedSi
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(NakedSingularity self, NakedSingularityContext context)
+    protected override Task PostProcess(NakedSingularity self, NakedSingularityContext context)
     {
         throw new NotImplementedException();
     }

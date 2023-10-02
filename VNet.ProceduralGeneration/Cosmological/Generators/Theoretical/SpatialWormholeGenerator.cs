@@ -20,7 +20,7 @@ public class SpatialWormholeGenerator : BaseGenerator<SpatialWormhole, SpatialWo
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(SpatialWormhole self, SpatialWormholeContext context)
+    protected override Task PostProcess(SpatialWormhole self, SpatialWormholeContext context)
     {
         throw new NotImplementedException();
     }

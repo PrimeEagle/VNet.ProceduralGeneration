@@ -67,7 +67,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
         protected abstract Task<T> GenerateSelf(TContext context);
         protected abstract Task GenerateChildren(T self, TContext context);
-        protected abstract void PostProcess(T self, TContext context);
+        protected abstract Task PostProcess(T self, TContext context);
 
         public async Task<T> Generate(TContext context, IAstronomicalObject parent)
         {
@@ -88,7 +88,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
             if (enabled)
             {
-                PostProcess(self, context);
+                await PostProcess(self, context);
             }
 
             return self;

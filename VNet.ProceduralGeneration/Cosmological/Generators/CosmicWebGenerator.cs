@@ -38,8 +38,14 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         RebalanceDarkMatterNodeCounts(self.DarkMatterNodes, self, darkMatterNodeCount);
     }
 
-    protected override void PostProcess(CosmicWeb self, CosmicWebContext context)
+    protected override async Task PostProcess(CosmicWeb self, CosmicWebContext context)
     {
+        ApplyGravitationalEffects(self);
+    }
+
+    private void ApplyGravitationalEffects(CosmicWeb self)
+    {
+        if (!BasicSettings.ApplyGravitationalEffectsToCosmicWeb) return;
     }
 
     private CosmicWebTopology LoadCosmicTopology()
@@ -76,7 +82,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
             NodeIntensityThresholdFactor = AdvancedSettings.BaryonicMatterNode.TopologyIntensityThresholdFactor,
             NodeGradientMagnitudeThresholdFactor = AdvancedSettings.BaryonicMatterNode.TopologyGradientMagnitudeThresholdFactor
         };
-        
+
         var baryonicMatterNodeSpatialGrid = InitializeSpatialGrid(cosmicWeb, spatialGridContext);
         var baryonicMatterNodeContext = new BaryonicMatterNodeContext(cosmicWeb)
         {
@@ -100,8 +106,8 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         {
             NodeIntensityThresholdFactor = AdvancedSettings.DarkMatterNode.TopologyIntensityThresholdFactor,
             NodeGradientMagnitudeThresholdFactor = AdvancedSettings.DarkMatterNode.TopologyGradientMagnitudeThresholdFactor
-};
-        
+        };
+
         var darkMatterNodeSpatialGrid = InitializeSpatialGrid(cosmicWeb, spatialGridContext);
         var darkMatterNodeContext = new DarkMatterNodeContext(cosmicWeb)
         {

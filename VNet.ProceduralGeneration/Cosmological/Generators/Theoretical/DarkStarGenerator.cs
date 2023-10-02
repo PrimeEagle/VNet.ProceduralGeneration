@@ -20,7 +20,7 @@ public class DarkStarGenerator : BaseGenerator<DarkStar, DarkStarContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(DarkStar self, DarkStarContext context)
+    protected override Task PostProcess(DarkStar self, DarkStarContext context)
     {
         throw new NotImplementedException();
     }

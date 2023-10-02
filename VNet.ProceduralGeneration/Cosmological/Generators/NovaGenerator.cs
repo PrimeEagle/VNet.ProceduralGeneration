@@ -20,7 +20,7 @@ public class NovaGenerator : BaseGenerator<Nova, NovaContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(Nova self, NovaContext context)
+    protected override Task PostProcess(Nova self, NovaContext context)
     {
         throw new NotImplementedException();
     }
