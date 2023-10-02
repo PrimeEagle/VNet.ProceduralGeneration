@@ -29,10 +29,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Tooltip("When using multiple processor cores, the maximum number of parallel tasks that can be run. Level 4 objects are the lowest in the hierarchy and benefit the least from higher levels of parallelism.")]
         public int MaxDegreesOfParallelismLevel4 { get; init; }
 
-        [Required]
-        [DisplayName("Random Generator")]
-        [Tooltip("The random generation algorithm to use.")]
-        public IRandomGenerationAlgorithm RandomGenerator { get; init; }
 
 
 
@@ -42,7 +38,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
             this.MaxDegreesOfParallelismLevel2 = ConfigConstants.Application.MaxDegreesOfParallelismLevel2;
             this.MaxDegreesOfParallelismLevel3 = ConfigConstants.Application.MaxDegreesOfParallelismLevel3;
             this.MaxDegreesOfParallelismLevel4 = ConfigConstants.Application.MaxDegreesOfParallelismLevel4;
-            this.RandomGenerator = new DotNetGenerator();
         }
     }
 }

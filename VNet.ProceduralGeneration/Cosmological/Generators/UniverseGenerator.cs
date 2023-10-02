@@ -16,11 +16,11 @@ public class UniverseGenerator : BaseGenerator<Universe, UniverseContext>
     {
         var universe = new Universe(null)
         {
-            Age = AdvancedSettings.Application.RandomGenerator.NextSingle(BasicSettings.MinUniverseAge, BasicSettings.MaxUniverseAge),
-            DarkEnergyPercent = AdvancedSettings.Application.RandomGenerator.NextDouble(BasicSettings.MinDarkEnergyPercent, BasicSettings.MaxDarkEnergyPercent),
-            DarkMatterPercent = AdvancedSettings.Application.RandomGenerator.NextDouble(BasicSettings.MinDarkMatterPercent, BasicSettings.MaxDarkMatterPercent),
-            BaryonicMatterPercent = AdvancedSettings.Application.RandomGenerator.NextDouble(BasicSettings.MinBaryonicMatterPercent, BasicSettings.MaxBaryonicMatterPercent),
-            ConnectivityFactor = AdvancedSettings.Application.RandomGenerator.NextDouble(AdvancedSettings.Universe.MinConnectivityFactor, AdvancedSettings.Universe.MaxConnectivityFactor),
+            Age = AdvancedSettings.Universe.RandomGenerator.NextSingle(BasicSettings.MinUniverseAge, BasicSettings.MaxUniverseAge),
+            DarkEnergyPercent = AdvancedSettings.Universe.RandomGenerator.NextDouble(BasicSettings.MinDarkEnergyPercent, BasicSettings.MaxDarkEnergyPercent),
+            DarkMatterPercent = AdvancedSettings.Universe.RandomGenerator.NextDouble(BasicSettings.MinDarkMatterPercent, BasicSettings.MaxDarkMatterPercent),
+            BaryonicMatterPercent = AdvancedSettings.Universe.RandomGenerator.NextDouble(BasicSettings.MinBaryonicMatterPercent, BasicSettings.MaxBaryonicMatterPercent),
+            ConnectivityFactor = AdvancedSettings.Universe.RandomGenerator.NextDouble(AdvancedSettings.Universe.MinConnectivityFactor, AdvancedSettings.Universe.MaxConnectivityFactor),
             Position = new Vector3(0, 0, 0)
         };
 
@@ -28,7 +28,7 @@ public class UniverseGenerator : BaseGenerator<Universe, UniverseContext>
         var flatVal = AdvancedSettings.Universe.CurvatureFlatPercentage / 100;
         var sphericalVal = flatVal + AdvancedSettings.Universe.CurvatureSphericalPercentage / 100;
 
-        var randValue = AdvancedSettings.Application.RandomGenerator.NextDouble();
+        var randValue = AdvancedSettings.Universe.RandomGenerator.NextDouble();
 
         if (randValue < flatVal)
         {

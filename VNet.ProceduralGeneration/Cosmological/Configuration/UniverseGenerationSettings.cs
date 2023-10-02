@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using VNet.Configuration;
+using VNet.Mathematics.Randomization.Generation;
 using VNet.ProceduralGeneration.Cosmological.Configuration.Constants;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration
@@ -52,6 +53,12 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Tooltip("Probability of the curvature of the universe being hyperbolic, as a percentage.")]
         public float CurvatureHyperbolicPercentage { get; init; }
 
+        [Required]
+        [DisplayName("Random Generator")]
+        [Tooltip("The random generation algorithm to use.")]
+        public IRandomGenerationAlgorithm RandomGenerator { get; init; }
+
+
 
 
         public UniverseGenerationSettings()
@@ -64,6 +71,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
             this.CurvatureFlatPercentage = ConfigConstants.Universe.CurvatureFlatPercentage;
             this.CurvatureSphericalPercentage = ConfigConstants.Universe.CurvatureSphericalPercentage;
             this.CurvatureHyperbolicPercentage = ConfigConstants.Universe.CurvatureHyperbolicPercentage;
+            this.RandomGenerator = ConfigConstants.Universe.RandomGenerator;
         }
     }
 }

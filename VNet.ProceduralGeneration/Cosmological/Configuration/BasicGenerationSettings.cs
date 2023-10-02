@@ -79,9 +79,9 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 
         [Required]
         [FileExists]
-        [DisplayName("Heightmap Image File")]
+        [DisplayName("Heightmap File")]
         [Tooltip("A grayscale heightmap file which will be extruded into 3D and used to create the cosmic web.")]
-        public string HeightmapImageFile { get; init; }
+        public string HeightmapFile { get; init; }
 
         [Range(0, int.MaxValue)]
         [DisplayName("Baryonic Matter Node Base Count")]
@@ -150,6 +150,23 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Tooltip("The maximum distance allowed between dark matter nodes. After merging has been processed, for nodes closer than this value, the least intense one will be removed.")]
         public float TopologyDarkMatterNodeMinDistanceThreshold => this.TopologyDarkMatterNodeMergeDistanceThreshold * ConfigConstants.DarkMatterNode.TopologyMinDistanceThresholdFactor;
 
+        [Required]
+        [DirectoryExists]
+        [DisplayName("Heightmap Folder")]
+        [Tooltip("The folder that contains heightmap files.")]
+        public string HeightmapFolder { get; init; }
+
+        [Required]
+        [DirectoryExists]
+        [DisplayName("Lua Plugin Folder")]
+        [Tooltip("The folder that contains Lua plugins that should be loaded.")]
+        public string LuaPluginFolder { get; init; }
+
+        [Required]
+        [DirectoryExists]
+        [DisplayName("C# Plugin Folder")]
+        [Tooltip("The folder that contains C# plugins that should be loaded.")]
+        public string CSharpPluginFolder { get; init; }
 
 
 
@@ -175,6 +192,10 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
             this.BaryonicMatterVoidBaseCount = ConfigConstants.BaryonicMatterVoidBaseCount;
             this.DarkMatterVoidBaseCount = ConfigConstants.DarkMatterVoidBaseCount;
             this.ApplyGravitationalEffectsToCosmicWeb = ConfigConstants.ApplyGravitationalEffectsToCosmicWeb;
+            this.HeightmapFolder = ConfigConstants.HeightmapFolder;
+            this.LuaPluginFolder = ConfigConstants.LuaPluginFolder;
+            this.CSharpPluginFolder = ConfigConstants.CSharpPluginFolder;
+            this.HeightmapFile = ConfigConstants.HeightmapFile;
         }
 
         private float CalculateAverageDim()

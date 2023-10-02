@@ -55,7 +55,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 
     private CosmicWebTopology LoadCosmicTopology()
     {
-        var heightMapImage = HeightmapUtil.LoadImage(BasicSettings.HeightmapImageFile);
+        var heightMapImage = HeightmapUtil.LoadImage(BasicSettings.HeightmapFile);
 
         if (AdvancedSettings.Universe.GaussianSigma > 0f)
         {
@@ -201,18 +201,18 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 
         if (nodes.Count > maxAllowedNodes)
         {
-            var randomNodeCount = AdvancedSettings.Application.RandomGenerator.Next(minAllowedNodes, maxAllowedNodes + 1);
+            var randomNodeCount = AdvancedSettings.CosmicWeb.RandomGenerator.Next(minAllowedNodes, maxAllowedNodes + 1);
             nodes = nodes.OrderByDescending(node => node.Intensity).Take(randomNodeCount).ToList();
         }
 
-        var targetNodeCount = AdvancedSettings.Application.RandomGenerator.Next(minAllowedNodes, maxAllowedNodes + 1);
+        var targetNodeCount = AdvancedSettings.CosmicWeb.RandomGenerator.Next(minAllowedNodes, maxAllowedNodes + 1);
 
         while (nodes.Count < targetNodeCount)
         {
             var potentialNodes = GetPotentialBaryonicMatterNodes(nodes, cosmicWeb.Topology);
             if (potentialNodes.Count == 0) break;
 
-            var randomSeed = potentialNodes[AdvancedSettings.Application.RandomGenerator.Next(potentialNodes.Count)];
+            var randomSeed = potentialNodes[AdvancedSettings.CosmicWeb.RandomGenerator.Next(potentialNodes.Count)];
             nodes.Add(randomSeed);
         }
     }
@@ -271,18 +271,18 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 
         if (nodes.Count > maxAllowedNodes)
         {
-            var randomNodeCount = AdvancedSettings.Application.RandomGenerator.Next(minAllowedNodes, maxAllowedNodes + 1);
+            var randomNodeCount = AdvancedSettings.CosmicWeb.RandomGenerator.Next(minAllowedNodes, maxAllowedNodes + 1);
             nodes = nodes.OrderByDescending(node => node.Intensity).Take(randomNodeCount).ToList();
         }
 
-        var targetNodeCount = AdvancedSettings.Application.RandomGenerator.Next(minAllowedNodes, maxAllowedNodes + 1);
+        var targetNodeCount = AdvancedSettings.CosmicWeb.RandomGenerator.Next(minAllowedNodes, maxAllowedNodes + 1);
 
         while (nodes.Count < targetNodeCount)
         {
             var potentialNodes = GetPotentialDarkMatterNodes(nodes, cosmicWeb.Topology);
             if (potentialNodes.Count == 0) break;
 
-            var randomSeed = potentialNodes[AdvancedSettings.Application.RandomGenerator.Next(potentialNodes.Count)];
+            var randomSeed = potentialNodes[AdvancedSettings.CosmicWeb.RandomGenerator.Next(potentialNodes.Count)];
             nodes.Add(randomSeed);
         }
     }

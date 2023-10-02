@@ -1,4 +1,6 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.Configuration.Constants
+﻿using VNet.Mathematics.Randomization.Generation;
+
+namespace VNet.ProceduralGeneration.Cosmological.Configuration.Constants
 {
     internal static partial class ConfigConstants
     {
@@ -12,6 +14,7 @@
             internal static float CurvatureFlatPercentage { get; } = 90.0f;
             internal static float CurvatureSphericalPercentage { get; } = 5.0f;
             internal static float CurvatureHyperbolicPercentage { get; } = 5.0f;
+            internal static IRandomGenerationAlgorithm RandomGenerator { get; } = new DotNetGenerator();
         }
     }
 }

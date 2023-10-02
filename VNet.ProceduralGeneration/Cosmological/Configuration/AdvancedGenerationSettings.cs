@@ -6,6 +6,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
     {
         public ApplicationSettings Application { get; init; }
         public UniverseGenerationSettings Universe { get; init; }
+        public CosmicWebGenerationSettings CosmicWeb { get; init; }
         public BaryonicMatterNodeGenerationSettings BaryonicMatterNode { get; init; }
         public BaryonicMatterFilamentGenerationSettings BaryonicMatterFilament { get; init; }
         public BaryonicMatterSheetGenerationSettings BaryonicMatterSheet { get; init; }
@@ -20,6 +21,9 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 
         public AdvancedGenerationSettings()
         {
+            this.Application = new ApplicationSettings();
+            this.Universe = new UniverseGenerationSettings();
+            this.CosmicWeb = new CosmicWebGenerationSettings();
             this.BaryonicMatterNode = new BaryonicMatterNodeGenerationSettings();
             this.BaryonicMatterFilament = new BaryonicMatterFilamentGenerationSettings();
             this.BaryonicMatterSheet = new BaryonicMatterSheetGenerationSettings();
