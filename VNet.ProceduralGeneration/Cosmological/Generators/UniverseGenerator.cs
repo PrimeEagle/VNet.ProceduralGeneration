@@ -24,13 +24,24 @@ public class UniverseGenerator : BaseGenerator<Universe, UniverseContext>
             Position = new Vector3(0, 0, 0)
         };
 
+
+        var flatVal = AdvancedSettings.Universe.CurvatureFlatPercentage / 100;
+        var sphericalVal = flatVal + AdvancedSettings.Universe.CurvatureSphericalPercentage / 100;
+
         var randValue = AdvancedSettings.Application.RandomGenerator.NextDouble();
-        universe.Curvature = randValue switch
+
+        if (randValue < flatVal)
         {
-            < 0.90 => CurvatureType.Flat,
-            < 0.95 => CurvatureType.Spherical,
-            _ => CurvatureType.Hyperbolic
-        };
+            universe.Curvature = CurvatureType.Flat;
+        }
+        else if (randValue < sphericalVal)
+        {
+            universe.Curvature = CurvatureType.Spherical;
+        }
+        else
+        {
+            universe.Curvature = CurvatureType.Hyperbolic;
+        }
 
         var sum = universe.DarkEnergyPercent + universe.DarkMatterPercent + universe.BaryonicMatterPercent;
         universe.DarkEnergyPercent = (universe.DarkEnergyPercent / sum) * 100;

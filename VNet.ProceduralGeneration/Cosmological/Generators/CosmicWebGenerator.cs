@@ -27,12 +27,17 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
     {
         var baryonicMatterNodeCount = GetBaryonicMatterNodeCount(context, self.Topology.AverageIntensity);
         self.BaryonicMatterNodes = await GenerateBaryonicMatterNodes(self, baryonicMatterNodeCount);
+
+        ApplyZOffsetsToBaryonicMatterNodes(self.BaryonicMatterNodes);
+        SmoothZCoordinatesOfBaryonicMatterNodes(self.BaryonicMatterNodes);
         MergeBaryonicMatterNodes(self.BaryonicMatterNodes);
         ReduceBaryonicMatterNodes(self.BaryonicMatterNodes);
         RebalanceBaryonicMatterNodeCounts(self.BaryonicMatterNodes, self, baryonicMatterNodeCount);
 
         var darkMatterNodeCount = GetDarkMatterNodeCount(context, self.Topology.AverageIntensity);
         self.DarkMatterNodes = await GenerateDarkMatterNodes(self, darkMatterNodeCount);
+        ApplyZOffsetsToDarkMatterNodes(self.DarkMatterNodes);
+        SmoothZCoordinatesOfDarkMatterNodes(self.DarkMatterNodes);
         MergeDarkMatterNodes(self.DarkMatterNodes);
         ReduceDarkMatterNodes(self.DarkMatterNodes);
         RebalanceDarkMatterNodeCounts(self.DarkMatterNodes, self, darkMatterNodeCount);
@@ -191,8 +196,8 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 
     private void RebalanceBaryonicMatterNodeCounts(IList<BaryonicMatterNode> nodes, CosmicWeb cosmicWeb, int numberToGenerate)
     {
-        var minAllowedNodes = (int)(numberToGenerate * 0.9);
-        var maxAllowedNodes = (int)(numberToGenerate * 1.1);
+        var minAllowedNodes = (int)(numberToGenerate * (1 - AdvancedSettings.BaryonicMatterNode.CountTolerancePercentage / 100));
+        var maxAllowedNodes = (int)(numberToGenerate * (1 + AdvancedSettings.BaryonicMatterNode.CountTolerancePercentage / 100));
 
         if (nodes.Count > maxAllowedNodes)
         {
@@ -261,8 +266,8 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
 
     private void RebalanceDarkMatterNodeCounts(IList<DarkMatterNode> nodes, CosmicWeb cosmicWeb, int numberToGenerate)
     {
-        var minAllowedNodes = (int)(numberToGenerate * 0.9);
-        var maxAllowedNodes = (int)(numberToGenerate * 1.1);
+        var minAllowedNodes = (int)(numberToGenerate * (1 - AdvancedSettings.DarkMatterNode.CountTolerancePercentage / 100));
+        var maxAllowedNodes = (int)(numberToGenerate * (1 + AdvancedSettings.DarkMatterNode.CountTolerancePercentage / 100));
 
         if (nodes.Count > maxAllowedNodes)
         {
@@ -280,6 +285,22 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
             var randomSeed = potentialNodes[AdvancedSettings.Application.RandomGenerator.Next(potentialNodes.Count)];
             nodes.Add(randomSeed);
         }
+    }
+
+    private void ApplyZOffsetsToBaryonicMatterNodes(IList<BaryonicMatterNode> nodes)
+    {
+    }
+
+    private void SmoothZCoordinatesOfBaryonicMatterNodes(IList<BaryonicMatterNode> nodes)
+    {
+    }
+
+    private void ApplyZOffsetsToDarkMatterNodes(IList<DarkMatterNode> nodes)
+    {
+    }
+
+    private void SmoothZCoordinatesOfDarkMatterNodes(IList<DarkMatterNode> nodes)
+    {
     }
 
     private List<BaryonicMatterNode> GetPotentialBaryonicMatterNodes(IList<BaryonicMatterNode> nodes, CosmicWebTopology topology)
