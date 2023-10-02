@@ -15,6 +15,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         public DarkMatterFilamentGenerationSettings DarkMatterFilament { get; init; }
         public DarkMatterSheetGenerationSettings DarkMatterSheet { get; init; }
         public DarkMatterVoidGenerationSettings DarkMatterVoid { get; init; }
+        public PluginSettings Plugin { get; init; }
 
 
 
@@ -32,6 +33,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
             this.DarkMatterFilament = new DarkMatterFilamentGenerationSettings();
             this.DarkMatterSheet = new DarkMatterSheetGenerationSettings();
             this.DarkMatterVoid = new DarkMatterVoidGenerationSettings();
+            this.Plugin = new PluginSettings();
         }
     }
 }
