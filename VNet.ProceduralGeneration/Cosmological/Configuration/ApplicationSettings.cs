@@ -3,6 +3,7 @@ using System.ComponentModel;
 using VNet.Configuration;
 using VNet.Mathematics.Randomization.Generation;
 using VNet.ProceduralGeneration.Cosmological.Configuration.Constants;
+// ReSharper disable ClassNeverInstantiated.Global
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
@@ -41,10 +42,10 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 
         public ApplicationSettings()
         {
-            this.MaxDegreesOfParallelismLevel1 = ConfigConstants.MaxDegreesOfParallelismLevel1;
-            this.MaxDegreesOfParallelismLevel2 = ConfigConstants.MaxDegreesOfParallelismLevel2;
-            this.MaxDegreesOfParallelismLevel3 = ConfigConstants.MaxDegreesOfParallelismLevel3;
-            this.MaxDegreesOfParallelismLevel4 = ConfigConstants.MaxDegreesOfParallelismLevel4;
+            this.MaxDegreesOfParallelismLevel1 = ConfigConstants.Application.MaxDegreesOfParallelismLevel1;
+            this.MaxDegreesOfParallelismLevel2 = ConfigConstants.Application.MaxDegreesOfParallelismLevel2;
+            this.MaxDegreesOfParallelismLevel3 = ConfigConstants.Application.MaxDegreesOfParallelismLevel3;
+            this.MaxDegreesOfParallelismLevel4 = ConfigConstants.Application.MaxDegreesOfParallelismLevel4;
             this.RandomGenerator = new DotNetGenerator();
         }
     }

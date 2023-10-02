@@ -22,7 +22,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Required]
         [Range(0, 10e32)]
         [DisplayName("Baseline Cosmic Microwave Background")]
-        [Tooltip("The baseline cosmic microwave background to user for comparisons. Defaults to the cosmic microwave backgroud of the real univerrse. (Kelvin)")]
+        [Tooltip("The baseline cosmic microwave background to user for comparisons. Defaults to the cosmic microwave background of the real universe. (Kelvin)")]
         public double BaselineCosmicMicrowaveBackground { get; init; }
 
         [Required]
@@ -43,10 +43,11 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 
         public UniverseGenerationSettings()
         {
-            this.BaselineExpansionRate = ConfigConstants.BaselineExpansionRate;
-            this.BaselineCosmicMicrowaveBackground = ConfigConstants.BaselineCosmicMicrowaveBackground;
-            this.MinConnectivityFactor = ConfigConstants.MinConnectivityFactor;
-            this.MaxConnectivityFactor = ConfigConstants.MaxConnectivityFactor;
+            this.GaussianSigma = ConfigConstants.Universe.GaussianSigma;
+            this.BaselineExpansionRate = ConfigConstants.Universe.BaselineExpansionRate;
+            this.BaselineCosmicMicrowaveBackground = ConfigConstants.Universe.BaselineCosmicMicrowaveBackground;
+            this.MinConnectivityFactor = ConfigConstants.Universe.MinConnectivityFactor;
+            this.MaxConnectivityFactor = ConfigConstants.Universe.MaxConnectivityFactor;
         }
     }
 }

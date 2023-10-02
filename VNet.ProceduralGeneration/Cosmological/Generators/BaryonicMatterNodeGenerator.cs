@@ -19,8 +19,8 @@ public class BaryonicMatterNodeGenerator : BaseGenerator<BaryonicMatterNode, Bar
         var basePosition = context.SpatialGrid.FetchNextAvailableCell();
         if (!basePosition.HasValue) return node;
 
-        var nodePosition = new Vector3(basePosition.Value.Item1, basePosition.Value.Item2, basePosition.Value.Item3) + Util.GetRandomOffset(AdvancedSettings.BaryonicMatterNode.TopologyMaxPositionalOffset);
-        node.Position = nodePosition;
+        node.Position = new Vector3(basePosition.Value.Item1, basePosition.Value.Item2, basePosition.Value.Item3);
+        node.Position += Util.GetRandomOffset(AdvancedSettings.BaryonicMatterNode.TopologyMaxPositionalOffset);
 
         return node;
     }

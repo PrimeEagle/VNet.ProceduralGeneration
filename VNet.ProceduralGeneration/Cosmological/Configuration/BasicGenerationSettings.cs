@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Configuration.Constants;
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
@@ -24,42 +25,42 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 
         [Range(0d, 100d)]
         [LessThanOrEqualToProperty(nameof(MaxDarkEnergyPercent))]
-        [PercentageWithProperties("MinDarkMatterPercent, MinBaryonicMatterPercent")]
+        [PercentageWithProperties(new string[] { nameof(MinDarkMatterPercent), nameof(MinBaryonicMatterPercent) })]
         [DisplayName("Min Dark Energy Percent")]
         [Tooltip("Minimum amount of dark energy in the universe, as a percentage.")]
         public double MinDarkEnergyPercent { get; init; }
 
         [Range(0d, 100d)]
         [GreaterThanOrEqualToProperty(nameof(MinDarkEnergyPercent))]
-        [PercentageWithProperties("MaxDarkMatterPercent, MaxBaryonicMatterPercent")]
+        [PercentageWithProperties(new string[] { nameof(MaxDarkMatterPercent), nameof(MaxBaryonicMatterPercent) })]
         [DisplayName("Max Dark Energy Percent")]
         [Tooltip("Maximum amount of dark energy in the universe, as a percentage.")]
         public double MaxDarkEnergyPercent { get; init; }
 
         [Range(0d, 100d)]
         [LessThanOrEqualToProperty(nameof(MaxDarkMatterPercent))]
-        [PercentageWithProperties("MinDarkEnergyPercent, MinBaryonicMatterPercent")]
+        [PercentageWithProperties(new string[] { nameof(MinDarkEnergyPercent), nameof(MinBaryonicMatterPercent) })]
         [DisplayName("Min Dark Matter Percent")]
         [Tooltip("Minimum amount of dark matter in the universe, as a percentage.")]
         public double MinDarkMatterPercent { get; init; }
 
         [Range(0d, 100d)]
         [GreaterThanOrEqualToProperty(nameof(MinDarkMatterPercent))]
-        [PercentageWithProperties("MaxDarkEnergyPercent, MaxBaryonicMatterPercent")]
+        [PercentageWithProperties(new string[] { nameof(MaxDarkEnergyPercent), nameof(MaxBaryonicMatterPercent) })]
         [DisplayName("Max Dark Matter Percent")]
         [Tooltip("Maximum amount of dark matter in the universe, as a percentage.")]
         public double MaxDarkMatterPercent { get; init; }
 
         [Range(0d, 100d)]
         [LessThanOrEqualToProperty(nameof(MaxBaryonicMatterPercent))]
-        [PercentageWithProperties("MinDarkMatterPercent, MinDarkEnergyPercent")]
+        [PercentageWithProperties(new string[] { nameof(MinDarkMatterPercent), nameof(MinDarkEnergyPercent) })]
         [DisplayName("Min Baryonic Matter Percent")]
         [Tooltip("Minimum amount of baryonic matter (normal matter) in the universe, as a percentage.")]
         public double MinBaryonicMatterPercent { get; init; }
 
         [Range(0d, 100d)]
         [GreaterThanOrEqualToProperty(nameof(MinBaryonicMatterPercent))]
-        [PercentageWithProperties("MaxDarkMatterPercent, MaxDarkEnergyPercent")]
+        [PercentageWithProperties(new string[] { nameof(MaxDarkMatterPercent), nameof(MaxDarkEnergyPercent) })]
         [DisplayName("Max Baryonic Matter Percent")]
         [Tooltip("Maximum amount of baryonic matter (normal matter) in the universe, as a percentage.")]
         public double MaxBaryonicMatterPercent { get; init; }
@@ -125,50 +126,23 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 
         [DisplayName("Average Dimension (Calculated)")]
         [Tooltip("Average of the map X, Y, and Z dimensions.")]
-        public float AverageDimension
-        {
-            get { return CalculateAverageDim(); }
-        }
+        public float AverageDimension => CalculateAverageDim();
 
         [DisplayName("Baryonic Matter Node Merge Distance Threshold (Calculated)")]
         [Tooltip("The maximum distance at which nearby baryonic matter nodes will be merged.")]
-        public float TopologyBaryonicMatterNodeMergeDistanceThreshold
-        {
-            get
-            {
-                return ConfigConstants.BaryonicMatterNode.TopologyMergeDistanceThresholdFactor * this.AverageDimension;
-            }
-        }
+        public float TopologyBaryonicMatterNodeMergeDistanceThreshold => ConfigConstants.BaryonicMatterNode.TopologyMergeDistanceThresholdFactor * this.AverageDimension;
 
         [DisplayName("Baryonic Matter Node Max Distance (Calculated)")]
         [Tooltip("The maximum distance allowed between baryonic matter nodes. After merging has been processed, for nodes closer than this value, the least intense one will be removed.")]
-        public float TopologyBaryonicMatterNodeMinDistanceThreshold
-        {
-            get
-            {
-                return this.TopologyBaryonicMatterNodeMergeDistanceThreshold * ConfigConstants.BaryonicMatterNode.TopologyMinDistanceThresholdFactor;
-            }
-        }
+        public float TopologyBaryonicMatterNodeMinDistanceThreshold => this.TopologyBaryonicMatterNodeMergeDistanceThreshold * ConfigConstants.BaryonicMatterNode.TopologyMinDistanceThresholdFactor;
 
         [DisplayName("Dark Matter Node Merge Distance Threshold (Calculated)")]
         [Tooltip("The maximum distance at which nearby dark matter nodes will be merged.")]
-        public float TopologyDarkMatterNodeMergeDistanceThreshold
-        {
-            get
-            {
-                return ConfigConstants.DarkMatterNode.TopologyMergeDistanceThresholdFactor * this.AverageDimension;
-            }
-        }
+        public float TopologyDarkMatterNodeMergeDistanceThreshold => ConfigConstants.DarkMatterNode.TopologyMergeDistanceThresholdFactor * this.AverageDimension;
 
         [DisplayName("Dark Matter Node Max Distance (Calculated)")]
         [Tooltip("The maximum distance allowed between dark matter nodes. After merging has been processed, for nodes closer than this value, the least intense one will be removed.")]
-        public float TopologyDarkMatterNodeMinDistanceThreshold
-        {
-            get
-            {
-                return this.TopologyDarkMatterNodeMergeDistanceThreshold * ConfigConstants.DarkMatterNode.TopologyMinDistanceThresholdFactor;
-            }
-        }
+        public float TopologyDarkMatterNodeMinDistanceThreshold => this.TopologyDarkMatterNodeMergeDistanceThreshold * ConfigConstants.DarkMatterNode.TopologyMinDistanceThresholdFactor;
 
 
 
@@ -186,14 +160,14 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
             this.MaxBaryonicMatterPercent = ConfigConstants.MaxBaryonicMatterPercent;
             this.MinUniverseAge = ConfigConstants.MinUniverseAge;
             this.MaxUniverseAge = ConfigConstants.MaxUniverseAge;
-            this.BaryonicMatterFilamentBaseCount = ConfigConstants.BaryonicMatterFilament.BaseCount;
-            this.DarkMatterFilamentBaseCount = ConfigConstants.DarkMatterFilament.BaseCount;
-            this.BaryonicMatterNodeBaseCount = ConfigConstants.BaryonicMatterNode.BaseCount;
-            this.DarkMatterNodeBaseCount = ConfigConstants.DarkMatterNode.BaseCount;
-            this.BaryonicMatterSheetBaseCount = ConfigConstants.BaryonicMatterSheet.BaseCount;
-            this.DarkMatterSheetBaseCount = ConfigConstants.DarkMatterSheet.BaseCount;
-            this.BaryonicMatterVoidBaseCount = ConfigConstants.BaryonicMatterVoid.BaseCount;
-            this.DarkMatterVoidBaseCount = ConfigConstants.DarkMatterVoid.BaseCount;
+            this.BaryonicMatterFilamentBaseCount = ConfigConstants.BaryonicMatterFilamentBaseCount;
+            this.DarkMatterFilamentBaseCount = ConfigConstants.DarkMatterFilamentBaseCount;
+            this.BaryonicMatterNodeBaseCount = ConfigConstants.BaryonicMatterNodeBaseCount;
+            this.DarkMatterNodeBaseCount = ConfigConstants.DarkMatterNodeBaseCount;
+            this.BaryonicMatterSheetBaseCount = ConfigConstants.BaryonicMatterSheetBaseCount;
+            this.DarkMatterSheetBaseCount = ConfigConstants.DarkMatterSheetBaseCount;
+            this.BaryonicMatterVoidBaseCount = ConfigConstants.BaryonicMatterVoidBaseCount;
+            this.DarkMatterVoidBaseCount = ConfigConstants.DarkMatterVoidBaseCount;
         }
 
         private float CalculateAverageDim()

@@ -1,8 +1,8 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.Configuration
+namespace VNet.ProceduralGeneration.Cosmological.Contexts
 {
     public class SpatialGridContext
     {
-        public float NodeDensityThresholdFactor { get; init; }
+        public float NodeIntensityThresholdFactor { get; init; }
         public float NodeGradientMagnitudeThresholdFactor { get; init; }
     }
 }

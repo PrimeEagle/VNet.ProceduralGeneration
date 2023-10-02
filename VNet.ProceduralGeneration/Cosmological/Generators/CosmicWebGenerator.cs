@@ -74,7 +74,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
     {
         var spatialGridContext = new SpatialGridContext()
         {
-            NodeDensityThresholdFactor = AdvancedSettings.BaryonicMatterNode.TopologyDensityThresholdFactor,
+            NodeIntensityThresholdFactor = AdvancedSettings.BaryonicMatterNode.TopologyDensityThresholdFactor,
             NodeGradientMagnitudeThresholdFactor = AdvancedSettings.BaryonicMatterNode.TopologyGradientMagnitudeThresholdFactor
         };
         
@@ -99,7 +99,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
     {
         var spatialGridContext = new SpatialGridContext()
         {
-            NodeDensityThresholdFactor = AdvancedSettings.DarkMatterNode.TopologyDensityThresholdFactor,
+            NodeIntensityThresholdFactor = AdvancedSettings.DarkMatterNode.TopologyDensityThresholdFactor,
             NodeGradientMagnitudeThresholdFactor = AdvancedSettings.DarkMatterNode.TopologyGradientMagnitudeThresholdFactor
 };
         
@@ -124,14 +124,14 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
     {
         var volumeMap = cosmicWeb.Topology.VolumeMap;
         var gradientMap = cosmicWeb.Topology.GradientMap;
-        var densityThreshold = cosmicWeb.Topology.AverageIntensity * context.NodeDensityThresholdFactor;
-        var gradientMagnitudeThreshold = context.NodeGradientMagnitudeThresholdFactor;
+        var intensityThreshold = cosmicWeb.Topology.AverageIntensity * context.NodeIntensityThresholdFactor;
+        var gradientMagnitudeThreshold = cosmicWeb.Topology.MaxGradientMagnitude * context.NodeGradientMagnitudeThresholdFactor;
 
         var spatialGrid = new SpatialGrid(volumeMap, (x, y, z) =>
         {
             var gradient = gradientMap[x, y, z];
             var intensity = volumeMap[x, y, z];
-            return intensity > densityThreshold && gradient.Length() > gradientMagnitudeThreshold ? SpatialGridCellStatus.Available : SpatialGridCellStatus.Unavailable;
+            return intensity > intensityThreshold && gradient.Length() > gradientMagnitudeThreshold ? SpatialGridCellStatus.Available : SpatialGridCellStatus.Unavailable;
         });
 
         return spatialGrid;

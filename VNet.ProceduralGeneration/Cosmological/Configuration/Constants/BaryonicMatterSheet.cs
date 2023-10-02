@@ -2,10 +2,9 @@
 {
     internal static partial class ConfigConstants
     {
-        internal static class BaryonicMatterFilament
+        internal static class BaryonicMatterSheet
         {
-            internal static int BaseCount { get; } = 1000;
-            internal static double CountAgeFactor { get; } = 10.0e-9;
+            internal static double CountAgeFactor { get; } = 5.0e-9;
             internal static double CountMassFactor { get; } = 1 / 1e30;
             internal static double CountSizeFactor { get; } = 1 / 1e9;
             internal static double CountBaryonicMatterPercentFactor { get; } = 100;

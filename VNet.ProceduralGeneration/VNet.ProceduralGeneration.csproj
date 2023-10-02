@@ -25,7 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\VNet.Configuration\VNet.Configuration\VNet.Configuration.csproj" />
-    <ProjectReference Include="..\..\VNet.Scientific\VNet.Scientific\VNet.Scientific.csproj" />
+    <ProjectReference Include="..\..\VNet.Mathematics\VNet.Mathematics\VNet.Mathematics.csproj" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
