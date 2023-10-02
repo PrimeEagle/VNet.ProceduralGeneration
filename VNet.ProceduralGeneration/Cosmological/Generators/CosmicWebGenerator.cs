@@ -74,7 +74,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
     {
         var spatialGridContext = new SpatialGridContext()
         {
-            NodeIntensityThresholdFactor = AdvancedSettings.BaryonicMatterNode.TopologyDensityThresholdFactor,
+            NodeIntensityThresholdFactor = AdvancedSettings.BaryonicMatterNode.TopologyIntensityThresholdFactor,
             NodeGradientMagnitudeThresholdFactor = AdvancedSettings.BaryonicMatterNode.TopologyGradientMagnitudeThresholdFactor
         };
         
@@ -99,7 +99,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
     {
         var spatialGridContext = new SpatialGridContext()
         {
-            NodeIntensityThresholdFactor = AdvancedSettings.DarkMatterNode.TopologyDensityThresholdFactor,
+            NodeIntensityThresholdFactor = AdvancedSettings.DarkMatterNode.TopologyIntensityThresholdFactor,
             NodeGradientMagnitudeThresholdFactor = AdvancedSettings.DarkMatterNode.TopologyGradientMagnitudeThresholdFactor
 };
         
@@ -280,7 +280,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
     private List<BaryonicMatterNode> GetPotentialBaryonicMatterNodes(IList<BaryonicMatterNode> nodes, CosmicWebTopology topology)
     {
         var potentialNodes = new List<BaryonicMatterNode>();
-        var densityThreshold = topology.AverageIntensity * AdvancedSettings.BaryonicMatterNode.TopologyDensityThresholdFactor;
+        var intensityThreshold = topology.AverageIntensity * AdvancedSettings.BaryonicMatterNode.TopologyIntensityThresholdFactor;
         var gradientMagnitudeThreshold = topology.MaxGradientMagnitude * AdvancedSettings.BaryonicMatterNode.TopologyGradientMagnitudeThresholdFactor;
 
         var width = topology.VolumeMap.GetLength(0);
@@ -294,7 +294,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
                 for (var z = 0; z < depth; z++)
                 {
                     var intensity = topology.VolumeMap[x, y, z];
-                    if (intensity <= densityThreshold) continue;
+                    if (intensity <= intensityThreshold) continue;
 
                     var gradient = topology.GradientMap[x, y, z];
                     if (gradient.Length() <= gradientMagnitudeThreshold) continue;
@@ -319,7 +319,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
     private List<DarkMatterNode> GetPotentialDarkMatterNodes(IList<DarkMatterNode> nodes, CosmicWebTopology topology)
     {
         var potentialNodes = new List<DarkMatterNode>();
-        var densityThreshold = topology.AverageIntensity * AdvancedSettings.DarkMatterNode.TopologyDensityThresholdFactor;
+        var intensityThreshold = topology.AverageIntensity * AdvancedSettings.DarkMatterNode.TopologyIntensityThresholdFactor;
         var gradientMagnitudeThreshold = topology.MaxGradientMagnitude * AdvancedSettings.DarkMatterNode.TopologyGradientMagnitudeThresholdFactor;
 
         var width = topology.VolumeMap.GetLength(0);
@@ -333,7 +333,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
                 for (var z = 0; z < depth; z++)
                 {
                     var intensity = topology.VolumeMap[x, y, z];
-                    if (intensity <= densityThreshold) continue;
+                    if (intensity <= intensityThreshold) continue;
 
                     var gradient = topology.GradientMap[x, y, z];
                     if (gradient.Length() <= gradientMagnitudeThreshold) continue;

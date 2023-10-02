@@ -10,7 +10,6 @@
             internal static double CountBaryonicMatterPercentFactor { get; } = 100;
             internal static double CountDarkMatterPercentFactor { get; } = 200;
             internal static double CountDarkEnergyPercentFactor { get; } = 100;
-            internal static float TopologyDensityThresholdFactor { get; } = 1.2f;
             internal static float TopologyGradientMagnitudeThresholdFactor { get; } = 0.2f;
             internal static float TopologyIntensityThresholdFactor { get; } = 1.2f;
             internal static float TopologyMergeDistanceThresholdFactor { get; } = 0.2f;

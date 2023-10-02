@@ -25,13 +25,13 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Range(0, 100)]
         [PercentageWithProperties(new string[] { nameof(CountDarkMatterPercentFactor), nameof(CountDarkEnergyPercentFactor) })]
         [DisplayName("Count Baryonic Matter Percent Factor")]
-        [Tooltip("Weighting factor for the percentage of baryonic matter (normal matter) in the universe on baryonic matter (normal matter) node count. Higher value results in less nodes.")]
+        [Tooltip("Weighting factor for the percentage of baryonic matter (normal matter) in the universe on baryonic matter (normal matter) node count. Higher value results in fewer nodes.")]
         public double CountBaryonicMatterPercentFactor { get; init; }
 
         [Range(0, 100)]
         [PercentageWithProperties(new string[] { nameof(CountBaryonicMatterPercentFactor), nameof(CountDarkEnergyPercentFactor) })]
         [DisplayName("Count Dark Matter Percent Factor")]
-        [Tooltip("Weighting factor for the percentage of dark matter in the universe on baryonic matter (normal matter) node count. Higher value results in less nodes.")]
+        [Tooltip("Weighting factor for the percentage of dark matter in the universe on baryonic matter (normal matter) node count. Higher value results in fewer nodes.")]
         public double CountDarkMatterPercentFactor { get; init; }
 
         [Range(0, 100)]
@@ -41,33 +41,28 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         public double CountDarkEnergyPercentFactor { get; init; }
 
         [Range(0, float.MaxValue)]
-        [DisplayName("Topology Density Threshold Factor")]
-        [Tooltip("Weighting factor for ")]
-        public float TopologyDensityThresholdFactor { get; init; }
-
-        [Range(0, float.MaxValue)]
-        [DisplayName("Topology Gradient Magnitude Threshold Factor")]
-        [Tooltip("Weighting factor for ")]
-        public float TopologyGradientMagnitudeThresholdFactor { get; init; }
-
-        [Range(0, float.MaxValue)]
         [DisplayName("Topology Intensity Threshold Factor")]
-        [Tooltip("Weighting factor for ")]
+        [Tooltip("Weighting factor for the average intensity of the heightmap. Used to find nodes. Higher value results in fewer nodes.")]
         public float TopologyIntensityThresholdFactor { get; init; }
 
         [Range(0, float.MaxValue)]
+        [DisplayName("Topology Gradient Magnitude Threshold Factor")]
+        [Tooltip("Weighting factor for the max gradient of the heightmap. Used to find nodes. Higher value results in fewer nodes.")]
+        public float TopologyGradientMagnitudeThresholdFactor { get; init; }
+
+        [Range(0, float.MaxValue)]
         [DisplayName("Topology Merge Distance Threshold Factor")]
-        [Tooltip("Weighting factor for ")]
+        [Tooltip("Weighting factor for merge distance between nodes. Used to merge nodes. Higher value results in fewer, but bigger, nodes. ")]
         public float TopologyMergeDistanceThresholdFactor { get; init; }
 
         [Range(0, float.MaxValue)]
         [DisplayName("Topology Min Distance Threshold Factor")]
-        [Tooltip("Weighting factor for ")]
+        [Tooltip("Weighting factor for distance between nodes. Used to remove the less intense of nodes that are too close. Higher value results in fewer nodes.")]
         public float TopologyMinDistanceThresholdFactor { get; init; }
 
         [Range(0, float.MaxValue)]
         [DisplayName("Topology Max Positional Offset")]
-        [Tooltip("")]
+        [Tooltip("When positioning nodes, the max distance they can randomly deviate from positions calculated from the heightmap.")]
         public float TopologyMaxPositionalOffset { get; init; }
 
 
@@ -81,7 +76,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
             this.CountBaryonicMatterPercentFactor = ConfigConstants.BaryonicMatterNode.CountBaryonicMatterPercentFactor;
             this.CountDarkMatterPercentFactor = ConfigConstants.BaryonicMatterNode.CountDarkMatterPercentFactor;
             this.CountDarkEnergyPercentFactor = ConfigConstants.BaryonicMatterNode.CountDarkEnergyPercentFactor;
-            this.TopologyDensityThresholdFactor = ConfigConstants.BaryonicMatterNode.TopologyDensityThresholdFactor;
             this.TopologyGradientMagnitudeThresholdFactor = ConfigConstants.BaryonicMatterNode.TopologyGradientMagnitudeThresholdFactor;
             this.TopologyIntensityThresholdFactor = ConfigConstants.BaryonicMatterNode.TopologyIntensityThresholdFactor;
             this.TopologyMergeDistanceThresholdFactor = ConfigConstants.BaryonicMatterNode.TopologyMergeDistanceThresholdFactor;
