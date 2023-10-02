@@ -1,6 +1,5 @@
 ﻿using System.Numerics;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
-using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Heightmap;
