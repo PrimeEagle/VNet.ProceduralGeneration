@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class StarGenerator : GeneratorBase<Star, StarContext>
     {
     }
 
-    protected override Task<Star> GenerateSelf(StarContext context)
+    protected override Task<Star> GenerateSelf(StarContext context, Star self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(Star self, StarContext context)
+    protected override Task GenerateChildren(StarContext context, Star self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(Star self, StarContext context)
+    protected override Task PostProcess(StarContext context, Star self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(StarContext context, Star self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(StarContext context, Star self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(StarContext context, Star self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(StarContext context, Star self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(StarContext context, Star self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(StarContext context, Star self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(StarContext context, Star self)
     {
         throw new NotImplementedException();
     }

@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class NakedSingularityGenerator : GeneratorBase<NakedSingularity, NakedSi
     {
     }
 
-    protected override Task<NakedSingularity> GenerateSelf(NakedSingularityContext context)
+    protected override Task<NakedSingularity> GenerateSelf(NakedSingularityContext context, NakedSingularity self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(NakedSingularity self, NakedSingularityContext context)
+    protected override Task GenerateChildren(NakedSingularityContext context, NakedSingularity self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(NakedSingularity self, NakedSingularityContext context)
+    protected override Task PostProcess(NakedSingularityContext context, NakedSingularity self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(NakedSingularityContext context, NakedSingularity self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(NakedSingularityContext context, NakedSingularity self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(NakedSingularityContext context, NakedSingularity self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(NakedSingularityContext context, NakedSingularity self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(NakedSingularityContext context, NakedSingularity self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(NakedSingularityContext context, NakedSingularity self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(NakedSingularityContext context, NakedSingularity self)
     {
         throw new NotImplementedException();
     }

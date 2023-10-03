@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class IntergalacticMediumGenerator : GeneratorBase<IntergalacticMedium, I
     {
     }
 
-    protected override Task<IntergalacticMedium> GenerateSelf(IntergalacticMediumContext context)
+    protected override Task<IntergalacticMedium> GenerateSelf(IntergalacticMediumContext context, IntergalacticMedium self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(IntergalacticMedium self, IntergalacticMediumContext context)
+    protected override Task GenerateChildren(IntergalacticMediumContext context, IntergalacticMedium self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(IntergalacticMedium self, IntergalacticMediumContext context)
+    protected override Task PostProcess(IntergalacticMediumContext context, IntergalacticMedium self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(IntergalacticMediumContext context, IntergalacticMedium self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(IntergalacticMediumContext context, IntergalacticMedium self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(IntergalacticMediumContext context, IntergalacticMedium self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(IntergalacticMediumContext context, IntergalacticMedium self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(IntergalacticMediumContext context, IntergalacticMedium self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(IntergalacticMediumContext context, IntergalacticMedium self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(IntergalacticMediumContext context, IntergalacticMedium self)
     {
         throw new NotImplementedException();
     }

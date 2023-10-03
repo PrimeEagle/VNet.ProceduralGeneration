@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class StarClusterGenerator : GeneratorBase<StarCluster, StarClusterContex
     {
     }
 
-    protected override Task<StarCluster> GenerateSelf(StarClusterContext context)
+    protected override Task<StarCluster> GenerateSelf(StarClusterContext context, StarCluster self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(StarCluster self, StarClusterContext context)
+    protected override Task GenerateChildren(StarClusterContext context, StarCluster self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(StarCluster self, StarClusterContext context)
+    protected override Task PostProcess(StarClusterContext context, StarCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(StarClusterContext context, StarCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(StarClusterContext context, StarCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(StarClusterContext context, StarCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(StarClusterContext context, StarCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(StarClusterContext context, StarCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(StarClusterContext context, StarCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(StarClusterContext context, StarCluster self)
     {
         throw new NotImplementedException();
     }

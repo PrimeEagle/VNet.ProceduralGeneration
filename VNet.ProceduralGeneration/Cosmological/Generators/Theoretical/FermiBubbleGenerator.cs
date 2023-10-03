@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class FermiBubbleGenerator : GeneratorBase<FermiBubble, FermiBubbleContex
     {
     }
 
-    protected override Task<FermiBubble> GenerateSelf(FermiBubbleContext context)
+    protected override Task<FermiBubble> GenerateSelf(FermiBubbleContext context, FermiBubble self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(FermiBubble self, FermiBubbleContext context)
+    protected override Task GenerateChildren(FermiBubbleContext context, FermiBubble self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(FermiBubble self, FermiBubbleContext context)
+    protected override Task PostProcess(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(FermiBubbleContext context, FermiBubble self)
     {
         throw new NotImplementedException();
     }

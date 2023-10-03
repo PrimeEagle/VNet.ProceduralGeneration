@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class QuasarGenerator : GeneratorBase<Quasar, QuasarContext>
     {
     }
 
-    protected override Task<Quasar> GenerateSelf(QuasarContext context)
+    protected override Task<Quasar> GenerateSelf(QuasarContext context, Quasar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(Quasar self, QuasarContext context)
+    protected override Task GenerateChildren(QuasarContext context, Quasar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(Quasar self, QuasarContext context)
+    protected override Task PostProcess(QuasarContext context, Quasar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(QuasarContext context, Quasar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(QuasarContext context, Quasar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(QuasarContext context, Quasar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(QuasarContext context, Quasar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(QuasarContext context, Quasar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(QuasarContext context, Quasar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(QuasarContext context, Quasar self)
     {
         throw new NotImplementedException();
     }

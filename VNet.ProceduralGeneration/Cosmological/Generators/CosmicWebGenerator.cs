@@ -14,17 +14,14 @@ public class CosmicWebGenerator : GeneratorBase<CosmicWeb, CosmicWebContext>
         enabled = ObjectToggles.CosmicWebEnabled;
     }
 
-    protected override async Task<CosmicWeb> GenerateSelf(CosmicWebContext context)
+    protected override async Task<CosmicWeb> GenerateSelf(CosmicWebContext context, CosmicWeb self)
     {
-        var cosmicWeb = new CosmicWeb
-        {
-            Topology = LoadCosmicTopology()
-        };
+        self.Topology = LoadCosmicTopology();
 
-        return cosmicWeb;
+        return self;
     }
 
-    protected override async Task GenerateChildren(CosmicWeb self, CosmicWebContext context)
+    protected override async Task GenerateChildren(CosmicWebContext context, CosmicWeb self)
     {
         var baryonicMatterNodeCount = GetBaryonicMatterNodeCount(context, self.Topology.AverageIntensity);
         self.BaryonicMatterNodes = await GenerateBaryonicMatterNodes(self, baryonicMatterNodeCount);
@@ -43,9 +40,44 @@ public class CosmicWebGenerator : GeneratorBase<CosmicWeb, CosmicWebContext>
         RebalanceDarkMatterNodeCounts(self.DarkMatterNodes, self, darkMatterNodeCount);
     }
 
-    protected override async Task PostProcess(CosmicWeb self, CosmicWebContext context)
+    protected override async Task PostProcess(CosmicWebContext context, CosmicWeb self)
     {
         ApplyGravitationalEffects(self);
+    }
+
+    protected override float CalculateAge(CosmicWebContext context, CosmicWeb self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(CosmicWebContext context, CosmicWeb self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(CosmicWebContext context, CosmicWeb self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(CosmicWebContext context, CosmicWeb self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(CosmicWebContext context, CosmicWeb self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(CosmicWebContext context, CosmicWeb self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(CosmicWebContext context, CosmicWeb self)
+    {
+        return new Vector3(0, 0, 0);
     }
 
     private void ApplyGravitationalEffects(CosmicWeb self)

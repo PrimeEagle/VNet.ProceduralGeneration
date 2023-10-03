@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,53 @@ public class AsteroidGenerator : GeneratorBase<Asteroid, AsteroidContext>
     {
     }
 
-    protected override Task<Asteroid> GenerateSelf(AsteroidContext context)
+
+    protected override Task<Asteroid> GenerateSelf(AsteroidContext context, Asteroid self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(Asteroid self, AsteroidContext context)
+    protected override Task GenerateChildren(AsteroidContext context, Asteroid self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(Asteroid self, AsteroidContext context)
+    protected override Task PostProcess(AsteroidContext context, Asteroid self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(AsteroidContext context, Asteroid self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(AsteroidContext context, Asteroid self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(AsteroidContext context, Asteroid self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(AsteroidContext context, Asteroid self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(AsteroidContext context, Asteroid self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(AsteroidContext context, Asteroid self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(AsteroidContext context, Asteroid self)
     {
         throw new NotImplementedException();
     }

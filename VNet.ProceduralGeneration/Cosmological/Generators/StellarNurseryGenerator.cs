@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class StellarNurseryGenerator : GeneratorBase<StellarNursery, StellarNurs
     {
     }
 
-    protected override Task<StellarNursery> GenerateSelf(StellarNurseryContext context)
+    protected override Task<StellarNursery> GenerateSelf(StellarNurseryContext context, StellarNursery self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(StellarNursery self, StellarNurseryContext context)
+    protected override Task GenerateChildren(StellarNurseryContext context, StellarNursery self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(StellarNursery self, StellarNurseryContext context)
+    protected override Task PostProcess(StellarNurseryContext context, StellarNursery self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(StellarNurseryContext context, StellarNursery self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(StellarNurseryContext context, StellarNursery self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(StellarNurseryContext context, StellarNursery self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(StellarNurseryContext context, StellarNursery self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(StellarNurseryContext context, StellarNursery self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(StellarNurseryContext context, StellarNursery self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(StellarNurseryContext context, StellarNursery self)
     {
         throw new NotImplementedException();
     }

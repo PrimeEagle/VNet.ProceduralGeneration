@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class CosmicStringGenerator : GeneratorBase<CosmicString, CosmicStringCon
     {
     }
 
-    protected override Task<CosmicString> GenerateSelf(CosmicStringContext context)
+    protected override Task<CosmicString> GenerateSelf(CosmicStringContext context, CosmicString self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(CosmicString self, CosmicStringContext context)
+    protected override Task GenerateChildren(CosmicStringContext context, CosmicString self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(CosmicString self, CosmicStringContext context)
+    protected override Task PostProcess(CosmicStringContext context, CosmicString self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(CosmicStringContext context, CosmicString self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(CosmicStringContext context, CosmicString self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(CosmicStringContext context, CosmicString self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(CosmicStringContext context, CosmicString self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(CosmicStringContext context, CosmicString self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(CosmicStringContext context, CosmicString self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(CosmicStringContext context, CosmicString self)
     {
         throw new NotImplementedException();
     }

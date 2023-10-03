@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class DarkMatterSheetGenerator : GeneratorBase<DarkMatterSheet, DarkMatte
     {
     }
 
-    protected override Task<DarkMatterSheet> GenerateSelf(DarkMatterSheetContext context)
+    protected override Task<DarkMatterSheet> GenerateSelf(DarkMatterSheetContext context, DarkMatterSheet self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(DarkMatterSheet self, DarkMatterSheetContext context)
+    protected override Task GenerateChildren(DarkMatterSheetContext context, DarkMatterSheet self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(DarkMatterSheet self, DarkMatterSheetContext context)
+    protected override Task PostProcess(DarkMatterSheetContext context, DarkMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(DarkMatterSheetContext context, DarkMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(DarkMatterSheetContext context, DarkMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(DarkMatterSheetContext context, DarkMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(DarkMatterSheetContext context, DarkMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(DarkMatterSheetContext context, DarkMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(DarkMatterSheetContext context, DarkMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(DarkMatterSheetContext context, DarkMatterSheet self)
     {
         throw new NotImplementedException();
     }

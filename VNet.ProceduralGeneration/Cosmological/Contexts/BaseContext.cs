@@ -8,8 +8,8 @@ namespace VNet.ProceduralGeneration.Cosmological.Contexts
         public float Age { get; set; }                      // years
         public double Mass { get; set; }                    // kg
         public float Size { get; set; }                     // AU
-        public double Magnitude { get; set; }               // 
-        public double Temperature { get; set; }             // Kelvin
+        public float AbsoluteMagnitude { get; set; }        // 
+        public float Temperature { get; set; }              // Kelvin
         public Vector3 Position { get; set; }               // AU
 
 
@@ -19,7 +19,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Contexts
             this.Age= astronomicalObject.Age;
             this.Mass = astronomicalObject.Mass;
             this.Size = astronomicalObject.Size;
-            this.Magnitude = astronomicalObject.Magnitude;
+            this.AbsoluteMagnitude = astronomicalObject.AbsoluteMagnitude;
             this.Temperature = astronomicalObject.Temperature;
             this.Position = astronomicalObject.Position;
         }

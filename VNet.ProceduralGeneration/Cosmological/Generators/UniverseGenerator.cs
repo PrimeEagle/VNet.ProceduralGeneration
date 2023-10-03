@@ -13,17 +13,13 @@ public class UniverseGenerator : GeneratorBase<Universe, UniverseContext>
         enabled = ObjectToggles.UniverseEnabled;
     }
 
-    protected override async Task<Universe> GenerateSelf(UniverseContext context)
+    protected override async Task<Universe> GenerateSelf(UniverseContext context, Universe self)
     {
-        var universe = new Universe(null)
-        {
-            Age = AdvancedSettings.Universe.RandomGenerator.NextSingle(BasicSettings.MinUniverseAge, BasicSettings.MaxUniverseAge),
-            DarkEnergyPercent = AdvancedSettings.Universe.RandomGenerator.NextDouble(BasicSettings.MinDarkEnergyPercent, BasicSettings.MaxDarkEnergyPercent),
-            DarkMatterPercent = AdvancedSettings.Universe.RandomGenerator.NextDouble(BasicSettings.MinDarkMatterPercent, BasicSettings.MaxDarkMatterPercent),
-            BaryonicMatterPercent = AdvancedSettings.Universe.RandomGenerator.NextDouble(BasicSettings.MinBaryonicMatterPercent, BasicSettings.MaxBaryonicMatterPercent),
-            ConnectivityFactor = AdvancedSettings.Universe.RandomGenerator.NextDouble(AdvancedSettings.Universe.MinConnectivityFactor, AdvancedSettings.Universe.MaxConnectivityFactor),
-            Position = new Vector3(0, 0, 0)
-        };
+        self.DarkEnergyPercent = AdvancedSettings.Universe.RandomGenerator.NextDouble(BasicSettings.MinDarkEnergyPercent, BasicSettings.MaxDarkEnergyPercent);
+        self.DarkMatterPercent = AdvancedSettings.Universe.RandomGenerator.NextDouble(BasicSettings.MinDarkMatterPercent, BasicSettings.MaxDarkMatterPercent);
+        self.BaryonicMatterPercent = AdvancedSettings.Universe.RandomGenerator.NextDouble(BasicSettings.MinBaryonicMatterPercent, BasicSettings.MaxBaryonicMatterPercent);
+        self.ConnectivityFactor = AdvancedSettings.Universe.RandomGenerator.NextDouble(AdvancedSettings.Universe.MinConnectivityFactor, AdvancedSettings.Universe.MaxConnectivityFactor);
+        self.Position = new Vector3(0, 0, 0);
 
 
         var flatVal = AdvancedSettings.Universe.CurvatureFlatPercentage / 100;
@@ -33,27 +29,27 @@ public class UniverseGenerator : GeneratorBase<Universe, UniverseContext>
 
         if (randValue < flatVal)
         {
-            universe.Curvature = CurvatureType.Flat;
+            self.Curvature = CurvatureType.Flat;
         }
         else if (randValue < sphericalVal)
         {
-            universe.Curvature = CurvatureType.Spherical;
+            self.Curvature = CurvatureType.Spherical;
         }
         else
         {
-            universe.Curvature = CurvatureType.Hyperbolic;
+            self.Curvature = CurvatureType.Hyperbolic;
         }
 
-        var sum = universe.DarkEnergyPercent + universe.DarkMatterPercent + universe.BaryonicMatterPercent;
-        universe.DarkEnergyPercent = (universe.DarkEnergyPercent / sum) * 100;
-        universe.DarkMatterPercent = (universe.DarkMatterPercent / sum) * 100;
-        universe.BaryonicMatterPercent = 100 - universe.DarkEnergyPercent - universe.DarkMatterPercent;
-        universe.ApplyInflationEffects();
+        var sum = self.DarkEnergyPercent + self.DarkMatterPercent + self.BaryonicMatterPercent;
+        self.DarkEnergyPercent = (self.DarkEnergyPercent / sum) * 100;
+        self.DarkMatterPercent = (self.DarkMatterPercent / sum) * 100;
+        self.BaryonicMatterPercent = 100 - self.DarkEnergyPercent - self.DarkMatterPercent;
+        self.ApplyInflationEffects();
 
-        return universe;
+        return self;
     }
 
-    protected override async Task GenerateChildren(Universe self, UniverseContext context)
+    protected override async Task GenerateChildren(UniverseContext context, Universe self)
     {
         var cosmicWebGenerator = new CosmicWebGenerator(this.eventAggregator);
         var cosmicWebContext = new CosmicWebContext(self);
@@ -61,8 +57,43 @@ public class UniverseGenerator : GeneratorBase<Universe, UniverseContext>
         self.CosmicWeb = await Task.Run(() => cosmicWebGenerator.Generate(cosmicWebContext, self));
     }
 
-    protected override Task PostProcess(Universe self, UniverseContext context)
+    protected override Task PostProcess(UniverseContext context, Universe self)
     {
         return null;
+    }
+
+    protected override float CalculateAge(UniverseContext context, Universe self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(UniverseContext context, Universe self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(UniverseContext context, Universe self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(UniverseContext context, Universe self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(UniverseContext context, Universe self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(UniverseContext context, Universe self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(UniverseContext context, Universe self)
+    {
+        throw new NotImplementedException();
     }
 }

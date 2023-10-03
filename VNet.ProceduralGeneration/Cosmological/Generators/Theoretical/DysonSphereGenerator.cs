@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class DysonSphereGenerator : GeneratorBase<DysonSphere, DysonSphereContex
     {
     }
 
-    protected override Task<DysonSphere> GenerateSelf(DysonSphereContext context)
+    protected override Task<DysonSphere> GenerateSelf(DysonSphereContext context, DysonSphere self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(DysonSphere self, DysonSphereContext context)
+    protected override Task GenerateChildren(DysonSphereContext context, DysonSphere self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(DysonSphere self, DysonSphereContext context)
+    protected override Task PostProcess(DysonSphereContext context, DysonSphere self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(DysonSphereContext context, DysonSphere self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(DysonSphereContext context, DysonSphere self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(DysonSphereContext context, DysonSphere self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(DysonSphereContext context, DysonSphere self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(DysonSphereContext context, DysonSphere self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(DysonSphereContext context, DysonSphere self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(DysonSphereContext context, DysonSphere self)
     {
         throw new NotImplementedException();
     }

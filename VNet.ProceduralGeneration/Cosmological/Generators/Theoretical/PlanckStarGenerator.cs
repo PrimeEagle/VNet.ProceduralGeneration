@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class PlanckStarGenerator : GeneratorBase<PlanckStar, PlanckStarContext>
     {
     }
 
-    protected override Task<PlanckStar> GenerateSelf(PlanckStarContext context)
+    protected override Task<PlanckStar> GenerateSelf(PlanckStarContext context, PlanckStar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(PlanckStar self, PlanckStarContext context)
+    protected override Task GenerateChildren(PlanckStarContext context, PlanckStar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(PlanckStar self, PlanckStarContext context)
+    protected override Task PostProcess(PlanckStarContext context, PlanckStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(PlanckStarContext context, PlanckStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(PlanckStarContext context, PlanckStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(PlanckStarContext context, PlanckStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(PlanckStarContext context, PlanckStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(PlanckStarContext context, PlanckStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(PlanckStarContext context, PlanckStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(PlanckStarContext context, PlanckStar self)
     {
         throw new NotImplementedException();
     }

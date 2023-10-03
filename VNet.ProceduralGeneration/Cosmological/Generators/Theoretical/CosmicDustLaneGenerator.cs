@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class CosmicDustLaneGenerator : GeneratorBase<CosmicDustLane, CosmicDustL
     {
     }
 
-    protected override Task<CosmicDustLane> GenerateSelf(CosmicDustLaneContext context)
+    protected override Task<CosmicDustLane> GenerateSelf(CosmicDustLaneContext context, CosmicDustLane self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(CosmicDustLane self, CosmicDustLaneContext context)
+    protected override Task GenerateChildren(CosmicDustLaneContext context, CosmicDustLane self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(CosmicDustLane self, CosmicDustLaneContext context)
+    protected override Task PostProcess(CosmicDustLaneContext context, CosmicDustLane self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(CosmicDustLaneContext context, CosmicDustLane self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(CosmicDustLaneContext context, CosmicDustLane self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(CosmicDustLaneContext context, CosmicDustLane self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(CosmicDustLaneContext context, CosmicDustLane self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(CosmicDustLaneContext context, CosmicDustLane self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(CosmicDustLaneContext context, CosmicDustLane self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(CosmicDustLaneContext context, CosmicDustLane self)
     {
         throw new NotImplementedException();
     }

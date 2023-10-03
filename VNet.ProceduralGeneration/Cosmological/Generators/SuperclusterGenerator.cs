@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class SuperclusterGenerator : GeneratorBase<Supercluster, SuperclusterCon
     {
     }
 
-    protected override Task<Supercluster> GenerateSelf(SuperclusterContext context)
+    protected override Task<Supercluster> GenerateSelf(SuperclusterContext context, Supercluster self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(Supercluster self, SuperclusterContext context)
+    protected override Task GenerateChildren(SuperclusterContext context, Supercluster self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(Supercluster self, SuperclusterContext context)
+    protected override Task PostProcess(SuperclusterContext context, Supercluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(SuperclusterContext context, Supercluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(SuperclusterContext context, Supercluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(SuperclusterContext context, Supercluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(SuperclusterContext context, Supercluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(SuperclusterContext context, Supercluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(SuperclusterContext context, Supercluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(SuperclusterContext context, Supercluster self)
     {
         throw new NotImplementedException();
     }

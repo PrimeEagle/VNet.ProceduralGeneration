@@ -4,7 +4,6 @@ public class StarSystem : AstronomicalObject
 {
     public List<Star> Stars { get; set; } = new();
     public List<Planet> Planets { get; set; } = new();
-    public List<IcyPlanet> IcyPlanets { get; set; } = new();
     public List<IcyCloud> IcyClouds { get; set; } = new();
     public List<AsteroidBelt> AsteroidBelts { get; set; } = new();
 }

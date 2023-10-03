@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class NeutronStarGenerator : GeneratorBase<NeutronStar, NeutronStarContex
     {
     }
 
-    protected override Task<NeutronStar> GenerateSelf(NeutronStarContext context)
+    protected override Task<NeutronStar> GenerateSelf(NeutronStarContext context, NeutronStar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(NeutronStar self, NeutronStarContext context)
+    protected override Task GenerateChildren(NeutronStarContext context, NeutronStar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(NeutronStar self, NeutronStarContext context)
+    protected override Task PostProcess(NeutronStarContext context, NeutronStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(NeutronStarContext context, NeutronStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(NeutronStarContext context, NeutronStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(NeutronStarContext context, NeutronStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(NeutronStarContext context, NeutronStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(NeutronStarContext context, NeutronStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(NeutronStarContext context, NeutronStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(NeutronStarContext context, NeutronStar self)
     {
         throw new NotImplementedException();
     }

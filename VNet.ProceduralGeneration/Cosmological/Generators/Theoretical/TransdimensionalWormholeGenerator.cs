@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class TransdimensionalWormholeGenerator : GeneratorBase<TransdimensionalW
     {
     }
 
-    protected override Task<TransdimensionalWormhole> GenerateSelf(TransdimensionalWormholeContext context)
+    protected override Task<TransdimensionalWormhole> GenerateSelf(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(TransdimensionalWormhole self, TransdimensionalWormholeContext context)
+    protected override Task GenerateChildren(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(TransdimensionalWormhole self, TransdimensionalWormholeContext context)
+    protected override Task PostProcess(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
     {
         throw new NotImplementedException();
     }

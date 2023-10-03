@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class CosmicTopologicalDefectGenerator : GeneratorBase<CosmicTopologicalD
     {
     }
 
-    protected override Task<CosmicTopologicalDefect> GenerateSelf(CosmicTopologicalDefectContext context)
+    protected override Task<CosmicTopologicalDefect> GenerateSelf(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(CosmicTopologicalDefect self, CosmicTopologicalDefectContext context)
+    protected override Task GenerateChildren(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(CosmicTopologicalDefect self, CosmicTopologicalDefectContext context)
+    protected override Task PostProcess(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
     {
         throw new NotImplementedException();
     }

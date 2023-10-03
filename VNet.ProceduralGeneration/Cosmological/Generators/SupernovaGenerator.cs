@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class SupernovaGenerator : GeneratorBase<Supernova, SupernovaContext>
     {
     }
 
-    protected override Task<Supernova> GenerateSelf(SupernovaContext context)
+    protected override Task<Supernova> GenerateSelf(SupernovaContext context, Supernova self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(Supernova self, SupernovaContext context)
+    protected override Task GenerateChildren(SupernovaContext context, Supernova self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(Supernova self, SupernovaContext context)
+    protected override Task PostProcess(SupernovaContext context, Supernova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(SupernovaContext context, Supernova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(SupernovaContext context, Supernova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(SupernovaContext context, Supernova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(SupernovaContext context, Supernova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(SupernovaContext context, Supernova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(SupernovaContext context, Supernova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(SupernovaContext context, Supernova self)
     {
         throw new NotImplementedException();
     }

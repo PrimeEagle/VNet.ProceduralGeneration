@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class KugelblitzGenerator : GeneratorBase<Kugelblitz, KugelblitzContext>
     {
     }
 
-    protected override Task<Kugelblitz> GenerateSelf(KugelblitzContext context)
+    protected override Task<Kugelblitz> GenerateSelf(KugelblitzContext context, Kugelblitz self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(Kugelblitz self, KugelblitzContext context)
+    protected override Task GenerateChildren(KugelblitzContext context, Kugelblitz self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(Kugelblitz self, KugelblitzContext context)
+    protected override Task PostProcess(KugelblitzContext context, Kugelblitz self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(KugelblitzContext context, Kugelblitz self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(KugelblitzContext context, Kugelblitz self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(KugelblitzContext context, Kugelblitz self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(KugelblitzContext context, Kugelblitz self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(KugelblitzContext context, Kugelblitz self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(KugelblitzContext context, Kugelblitz self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(KugelblitzContext context, Kugelblitz self)
     {
         throw new NotImplementedException();
     }

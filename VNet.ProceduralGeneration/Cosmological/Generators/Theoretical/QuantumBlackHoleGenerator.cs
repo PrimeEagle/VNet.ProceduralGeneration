@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -11,17 +12,52 @@ public class QuantumBlackHoleGenerator : GeneratorBase<QuantumBlackHole, Quantum
     {
     }
 
-    protected override Task<QuantumBlackHole> GenerateSelf(QuantumBlackHoleContext context)
+    protected override Task<QuantumBlackHole> GenerateSelf(QuantumBlackHoleContext context, QuantumBlackHole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(QuantumBlackHole self, QuantumBlackHoleContext context)
+    protected override Task GenerateChildren(QuantumBlackHoleContext context, QuantumBlackHole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(QuantumBlackHole self, QuantumBlackHoleContext context)
+    protected override Task PostProcess(QuantumBlackHoleContext context, QuantumBlackHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAge(QuantumBlackHoleContext context, QuantumBlackHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(QuantumBlackHoleContext context, QuantumBlackHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(QuantumBlackHoleContext context, QuantumBlackHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(QuantumBlackHoleContext context, QuantumBlackHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(QuantumBlackHoleContext context, QuantumBlackHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(QuantumBlackHoleContext context, QuantumBlackHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(QuantumBlackHoleContext context, QuantumBlackHole self)
     {
         throw new NotImplementedException();
     }

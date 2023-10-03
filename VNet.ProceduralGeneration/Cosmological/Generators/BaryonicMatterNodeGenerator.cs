@@ -13,18 +13,16 @@ public class BaryonicMatterNodeGenerator : GeneratorBase<BaryonicMatterNode, Bar
         enabled = ObjectToggles.BaryonicMatterNodesEnabled;
     }
 
-    protected async override Task<BaryonicMatterNode> GenerateSelf(BaryonicMatterNodeContext context)
+    protected async override Task<BaryonicMatterNode> GenerateSelf(BaryonicMatterNodeContext context, BaryonicMatterNode self)
     {
-        var node = new BaryonicMatterNode();
-
         if (context.SpatialGrid != null)
         {
             var basePosition = context.SpatialGrid.FetchNextAvailableCell();
-            if (!basePosition.HasValue) return node;
+            if (!basePosition.HasValue) return self;
 
-            node.Position = TransformBasePosition(basePosition.Value);
-            node.Position += Util.GetRandomOffset(AdvancedSettings.BaryonicMatterNode.TopologyMaxPositionalOffset);
-            node.AbsoluteMagnitude = context.Topology.VolumeMap[basePosition.Value.Item1, basePosition.Value.Item2, basePosition.Value.Item3];
+            self.Position = TransformBasePosition(basePosition.Value);
+            self.Position += Util.GetRandomOffset(AdvancedSettings.BaryonicMatterNode.TopologyMaxPositionalOffset);
+            self.AbsoluteMagnitude = context.Topology.VolumeMap[basePosition.Value.Item1, basePosition.Value.Item2, basePosition.Value.Item3];
         }
         else
         {
@@ -41,23 +39,58 @@ public class BaryonicMatterNodeGenerator : GeneratorBase<BaryonicMatterNode, Bar
             var y = yStart + (yEnd - yStart) * AdvancedSettings.Universe.RandomGenerator.NextSingle();
             var z = zStart + (zEnd - zStart) * AdvancedSettings.Universe.RandomGenerator.NextSingle();
 
-            node.Position = new Vector3(x, y, z);
-            node.AbsoluteMagnitude = -30 + (60) * AdvancedSettings.Universe.RandomGenerator.NextSingle();
+            self.Position = new Vector3(x, y, z);
+            self.AbsoluteMagnitude = -30 + (60) * AdvancedSettings.Universe.RandomGenerator.NextSingle();
         }
 
         
 
-        return node;
+        return self;
     }
 
-    protected async override Task GenerateChildren(BaryonicMatterNode self, BaryonicMatterNodeContext context)
+    protected async override Task GenerateChildren(BaryonicMatterNodeContext context, BaryonicMatterNode self)
     {
         
     }
 
-    protected override Task PostProcess(BaryonicMatterNode self, BaryonicMatterNodeContext context)
+    protected override Task PostProcess(BaryonicMatterNodeContext context, BaryonicMatterNode self)
     {
         return null;
+    }
+
+    protected override float CalculateAge(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateSize(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double CalculateMass(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateAbsoluteMagnitude(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateTemperature(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float CalculateLifespan(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 CalculatePosition(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
     }
 
     private Vector3 TransformBasePosition((int, int, int) basePosition)

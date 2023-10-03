@@ -1,4 +1,5 @@
-﻿using VNet.Configuration;
+﻿using System.Numerics;
+using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
@@ -69,9 +70,9 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             return Math.Min(values.calculated, values.configured);
         }
 
-        protected abstract Task<T> GenerateSelf(TContext context);
-        protected abstract Task GenerateChildren(T self, TContext context);
-        protected abstract Task PostProcess(T self, TContext context);
+        protected abstract Task<T> GenerateSelf(TContext context, T self);
+        protected abstract Task GenerateChildren(TContext context, T self);
+        protected abstract Task PostProcess(TContext context, T self);
 
         public async Task<T> Generate(TContext context, AstronomicalObject parent)
         {
@@ -80,8 +81,9 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             if (enabled)
             {
                 Events.EventBuilder.CreateGeneratingEvent(this.eventAggregator, nameof(T), null);
-                self = await ExecuteWithConcurrencyControlAsync(() => GenerateSelf(context));
-                Events.EventBuilder.CreateGeneratedEvent(this.eventAggregator, nameof(T), self);
+                self = new T();
+                self.Parent = parent;
+                self = await ExecuteWithConcurrencyControlAsync(() => GenerateSelf(context, self));
             }
             else
             {
@@ -90,12 +92,14 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
             self.Parent = parent;
 
-            await GenerateChildren(self, context);
-
+            await GenerateChildren(context, self);
+            
             if (!enabled) return self;
+            CalculateBaseProperties(context, self);
+            Events.EventBuilder.CreateGeneratedEvent(this.eventAggregator, nameof(T), self);
 
             Events.EventBuilder.CreatePostProcessingEvent(this.eventAggregator, nameof(T), self);
-            await PostProcess(self, context);
+            await PostProcess(context, self);
             Events.EventBuilder.CreatePostProcessedEvent(this.eventAggregator, nameof(T), self);
 
             return self;
@@ -119,11 +123,23 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             _disposed = true;
         }
 
-        protected abstract float CalculateAge();
-        protected abstract float CalculateSize();
-        protected abstract double CalculateMass();
-        protected abstract float CalculateAbsoluteMagnitude();
-        protected abstract float CalculateTemperature();
-        protected abstract float CalculateLifespan();
+        private void CalculateBaseProperties(TContext context, T self)
+        {
+            self.Age = CalculateAge(context, self);
+            self.Size = CalculateSize(context, self);
+            self.Mass = CalculateMass(context, self);
+            self.AbsoluteMagnitude = CalculateAbsoluteMagnitude(context, self);
+            self.Temperature = CalculateTemperature(context, self);
+            self.Lifespan = CalculateLifespan(context, self);
+            self.Position = CalculatePosition(context, self);
+        }
+
+        protected abstract float CalculateAge(TContext context, T self);
+        protected abstract float CalculateSize(TContext context, T self);
+        protected abstract double CalculateMass(TContext context, T self);
+        protected abstract float CalculateAbsoluteMagnitude(TContext context, T self);
+        protected abstract float CalculateTemperature(TContext context, T self);
+        protected abstract float CalculateLifespan(TContext context, T self);
+        protected abstract Vector3 CalculatePosition(TContext context, T self);
     }
 }
