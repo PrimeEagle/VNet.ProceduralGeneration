@@ -1,5 +1,4 @@
-﻿using System.Reflection.Emit;
-using VNet.Configuration;
+﻿using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
@@ -119,5 +118,12 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
             _disposed = true;
         }
+
+        protected abstract float CalculateAge();
+        protected abstract float CalculateSize();
+        protected abstract double CalculateMass();
+        protected abstract float CalculateAbsoluteMagnitude();
+        protected abstract float CalculateTemperature();
+        protected abstract float CalculateLifespan();
     }
 }

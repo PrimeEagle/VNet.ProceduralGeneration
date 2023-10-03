@@ -28,7 +28,6 @@ public class CosmicWebGenerator : GeneratorBase<CosmicWeb, CosmicWebContext>
     {
         var baryonicMatterNodeCount = GetBaryonicMatterNodeCount(context, self.Topology.AverageIntensity);
         self.BaryonicMatterNodes = await GenerateBaryonicMatterNodes(self, baryonicMatterNodeCount);
-
         ApplyZOffsetsToBaryonicMatterNodes(self.BaryonicMatterNodes);
         SmoothZCoordinatesOfBaryonicMatterNodes(self.BaryonicMatterNodes);
         MergeBaryonicMatterNodes(self.BaryonicMatterNodes);
@@ -64,7 +63,9 @@ public class CosmicWebGenerator : GeneratorBase<CosmicWeb, CosmicWebContext>
         }
 
         var heightMap = HeightmapUtil.ImageToHeightmap(heightMapImage);
-        var volumeMap = HeightmapUtil.ExtrudeHeightmapToVolumeMap(heightMap, 1);
+
+        var extrusionLevel = (BasicSettings.DimensionZ / BasicSettings.DimensionX) * heightMap.GetLength(0);
+        var volumeMap = HeightmapUtil.ExtrudeHeightmapToVolumeMap(heightMap, (int)extrusionLevel);
         var gradientMap = HeightmapUtil.VolumeMapToGradientMap(volumeMap);
         var averageIntensity = HeightmapUtil.GetAverageIntensity(heightMapImage);
         var maxGradientMagnitude = gradientMap.Cast<Vector3>().Max(v => v.Length());
@@ -158,12 +159,12 @@ public class CosmicWebGenerator : GeneratorBase<CosmicWeb, CosmicWebContext>
                 if (distance >= BasicSettings.TopologyBaryonicMatterNodeMergeDistanceThreshold) continue;
 
                 var mergedPosition = (nodes[i].Position + nodes[j].Position) / 2;
-                var mergedIntensity = (nodes[i].Intensity + nodes[j].Intensity) / 2;
+                var mergedIntensity = (nodes[i].AbsoluteMagnitude + nodes[j].AbsoluteMagnitude) / 2;
 
                 nodes[i] = new BaryonicMatterNode
                 {
                     Position = mergedPosition,
-                    Intensity = mergedIntensity
+                    AbsoluteMagnitude = mergedIntensity
                 };
                 nodes.RemoveAt(j);
                 j--;
@@ -180,7 +181,7 @@ public class CosmicWebGenerator : GeneratorBase<CosmicWeb, CosmicWebContext>
                 var distance = Vector3.Distance(nodes[i].Position, nodes[j].Position);
                 if (distance >= BasicSettings.TopologyBaryonicMatterNodeMinDistanceThreshold) continue;
 
-                if (nodes[i].Intensity > nodes[j].Intensity)
+                if (nodes[i].AbsoluteMagnitude > nodes[j].AbsoluteMagnitude)
                 {
                     nodes.RemoveAt(j);
                     j--;
@@ -203,7 +204,7 @@ public class CosmicWebGenerator : GeneratorBase<CosmicWeb, CosmicWebContext>
         if (nodes.Count > maxAllowedNodes)
         {
             var randomNodeCount = AdvancedSettings.CosmicWeb.RandomGenerator.Next(minAllowedNodes, maxAllowedNodes + 1);
-            nodes = nodes.OrderByDescending(node => node.Intensity).Take(randomNodeCount).ToList();
+            nodes = nodes.OrderByDescending(node => node.AbsoluteMagnitude).Take(randomNodeCount).ToList();
         }
 
         var targetNodeCount = AdvancedSettings.CosmicWeb.RandomGenerator.Next(minAllowedNodes, maxAllowedNodes + 1);
@@ -320,8 +321,8 @@ public class CosmicWebGenerator : GeneratorBase<CosmicWeb, CosmicWebContext>
             {
                 for (var z = 0; z < depth; z++)
                 {
-                    var intensity = topology.VolumeMap[x, y, z];
-                    if (intensity <= intensityThreshold) continue;
+                    var magnitude = topology.VolumeMap[x, y, z];
+                    if (magnitude <= intensityThreshold) continue;
 
                     var gradient = topology.GradientMap[x, y, z];
                     if (gradient.Length() <= gradientMagnitudeThreshold) continue;
@@ -333,7 +334,7 @@ public class CosmicWebGenerator : GeneratorBase<CosmicWeb, CosmicWebContext>
                     var newNode = new BaryonicMatterNode()
                     {
                         Position = potentialNodePosition,
-                        Intensity = intensity
+                        AbsoluteMagnitude = magnitude
                     };
                     potentialNodes.Add(newNode);
                 }
@@ -359,8 +360,8 @@ public class CosmicWebGenerator : GeneratorBase<CosmicWeb, CosmicWebContext>
             {
                 for (var z = 0; z < depth; z++)
                 {
-                    var intensity = topology.VolumeMap[x, y, z];
-                    if (intensity <= intensityThreshold) continue;
+                    var magnitude = topology.VolumeMap[x, y, z];
+                    if (magnitude <= intensityThreshold) continue;
 
                     var gradient = topology.GradientMap[x, y, z];
                     if (gradient.Length() <= gradientMagnitudeThreshold) continue;
@@ -372,7 +373,7 @@ public class CosmicWebGenerator : GeneratorBase<CosmicWeb, CosmicWebContext>
                     var newNode = new DarkMatterNode()
                     {
                         Position = potentialNodePosition,
-                        Intensity = intensity
+                        Intensity = magnitude
                     };
                     potentialNodes.Add(newNode);
                 }
