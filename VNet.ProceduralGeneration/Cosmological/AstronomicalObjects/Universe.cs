@@ -39,7 +39,7 @@ public class Universe : AstronomicalObject
         this.NonhierarchyObjects = new List<IAstronomicalObject>();
     }
 
-    public Universe(IAstronomicalObject parent) : base(parent)
+    public Universe(AstronomicalObject parent) : base(parent)
     {
         this.NonhierarchyObjects = new List<IAstronomicalObject>();
     }
