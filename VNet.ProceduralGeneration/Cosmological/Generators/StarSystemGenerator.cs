@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class StarSystemGenerator : BaseGenerator<StarSystem, StarSystemContext>
+public class StarSystemGenerator : GeneratorBase<StarSystem, StarSystemContext>
 {
-    public StarSystemGenerator() : base(ParallelismLevel.Level4)
+    public StarSystemGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

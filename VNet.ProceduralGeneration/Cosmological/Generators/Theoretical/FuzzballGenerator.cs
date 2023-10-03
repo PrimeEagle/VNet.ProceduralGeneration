@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 
-public class FuzzballGenerator : BaseGenerator<Fuzzball, FuzzballContext>
+public class FuzzballGenerator : GeneratorBase<Fuzzball, FuzzballContext>
 {
-    public FuzzballGenerator() : base(ParallelismLevel.Level4)
+    public FuzzballGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 
-public class FermiBubbleGenerator : BaseGenerator<FermiBubble, FermiBubbleContext>
+public class FermiBubbleGenerator : GeneratorBase<FermiBubble, FermiBubbleContext>
 {
-    public FermiBubbleGenerator() : base(ParallelismLevel.Level3)
+    public FermiBubbleGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level3)
     {
     }
 

@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Events
 {
-    public class GeneratingEvent : EventBase
+    public class GeneratingEvent : CosmologicalEventBase
     {
     }
 }

@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class QuasarGenerator : BaseGenerator<Quasar, QuasarContext>
+public class QuasarGenerator : GeneratorBase<Quasar, QuasarContext>
 {
-    public QuasarGenerator() : base(ParallelismLevel.Level4)
+    public QuasarGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

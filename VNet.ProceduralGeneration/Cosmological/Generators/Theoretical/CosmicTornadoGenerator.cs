@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 
-public class CosmicTornadoGenerator : BaseGenerator<CosmicTornado, CosmicTornadoContext>
+public class CosmicTornadoGenerator : GeneratorBase<CosmicTornado, CosmicTornadoContext>
 {
-    public CosmicTornadoGenerator() : base(ParallelismLevel.Level4)
+    public CosmicTornadoGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

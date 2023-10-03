@@ -1,10 +1,11 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class AccretionDiskGenerator : BaseGenerator<AccretionDisk, AccretionDiskContext>
+public class AccretionDiskGenerator : GeneratorBase<AccretionDisk, AccretionDiskContext>
 {
     protected override Task<AccretionDisk> GenerateSelf(AccretionDiskContext context)
     {
@@ -21,7 +22,7 @@ public class AccretionDiskGenerator : BaseGenerator<AccretionDisk, AccretionDisk
         throw new NotImplementedException();
     }
 
-    public AccretionDiskGenerator() : base(ParallelismLevel.Level4)
+    public AccretionDiskGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 }

@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Events
 {
-    public class BaryonicMatterNodeGeneratingEvent : EventBase
+    public class PostProcessedEvent : CosmologicalEventBase
     {
     }
 }

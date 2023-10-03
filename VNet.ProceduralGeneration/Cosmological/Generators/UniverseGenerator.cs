@@ -2,12 +2,13 @@
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class UniverseGenerator : BaseGenerator<Universe, UniverseContext>
+public class UniverseGenerator : GeneratorBase<Universe, UniverseContext>
 {
-    public UniverseGenerator() : base(ParallelismLevel.Level0)
+    public UniverseGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level0)
     {
         enabled = ObjectToggles.UniverseEnabled;
     }
@@ -54,7 +55,7 @@ public class UniverseGenerator : BaseGenerator<Universe, UniverseContext>
 
     protected override async Task GenerateChildren(Universe self, UniverseContext context)
     {
-        var cosmicWebGenerator = new CosmicWebGenerator();
+        var cosmicWebGenerator = new CosmicWebGenerator(this.eventAggregator);
         var cosmicWebContext = new CosmicWebContext(self);
 
         self.CosmicWeb = await Task.Run(() => cosmicWebGenerator.Generate(cosmicWebContext, self));

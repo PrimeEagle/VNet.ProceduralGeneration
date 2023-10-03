@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class DarkMatterFilamentGenerator : BaseGenerator<DarkMatterFilament, DarkMatterFilamentContext>
+public class DarkMatterFilamentGenerator : GeneratorBase<DarkMatterFilament, DarkMatterFilamentContext>
 {
-    public DarkMatterFilamentGenerator() : base(ParallelismLevel.Level1)
+    public DarkMatterFilamentGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level1)
     {
     }
 

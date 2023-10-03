@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 
-public class QuarkStarGenerator : BaseGenerator<QuarkStar, QuarkStarContext>
+public class QuarkStarGenerator : GeneratorBase<QuarkStar, QuarkStarContext>
 {
-    public QuarkStarGenerator() : base(ParallelismLevel.Level4)
+    public QuarkStarGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

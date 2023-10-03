@@ -1,13 +1,15 @@
-﻿using VNet.Configuration;
+﻿using System.Reflection.Emit;
+using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators
 {
-    public abstract class BaseGenerator<T, TContext> : IGeneratable<T, TContext>, IDisposable 
-                                             where T : AstronomicalObject, new()
+    public abstract class GeneratorBase<T, TContext>        : IGeneratable<T, TContext>, IDisposable 
+                                             where T        : AstronomicalObject, new()
                                              where TContext : BaseContext
     {
         private bool _disposed = false;
@@ -18,11 +20,13 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         protected readonly AdvancedGenerationSettings AdvancedSettings;
         protected readonly AstronomicalObjectToggleSettings ObjectToggles;
         protected readonly TheoreticalAstronomicalObjectToggleSettings TheoreticalObjectToggles;
+        protected readonly EventAggregator eventAggregator;
         private readonly ParallelismLevel _parallelismLevel;
         private readonly SemaphoreSlim _semaphore;
 
 
-        protected BaseGenerator(ParallelismLevel parallelismLevel)
+
+        protected GeneratorBase(EventAggregator eventAggregator, ParallelismLevel parallelismLevel)
         {
             this.Settings = ConfigurationSettings<GeneratorSettings>.AppSettings;
             this.BasicSettings = Settings.Basic;
@@ -30,6 +34,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             this.ObjectToggles = Settings.ObjectToggles;
             this.TheoreticalObjectToggles = Settings.TheoreticalObjectToggles;
             this._parallelismLevel = parallelismLevel;
+            this.eventAggregator = eventAggregator;
             _semaphore = new SemaphoreSlim(GetDegreesOfParallelism());
         }
 
@@ -75,7 +80,9 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
             if (enabled)
             {
+                Events.EventBuilder.CreateGeneratingEvent(this.eventAggregator, nameof(T), null);
                 self = await ExecuteWithConcurrencyControlAsync(() => GenerateSelf(context));
+                Events.EventBuilder.CreateGeneratedEvent(this.eventAggregator, nameof(T), self);
             }
             else
             {
@@ -86,10 +93,11 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
             await GenerateChildren(self, context);
 
-            if (enabled)
-            {
-                await PostProcess(self, context);
-            }
+            if (!enabled) return self;
+
+            Events.EventBuilder.CreatePostProcessingEvent(this.eventAggregator, nameof(T), self);
+            await PostProcess(self, context);
+            Events.EventBuilder.CreatePostProcessedEvent(this.eventAggregator, nameof(T), self);
 
             return self;
         }

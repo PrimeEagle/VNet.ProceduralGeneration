@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class AsteroidGenerator : BaseGenerator<Asteroid, AsteroidContext>
+public class AsteroidGenerator : GeneratorBase<Asteroid, AsteroidContext>
 {
-    public AsteroidGenerator() : base(ParallelismLevel.Level4)
+    public AsteroidGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

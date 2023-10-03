@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class DarkMatterNodeGenerator : BaseGenerator<DarkMatterNode, DarkMatterNodeContext>
+public class DarkMatterNodeGenerator : GeneratorBase<DarkMatterNode, DarkMatterNodeContext>
 {
-    public DarkMatterNodeGenerator() : base(ParallelismLevel.Level1)
+    public DarkMatterNodeGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level1)
     {
         enabled = ObjectToggles.DarkMatterNodesEnabled;
     }

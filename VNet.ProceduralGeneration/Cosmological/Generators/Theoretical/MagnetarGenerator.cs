@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 
-public class MagnetarGenerator : BaseGenerator<Magnetar, MagnetarContext>
+public class MagnetarGenerator : GeneratorBase<Magnetar, MagnetarContext>
 {
-    public MagnetarGenerator() : base(ParallelismLevel.Level4)
+    public MagnetarGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class SuperclusterGenerator : BaseGenerator<Supercluster, SuperclusterContext>
+public class SuperclusterGenerator : GeneratorBase<Supercluster, SuperclusterContext>
 {
-    public SuperclusterGenerator() : base(ParallelismLevel.Level4)
+    public SuperclusterGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class StellarNurseryGenerator : BaseGenerator<StellarNursery, StellarNurseryContext>
+public class StellarNurseryGenerator : GeneratorBase<StellarNursery, StellarNurseryContext>
 {
-    public StellarNurseryGenerator() : base(ParallelismLevel.Level4)
+    public StellarNurseryGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

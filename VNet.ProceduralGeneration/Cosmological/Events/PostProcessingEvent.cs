@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Events
 {
-    public class DarkMatterNodeGeneratedEvent : EventBase
+    public class PostProcessingEvent : CosmologicalEventBase
     {
     }
 }

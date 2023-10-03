@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 
-public class WhiteHoleGenerator : BaseGenerator<WhiteHole, WhiteHoleContext>
+public class WhiteHoleGenerator : GeneratorBase<WhiteHole, WhiteHoleContext>
 {
-    public WhiteHoleGenerator() : base(ParallelismLevel.Level4)
+    public WhiteHoleGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

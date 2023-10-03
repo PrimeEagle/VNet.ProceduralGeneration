@@ -3,12 +3,13 @@ using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Heightmap;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
+public class CosmicWebGenerator : GeneratorBase<CosmicWeb, CosmicWebContext>
 {
-    public CosmicWebGenerator() : base(ParallelismLevel.Level0)
+    public CosmicWebGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level0)
     {
         enabled = ObjectToggles.CosmicWebEnabled;
     }
@@ -97,7 +98,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         var tasks = new List<Task<BaryonicMatterNode>>();
         for (var i = 0; i < numberToGenerate; i++)
         {
-            var baryonicMatterNodeGenerator = new BaryonicMatterNodeGenerator();
+            var baryonicMatterNodeGenerator = new BaryonicMatterNodeGenerator(this.eventAggregator);
             tasks.Add(baryonicMatterNodeGenerator.Generate(baryonicMatterNodeContext, cosmicWeb));
         }
         var results = await Task.WhenAll(tasks);
@@ -122,7 +123,7 @@ public class CosmicWebGenerator : BaseGenerator<CosmicWeb, CosmicWebContext>
         var tasks = new List<Task<DarkMatterNode>>();
         for (var i = 0; i < numberToGenerate; i++)
         {
-            var darkMatterNodeGenerator = new DarkMatterNodeGenerator();
+            var darkMatterNodeGenerator = new DarkMatterNodeGenerator(this.eventAggregator);
             tasks.Add(darkMatterNodeGenerator.Generate(darkMatterNodeContext, cosmicWeb));
         }
         var results = await Task.WhenAll(tasks);

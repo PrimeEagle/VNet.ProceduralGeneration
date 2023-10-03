@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 
-public class MonopoleGenerator : BaseGenerator<Monopole, MonopoleContext>
+public class MonopoleGenerator : GeneratorBase<Monopole, MonopoleContext>
 {
-    public MonopoleGenerator() : base(ParallelismLevel.Level4)
+    public MonopoleGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

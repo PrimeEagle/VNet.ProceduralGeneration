@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class DarkMatterSheetGenerator : BaseGenerator<DarkMatterSheet, DarkMatterSheetContext>
+public class DarkMatterSheetGenerator : GeneratorBase<DarkMatterSheet, DarkMatterSheetContext>
 {
-    public DarkMatterSheetGenerator() : base(ParallelismLevel.Level1)
+    public DarkMatterSheetGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level1)
     {
     }
 

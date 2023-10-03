@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 
-public class DarkStarGenerator : BaseGenerator<DarkStar, DarkStarContext>
+public class DarkStarGenerator : GeneratorBase<DarkStar, DarkStarContext>
 {
-    public DarkStarGenerator() : base(ParallelismLevel.Level4)
+    public DarkStarGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

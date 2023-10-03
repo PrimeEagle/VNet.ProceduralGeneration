@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class GalaxyGenerator : BaseGenerator<Galaxy, GalaxyContext>
+public class GalaxyGenerator : GeneratorBase<Galaxy, GalaxyContext>
 {
-    public GalaxyGenerator() : base(ParallelismLevel.Level4)
+    public GalaxyGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

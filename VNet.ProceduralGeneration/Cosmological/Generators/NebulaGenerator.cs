@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class NebulaGenerator : BaseGenerator<Nebula, NebulaContext>
+public class NebulaGenerator : GeneratorBase<Nebula, NebulaContext>
 {
-    public NebulaGenerator() : base(ParallelismLevel.Level4)
+    public NebulaGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

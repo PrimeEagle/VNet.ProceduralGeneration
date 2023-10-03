@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class IcyCloudGenerator : BaseGenerator<IcyCloud, IcyCloudContext>
+public class IcyCloudGenerator : GeneratorBase<IcyCloud, IcyCloudContext>
 {
-    public IcyCloudGenerator() : base(ParallelismLevel.Level4)
+    public IcyCloudGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class SupernovaGenerator : BaseGenerator<Supernova, SupernovaContext>
+public class SupernovaGenerator : GeneratorBase<Supernova, SupernovaContext>
 {
-    public SupernovaGenerator() : base(ParallelismLevel.Level4)
+    public SupernovaGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

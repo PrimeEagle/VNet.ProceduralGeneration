@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class BaryonicMatterVoidGenerator : BaseGenerator<BaryonicMatterVoid, BaryonicMatterVoidContext>
+public class BaryonicMatterVoidGenerator : GeneratorBase<BaryonicMatterVoid, BaryonicMatterVoidContext>
 {
-    public BaryonicMatterVoidGenerator() : base(ParallelismLevel.Level1)
+    public BaryonicMatterVoidGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level1)
     {
     }
 

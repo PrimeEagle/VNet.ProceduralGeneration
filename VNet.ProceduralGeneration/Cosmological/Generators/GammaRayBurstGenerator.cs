@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class GammaRayBurstGenerator : BaseGenerator<GammaRayBurst, GammaRayBurstContext>
+public class GammaRayBurstGenerator : GeneratorBase<GammaRayBurst, GammaRayBurstContext>
 {
-    public GammaRayBurstGenerator() : base(ParallelismLevel.Level4)
+    public GammaRayBurstGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

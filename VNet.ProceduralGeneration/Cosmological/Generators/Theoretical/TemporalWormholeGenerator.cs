@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 
-public class TemporalWormholeGenerator : BaseGenerator<TemporalWormhole, TemporalWormholeContext>
+public class TemporalWormholeGenerator : GeneratorBase<TemporalWormhole, TemporalWormholeContext>
 {
-    public TemporalWormholeGenerator() : base(ParallelismLevel.Level4)
+    public TemporalWormholeGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

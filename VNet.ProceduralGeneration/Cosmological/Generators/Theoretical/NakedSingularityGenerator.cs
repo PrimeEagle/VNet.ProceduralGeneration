@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 
-public class NakedSingularityGenerator : BaseGenerator<NakedSingularity, NakedSingularityContext>
+public class NakedSingularityGenerator : GeneratorBase<NakedSingularity, NakedSingularityContext>
 {
-    public NakedSingularityGenerator() : base(ParallelismLevel.Level4)
+    public NakedSingularityGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

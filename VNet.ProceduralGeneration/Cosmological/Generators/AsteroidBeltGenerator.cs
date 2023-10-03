@@ -1,10 +1,11 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class AsteroidBeltGenerator : BaseGenerator<AsteroidBelt, AsteroidBeltContext>
+public class AsteroidBeltGenerator : GeneratorBase<AsteroidBelt, AsteroidBeltContext>
 {
     protected override Task<AsteroidBelt> GenerateSelf(AsteroidBeltContext context)
     {
@@ -21,7 +22,7 @@ public class AsteroidBeltGenerator : BaseGenerator<AsteroidBelt, AsteroidBeltCon
         throw new NotImplementedException();
     }
 
-    public AsteroidBeltGenerator() : base(ParallelismLevel.Level4)
+    public AsteroidBeltGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 }

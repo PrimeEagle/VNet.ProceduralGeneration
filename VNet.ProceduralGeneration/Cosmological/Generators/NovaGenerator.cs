@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class NovaGenerator : BaseGenerator<Nova, NovaContext>
+public class NovaGenerator : GeneratorBase<Nova, NovaContext>
 {
-    public NovaGenerator() : base(ParallelismLevel.Level4)
+    public NovaGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

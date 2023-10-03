@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class LargeQuasarGroupGenerator : BaseGenerator<LargeQuasarGroup, LargeQuasarGroupContext>
+public class LargeQuasarGroupGenerator : GeneratorBase<LargeQuasarGroup, LargeQuasarGroupContext>
 {
-    public LargeQuasarGroupGenerator() : base(ParallelismLevel.Level4)
+    public LargeQuasarGroupGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 

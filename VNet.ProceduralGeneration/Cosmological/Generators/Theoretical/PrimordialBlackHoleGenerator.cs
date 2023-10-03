@@ -1,12 +1,13 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 
-public class PrimordialBlackHoleGenerator : BaseGenerator<PrimordialBlackHole, PrimordialBlackHoleContext>
+public class PrimordialBlackHoleGenerator : GeneratorBase<PrimordialBlackHole, PrimordialBlackHoleContext>
 {
-    public PrimordialBlackHoleGenerator() : base(ParallelismLevel.Level4)
+    public PrimordialBlackHoleGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {
     }
 
