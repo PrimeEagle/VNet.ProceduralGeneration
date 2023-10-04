@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public class DarkMatterFilamentContext : BaseContext
+public class DarkMatterFilamentContext : ContextBase
 {
     public DarkMatterFilamentContext()
     {

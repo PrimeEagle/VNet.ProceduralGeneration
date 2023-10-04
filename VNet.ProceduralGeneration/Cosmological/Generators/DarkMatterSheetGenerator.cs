@@ -27,7 +27,7 @@ public class DarkMatterSheetGenerator : GeneratorBase<DarkMatterSheet, DarkMatte
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(DarkMatterSheetContext context, DarkMatterSheet self)
+    protected override float GenerateAge(DarkMatterSheetContext context, DarkMatterSheet self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class DarkMatterSheetGenerator : GeneratorBase<DarkMatterSheet, DarkMatte
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(DarkMatterSheetContext context, DarkMatterSheet self)
+    protected override double GenerateMass(DarkMatterSheetContext context, DarkMatterSheet self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class DarkMatterSheetGenerator : GeneratorBase<DarkMatterSheet, DarkMatte
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(DarkMatterSheetContext context, DarkMatterSheet self)
+    protected override float GenerateTemperature(DarkMatterSheetContext context, DarkMatterSheet self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(DarkMatterSheetContext context, DarkMatterSheet self)
+    protected override float GenerateLifespan(DarkMatterSheetContext context, DarkMatterSheet self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(DarkMatterSheetContext context, DarkMatterSheet self)
+    protected override Vector3 GeneratePosition(DarkMatterSheetContext context, DarkMatterSheet self)
     {
         throw new NotImplementedException();
     }

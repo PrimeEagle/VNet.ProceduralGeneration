@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class NakedSingularityContext : BaseContext
+public class NakedSingularityContext : ContextBase
 {
     public NakedSingularityContext()
     {

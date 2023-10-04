@@ -27,7 +27,7 @@ public class SuperclusterGenerator : GeneratorBase<Supercluster, SuperclusterCon
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(SuperclusterContext context, Supercluster self)
+    protected override float GenerateAge(SuperclusterContext context, Supercluster self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class SuperclusterGenerator : GeneratorBase<Supercluster, SuperclusterCon
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(SuperclusterContext context, Supercluster self)
+    protected override double GenerateMass(SuperclusterContext context, Supercluster self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class SuperclusterGenerator : GeneratorBase<Supercluster, SuperclusterCon
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(SuperclusterContext context, Supercluster self)
+    protected override float GenerateTemperature(SuperclusterContext context, Supercluster self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(SuperclusterContext context, Supercluster self)
+    protected override float GenerateLifespan(SuperclusterContext context, Supercluster self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(SuperclusterContext context, Supercluster self)
+    protected override Vector3 GeneratePosition(SuperclusterContext context, Supercluster self)
     {
         throw new NotImplementedException();
     }

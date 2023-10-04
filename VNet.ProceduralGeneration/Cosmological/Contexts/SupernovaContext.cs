@@ -1,5 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public class SupernovaContext : BaseContext
+public class SupernovaContext : ContextBase
 {
 }

@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class DomainWallContext : BaseContext
+public class DomainWallContext : ContextBase
 {
     public DomainWallContext()
     {

@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class WhiteHoleContext : BaseContext
+public class WhiteHoleContext : ContextBase
 {
     public WhiteHoleContext()
     {

@@ -13,14 +13,6 @@
         internal static double MaxBaryonicMatterPercent { get; } = 6.0;
         internal static float MinUniverseAge { get; } = 5e9f;                                    // years
         internal static float MaxUniverseAge { get; } = 20e9f;                                   // years
-        internal static int BaryonicMatterNodeBaseCount { get; } = 300;
-        internal static int BaryonicMatterFilamentBaseCount { get; } = 1000;
-        internal static int BaryonicMatterSheetBaseCount { get; } = 300;
-        internal static int BaryonicMatterVoidBaseCount { get; } = 1500;
-        internal static int DarkMatterNodeBaseCount { get; } = 500;
-        internal static int DarkMatterFilamentBaseCount { get; } = 1500;
-        internal static int DarkMatterSheetBaseCount { get; } = 500;
-        internal static int DarkMatterVoidBaseCount { get; } = 1400;
         internal static bool ApplyGravitationalEffectsToCosmicWeb { get; } = true;
         internal static string HeightmapFile { get; } = "default_heightmap.png";
         internal static string HeightmapFolder { get; } = "heightmaps";

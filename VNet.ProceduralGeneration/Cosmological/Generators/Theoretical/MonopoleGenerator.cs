@@ -27,7 +27,7 @@ public class MonopoleGenerator : GeneratorBase<Monopole, MonopoleContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(MonopoleContext context, Monopole self)
+    protected override float GenerateAge(MonopoleContext context, Monopole self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class MonopoleGenerator : GeneratorBase<Monopole, MonopoleContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(MonopoleContext context, Monopole self)
+    protected override double GenerateMass(MonopoleContext context, Monopole self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class MonopoleGenerator : GeneratorBase<Monopole, MonopoleContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(MonopoleContext context, Monopole self)
+    protected override float GenerateTemperature(MonopoleContext context, Monopole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(MonopoleContext context, Monopole self)
+    protected override float GenerateLifespan(MonopoleContext context, Monopole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(MonopoleContext context, Monopole self)
+    protected override Vector3 GeneratePosition(MonopoleContext context, Monopole self)
     {
         throw new NotImplementedException();
     }

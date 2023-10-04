@@ -1,66 +1,56 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.Enum;
+// ReSharper disable CollectionNeverQueried.Global
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
 public class Universe : AstronomicalObject
 {
-    private const double H0 = 70;                                                   // Present value of Hubble constant in km/s/Mpc (an approximate value for simplicity)
-    private const double T0 = 2.725;                                                // Present CMB temperature in Kelvin
-    private const double A0 = 13.8e9;                                               // Approximate current age of the universe in years
-    private const double CmbThreshold = 0.001;                                      // Arbitrarily chosen threshold. Adjust as needed. Temperature in Kelvin
-    private const double InflationStart = 0;                                        // start of inflation in years (essentially 0 for our purposes)
-    private const double InflationEnd = 1e-32;                                      // end of inflation in years (an estimate, adjust as needed)
-
-
     public double DarkEnergyPercent { get; set; }
     public double DarkMatterPercent { get; set; }
     public double BaryonicMatterPercent { get; set; }
-
     public CurvatureType Curvature { get; set; }
     public double ConnectivityFactor { get; set; }
-
     public bool CosmicInflationOccurred { get; set; }
+    public float CosmicMicrowaveBackground { get; set; }                        // Kelvin
+    public float CosmicMicrowaveBackgroundVariations { get; set; }              // Kelvin
     public CosmicWeb CosmicWeb { get; set; }
-
-
-    // calculated properties
-    public bool CmbHasVariations => CalculateCmbVariations();
-
-    public double ExpansionRate => CalculateExpansionRate();                                // km/s/Mpc
-    public double CosmicMicrowaveBackground => CalculateCmb();                              // temperature Kelvin
-    public bool IsInInflationPhase => Age >= InflationStart && Age <= InflationEnd;
-    public List<IAstronomicalObject> NonhierarchyObjects { get; init; }
+    public double ExpansionRate => CalculateExpansionRate();                    // km/s/Mpc
+    public List<IAstronomicalObject> NonHierarchyObjects { get; init; }
 
 
 
 
     public Universe()
     {
-        this.NonhierarchyObjects = new List<IAstronomicalObject>();
+        this.CosmicWeb = new CosmicWeb();
+        this.NonHierarchyObjects = new List<IAstronomicalObject>();
     }
 
     public Universe(AstronomicalObject parent) : base(parent)
     {
-        this.NonhierarchyObjects = new List<IAstronomicalObject>();
+        this.CosmicWeb = new CosmicWeb();
+        this.NonHierarchyObjects = new List<IAstronomicalObject>();
     }
 
     private double CalculateExpansionRate()
     {
-        var omegaDe = DarkEnergyPercent / 100.0;
-        var omegaDm = DarkMatterPercent / 100.0;
-        var omegaB = BaryonicMatterPercent / 100.0;
+        double OmegaB = BaryonicMatterPercent / 100.0;
+        double OmegaDM = DarkMatterPercent / 100.0;
+        double OmegaLambda = DarkEnergyPercent / 100.0;
 
-        return H0 * Math.Sqrt(omegaDe + omegaDm + omegaB);
+        double H2 =Math.Pow(settings.Advanced.PhysicalConstants.H0, 2) * (OmegaB + OmegaDM + OmegaLambda);
+        return Math.Sqrt(H2);
     }
+
 
     private double CalculateCmb()
     {
-        return T0 * (A0 / Age);
+        return settings.Advanced.PhysicalConstants.BaselineCosmicMicrowaveBackground * (settings.Advanced.PhysicalConstants.BaselineAgeOfUniverse / Age);
     }
 
     private bool CalculateCmbVariations()
     {
-        return Math.Abs(T0 - CalculateCmb()) > CmbThreshold;
+        return Math.Abs(settings.Advanced.PhysicalConstants.BaselineCosmicMicrowaveBackground - CalculateCmb()) > settings.Advanced.Universe.CosmicMicrowaveBackgroundThreshold;
     }
 
     public void ApplyInflationEffects()
@@ -69,5 +59,10 @@ public class Universe : AstronomicalObject
         {
             Curvature = CurvatureType.Flat;
         }
+    }
+
+    internal override void AssignChildren()
+    {
+        this.Children.Add(this.CosmicWeb);
     }
 }

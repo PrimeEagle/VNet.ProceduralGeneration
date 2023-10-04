@@ -27,7 +27,7 @@ public class DarkMatterFilamentGenerator : GeneratorBase<DarkMatterFilament, Dar
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(DarkMatterFilamentContext context, DarkMatterFilament self)
+    protected override float GenerateAge(DarkMatterFilamentContext context, DarkMatterFilament self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class DarkMatterFilamentGenerator : GeneratorBase<DarkMatterFilament, Dar
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(DarkMatterFilamentContext context, DarkMatterFilament self)
+    protected override double GenerateMass(DarkMatterFilamentContext context, DarkMatterFilament self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class DarkMatterFilamentGenerator : GeneratorBase<DarkMatterFilament, Dar
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(DarkMatterFilamentContext context, DarkMatterFilament self)
+    protected override float GenerateTemperature(DarkMatterFilamentContext context, DarkMatterFilament self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(DarkMatterFilamentContext context, DarkMatterFilament self)
+    protected override float GenerateLifespan(DarkMatterFilamentContext context, DarkMatterFilament self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(DarkMatterFilamentContext context, DarkMatterFilament self)
+    protected override Vector3 GeneratePosition(DarkMatterFilamentContext context, DarkMatterFilament self)
     {
         throw new NotImplementedException();
     }

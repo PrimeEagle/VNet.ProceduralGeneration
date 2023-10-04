@@ -27,7 +27,7 @@ public class TransdimensionalWormholeGenerator : GeneratorBase<TransdimensionalW
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
+    protected override float GenerateAge(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class TransdimensionalWormholeGenerator : GeneratorBase<TransdimensionalW
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
+    protected override double GenerateMass(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class TransdimensionalWormholeGenerator : GeneratorBase<TransdimensionalW
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
+    protected override float GenerateTemperature(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
+    protected override float GenerateLifespan(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
+    protected override Vector3 GeneratePosition(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
     {
         throw new NotImplementedException();
     }

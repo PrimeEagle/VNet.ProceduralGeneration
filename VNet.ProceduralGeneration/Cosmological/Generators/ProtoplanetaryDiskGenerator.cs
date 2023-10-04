@@ -27,7 +27,7 @@ public class ProtoplanetaryDiskGenerator : GeneratorBase<ProtoplanetaryDisk, Pro
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
+    protected override float GenerateAge(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class ProtoplanetaryDiskGenerator : GeneratorBase<ProtoplanetaryDisk, Pro
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
+    protected override double GenerateMass(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class ProtoplanetaryDiskGenerator : GeneratorBase<ProtoplanetaryDisk, Pro
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
+    protected override float GenerateTemperature(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
+    protected override float GenerateLifespan(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
+    protected override Vector3 GeneratePosition(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
     {
         throw new NotImplementedException();
     }

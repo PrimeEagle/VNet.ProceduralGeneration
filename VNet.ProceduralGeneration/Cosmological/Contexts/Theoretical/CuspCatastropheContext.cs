@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class CuspCatastropheContext : BaseContext
+public class CuspCatastropheContext : ContextBase
 {
     public CuspCatastropheContext()
     {

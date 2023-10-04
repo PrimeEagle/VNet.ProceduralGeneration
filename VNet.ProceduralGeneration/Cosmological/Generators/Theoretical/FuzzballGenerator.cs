@@ -27,7 +27,7 @@ public class FuzzballGenerator : GeneratorBase<Fuzzball, FuzzballContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(FuzzballContext context, Fuzzball self)
+    protected override float GenerateAge(FuzzballContext context, Fuzzball self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class FuzzballGenerator : GeneratorBase<Fuzzball, FuzzballContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(FuzzballContext context, Fuzzball self)
+    protected override double GenerateMass(FuzzballContext context, Fuzzball self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class FuzzballGenerator : GeneratorBase<Fuzzball, FuzzballContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(FuzzballContext context, Fuzzball self)
+    protected override float GenerateTemperature(FuzzballContext context, Fuzzball self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(FuzzballContext context, Fuzzball self)
+    protected override float GenerateLifespan(FuzzballContext context, Fuzzball self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(FuzzballContext context, Fuzzball self)
+    protected override Vector3 GeneratePosition(FuzzballContext context, Fuzzball self)
     {
         throw new NotImplementedException();
     }

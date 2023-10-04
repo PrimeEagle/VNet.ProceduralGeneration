@@ -16,6 +16,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         public DarkMatterSheetGenerationSettings DarkMatterSheet { get; init; }
         public DarkMatterVoidGenerationSettings DarkMatterVoid { get; init; }
         public PluginSettings Plugin { get; init; }
+        public PhysicalConstantsSettings PhysicalConstants { get; init; }
 
 
 
@@ -34,6 +35,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
             this.DarkMatterSheet = new DarkMatterSheetGenerationSettings();
             this.DarkMatterVoid = new DarkMatterVoidGenerationSettings();
             this.Plugin = new PluginSettings();
+            this.PhysicalConstants = new PhysicalConstantsSettings();
         }
     }
 }

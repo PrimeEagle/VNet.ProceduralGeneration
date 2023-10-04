@@ -28,7 +28,7 @@ public class AsteroidGenerator : GeneratorBase<Asteroid, AsteroidContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(AsteroidContext context, Asteroid self)
+    protected override float GenerateAge(AsteroidContext context, Asteroid self)
     {
         throw new NotImplementedException();
     }
@@ -38,7 +38,7 @@ public class AsteroidGenerator : GeneratorBase<Asteroid, AsteroidContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(AsteroidContext context, Asteroid self)
+    protected override double GenerateMass(AsteroidContext context, Asteroid self)
     {
         throw new NotImplementedException();
     }
@@ -48,17 +48,17 @@ public class AsteroidGenerator : GeneratorBase<Asteroid, AsteroidContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(AsteroidContext context, Asteroid self)
+    protected override float GenerateTemperature(AsteroidContext context, Asteroid self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(AsteroidContext context, Asteroid self)
+    protected override float GenerateLifespan(AsteroidContext context, Asteroid self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(AsteroidContext context, Asteroid self)
+    protected override Vector3 GeneratePosition(AsteroidContext context, Asteroid self)
     {
         throw new NotImplementedException();
     }

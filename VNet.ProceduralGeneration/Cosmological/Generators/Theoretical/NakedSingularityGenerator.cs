@@ -27,7 +27,7 @@ public class NakedSingularityGenerator : GeneratorBase<NakedSingularity, NakedSi
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(NakedSingularityContext context, NakedSingularity self)
+    protected override float GenerateAge(NakedSingularityContext context, NakedSingularity self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class NakedSingularityGenerator : GeneratorBase<NakedSingularity, NakedSi
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(NakedSingularityContext context, NakedSingularity self)
+    protected override double GenerateMass(NakedSingularityContext context, NakedSingularity self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class NakedSingularityGenerator : GeneratorBase<NakedSingularity, NakedSi
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(NakedSingularityContext context, NakedSingularity self)
+    protected override float GenerateTemperature(NakedSingularityContext context, NakedSingularity self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(NakedSingularityContext context, NakedSingularity self)
+    protected override float GenerateLifespan(NakedSingularityContext context, NakedSingularity self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(NakedSingularityContext context, NakedSingularity self)
+    protected override Vector3 GeneratePosition(NakedSingularityContext context, NakedSingularity self)
     {
         throw new NotImplementedException();
     }

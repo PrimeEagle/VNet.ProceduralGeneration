@@ -27,7 +27,7 @@ public class DysonSphereGenerator : GeneratorBase<DysonSphere, DysonSphereContex
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(DysonSphereContext context, DysonSphere self)
+    protected override float GenerateAge(DysonSphereContext context, DysonSphere self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class DysonSphereGenerator : GeneratorBase<DysonSphere, DysonSphereContex
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(DysonSphereContext context, DysonSphere self)
+    protected override double GenerateMass(DysonSphereContext context, DysonSphere self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class DysonSphereGenerator : GeneratorBase<DysonSphere, DysonSphereContex
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(DysonSphereContext context, DysonSphere self)
+    protected override float GenerateTemperature(DysonSphereContext context, DysonSphere self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(DysonSphereContext context, DysonSphere self)
+    protected override float GenerateLifespan(DysonSphereContext context, DysonSphere self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(DysonSphereContext context, DysonSphere self)
+    protected override Vector3 GeneratePosition(DysonSphereContext context, DysonSphere self)
     {
         throw new NotImplementedException();
     }

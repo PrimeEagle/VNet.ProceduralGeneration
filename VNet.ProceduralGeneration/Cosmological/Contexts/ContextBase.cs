@@ -3,12 +3,13 @@ using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts
 {
-    public  abstract class BaseContext
+    public  abstract class ContextBase
     {
         public float Age { get; set; }                      // years
         public double Mass { get; set; }                    // kg
         public float Size { get; set; }                     // AU
         public float AbsoluteMagnitude { get; set; }        // 
+        public double Luminosity { get; set; }              //  L⊙
         public float Temperature { get; set; }              // Kelvin
         public Vector3 Position { get; set; }               // AU
 

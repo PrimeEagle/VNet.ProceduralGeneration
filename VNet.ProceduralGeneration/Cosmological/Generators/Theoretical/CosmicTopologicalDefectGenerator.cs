@@ -27,7 +27,7 @@ public class CosmicTopologicalDefectGenerator : GeneratorBase<CosmicTopologicalD
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    protected override float GenerateAge(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class CosmicTopologicalDefectGenerator : GeneratorBase<CosmicTopologicalD
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    protected override double GenerateMass(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class CosmicTopologicalDefectGenerator : GeneratorBase<CosmicTopologicalD
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    protected override float GenerateTemperature(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    protected override float GenerateLifespan(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    protected override Vector3 GeneratePosition(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
     {
         throw new NotImplementedException();
     }

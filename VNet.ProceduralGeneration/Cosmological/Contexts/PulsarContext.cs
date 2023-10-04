@@ -1,5 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public class PulsarContext : BaseContext
+public class PulsarContext : ContextBase
 {
 }

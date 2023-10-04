@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class CosmicTopologicalDefectContext : BaseContext
+public class CosmicTopologicalDefectContext : ContextBase
 {
     public CosmicTopologicalDefectContext()
     {

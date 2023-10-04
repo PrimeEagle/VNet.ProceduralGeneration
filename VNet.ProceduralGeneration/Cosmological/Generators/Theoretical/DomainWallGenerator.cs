@@ -27,7 +27,7 @@ public class DomainWallGenerator : GeneratorBase<DomainWall, DomainWallContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(DomainWallContext context, DomainWall self)
+    protected override float GenerateAge(DomainWallContext context, DomainWall self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class DomainWallGenerator : GeneratorBase<DomainWall, DomainWallContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(DomainWallContext context, DomainWall self)
+    protected override double GenerateMass(DomainWallContext context, DomainWall self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class DomainWallGenerator : GeneratorBase<DomainWall, DomainWallContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(DomainWallContext context, DomainWall self)
+    protected override float GenerateTemperature(DomainWallContext context, DomainWall self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(DomainWallContext context, DomainWall self)
+    protected override float GenerateLifespan(DomainWallContext context, DomainWall self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(DomainWallContext context, DomainWall self)
+    protected override Vector3 GeneratePosition(DomainWallContext context, DomainWall self)
     {
         throw new NotImplementedException();
     }

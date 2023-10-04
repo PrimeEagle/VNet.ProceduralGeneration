@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public class DarkMatterNodeContext : BaseContext
+public class DarkMatterNodeContext : ContextBase
 {
     public SpatialGrid SpatialGrid { get; set; }
 

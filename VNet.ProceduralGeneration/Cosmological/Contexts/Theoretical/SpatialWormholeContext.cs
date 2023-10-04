@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class SpatialWormholeContext : BaseContext
+public class SpatialWormholeContext : ContextBase
 {
     public SpatialWormholeContext()
     {

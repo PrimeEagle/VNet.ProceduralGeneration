@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class FuzzballContext : BaseContext
+public class FuzzballContext : ContextBase
 {
     public FuzzballContext()
     {

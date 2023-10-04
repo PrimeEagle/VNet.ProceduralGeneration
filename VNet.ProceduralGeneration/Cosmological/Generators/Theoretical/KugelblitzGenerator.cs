@@ -27,7 +27,7 @@ public class KugelblitzGenerator : GeneratorBase<Kugelblitz, KugelblitzContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(KugelblitzContext context, Kugelblitz self)
+    protected override float GenerateAge(KugelblitzContext context, Kugelblitz self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class KugelblitzGenerator : GeneratorBase<Kugelblitz, KugelblitzContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(KugelblitzContext context, Kugelblitz self)
+    protected override double GenerateMass(KugelblitzContext context, Kugelblitz self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class KugelblitzGenerator : GeneratorBase<Kugelblitz, KugelblitzContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(KugelblitzContext context, Kugelblitz self)
+    protected override float GenerateTemperature(KugelblitzContext context, Kugelblitz self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(KugelblitzContext context, Kugelblitz self)
+    protected override float GenerateLifespan(KugelblitzContext context, Kugelblitz self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(KugelblitzContext context, Kugelblitz self)
+    protected override Vector3 GeneratePosition(KugelblitzContext context, Kugelblitz self)
     {
         throw new NotImplementedException();
     }

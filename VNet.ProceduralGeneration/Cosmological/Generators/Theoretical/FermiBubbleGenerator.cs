@@ -27,7 +27,7 @@ public class FermiBubbleGenerator : GeneratorBase<FermiBubble, FermiBubbleContex
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(FermiBubbleContext context, FermiBubble self)
+    protected override float GenerateAge(FermiBubbleContext context, FermiBubble self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class FermiBubbleGenerator : GeneratorBase<FermiBubble, FermiBubbleContex
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(FermiBubbleContext context, FermiBubble self)
+    protected override double GenerateMass(FermiBubbleContext context, FermiBubble self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class FermiBubbleGenerator : GeneratorBase<FermiBubble, FermiBubbleContex
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(FermiBubbleContext context, FermiBubble self)
+    protected override float GenerateTemperature(FermiBubbleContext context, FermiBubble self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(FermiBubbleContext context, FermiBubble self)
+    protected override float GenerateLifespan(FermiBubbleContext context, FermiBubble self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(FermiBubbleContext context, FermiBubble self)
+    protected override Vector3 GeneratePosition(FermiBubbleContext context, FermiBubble self)
     {
         throw new NotImplementedException();
     }

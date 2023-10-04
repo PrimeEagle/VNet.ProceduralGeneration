@@ -27,7 +27,7 @@ public class MoonGenerator : GeneratorBase<Moon, MoonContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(MoonContext context, Moon self)
+    protected override float GenerateAge(MoonContext context, Moon self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class MoonGenerator : GeneratorBase<Moon, MoonContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(MoonContext context, Moon self)
+    protected override double GenerateMass(MoonContext context, Moon self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class MoonGenerator : GeneratorBase<Moon, MoonContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(MoonContext context, Moon self)
+    protected override float GenerateTemperature(MoonContext context, Moon self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(MoonContext context, Moon self)
+    protected override float GenerateLifespan(MoonContext context, Moon self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(MoonContext context, Moon self)
+    protected override Vector3 GeneratePosition(MoonContext context, Moon self)
     {
         throw new NotImplementedException();
     }

@@ -1,5 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public class BlackHoleContext : BaseContext
+public class BlackHoleContext : ContextBase
 {
 }

@@ -27,7 +27,7 @@ public class SupernovaGenerator : GeneratorBase<Supernova, SupernovaContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(SupernovaContext context, Supernova self)
+    protected override float GenerateAge(SupernovaContext context, Supernova self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class SupernovaGenerator : GeneratorBase<Supernova, SupernovaContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(SupernovaContext context, Supernova self)
+    protected override double GenerateMass(SupernovaContext context, Supernova self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class SupernovaGenerator : GeneratorBase<Supernova, SupernovaContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(SupernovaContext context, Supernova self)
+    protected override float GenerateTemperature(SupernovaContext context, Supernova self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(SupernovaContext context, Supernova self)
+    protected override float GenerateLifespan(SupernovaContext context, Supernova self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(SupernovaContext context, Supernova self)
+    protected override Vector3 GeneratePosition(SupernovaContext context, Supernova self)
     {
         throw new NotImplementedException();
     }

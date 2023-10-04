@@ -27,7 +27,7 @@ public class StarClusterGenerator : GeneratorBase<StarCluster, StarClusterContex
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(StarClusterContext context, StarCluster self)
+    protected override float GenerateAge(StarClusterContext context, StarCluster self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class StarClusterGenerator : GeneratorBase<StarCluster, StarClusterContex
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(StarClusterContext context, StarCluster self)
+    protected override double GenerateMass(StarClusterContext context, StarCluster self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class StarClusterGenerator : GeneratorBase<StarCluster, StarClusterContex
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(StarClusterContext context, StarCluster self)
+    protected override float GenerateTemperature(StarClusterContext context, StarCluster self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(StarClusterContext context, StarCluster self)
+    protected override float GenerateLifespan(StarClusterContext context, StarCluster self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(StarClusterContext context, StarCluster self)
+    protected override Vector3 GeneratePosition(StarClusterContext context, StarCluster self)
     {
         throw new NotImplementedException();
     }

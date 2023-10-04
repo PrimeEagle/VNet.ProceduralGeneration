@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class TransdimensionalWormholeContext : BaseContext
+public class TransdimensionalWormholeContext : ContextBase
 {
     public TransdimensionalWormholeContext()
     {

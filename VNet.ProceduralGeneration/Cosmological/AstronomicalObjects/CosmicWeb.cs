@@ -12,4 +12,17 @@ public class CosmicWeb : AstronomicalObject
     public List<DarkMatterFilament> DarkMatterFilaments { get; set; } = new();
     public List<DarkMatterSheet> DarkMatterSheets { get; set; } = new();
     public List<DarkMatterVoid> DarkMatterVoids { get; set; } = new();
+
+    internal override void AssignChildren()
+    {
+        this.Children.Add(this.IntergalacticMedium);
+        this.Children.AddRange(this.BaryonicMatterNodes);
+        this.Children.AddRange(this.BaryonicMatterFilaments);
+        this.Children.AddRange(this.BaryonicMatterSheets);
+        this.Children.AddRange(this.BaryonicMatterVoids);
+        this.Children.AddRange(this.DarkMatterNodes);
+        this.Children.AddRange(this.DarkMatterFilaments);
+        this.Children.AddRange(this.DarkMatterSheets);
+        this.Children.AddRange(this.DarkMatterVoids);
+    }
 }

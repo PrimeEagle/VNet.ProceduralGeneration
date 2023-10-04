@@ -27,7 +27,7 @@ public class MagnetarGenerator : GeneratorBase<Magnetar, MagnetarContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(MagnetarContext context, Magnetar self)
+    protected override float GenerateAge(MagnetarContext context, Magnetar self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class MagnetarGenerator : GeneratorBase<Magnetar, MagnetarContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(MagnetarContext context, Magnetar self)
+    protected override double GenerateMass(MagnetarContext context, Magnetar self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class MagnetarGenerator : GeneratorBase<Magnetar, MagnetarContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(MagnetarContext context, Magnetar self)
+    protected override float GenerateTemperature(MagnetarContext context, Magnetar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(MagnetarContext context, Magnetar self)
+    protected override float GenerateLifespan(MagnetarContext context, Magnetar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(MagnetarContext context, Magnetar self)
+    protected override Vector3 GeneratePosition(MagnetarContext context, Magnetar self)
     {
         throw new NotImplementedException();
     }

@@ -2,7 +2,7 @@
 
 public enum CurvatureType
 {
-    Flat,
-    Spherical,
-    Hyperbolic
+    Hyperbolic = 0,
+    Flat = 1,
+    Spherical = 2,
 }

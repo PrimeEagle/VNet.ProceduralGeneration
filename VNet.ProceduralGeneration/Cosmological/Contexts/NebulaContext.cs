@@ -1,5 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public class NebulaContext : BaseContext
+public class NebulaContext : ContextBase
 {
 }

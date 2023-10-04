@@ -27,7 +27,7 @@ public class BlackHoleGenerator : GeneratorBase<BlackHole, BlackHoleContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(BlackHoleContext context, BlackHole self)
+    protected override float GenerateAge(BlackHoleContext context, BlackHole self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class BlackHoleGenerator : GeneratorBase<BlackHole, BlackHoleContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(BlackHoleContext context, BlackHole self)
+    protected override double GenerateMass(BlackHoleContext context, BlackHole self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class BlackHoleGenerator : GeneratorBase<BlackHole, BlackHoleContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(BlackHoleContext context, BlackHole self)
+    protected override float GenerateTemperature(BlackHoleContext context, BlackHole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(BlackHoleContext context, BlackHole self)
+    protected override float GenerateLifespan(BlackHoleContext context, BlackHole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(BlackHoleContext context, BlackHole self)
+    protected override Vector3 GeneratePosition(BlackHoleContext context, BlackHole self)
     {
         throw new NotImplementedException();
     }

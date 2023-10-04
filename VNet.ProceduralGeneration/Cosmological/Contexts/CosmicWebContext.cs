@@ -3,7 +3,7 @@ using VNet.ProceduralGeneration.Cosmological.Enum;
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public class CosmicWebContext : BaseContext
+public class CosmicWebContext : ContextBase
 {
     public double DarkEnergyPercent { get; set; }
     public double DarkMatterPercent { get; set; }

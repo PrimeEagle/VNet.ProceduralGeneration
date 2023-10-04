@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class PrimordialBlackHoleContext : BaseContext
+public class PrimordialBlackHoleContext : ContextBase
 {
     public PrimordialBlackHoleContext()
     {

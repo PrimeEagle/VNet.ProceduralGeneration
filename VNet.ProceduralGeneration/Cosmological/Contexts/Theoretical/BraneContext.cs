@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class BraneContext : BaseContext
+public class BraneContext : ContextBase
 {
     public BraneContext()
     {

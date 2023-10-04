@@ -27,7 +27,7 @@ public class CosmicBubbleGenerator : GeneratorBase<CosmicBubble, CosmicBubbleCon
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(CosmicBubbleContext context, CosmicBubble self)
+    protected override float GenerateAge(CosmicBubbleContext context, CosmicBubble self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class CosmicBubbleGenerator : GeneratorBase<CosmicBubble, CosmicBubbleCon
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(CosmicBubbleContext context, CosmicBubble self)
+    protected override double GenerateMass(CosmicBubbleContext context, CosmicBubble self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class CosmicBubbleGenerator : GeneratorBase<CosmicBubble, CosmicBubbleCon
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(CosmicBubbleContext context, CosmicBubble self)
+    protected override float GenerateTemperature(CosmicBubbleContext context, CosmicBubble self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(CosmicBubbleContext context, CosmicBubble self)
+    protected override float GenerateLifespan(CosmicBubbleContext context, CosmicBubble self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(CosmicBubbleContext context, CosmicBubble self)
+    protected override Vector3 GeneratePosition(CosmicBubbleContext context, CosmicBubble self)
     {
         throw new NotImplementedException();
     }

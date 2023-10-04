@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class PreonStarContext : BaseContext
+public class PreonStarContext : ContextBase
 {
     public PreonStarContext()
     {

@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class CosmicDustLaneContext : BaseContext
+public class CosmicDustLaneContext : ContextBase
 {
     public CosmicDustLaneContext()
     {

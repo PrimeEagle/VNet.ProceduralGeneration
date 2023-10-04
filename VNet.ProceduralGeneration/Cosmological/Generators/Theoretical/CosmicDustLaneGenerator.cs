@@ -27,7 +27,7 @@ public class CosmicDustLaneGenerator : GeneratorBase<CosmicDustLane, CosmicDustL
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(CosmicDustLaneContext context, CosmicDustLane self)
+    protected override float GenerateAge(CosmicDustLaneContext context, CosmicDustLane self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class CosmicDustLaneGenerator : GeneratorBase<CosmicDustLane, CosmicDustL
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(CosmicDustLaneContext context, CosmicDustLane self)
+    protected override double GenerateMass(CosmicDustLaneContext context, CosmicDustLane self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class CosmicDustLaneGenerator : GeneratorBase<CosmicDustLane, CosmicDustL
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(CosmicDustLaneContext context, CosmicDustLane self)
+    protected override float GenerateTemperature(CosmicDustLaneContext context, CosmicDustLane self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(CosmicDustLaneContext context, CosmicDustLane self)
+    protected override float GenerateLifespan(CosmicDustLaneContext context, CosmicDustLane self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(CosmicDustLaneContext context, CosmicDustLane self)
+    protected override Vector3 GeneratePosition(CosmicDustLaneContext context, CosmicDustLane self)
     {
         throw new NotImplementedException();
     }

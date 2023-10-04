@@ -27,7 +27,7 @@ public class CometGenerator : GeneratorBase<Comet, CometContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(CometContext context, Comet self)
+    protected override float GenerateAge(CometContext context, Comet self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class CometGenerator : GeneratorBase<Comet, CometContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(CometContext context, Comet self)
+    protected override double GenerateMass(CometContext context, Comet self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class CometGenerator : GeneratorBase<Comet, CometContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(CometContext context, Comet self)
+    protected override float GenerateTemperature(CometContext context, Comet self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(CometContext context, Comet self)
+    protected override float GenerateLifespan(CometContext context, Comet self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(CometContext context, Comet self)
+    protected override Vector3 GeneratePosition(CometContext context, Comet self)
     {
         throw new NotImplementedException();
     }

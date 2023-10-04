@@ -27,7 +27,7 @@ public class IntergalacticMediumGenerator : GeneratorBase<IntergalacticMedium, I
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(IntergalacticMediumContext context, IntergalacticMedium self)
+    protected override float GenerateAge(IntergalacticMediumContext context, IntergalacticMedium self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class IntergalacticMediumGenerator : GeneratorBase<IntergalacticMedium, I
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(IntergalacticMediumContext context, IntergalacticMedium self)
+    protected override double GenerateMass(IntergalacticMediumContext context, IntergalacticMedium self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class IntergalacticMediumGenerator : GeneratorBase<IntergalacticMedium, I
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(IntergalacticMediumContext context, IntergalacticMedium self)
+    protected override float GenerateTemperature(IntergalacticMediumContext context, IntergalacticMedium self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(IntergalacticMediumContext context, IntergalacticMedium self)
+    protected override float GenerateLifespan(IntergalacticMediumContext context, IntergalacticMedium self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(IntergalacticMediumContext context, IntergalacticMedium self)
+    protected override Vector3 GeneratePosition(IntergalacticMediumContext context, IntergalacticMedium self)
     {
         throw new NotImplementedException();
     }

@@ -27,7 +27,7 @@ public class QuarkStarGenerator : GeneratorBase<QuarkStar, QuarkStarContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(QuarkStarContext context, QuarkStar self)
+    protected override float GenerateAge(QuarkStarContext context, QuarkStar self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class QuarkStarGenerator : GeneratorBase<QuarkStar, QuarkStarContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(QuarkStarContext context, QuarkStar self)
+    protected override double GenerateMass(QuarkStarContext context, QuarkStar self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class QuarkStarGenerator : GeneratorBase<QuarkStar, QuarkStarContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(QuarkStarContext context, QuarkStar self)
+    protected override float GenerateTemperature(QuarkStarContext context, QuarkStar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(QuarkStarContext context, QuarkStar self)
+    protected override float GenerateLifespan(QuarkStarContext context, QuarkStar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(QuarkStarContext context, QuarkStar self)
+    protected override Vector3 GeneratePosition(QuarkStarContext context, QuarkStar self)
     {
         throw new NotImplementedException();
     }

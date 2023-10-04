@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class TemporalWormholeContext : BaseContext
+public class TemporalWormholeContext : ContextBase
 {
     public TemporalWormholeContext()
     {

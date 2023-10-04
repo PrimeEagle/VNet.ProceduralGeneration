@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public class DarkMatterSheetContext : BaseContext
+public class DarkMatterSheetContext : ContextBase
 {
     public DarkMatterSheetContext()
     {

@@ -27,7 +27,7 @@ public class SpatialWormholeGenerator : GeneratorBase<SpatialWormhole, SpatialWo
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(SpatialWormholeContext context, SpatialWormhole self)
+    protected override float GenerateAge(SpatialWormholeContext context, SpatialWormhole self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class SpatialWormholeGenerator : GeneratorBase<SpatialWormhole, SpatialWo
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(SpatialWormholeContext context, SpatialWormhole self)
+    protected override double GenerateMass(SpatialWormholeContext context, SpatialWormhole self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class SpatialWormholeGenerator : GeneratorBase<SpatialWormhole, SpatialWo
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(SpatialWormholeContext context, SpatialWormhole self)
+    protected override float GenerateTemperature(SpatialWormholeContext context, SpatialWormhole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(SpatialWormholeContext context, SpatialWormhole self)
+    protected override float GenerateLifespan(SpatialWormholeContext context, SpatialWormhole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(SpatialWormholeContext context, SpatialWormhole self)
+    protected override Vector3 GeneratePosition(SpatialWormholeContext context, SpatialWormhole self)
     {
         throw new NotImplementedException();
     }

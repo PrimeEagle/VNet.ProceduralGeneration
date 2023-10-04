@@ -1,5 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public class LargeQuasarGroupContext : BaseContext
+public class LargeQuasarGroupContext : ContextBase
 {
 }

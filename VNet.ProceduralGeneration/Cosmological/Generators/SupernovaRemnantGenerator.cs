@@ -27,7 +27,7 @@ public class SupernovaRemnantGenerator : GeneratorBase<SupernovaRemnant, Superno
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(SupernovaRemnantContext context, SupernovaRemnant self)
+    protected override float GenerateAge(SupernovaRemnantContext context, SupernovaRemnant self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class SupernovaRemnantGenerator : GeneratorBase<SupernovaRemnant, Superno
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(SupernovaRemnantContext context, SupernovaRemnant self)
+    protected override double GenerateMass(SupernovaRemnantContext context, SupernovaRemnant self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class SupernovaRemnantGenerator : GeneratorBase<SupernovaRemnant, Superno
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(SupernovaRemnantContext context, SupernovaRemnant self)
+    protected override float GenerateTemperature(SupernovaRemnantContext context, SupernovaRemnant self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(SupernovaRemnantContext context, SupernovaRemnant self)
+    protected override float GenerateLifespan(SupernovaRemnantContext context, SupernovaRemnant self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(SupernovaRemnantContext context, SupernovaRemnant self)
+    protected override Vector3 GeneratePosition(SupernovaRemnantContext context, SupernovaRemnant self)
     {
         throw new NotImplementedException();
     }

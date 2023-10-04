@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class FermiBubbleContext : BaseContext
+public class FermiBubbleContext : ContextBase
 {
     public FermiBubbleContext()
     {

@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public class BaryonicMatterVoidContext : BaseContext
+public class BaryonicMatterVoidContext : ContextBase
 {
     public BaryonicMatterVoidContext()
     {

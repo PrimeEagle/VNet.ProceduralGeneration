@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class PlanckStarContext : BaseContext
+public class PlanckStarContext : ContextBase
 {
     public PlanckStarContext()
     {

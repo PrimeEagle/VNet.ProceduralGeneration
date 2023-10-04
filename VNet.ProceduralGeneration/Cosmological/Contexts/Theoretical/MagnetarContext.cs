@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class MagnetarContext : BaseContext
+public class MagnetarContext : ContextBase
 {
     public MagnetarContext()
     {

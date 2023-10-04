@@ -27,7 +27,7 @@ public class BraneGenerator : GeneratorBase<Brane, BraneContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(BraneContext context, Brane self)
+    protected override float GenerateAge(BraneContext context, Brane self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class BraneGenerator : GeneratorBase<Brane, BraneContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(BraneContext context, Brane self)
+    protected override double GenerateMass(BraneContext context, Brane self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class BraneGenerator : GeneratorBase<Brane, BraneContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(BraneContext context, Brane self)
+    protected override float GenerateTemperature(BraneContext context, Brane self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(BraneContext context, Brane self)
+    protected override float GenerateLifespan(BraneContext context, Brane self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(BraneContext context, Brane self)
+    protected override Vector3 GeneratePosition(BraneContext context, Brane self)
     {
         throw new NotImplementedException();
     }

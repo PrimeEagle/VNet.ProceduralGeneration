@@ -27,7 +27,7 @@ public class PrimordialBlackHoleGenerator : GeneratorBase<PrimordialBlackHole, P
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(PrimordialBlackHoleContext context, PrimordialBlackHole self)
+    protected override float GenerateAge(PrimordialBlackHoleContext context, PrimordialBlackHole self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class PrimordialBlackHoleGenerator : GeneratorBase<PrimordialBlackHole, P
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(PrimordialBlackHoleContext context, PrimordialBlackHole self)
+    protected override double GenerateMass(PrimordialBlackHoleContext context, PrimordialBlackHole self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class PrimordialBlackHoleGenerator : GeneratorBase<PrimordialBlackHole, P
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(PrimordialBlackHoleContext context, PrimordialBlackHole self)
+    protected override float GenerateTemperature(PrimordialBlackHoleContext context, PrimordialBlackHole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(PrimordialBlackHoleContext context, PrimordialBlackHole self)
+    protected override float GenerateLifespan(PrimordialBlackHoleContext context, PrimordialBlackHole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(PrimordialBlackHoleContext context, PrimordialBlackHole self)
+    protected override Vector3 GeneratePosition(PrimordialBlackHoleContext context, PrimordialBlackHole self)
     {
         throw new NotImplementedException();
     }

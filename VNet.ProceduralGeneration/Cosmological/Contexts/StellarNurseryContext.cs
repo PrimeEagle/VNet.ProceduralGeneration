@@ -1,5 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public class StellarNurseryContext : BaseContext
+public class StellarNurseryContext : ContextBase
 {
 }

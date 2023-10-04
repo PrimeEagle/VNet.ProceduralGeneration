@@ -27,7 +27,7 @@ public class CosmicTornadoGenerator : GeneratorBase<CosmicTornado, CosmicTornado
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(CosmicTornadoContext context, CosmicTornado self)
+    protected override float GenerateAge(CosmicTornadoContext context, CosmicTornado self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class CosmicTornadoGenerator : GeneratorBase<CosmicTornado, CosmicTornado
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(CosmicTornadoContext context, CosmicTornado self)
+    protected override double GenerateMass(CosmicTornadoContext context, CosmicTornado self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class CosmicTornadoGenerator : GeneratorBase<CosmicTornado, CosmicTornado
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(CosmicTornadoContext context, CosmicTornado self)
+    protected override float GenerateTemperature(CosmicTornadoContext context, CosmicTornado self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(CosmicTornadoContext context, CosmicTornado self)
+    protected override float GenerateLifespan(CosmicTornadoContext context, CosmicTornado self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(CosmicTornadoContext context, CosmicTornado self)
+    protected override Vector3 GeneratePosition(CosmicTornadoContext context, CosmicTornado self)
     {
         throw new NotImplementedException();
     }

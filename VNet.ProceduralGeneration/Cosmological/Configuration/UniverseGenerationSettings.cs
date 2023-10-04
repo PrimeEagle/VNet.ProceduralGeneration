@@ -13,16 +13,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Tooltip("The amount of gaussian blur to apply to the Heightmap Image File (0 = none).")]
         public float GaussianSigma { get; init; }
 
-        [Range(0, double.MaxValue)]
-        [DisplayName("Baseline Expansion Rate")]
-        [Tooltip("The baseline expansion rate to use for comparisons. Defaults to expansion rate of the real universe. (km/s/Mpc)")]
-        public double BaselineExpansionRate { get; init; }
-
-        [Range(0, 10e32)]
-        [DisplayName("Baseline Cosmic Microwave Background")]
-        [Tooltip("The baseline cosmic microwave background to user for comparisons. Defaults to the cosmic microwave background of the real universe. (Kelvin)")]
-        public double BaselineCosmicMicrowaveBackground { get; init; }
-
         [Range(0, 100)]
         [LessThanOrEqualToProperty(nameof(MaxConnectivityFactor))]
         [DisplayName("Min Connectivity Factor")]
@@ -58,20 +48,38 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Tooltip("The random generation algorithm to use.")]
         public IRandomGenerationAlgorithm RandomGenerator { get; init; }
 
+        [Range(0, float.MaxValue)]
+        [DisplayName("Cosmic Microwave Background Threshold")]
+        [Tooltip("The threshold for the cosmic microwave background.")]
+        public float CosmicMicrowaveBackgroundThreshold { get; init; }
+
+        [Range(0, float.MaxValue)]
+        [LessThanOrEqualToProperty(nameof(InflationEnd))]
+        [DisplayName("Inflation Start")]
+        [Tooltip("The start of the inflation stage of the universe.")]
+        public float InflationStart { get; init; }
+
+        [Range(0, float.MaxValue)]
+        [GreaterThanOrEqualToProperty(nameof(InflationStart))]
+        [DisplayName("Inflation End")]
+        [Tooltip("The end of the inflation stage of the universe. Value = 0 means no inflation.")]
+        public float InflationEnd { get; init; }
+
 
 
 
         public UniverseGenerationSettings()
         {
             this.GaussianSigma = ConfigConstants.Universe.GaussianSigma;
-            this.BaselineExpansionRate = ConfigConstants.Universe.BaselineExpansionRate;
-            this.BaselineCosmicMicrowaveBackground = ConfigConstants.Universe.BaselineCosmicMicrowaveBackground;
             this.MinConnectivityFactor = ConfigConstants.Universe.MinConnectivityFactor;
             this.MaxConnectivityFactor = ConfigConstants.Universe.MaxConnectivityFactor;
             this.CurvatureFlatPercentage = ConfigConstants.Universe.CurvatureFlatPercentage;
             this.CurvatureSphericalPercentage = ConfigConstants.Universe.CurvatureSphericalPercentage;
             this.CurvatureHyperbolicPercentage = ConfigConstants.Universe.CurvatureHyperbolicPercentage;
             this.RandomGenerator = ConfigConstants.Universe.RandomGenerator;
+            this.CosmicMicrowaveBackgroundThreshold = ConfigConstants.Universe.CosmicMicrowaveBackgroundThreshold;
+            this.InflationStart = ConfigConstants.Universe.InflationStart;
+            this.InflationEnd = ConfigConstants.Universe.InflationEnd;
         }
     }
 }

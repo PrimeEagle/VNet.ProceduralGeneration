@@ -27,7 +27,7 @@ public class PlanckStarGenerator : GeneratorBase<PlanckStar, PlanckStarContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(PlanckStarContext context, PlanckStar self)
+    protected override float GenerateAge(PlanckStarContext context, PlanckStar self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class PlanckStarGenerator : GeneratorBase<PlanckStar, PlanckStarContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(PlanckStarContext context, PlanckStar self)
+    protected override double GenerateMass(PlanckStarContext context, PlanckStar self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class PlanckStarGenerator : GeneratorBase<PlanckStar, PlanckStarContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(PlanckStarContext context, PlanckStar self)
+    protected override float GenerateTemperature(PlanckStarContext context, PlanckStar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(PlanckStarContext context, PlanckStar self)
+    protected override float GenerateLifespan(PlanckStarContext context, PlanckStar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(PlanckStarContext context, PlanckStar self)
+    protected override Vector3 GeneratePosition(PlanckStarContext context, PlanckStar self)
     {
         throw new NotImplementedException();
     }

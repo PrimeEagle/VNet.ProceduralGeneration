@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class QuarkStarContext : BaseContext
+public class QuarkStarContext : ContextBase
 {
     public QuarkStarContext()
     {

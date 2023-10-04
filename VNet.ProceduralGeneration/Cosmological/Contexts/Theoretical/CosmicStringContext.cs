@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class CosmicStringContext : BaseContext
+public class CosmicStringContext : ContextBase
 {
     public CosmicStringContext()
     {

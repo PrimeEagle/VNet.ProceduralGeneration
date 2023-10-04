@@ -27,7 +27,7 @@ public class CuspCatastropheGenerator : GeneratorBase<CuspCatastrophe, CuspCatas
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(CuspCatastropheContext context, CuspCatastrophe self)
+    protected override float GenerateAge(CuspCatastropheContext context, CuspCatastrophe self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class CuspCatastropheGenerator : GeneratorBase<CuspCatastrophe, CuspCatas
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(CuspCatastropheContext context, CuspCatastrophe self)
+    protected override double GenerateMass(CuspCatastropheContext context, CuspCatastrophe self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class CuspCatastropheGenerator : GeneratorBase<CuspCatastrophe, CuspCatas
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(CuspCatastropheContext context, CuspCatastrophe self)
+    protected override float GenerateTemperature(CuspCatastropheContext context, CuspCatastrophe self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(CuspCatastropheContext context, CuspCatastrophe self)
+    protected override float GenerateLifespan(CuspCatastropheContext context, CuspCatastrophe self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(CuspCatastropheContext context, CuspCatastrophe self)
+    protected override Vector3 GeneratePosition(CuspCatastropheContext context, CuspCatastrophe self)
     {
         throw new NotImplementedException();
     }

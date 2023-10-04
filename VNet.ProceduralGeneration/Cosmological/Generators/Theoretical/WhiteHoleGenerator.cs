@@ -27,7 +27,7 @@ public class WhiteHoleGenerator : GeneratorBase<WhiteHole, WhiteHoleContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(WhiteHoleContext context, WhiteHole self)
+    protected override float GenerateAge(WhiteHoleContext context, WhiteHole self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class WhiteHoleGenerator : GeneratorBase<WhiteHole, WhiteHoleContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(WhiteHoleContext context, WhiteHole self)
+    protected override double GenerateMass(WhiteHoleContext context, WhiteHole self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class WhiteHoleGenerator : GeneratorBase<WhiteHole, WhiteHoleContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(WhiteHoleContext context, WhiteHole self)
+    protected override float GenerateTemperature(WhiteHoleContext context, WhiteHole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(WhiteHoleContext context, WhiteHole self)
+    protected override float GenerateLifespan(WhiteHoleContext context, WhiteHole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(WhiteHoleContext context, WhiteHole self)
+    protected override Vector3 GeneratePosition(WhiteHoleContext context, WhiteHole self)
     {
         throw new NotImplementedException();
     }

@@ -27,7 +27,7 @@ public class NovaGenerator : GeneratorBase<Nova, NovaContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(NovaContext context, Nova self)
+    protected override float GenerateAge(NovaContext context, Nova self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class NovaGenerator : GeneratorBase<Nova, NovaContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(NovaContext context, Nova self)
+    protected override double GenerateMass(NovaContext context, Nova self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class NovaGenerator : GeneratorBase<Nova, NovaContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(NovaContext context, Nova self)
+    protected override float GenerateTemperature(NovaContext context, Nova self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(NovaContext context, Nova self)
+    protected override float GenerateLifespan(NovaContext context, Nova self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(NovaContext context, Nova self)
+    protected override Vector3 GeneratePosition(NovaContext context, Nova self)
     {
         throw new NotImplementedException();
     }

@@ -62,37 +62,37 @@ public class UniverseGenerator : GeneratorBase<Universe, UniverseContext>
         return null;
     }
 
-    protected override float CalculateAge(UniverseContext context, Universe self)
+    protected override float GenerateAge(UniverseContext context, Universe self)
+    {
+        throw new NotImplementedException();
+    }
+    
+    protected override double GenerateMass(UniverseContext context, Universe self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateSize(UniverseContext context, Universe self)
+    protected override float GenerateDiameter(UniverseContext context, Universe self)
     {
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(UniverseContext context, Universe self)
+    protected override float GenerateLuminosity(UniverseContext context, Universe self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAbsoluteMagnitude(UniverseContext context, Universe self)
+    protected override float GenerateTemperature(UniverseContext context, Universe self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(UniverseContext context, Universe self)
+    protected override float GenerateLifespan(UniverseContext context, Universe self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(UniverseContext context, Universe self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override Vector3 CalculatePosition(UniverseContext context, Universe self)
+    protected override Vector3 GeneratePosition(UniverseContext context, Universe self)
     {
         throw new NotImplementedException();
     }

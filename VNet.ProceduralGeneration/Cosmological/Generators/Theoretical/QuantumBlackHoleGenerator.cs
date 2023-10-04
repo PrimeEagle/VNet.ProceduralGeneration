@@ -27,7 +27,7 @@ public class QuantumBlackHoleGenerator : GeneratorBase<QuantumBlackHole, Quantum
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(QuantumBlackHoleContext context, QuantumBlackHole self)
+    protected override float GenerateAge(QuantumBlackHoleContext context, QuantumBlackHole self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class QuantumBlackHoleGenerator : GeneratorBase<QuantumBlackHole, Quantum
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(QuantumBlackHoleContext context, QuantumBlackHole self)
+    protected override double GenerateMass(QuantumBlackHoleContext context, QuantumBlackHole self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class QuantumBlackHoleGenerator : GeneratorBase<QuantumBlackHole, Quantum
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(QuantumBlackHoleContext context, QuantumBlackHole self)
+    protected override float GenerateTemperature(QuantumBlackHoleContext context, QuantumBlackHole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(QuantumBlackHoleContext context, QuantumBlackHole self)
+    protected override float GenerateLifespan(QuantumBlackHoleContext context, QuantumBlackHole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(QuantumBlackHoleContext context, QuantumBlackHole self)
+    protected override Vector3 GeneratePosition(QuantumBlackHoleContext context, QuantumBlackHole self)
     {
         throw new NotImplementedException();
     }

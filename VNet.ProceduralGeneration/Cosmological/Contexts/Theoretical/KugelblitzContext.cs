@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class KugelblitzContext : BaseContext
+public class KugelblitzContext : ContextBase
 {
     public KugelblitzContext()
     {

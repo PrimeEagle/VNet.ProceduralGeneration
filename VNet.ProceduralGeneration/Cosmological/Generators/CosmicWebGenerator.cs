@@ -45,41 +45,6 @@ public class CosmicWebGenerator : GeneratorBase<CosmicWeb, CosmicWebContext>
         ApplyGravitationalEffects(self);
     }
 
-    protected override float CalculateAge(CosmicWebContext context, CosmicWeb self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateSize(CosmicWebContext context, CosmicWeb self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override double CalculateMass(CosmicWebContext context, CosmicWeb self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateAbsoluteMagnitude(CosmicWebContext context, CosmicWeb self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateTemperature(CosmicWebContext context, CosmicWeb self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateLifespan(CosmicWebContext context, CosmicWeb self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override Vector3 CalculatePosition(CosmicWebContext context, CosmicWeb self)
-    {
-        return new Vector3(0, 0, 0);
-    }
-
     private void ApplyGravitationalEffects(CosmicWeb self)
     {
         if (!BasicSettings.ApplyGravitationalEffectsToCosmicWeb) return;
@@ -438,7 +403,7 @@ public class CosmicWebGenerator : GeneratorBase<CosmicWeb, CosmicWebContext>
         baseCount += (int)(context.Age * 1e-9 * AdvancedSettings.BaryonicMatterFilament.CountAgeFactor);
         baseCount = (int)(baseCount * (context.Mass * AdvancedSettings.BaryonicMatterFilament.CountMassFactor) * (context.Size * AdvancedSettings.BaryonicMatterFilament.CountSizeFactor));
         baseCount = (int)(baseCount * (AdvancedSettings.Universe.BaselineExpansionRate / context.ExpansionRate));
-        baseCount = (int)(baseCount * (context.CosmicMicrowaveBackground / AdvancedSettings.Universe.BaselineCosmicMicrowaveBackground));
+        baseCount = (int)(baseCount * (context.CosmicMicrowaveBackground / AdvancedSettings.PhysicalConstants.BaselineCosmicMicrowaveBackground));
         baseCount = (int)(baseCount * (averageIntensity / 255.0));
         baseCount = (int)(baseCount * context.BaryonicMatterPercent / AdvancedSettings.BaryonicMatterFilament.CountBaryonicMatterPercentFactor);
         baseCount = (int)(baseCount * context.DarkMatterPercent / AdvancedSettings.BaryonicMatterFilament.CountDarkMatterPercentFactor);
@@ -652,5 +617,40 @@ public class CosmicWebGenerator : GeneratorBase<CosmicWeb, CosmicWebContext>
         baseCount = (int)(baseCount * (1 + context.DarkEnergyPercent / AdvancedSettings.DarkMatterVoid.CountDarkEnergyPercentFactor));
 
         return baseCount;
+    }
+
+    protected override float GenerateAge(CosmicWebContext context, CosmicWeb self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double GenerateMass(CosmicWebContext context, CosmicWeb self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float GenerateTemperature(CosmicWebContext context, CosmicWeb self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float GenerateLifespan(CosmicWebContext context, CosmicWeb self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 GeneratePosition(CosmicWebContext context, CosmicWeb self)
+    {
+        return new Vector3(0, 0, 0);
+    }
+
+    protected override float GenerateDiameter(CosmicWebContext context, CosmicWeb self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float GenerateLuminosity(CosmicWebContext context, CosmicWeb self)
+    {
+        throw new NotImplementedException();
     }
 }

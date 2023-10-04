@@ -27,7 +27,7 @@ public class PlanetGenerator : GeneratorBase<Planet, PlanetContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(PlanetContext context, Planet self)
+    protected override float GenerateAge(PlanetContext context, Planet self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class PlanetGenerator : GeneratorBase<Planet, PlanetContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(PlanetContext context, Planet self)
+    protected override double GenerateMass(PlanetContext context, Planet self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class PlanetGenerator : GeneratorBase<Planet, PlanetContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(PlanetContext context, Planet self)
+    protected override float GenerateTemperature(PlanetContext context, Planet self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(PlanetContext context, Planet self)
+    protected override float GenerateLifespan(PlanetContext context, Planet self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(PlanetContext context, Planet self)
+    protected override Vector3 GeneratePosition(PlanetContext context, Planet self)
     {
         throw new NotImplementedException();
     }

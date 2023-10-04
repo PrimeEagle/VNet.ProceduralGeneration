@@ -27,7 +27,7 @@ public class StellarNurseryGenerator : GeneratorBase<StellarNursery, StellarNurs
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(StellarNurseryContext context, StellarNursery self)
+    protected override float GenerateAge(StellarNurseryContext context, StellarNursery self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class StellarNurseryGenerator : GeneratorBase<StellarNursery, StellarNurs
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(StellarNurseryContext context, StellarNursery self)
+    protected override double GenerateMass(StellarNurseryContext context, StellarNursery self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class StellarNurseryGenerator : GeneratorBase<StellarNursery, StellarNurs
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(StellarNurseryContext context, StellarNursery self)
+    protected override float GenerateTemperature(StellarNurseryContext context, StellarNursery self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(StellarNurseryContext context, StellarNursery self)
+    protected override float GenerateLifespan(StellarNurseryContext context, StellarNursery self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(StellarNurseryContext context, StellarNursery self)
+    protected override Vector3 GeneratePosition(StellarNurseryContext context, StellarNursery self)
     {
         throw new NotImplementedException();
     }

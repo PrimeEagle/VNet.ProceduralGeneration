@@ -27,7 +27,7 @@ public class CosmicStringGenerator : GeneratorBase<CosmicString, CosmicStringCon
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(CosmicStringContext context, CosmicString self)
+    protected override float GenerateAge(CosmicStringContext context, CosmicString self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class CosmicStringGenerator : GeneratorBase<CosmicString, CosmicStringCon
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(CosmicStringContext context, CosmicString self)
+    protected override double GenerateMass(CosmicStringContext context, CosmicString self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class CosmicStringGenerator : GeneratorBase<CosmicString, CosmicStringCon
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(CosmicStringContext context, CosmicString self)
+    protected override float GenerateTemperature(CosmicStringContext context, CosmicString self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(CosmicStringContext context, CosmicString self)
+    protected override float GenerateLifespan(CosmicStringContext context, CosmicString self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(CosmicStringContext context, CosmicString self)
+    protected override Vector3 GeneratePosition(CosmicStringContext context, CosmicString self)
     {
         throw new NotImplementedException();
     }

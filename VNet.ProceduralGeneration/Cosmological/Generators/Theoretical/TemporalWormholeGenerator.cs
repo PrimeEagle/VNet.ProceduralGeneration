@@ -27,7 +27,7 @@ public class TemporalWormholeGenerator : GeneratorBase<TemporalWormhole, Tempora
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(TemporalWormholeContext context, TemporalWormhole self)
+    protected override float GenerateAge(TemporalWormholeContext context, TemporalWormhole self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class TemporalWormholeGenerator : GeneratorBase<TemporalWormhole, Tempora
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(TemporalWormholeContext context, TemporalWormhole self)
+    protected override double GenerateMass(TemporalWormholeContext context, TemporalWormhole self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class TemporalWormholeGenerator : GeneratorBase<TemporalWormhole, Tempora
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(TemporalWormholeContext context, TemporalWormhole self)
+    protected override float GenerateTemperature(TemporalWormholeContext context, TemporalWormhole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(TemporalWormholeContext context, TemporalWormhole self)
+    protected override float GenerateLifespan(TemporalWormholeContext context, TemporalWormhole self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(TemporalWormholeContext context, TemporalWormhole self)
+    protected override Vector3 GeneratePosition(TemporalWormholeContext context, TemporalWormhole self)
     {
         throw new NotImplementedException();
     }

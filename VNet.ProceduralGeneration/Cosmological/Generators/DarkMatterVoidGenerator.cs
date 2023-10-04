@@ -27,7 +27,7 @@ public class DarkMatterVoidGenerator : GeneratorBase<DarkMatterVoid, DarkMatterV
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(DarkMatterVoidContext context, DarkMatterVoid self)
+    protected override float GenerateAge(DarkMatterVoidContext context, DarkMatterVoid self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class DarkMatterVoidGenerator : GeneratorBase<DarkMatterVoid, DarkMatterV
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(DarkMatterVoidContext context, DarkMatterVoid self)
+    protected override double GenerateMass(DarkMatterVoidContext context, DarkMatterVoid self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class DarkMatterVoidGenerator : GeneratorBase<DarkMatterVoid, DarkMatterV
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(DarkMatterVoidContext context, DarkMatterVoid self)
+    protected override float GenerateTemperature(DarkMatterVoidContext context, DarkMatterVoid self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(DarkMatterVoidContext context, DarkMatterVoid self)
+    protected override float GenerateLifespan(DarkMatterVoidContext context, DarkMatterVoid self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(DarkMatterVoidContext context, DarkMatterVoid self)
+    protected override Vector3 GeneratePosition(DarkMatterVoidContext context, DarkMatterVoid self)
     {
         throw new NotImplementedException();
     }

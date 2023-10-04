@@ -27,7 +27,7 @@ public class GalaxyGroupGenerator : GeneratorBase<GalaxyGroup, GalaxyGroupContex
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(GalaxyGroupContext context, GalaxyGroup self)
+    protected override float GenerateAge(GalaxyGroupContext context, GalaxyGroup self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class GalaxyGroupGenerator : GeneratorBase<GalaxyGroup, GalaxyGroupContex
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(GalaxyGroupContext context, GalaxyGroup self)
+    protected override double GenerateMass(GalaxyGroupContext context, GalaxyGroup self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class GalaxyGroupGenerator : GeneratorBase<GalaxyGroup, GalaxyGroupContex
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(GalaxyGroupContext context, GalaxyGroup self)
+    protected override float GenerateTemperature(GalaxyGroupContext context, GalaxyGroup self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(GalaxyGroupContext context, GalaxyGroup self)
+    protected override float GenerateLifespan(GalaxyGroupContext context, GalaxyGroup self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(GalaxyGroupContext context, GalaxyGroup self)
+    protected override Vector3 GeneratePosition(GalaxyGroupContext context, GalaxyGroup self)
     {
         throw new NotImplementedException();
     }

@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class DarkStarContext : BaseContext
+public class DarkStarContext : ContextBase
 {
     public DarkStarContext()
     {

@@ -27,7 +27,7 @@ public class PulsarGenerator : GeneratorBase<Pulsar, PulsarContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(PulsarContext context, Pulsar self)
+    protected override float GenerateAge(PulsarContext context, Pulsar self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class PulsarGenerator : GeneratorBase<Pulsar, PulsarContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(PulsarContext context, Pulsar self)
+    protected override double GenerateMass(PulsarContext context, Pulsar self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class PulsarGenerator : GeneratorBase<Pulsar, PulsarContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(PulsarContext context, Pulsar self)
+    protected override float GenerateTemperature(PulsarContext context, Pulsar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(PulsarContext context, Pulsar self)
+    protected override float GenerateLifespan(PulsarContext context, Pulsar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(PulsarContext context, Pulsar self)
+    protected override Vector3 GeneratePosition(PulsarContext context, Pulsar self)
     {
         throw new NotImplementedException();
     }

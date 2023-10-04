@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class MonopoleContext : BaseContext
+public class MonopoleContext : ContextBase
 {
     public MonopoleContext()
     {

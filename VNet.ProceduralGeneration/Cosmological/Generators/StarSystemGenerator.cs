@@ -27,7 +27,7 @@ public class StarSystemGenerator : GeneratorBase<StarSystem, StarSystemContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(StarSystemContext context, StarSystem self)
+    protected override float GenerateAge(StarSystemContext context, StarSystem self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class StarSystemGenerator : GeneratorBase<StarSystem, StarSystemContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(StarSystemContext context, StarSystem self)
+    protected override double GenerateMass(StarSystemContext context, StarSystem self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class StarSystemGenerator : GeneratorBase<StarSystem, StarSystemContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(StarSystemContext context, StarSystem self)
+    protected override float GenerateTemperature(StarSystemContext context, StarSystem self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(StarSystemContext context, StarSystem self)
+    protected override float GenerateLifespan(StarSystemContext context, StarSystem self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(StarSystemContext context, StarSystem self)
+    protected override Vector3 GeneratePosition(StarSystemContext context, StarSystem self)
     {
         throw new NotImplementedException();
     }

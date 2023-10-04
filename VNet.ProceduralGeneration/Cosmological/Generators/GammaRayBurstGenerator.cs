@@ -27,7 +27,7 @@ public class GammaRayBurstGenerator : GeneratorBase<GammaRayBurst, GammaRayBurst
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(GammaRayBurstContext context, GammaRayBurst self)
+    protected override float GenerateAge(GammaRayBurstContext context, GammaRayBurst self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class GammaRayBurstGenerator : GeneratorBase<GammaRayBurst, GammaRayBurst
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(GammaRayBurstContext context, GammaRayBurst self)
+    protected override double GenerateMass(GammaRayBurstContext context, GammaRayBurst self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class GammaRayBurstGenerator : GeneratorBase<GammaRayBurst, GammaRayBurst
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(GammaRayBurstContext context, GammaRayBurst self)
+    protected override float GenerateTemperature(GammaRayBurstContext context, GammaRayBurst self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(GammaRayBurstContext context, GammaRayBurst self)
+    protected override float GenerateLifespan(GammaRayBurstContext context, GammaRayBurst self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(GammaRayBurstContext context, GammaRayBurst self)
+    protected override Vector3 GeneratePosition(GammaRayBurstContext context, GammaRayBurst self)
     {
         throw new NotImplementedException();
     }

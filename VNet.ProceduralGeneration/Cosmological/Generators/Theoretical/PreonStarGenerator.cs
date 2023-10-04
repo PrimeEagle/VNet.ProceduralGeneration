@@ -27,7 +27,7 @@ public class PreonStarGenerator : GeneratorBase<PreonStar, PreonStarContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(PreonStarContext context, PreonStar self)
+    protected override float GenerateAge(PreonStarContext context, PreonStar self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class PreonStarGenerator : GeneratorBase<PreonStar, PreonStarContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(PreonStarContext context, PreonStar self)
+    protected override double GenerateMass(PreonStarContext context, PreonStar self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class PreonStarGenerator : GeneratorBase<PreonStar, PreonStarContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(PreonStarContext context, PreonStar self)
+    protected override float GenerateTemperature(PreonStarContext context, PreonStar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(PreonStarContext context, PreonStar self)
+    protected override float GenerateLifespan(PreonStarContext context, PreonStar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(PreonStarContext context, PreonStar self)
+    protected override Vector3 GeneratePosition(PreonStarContext context, PreonStar self)
     {
         throw new NotImplementedException();
     }

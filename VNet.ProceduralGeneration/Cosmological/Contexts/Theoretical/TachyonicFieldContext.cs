@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 
-public class TachyonicFieldContext : BaseContext
+public class TachyonicFieldContext : ContextBase
 {
     public TachyonicFieldContext()
     {

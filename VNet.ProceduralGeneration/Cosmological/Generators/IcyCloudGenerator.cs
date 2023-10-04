@@ -27,7 +27,7 @@ public class IcyCloudGenerator : GeneratorBase<IcyCloud, IcyCloudContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(IcyCloudContext context, IcyCloud self)
+    protected override float GenerateAge(IcyCloudContext context, IcyCloud self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class IcyCloudGenerator : GeneratorBase<IcyCloud, IcyCloudContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(IcyCloudContext context, IcyCloud self)
+    protected override double GenerateMass(IcyCloudContext context, IcyCloud self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class IcyCloudGenerator : GeneratorBase<IcyCloud, IcyCloudContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(IcyCloudContext context, IcyCloud self)
+    protected override float GenerateTemperature(IcyCloudContext context, IcyCloud self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(IcyCloudContext context, IcyCloud self)
+    protected override float GenerateLifespan(IcyCloudContext context, IcyCloud self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(IcyCloudContext context, IcyCloud self)
+    protected override Vector3 GeneratePosition(IcyCloudContext context, IcyCloud self)
     {
         throw new NotImplementedException();
     }

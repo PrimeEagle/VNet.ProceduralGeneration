@@ -27,7 +27,7 @@ public class TachyonicFieldGenerator : GeneratorBase<TachyonicField, TachyonicFi
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(TachyonicFieldContext context, TachyonicField self)
+    protected override float GenerateAge(TachyonicFieldContext context, TachyonicField self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class TachyonicFieldGenerator : GeneratorBase<TachyonicField, TachyonicFi
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(TachyonicFieldContext context, TachyonicField self)
+    protected override double GenerateMass(TachyonicFieldContext context, TachyonicField self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class TachyonicFieldGenerator : GeneratorBase<TachyonicField, TachyonicFi
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(TachyonicFieldContext context, TachyonicField self)
+    protected override float GenerateTemperature(TachyonicFieldContext context, TachyonicField self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(TachyonicFieldContext context, TachyonicField self)
+    protected override float GenerateLifespan(TachyonicFieldContext context, TachyonicField self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(TachyonicFieldContext context, TachyonicField self)
+    protected override Vector3 GeneratePosition(TachyonicFieldContext context, TachyonicField self)
     {
         throw new NotImplementedException();
     }

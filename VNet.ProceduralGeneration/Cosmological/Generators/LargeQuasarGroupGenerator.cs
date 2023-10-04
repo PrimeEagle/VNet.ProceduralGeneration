@@ -27,7 +27,7 @@ public class LargeQuasarGroupGenerator : GeneratorBase<LargeQuasarGroup, LargeQu
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(LargeQuasarGroupContext context, LargeQuasarGroup self)
+    protected override float GenerateAge(LargeQuasarGroupContext context, LargeQuasarGroup self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class LargeQuasarGroupGenerator : GeneratorBase<LargeQuasarGroup, LargeQu
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(LargeQuasarGroupContext context, LargeQuasarGroup self)
+    protected override double GenerateMass(LargeQuasarGroupContext context, LargeQuasarGroup self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class LargeQuasarGroupGenerator : GeneratorBase<LargeQuasarGroup, LargeQu
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(LargeQuasarGroupContext context, LargeQuasarGroup self)
+    protected override float GenerateTemperature(LargeQuasarGroupContext context, LargeQuasarGroup self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(LargeQuasarGroupContext context, LargeQuasarGroup self)
+    protected override float GenerateLifespan(LargeQuasarGroupContext context, LargeQuasarGroup self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(LargeQuasarGroupContext context, LargeQuasarGroup self)
+    protected override Vector3 GeneratePosition(LargeQuasarGroupContext context, LargeQuasarGroup self)
     {
         throw new NotImplementedException();
     }

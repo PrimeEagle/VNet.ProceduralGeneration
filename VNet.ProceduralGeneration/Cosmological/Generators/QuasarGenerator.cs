@@ -27,7 +27,7 @@ public class QuasarGenerator : GeneratorBase<Quasar, QuasarContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(QuasarContext context, Quasar self)
+    protected override float GenerateAge(QuasarContext context, Quasar self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class QuasarGenerator : GeneratorBase<Quasar, QuasarContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(QuasarContext context, Quasar self)
+    protected override double GenerateMass(QuasarContext context, Quasar self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class QuasarGenerator : GeneratorBase<Quasar, QuasarContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(QuasarContext context, Quasar self)
+    protected override float GenerateTemperature(QuasarContext context, Quasar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(QuasarContext context, Quasar self)
+    protected override float GenerateLifespan(QuasarContext context, Quasar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(QuasarContext context, Quasar self)
+    protected override Vector3 GeneratePosition(QuasarContext context, Quasar self)
     {
         throw new NotImplementedException();
     }

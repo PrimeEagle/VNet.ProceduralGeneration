@@ -43,8 +43,6 @@ public class BaryonicMatterNodeGenerator : GeneratorBase<BaryonicMatterNode, Bar
             self.AbsoluteMagnitude = -30 + (60) * AdvancedSettings.Universe.RandomGenerator.NextSingle();
         }
 
-        
-
         return self;
     }
 
@@ -56,41 +54,6 @@ public class BaryonicMatterNodeGenerator : GeneratorBase<BaryonicMatterNode, Bar
     protected override Task PostProcess(BaryonicMatterNodeContext context, BaryonicMatterNode self)
     {
         return null;
-    }
-
-    protected override float CalculateAge(BaryonicMatterNodeContext context, BaryonicMatterNode self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateSize(BaryonicMatterNodeContext context, BaryonicMatterNode self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override double CalculateMass(BaryonicMatterNodeContext context, BaryonicMatterNode self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateAbsoluteMagnitude(BaryonicMatterNodeContext context, BaryonicMatterNode self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateTemperature(BaryonicMatterNodeContext context, BaryonicMatterNode self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateLifespan(BaryonicMatterNodeContext context, BaryonicMatterNode self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override Vector3 CalculatePosition(BaryonicMatterNodeContext context, BaryonicMatterNode self)
-    {
-        throw new NotImplementedException();
     }
 
     private Vector3 TransformBasePosition((int, int, int) basePosition)
@@ -111,5 +74,40 @@ public class BaryonicMatterNodeGenerator : GeneratorBase<BaryonicMatterNode, Bar
         var shiftedVector = baseVector - new Vector3(mapX / 2, mapY / 2, mapZ / 2);
 
         return shiftedVector;
+    }
+
+    protected override float GenerateAge(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override double GenerateMass(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float GenerateTemperature(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float GenerateLifespan(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Vector3 GeneratePosition(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float GenerateDiameter(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override float GenerateLuminosity(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
     }
 }

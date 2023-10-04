@@ -27,7 +27,7 @@ public class NeutronStarGenerator : GeneratorBase<NeutronStar, NeutronStarContex
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(NeutronStarContext context, NeutronStar self)
+    protected override float GenerateAge(NeutronStarContext context, NeutronStar self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class NeutronStarGenerator : GeneratorBase<NeutronStar, NeutronStarContex
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(NeutronStarContext context, NeutronStar self)
+    protected override double GenerateMass(NeutronStarContext context, NeutronStar self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class NeutronStarGenerator : GeneratorBase<NeutronStar, NeutronStarContex
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(NeutronStarContext context, NeutronStar self)
+    protected override float GenerateTemperature(NeutronStarContext context, NeutronStar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(NeutronStarContext context, NeutronStar self)
+    protected override float GenerateLifespan(NeutronStarContext context, NeutronStar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(NeutronStarContext context, NeutronStar self)
+    protected override Vector3 GeneratePosition(NeutronStarContext context, NeutronStar self)
     {
         throw new NotImplementedException();
     }

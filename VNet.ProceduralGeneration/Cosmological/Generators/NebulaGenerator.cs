@@ -27,7 +27,7 @@ public class NebulaGenerator : GeneratorBase<Nebula, NebulaContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(NebulaContext context, Nebula self)
+    protected override float GenerateAge(NebulaContext context, Nebula self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class NebulaGenerator : GeneratorBase<Nebula, NebulaContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(NebulaContext context, Nebula self)
+    protected override double GenerateMass(NebulaContext context, Nebula self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class NebulaGenerator : GeneratorBase<Nebula, NebulaContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(NebulaContext context, Nebula self)
+    protected override float GenerateTemperature(NebulaContext context, Nebula self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(NebulaContext context, Nebula self)
+    protected override float GenerateLifespan(NebulaContext context, Nebula self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(NebulaContext context, Nebula self)
+    protected override Vector3 GeneratePosition(NebulaContext context, Nebula self)
     {
         throw new NotImplementedException();
     }

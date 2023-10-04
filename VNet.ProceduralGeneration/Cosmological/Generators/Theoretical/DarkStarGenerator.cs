@@ -27,7 +27,7 @@ public class DarkStarGenerator : GeneratorBase<DarkStar, DarkStarContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(DarkStarContext context, DarkStar self)
+    protected override float GenerateAge(DarkStarContext context, DarkStar self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class DarkStarGenerator : GeneratorBase<DarkStar, DarkStarContext>
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(DarkStarContext context, DarkStar self)
+    protected override double GenerateMass(DarkStarContext context, DarkStar self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class DarkStarGenerator : GeneratorBase<DarkStar, DarkStarContext>
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(DarkStarContext context, DarkStar self)
+    protected override float GenerateTemperature(DarkStarContext context, DarkStar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(DarkStarContext context, DarkStar self)
+    protected override float GenerateLifespan(DarkStarContext context, DarkStar self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(DarkStarContext context, DarkStar self)
+    protected override Vector3 GeneratePosition(DarkStarContext context, DarkStar self)
     {
         throw new NotImplementedException();
     }

@@ -23,7 +23,7 @@ public class AccretionDiskGenerator : GeneratorBase<AccretionDisk, AccretionDisk
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(AccretionDiskContext context, AccretionDisk self)
+    protected override float GenerateAge(AccretionDiskContext context, AccretionDisk self)
     {
         throw new NotImplementedException();
     }
@@ -33,7 +33,7 @@ public class AccretionDiskGenerator : GeneratorBase<AccretionDisk, AccretionDisk
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(AccretionDiskContext context, AccretionDisk self)
+    protected override double GenerateMass(AccretionDiskContext context, AccretionDisk self)
     {
         throw new NotImplementedException();
     }
@@ -43,17 +43,17 @@ public class AccretionDiskGenerator : GeneratorBase<AccretionDisk, AccretionDisk
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(AccretionDiskContext context, AccretionDisk self)
+    protected override float GenerateTemperature(AccretionDiskContext context, AccretionDisk self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(AccretionDiskContext context, AccretionDisk self)
+    protected override float GenerateLifespan(AccretionDiskContext context, AccretionDisk self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(AccretionDiskContext context, AccretionDisk self)
+    protected override Vector3 GeneratePosition(AccretionDiskContext context, AccretionDisk self)
     {
         throw new NotImplementedException();
     }

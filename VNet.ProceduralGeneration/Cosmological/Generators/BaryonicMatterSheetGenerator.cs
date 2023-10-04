@@ -27,7 +27,7 @@ public class BaryonicMatterSheetGenerator : GeneratorBase<BaryonicMatterSheet, B
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
+    protected override float GenerateAge(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class BaryonicMatterSheetGenerator : GeneratorBase<BaryonicMatterSheet, B
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
+    protected override double GenerateMass(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
     {
         throw new NotImplementedException();
     }
@@ -47,17 +47,17 @@ public class BaryonicMatterSheetGenerator : GeneratorBase<BaryonicMatterSheet, B
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
+    protected override float GenerateTemperature(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
+    protected override float GenerateLifespan(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
+    protected override Vector3 GeneratePosition(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
     {
         throw new NotImplementedException();
     }

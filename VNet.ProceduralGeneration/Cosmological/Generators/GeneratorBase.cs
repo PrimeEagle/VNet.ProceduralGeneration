@@ -10,7 +10,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 {
     public abstract class GeneratorBase<T, TContext>        : IGeneratable<T, TContext>, IDisposable 
                                              where T        : AstronomicalObject, new()
-                                             where TContext : BaseContext
+                                             where TContext : ContextBase
     {
         private bool _disposed = false;
 
@@ -73,7 +73,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         protected abstract Task<T> GenerateSelf(TContext context, T self);
         protected abstract Task GenerateChildren(TContext context, T self);
         protected abstract Task PostProcess(TContext context, T self);
-
         public async Task<T> Generate(TContext context, AstronomicalObject parent)
         {
             T self;
@@ -81,8 +80,11 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             if (enabled)
             {
                 Events.EventBuilder.CreateGeneratingEvent(this.eventAggregator, nameof(T), null);
-                self = new T();
-                self.Parent = parent;
+                self = new T
+                {
+                    Parent = parent,
+                    Enabled = true
+                };
                 self = await ExecuteWithConcurrencyControlAsync(() => GenerateSelf(context, self));
             }
             else
@@ -91,11 +93,16 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             }
 
             self.Parent = parent;
+            if (!parent.Enabled)
+            {
+                self.Universe.NonHierarchyObjects.Add(self);
+            }
 
             await GenerateChildren(context, self);
             
             if (!enabled) return self;
-            CalculateBaseProperties(context, self);
+            GenerateBaseProperties(context, self);
+            self.AssignChildren();
             Events.EventBuilder.CreateGeneratedEvent(this.eventAggregator, nameof(T), self);
 
             Events.EventBuilder.CreatePostProcessingEvent(this.eventAggregator, nameof(T), self);
@@ -123,23 +130,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             _disposed = true;
         }
 
-        private void CalculateBaseProperties(TContext context, T self)
+        private void GenerateBaseProperties(TContext context, T self)
         {
-            self.Age = CalculateAge(context, self);
-            self.Size = CalculateSize(context, self);
-            self.Mass = CalculateMass(context, self);
-            self.AbsoluteMagnitude = CalculateAbsoluteMagnitude(context, self);
-            self.Temperature = CalculateTemperature(context, self);
-            self.Lifespan = CalculateLifespan(context, self);
-            self.Position = CalculatePosition(context, self);
+            self.Age = GenerateAge(context, self);
+            self.Lifespan = GenerateLifespan(context, self); 
+            self.Mass = GenerateMass(context, self);
+            self.Diameter = GenerateDiameter(context, self);
+            self.Luminosity = GenerateLuminosity(context, self);
+            self.Temperature = GenerateTemperature(context, self);
+            self.Position = GeneratePosition(context, self);
         }
-
-        protected abstract float CalculateAge(TContext context, T self);
-        protected abstract float CalculateSize(TContext context, T self);
-        protected abstract double CalculateMass(TContext context, T self);
-        protected abstract float CalculateAbsoluteMagnitude(TContext context, T self);
-        protected abstract float CalculateTemperature(TContext context, T self);
-        protected abstract float CalculateLifespan(TContext context, T self);
-        protected abstract Vector3 CalculatePosition(TContext context, T self);
+        protected abstract float GenerateAge(TContext context, T self);
+        protected abstract float GenerateLifespan(TContext context, T self);
+        protected abstract double GenerateMass(TContext context, T self);
+        protected abstract float GenerateDiameter(TContext context, T self);
+        protected abstract float GenerateLuminosity(TContext context, T self);
+        protected abstract float GenerateTemperature(TContext context, T self);
+        protected abstract Vector3 GeneratePosition(TContext context, T self);
     }
 }

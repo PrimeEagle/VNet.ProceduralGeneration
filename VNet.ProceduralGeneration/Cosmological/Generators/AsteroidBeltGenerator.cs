@@ -23,7 +23,7 @@ public class AsteroidBeltGenerator : GeneratorBase<AsteroidBelt, AsteroidBeltCon
         throw new NotImplementedException();
     }
 
-    protected override float CalculateAge(AsteroidBeltContext context, AsteroidBelt self)
+    protected override float GenerateAge(AsteroidBeltContext context, AsteroidBelt self)
     {
         throw new NotImplementedException();
     }
@@ -33,7 +33,7 @@ public class AsteroidBeltGenerator : GeneratorBase<AsteroidBelt, AsteroidBeltCon
         throw new NotImplementedException();
     }
 
-    protected override double CalculateMass(AsteroidBeltContext context, AsteroidBelt self)
+    protected override double GenerateMass(AsteroidBeltContext context, AsteroidBelt self)
     {
         throw new NotImplementedException();
     }
@@ -43,17 +43,17 @@ public class AsteroidBeltGenerator : GeneratorBase<AsteroidBelt, AsteroidBeltCon
         throw new NotImplementedException();
     }
 
-    protected override float CalculateTemperature(AsteroidBeltContext context, AsteroidBelt self)
+    protected override float GenerateTemperature(AsteroidBeltContext context, AsteroidBelt self)
     {
         throw new NotImplementedException();
     }
 
-    protected override float CalculateLifespan(AsteroidBeltContext context, AsteroidBelt self)
+    protected override float GenerateLifespan(AsteroidBeltContext context, AsteroidBelt self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Vector3 CalculatePosition(AsteroidBeltContext context, AsteroidBelt self)
+    protected override Vector3 GeneratePosition(AsteroidBeltContext context, AsteroidBelt self)
     {
         throw new NotImplementedException();
     }
