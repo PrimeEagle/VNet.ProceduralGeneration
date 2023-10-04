@@ -16,9 +16,11 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration.Constants
             internal static double MassConversionFactor { get; } = 0d;
             internal static double TimeConversionFactor { get; } = 0d;
             internal static double TemperatureConversionFactor { get; } = 0d;
-            internal static double LuminosityConversionFactor { get; } = 0d;
+            internal static float LuminosityConversionFactor { get; } = 0f;
             internal static double ElectricalCurrentConversionFactor { get; } = 0d;
             internal static SizeType SizeMeaning { get; } = SizeType.Diameter;
+            internal static string LuaPluginFolder { get; } = "plugins_lua";
+            internal static string CSharpPluginFolder { get; } = "plugins_csharp";
         }
     }
 }

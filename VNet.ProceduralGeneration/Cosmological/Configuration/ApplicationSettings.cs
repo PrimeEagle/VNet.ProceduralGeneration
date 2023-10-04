@@ -73,7 +73,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 
         [DisplayName("Luminosity Conversion Factor")]
         [Tooltip("The conversion factor to convert luminosity units from L\u2299 to the custom 'Units for Luminosity'. Value = 0 means no conversion.")]
-        public double LuminosityConversionFactor { get; init; }
+        public float LuminosityConversionFactor { get; init; }
 
         [Required]
         [DisplayName("Units for Electrical Current")]
@@ -88,6 +88,21 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Tooltip("Whether 'size' refers to the radius, diameter, or volume of an object.")]
         public SizeType SizeMeaning { get; set; }
 
+        [Required]
+        [DirectoryExists]
+        [DisplayName("Lua Plugin Folder")]
+        [Tooltip("The folder that contains Lua plugins that should be loaded.")]
+        public string LuaPluginFolder { get; init; }
+
+        [Required]
+        [DirectoryExists]
+        [DisplayName("C# Plugin Folder")]
+        [Tooltip("The folder that contains C# plugins that should be loaded.")]
+        public string CSharpPluginFolder { get; init; }
+
+
+
+
         public ApplicationSettings()
         {
             this.MaxDegreesOfParallelismLevel1 = ConfigConstants.Application.MaxDegreesOfParallelismLevel1;
@@ -101,6 +116,8 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
             this.LuminosityConversionFactor = ConfigConstants.Application.LuminosityConversionFactor;
             this.ElectricalCurrentConversionFactor = ConfigConstants.Application.ElectricalCurrentConversionFactor;
             this.SizeMeaning = ConfigConstants.Application.SizeMeaning;
+            this.LuaPluginFolder = ConfigConstants.Application.LuaPluginFolder;
+            this.CSharpPluginFolder = ConfigConstants.Application.CSharpPluginFolder;
         }
     }
 }

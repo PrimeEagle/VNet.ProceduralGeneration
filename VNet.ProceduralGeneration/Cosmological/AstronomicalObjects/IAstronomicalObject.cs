@@ -10,7 +10,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
         public double Mass { get; set; }                                                    // kg
         public float Diameter { get; set; }                                                 // AU
         public float Temperature { get; set; }                                              // Kelvin
-        public double Luminosity { get; set; }                                              // L⊙
+        public float Luminosity { get; set; }                                               // L⊙
         public Vector3 Position { get; set; }                                               // AU
 
 
@@ -19,7 +19,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
         public double Volume { get; }                                                       // AU³
         public double Density { get; }                                                      // kg/AU³
         public double Size { get; }                                                         // AU or AU³
-        public double AbsoluteMagnitude { get; } 
+        public float AbsoluteMagnitude { get; } 
         public AstronomicalObject Parent { get; set; }
         public Universe Universe { get; }
 
@@ -42,6 +42,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 
 
         public float EstimateSize();
-        public double ApparentMagnitude(Vector3 source);
+        public float ApparentMagnitude(Vector3 source);
+        public void RecalculateProperties();
     }
 }

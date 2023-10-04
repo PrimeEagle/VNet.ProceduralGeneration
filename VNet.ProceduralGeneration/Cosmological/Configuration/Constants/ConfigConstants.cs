@@ -16,7 +16,5 @@
         internal static bool ApplyGravitationalEffectsToCosmicWeb { get; } = true;
         internal static string HeightmapFile { get; } = "default_heightmap.png";
         internal static string HeightmapFolder { get; } = "heightmaps";
-        internal static string LuaPluginFolder { get; } = "plugins_lua";
-        internal static string CSharpPluginFolder { get; } = "plugins_csharp";
     }
 }

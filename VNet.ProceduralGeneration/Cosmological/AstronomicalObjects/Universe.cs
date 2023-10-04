@@ -10,11 +10,14 @@ public class Universe : AstronomicalObject
     public double BaryonicMatterPercent { get; set; }
     public CurvatureType Curvature { get; set; }
     public double ConnectivityFactor { get; set; }
-    public bool CosmicInflationOccurred { get; set; }
-    public float CosmicMicrowaveBackground { get; set; }                        // Kelvin
-    public float CosmicMicrowaveBackgroundVariations { get; set; }              // Kelvin
+    public bool InflationOccurred => CalculateInflationOccurred();
+    public float CosmicMicrowaveBackground { get; set; }                                        // Kelvin
+    public float CosmicMicrowaveBackgroundVariations => CalculateCmbVariations();               // Kelvin
+    public double ExpansionRate => CalculateExpansionRate();                                    // km/s/Mpc
+    public double CriticalDensity => CalculateCriticalDensity();                                // kg/AU³
+    public override double Mass => CalculateMass();                                             // kg
+
     public CosmicWeb CosmicWeb { get; set; }
-    public double ExpansionRate => CalculateExpansionRate();                    // km/s/Mpc
     public List<IAstronomicalObject> NonHierarchyObjects { get; init; }
 
 
@@ -32,30 +35,47 @@ public class Universe : AstronomicalObject
         this.NonHierarchyObjects = new List<IAstronomicalObject>();
     }
 
-    private double CalculateExpansionRate()
+    private double CalculateCriticalDensity()                                                   // kg/AU³
     {
-        double OmegaB = BaryonicMatterPercent / 100.0;
-        double OmegaDM = DarkMatterPercent / 100.0;
-        double OmegaLambda = DarkEnergyPercent / 100.0;
+        return (3 * Math.Pow(1.496e11, 3) * Math.Pow(settings.Advanced.PhysicalConstants.H0 * 2.09e-13, 2))/(8 * Math.PI * settings.Advanced.PhysicalConstants.G);
+    }
 
-        double H2 =Math.Pow(settings.Advanced.PhysicalConstants.H0, 2) * (OmegaB + OmegaDM + OmegaLambda);
+    private double CalculateExpansionRate()                                                     // kg/s/Mpc
+    {
+        var OmegaB = BaryonicMatterPercent / 100.0;
+        var OmegaDM = DarkMatterPercent / 100.0;
+        var OmegaLambda = DarkEnergyPercent / 100.0;
+
+        var H2 =Math.Pow(settings.Advanced.PhysicalConstants.H0, 2) * (OmegaB + OmegaDM + OmegaLambda);
         return Math.Sqrt(H2);
     }
 
+    private double CalculateMass()                                                              // kg
+    {
+        var pDarkMatter = (this.DarkMatterPercent / 100) * this.CriticalDensity;
+        var pBaryonicMatter = (this.BaryonicMatterPercent / 100) * this.CriticalDensity;
+        
+        return this.Volume * (pDarkMatter + pBaryonicMatter);
+    }
 
-    private double CalculateCmb()
+    private float CalculateCmb()                                                                // Kelvin
     {
         return settings.Advanced.PhysicalConstants.BaselineCosmicMicrowaveBackground * (settings.Advanced.PhysicalConstants.BaselineAgeOfUniverse / Age);
     }
 
-    private bool CalculateCmbVariations()
+    private float CalculateCmbVariations()                                                      // Kelvin
     {
-        return Math.Abs(settings.Advanced.PhysicalConstants.BaselineCosmicMicrowaveBackground - CalculateCmb()) > settings.Advanced.Universe.CosmicMicrowaveBackgroundThreshold;
+        return Math.Abs(settings.Advanced.PhysicalConstants.BaselineCosmicMicrowaveBackground - CalculateCmb());
+    }
+
+    private bool CalculateInflationOccurred()
+    {
+        return settings.Advanced.Universe.InflationEnd > 0;
     }
 
     public void ApplyInflationEffects()
     {
-        if (CosmicInflationOccurred)
+        if (InflationOccurred)
         {
             Curvature = CurvatureType.Flat;
         }

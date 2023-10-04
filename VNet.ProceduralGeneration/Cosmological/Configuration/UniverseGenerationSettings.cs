@@ -53,17 +53,17 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Tooltip("The threshold for the cosmic microwave background.")]
         public float CosmicMicrowaveBackgroundThreshold { get; init; }
 
-        [Range(0, float.MaxValue)]
+        [Range(0, double.MaxValue)]
         [LessThanOrEqualToProperty(nameof(InflationEnd))]
         [DisplayName("Inflation Start")]
         [Tooltip("The start of the inflation stage of the universe.")]
-        public float InflationStart { get; init; }
+        public double InflationStart { get; init; }
 
-        [Range(0, float.MaxValue)]
+        [Range(0, double.MaxValue)]
         [GreaterThanOrEqualToProperty(nameof(InflationStart))]
         [DisplayName("Inflation End")]
         [Tooltip("The end of the inflation stage of the universe. Value = 0 means no inflation.")]
-        public float InflationEnd { get; init; }
+        public double InflationEnd { get; init; }
 
 
 

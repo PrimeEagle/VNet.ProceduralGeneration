@@ -30,10 +30,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Tooltip("The gravitational constant.")]
         public float G { get; init; }
 
-        [DisplayName("Critical Density")]
-        [Tooltip("The critical density of the universe.")]
-        public double CriticalDensity { get; init; }
-
         [DisplayName("Baseline Cosmic Microwave Background (CMB)")]
         [Tooltip("The cosmic microwave background of the real universe.")]
         public float BaselineCosmicMicrowaveBackground { get; init; }
@@ -53,7 +49,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
             this.h = ConfigConstants.PhysicalConstants.h;
             this.kB = ConfigConstants.PhysicalConstants.kB;
             this.G = ConfigConstants.PhysicalConstants.G;
-            this.CriticalDensity = ConfigConstants.PhysicalConstants.CriticalDensity;
             this.BaselineCosmicMicrowaveBackground = ConfigConstants.PhysicalConstants.BaselineCosmicMicrowaveBackground;
             this.BaselineAgeOfUniverse = ConfigConstants.PhysicalConstants.BaselineAgeOfUniverse;
         }

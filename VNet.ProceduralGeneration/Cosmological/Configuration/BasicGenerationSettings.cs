@@ -127,9 +127,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Tooltip("Whether positions of nodes, filaments, sheets, and voids in the cosmic web should be adjusted due to gravity. Increases processing time.")]
         public bool ApplyGravitationalEffectsToCosmicWeb { get; init; }
 
-
-
-
         [DisplayName("Average Dimension (Calculated)")]
         [Tooltip("Average of the map X, Y, and Z dimensions.")]
         public float AverageDimension => CalculateAverageDim();
@@ -156,17 +153,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Tooltip("The folder that contains heightmap files.")]
         public string HeightmapFolder { get; init; }
 
-        [Required]
-        [DirectoryExists]
-        [DisplayName("Lua Plugin Folder")]
-        [Tooltip("The folder that contains Lua plugins that should be loaded.")]
-        public string LuaPluginFolder { get; init; }
-
-        [Required]
-        [DirectoryExists]
-        [DisplayName("C# Plugin Folder")]
-        [Tooltip("The folder that contains C# plugins that should be loaded.")]
-        public string CSharpPluginFolder { get; init; }
 
 
 
@@ -183,18 +169,8 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
             this.MaxBaryonicMatterPercent = ConfigConstants.MaxBaryonicMatterPercent;
             this.MinUniverseAge = ConfigConstants.MinUniverseAge;
             this.MaxUniverseAge = ConfigConstants.MaxUniverseAge;
-            this.BaryonicMatterFilamentBaseCount = ConfigConstants.BaryonicMatterFilamentBaseCount;
-            this.DarkMatterFilamentBaseCount = ConfigConstants.DarkMatterFilamentBaseCount;
-            this.BaryonicMatterNodeBaseCount = ConfigConstants.BaryonicMatterNodeBaseCount;
-            this.DarkMatterNodeBaseCount = ConfigConstants.DarkMatterNodeBaseCount;
-            this.BaryonicMatterSheetBaseCount = ConfigConstants.BaryonicMatterSheetBaseCount;
-            this.DarkMatterSheetBaseCount = ConfigConstants.DarkMatterSheetBaseCount;
-            this.BaryonicMatterVoidBaseCount = ConfigConstants.BaryonicMatterVoidBaseCount;
-            this.DarkMatterVoidBaseCount = ConfigConstants.DarkMatterVoidBaseCount;
             this.ApplyGravitationalEffectsToCosmicWeb = ConfigConstants.ApplyGravitationalEffectsToCosmicWeb;
             this.HeightmapFolder = ConfigConstants.HeightmapFolder;
-            this.LuaPluginFolder = ConfigConstants.LuaPluginFolder;
-            this.CSharpPluginFolder = ConfigConstants.CSharpPluginFolder;
             this.HeightmapFile = ConfigConstants.HeightmapFile;
         }
 
