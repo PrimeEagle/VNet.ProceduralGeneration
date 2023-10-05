@@ -1,6 +1,6 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
-public class CosmicWeb : AstronomicalObject
+public class CosmicWeb : AstronomicalObjectContainer
 {
     public CosmicWebTopology Topology { get; set; }
     public IntergalacticMedium IntergalacticMedium { get; set; }

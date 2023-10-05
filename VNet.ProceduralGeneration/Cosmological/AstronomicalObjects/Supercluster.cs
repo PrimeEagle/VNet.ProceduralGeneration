@@ -1,6 +1,6 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
-public class Supercluster : AstronomicalObject
+public class Supercluster : AstronomicalObjectContainer
 {
     public List<GalaxyCluster> GalaxyClusters { get; set; } = new();
 }

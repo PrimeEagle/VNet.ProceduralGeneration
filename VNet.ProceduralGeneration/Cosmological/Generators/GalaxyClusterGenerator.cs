@@ -6,7 +6,7 @@ using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class GalaxyClusterGenerator : GeneratorBase<GalaxyCluster, GalaxyClusterContext>
+public class GalaxyClusterGenerator : ContainerGeneratorBase<GalaxyCluster, GalaxyClusterContext>
 {
     public GalaxyClusterGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {

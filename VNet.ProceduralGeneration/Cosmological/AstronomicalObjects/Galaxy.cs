@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
-public class Galaxy : AstronomicalObject
+public class Galaxy : AstronomicalObjectContainer
 {
     public GalaxyType Type { get; set; }
     public bool CentralBlackHole { get; set; }

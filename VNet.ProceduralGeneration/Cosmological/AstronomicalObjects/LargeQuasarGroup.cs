@@ -1,6 +1,6 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
-public class LargeQuasarGroup : AstronomicalObject
+public class LargeQuasarGroup : AstronomicalObjectContainer
 {
     public int QuasarCount { get; set; }
     public double Size { get; set; }

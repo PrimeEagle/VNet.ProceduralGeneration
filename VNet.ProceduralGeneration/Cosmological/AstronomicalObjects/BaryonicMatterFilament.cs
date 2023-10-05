@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
-public class BaryonicMatterFilament : AstronomicalObject
+public class BaryonicMatterFilament : AstronomicalObjectContainer
 {
     public List<Supercluster> Superclusters { get; set; } = new();
     public List<GalaxyCluster> GalaxyClusters { get; set; } = new();

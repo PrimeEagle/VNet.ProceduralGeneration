@@ -1,6 +1,6 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
-public class DarkMatterNode : AstronomicalObject
+public class DarkMatterNode : AstronomicalObjectContainer
 {
     public float Intensity { get; set; }
 }

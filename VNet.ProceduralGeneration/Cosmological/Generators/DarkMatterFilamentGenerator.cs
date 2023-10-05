@@ -6,7 +6,7 @@ using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class DarkMatterFilamentGenerator : GeneratorBase<DarkMatterFilament, DarkMatterFilamentContext>
+public class DarkMatterFilamentGenerator : ContainerGeneratorBase<DarkMatterFilament, DarkMatterFilamentContext>
 {
     public DarkMatterFilamentGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level1)
     {

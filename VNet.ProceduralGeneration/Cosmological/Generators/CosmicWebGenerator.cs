@@ -7,7 +7,7 @@ using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class CosmicWebGenerator : GeneratorBase<CosmicWeb, CosmicWebContext>
+public class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebContext>
 {
     public CosmicWebGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level0)
     {

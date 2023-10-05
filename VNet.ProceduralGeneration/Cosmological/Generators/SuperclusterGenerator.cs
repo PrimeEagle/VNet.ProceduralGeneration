@@ -6,7 +6,7 @@ using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class SuperclusterGenerator : GeneratorBase<Supercluster, SuperclusterContext>
+public class SuperclusterGenerator : ContainerGeneratorBase<Supercluster, SuperclusterContext>
 {
     public SuperclusterGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {

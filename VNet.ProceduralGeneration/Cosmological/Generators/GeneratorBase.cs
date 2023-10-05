@@ -26,6 +26,17 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
 
 
+        protected abstract void GenerateDiameter(TContext context, T self);
+        protected abstract void GeneratePosition(TContext context, T self);
+        protected abstract void GenerateAge(TContext context, T self);
+        protected abstract void GenerateLifespan(TContext context, T self);
+        protected abstract void GenerateMass(TContext context, T self);
+        protected abstract void GenerateLuminosity(TContext context, T self);
+        protected abstract void GenerateTemperature(TContext context, T self);
+        protected abstract Task<T> GenerateSelf(TContext context, T self);
+        protected abstract Task GenerateChildren(TContext context, T self);
+        protected abstract Task PostProcess(TContext context, T self);
+
         protected GeneratorBase(EventAggregator eventAggregator, ParallelismLevel parallelismLevel)
         {
             this.Settings = ConfigurationSettings<GeneratorSettings>.AppSettings;
@@ -70,9 +81,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             return Math.Min(values.calculated, values.configured);
         }
 
-        protected abstract Task<T> GenerateSelf(TContext context, T self);
-        protected abstract Task GenerateChildren(TContext context, T self);
-        protected abstract Task PostProcess(TContext context, T self);
         public async Task<T> Generate(TContext context, AstronomicalObject parent)
         {
             T self;
@@ -130,22 +138,15 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             _disposed = true;
         }
 
-        private void GenerateBaseProperties(TContext context, T self)
+        protected virtual void GenerateBaseProperties(TContext context, T self)
         {
-            self.Age = GenerateAge(context, self);
-            self.Lifespan = GenerateLifespan(context, self); 
-            self.Mass = GenerateMass(context, self);
-            self.Diameter = GenerateDiameter(context, self);
-            self.Luminosity = GenerateLuminosity(context, self);
-            self.Temperature = GenerateTemperature(context, self);
-            self.Position = GeneratePosition(context, self);
+            GenerateDiameter(context, self);
+            GeneratePosition(context, self);
+            GenerateAge(context, self);
+            GenerateLifespan(context, self);
+            GenerateMass(context, self);
+            GenerateLuminosity(context, self);
+            GenerateTemperature(context, self);
         }
-        protected abstract float GenerateAge(TContext context, T self);
-        protected abstract float GenerateLifespan(TContext context, T self);
-        protected abstract double GenerateMass(TContext context, T self);
-        protected abstract float GenerateDiameter(TContext context, T self);
-        protected abstract float GenerateLuminosity(TContext context, T self);
-        protected abstract float GenerateTemperature(TContext context, T self);
-        protected abstract Vector3 GeneratePosition(TContext context, T self);
     }
 }

@@ -6,7 +6,7 @@ using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class StarSystemGenerator : GeneratorBase<StarSystem, StarSystemContext>
+public class StarSystemGenerator : ContainerGeneratorBase<StarSystem, StarSystemContext>
 {
     public StarSystemGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {

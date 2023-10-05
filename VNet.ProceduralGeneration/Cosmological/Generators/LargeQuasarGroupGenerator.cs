@@ -6,7 +6,7 @@ using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class LargeQuasarGroupGenerator : GeneratorBase<LargeQuasarGroup, LargeQuasarGroupContext>
+public class LargeQuasarGroupGenerator : ContainerGeneratorBase<LargeQuasarGroup, LargeQuasarGroupContext>
 {
     public LargeQuasarGroupGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
     {

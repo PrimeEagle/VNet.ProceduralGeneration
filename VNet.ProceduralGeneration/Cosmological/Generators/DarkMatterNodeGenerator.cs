@@ -6,7 +6,7 @@ using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class DarkMatterNodeGenerator : GeneratorBase<DarkMatterNode, DarkMatterNodeContext>
+public class DarkMatterNodeGenerator : ContainerGeneratorBase<DarkMatterNode, DarkMatterNodeContext>
 {
     public DarkMatterNodeGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level1)
     {

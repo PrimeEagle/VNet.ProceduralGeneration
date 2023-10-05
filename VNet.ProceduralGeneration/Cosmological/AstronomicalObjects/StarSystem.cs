@@ -1,6 +1,6 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
-public class StarSystem : AstronomicalObject
+public class StarSystem : AstronomicalObjectContainer
 {
     public List<Star> Stars { get; set; } = new();
     public List<Planet> Planets { get; set; } = new();

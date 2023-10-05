@@ -7,21 +7,26 @@ using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class UniverseGenerator : GeneratorBase<Universe, UniverseContext>
+public class UniverseGenerator : ContainerGeneratorBase<Universe, UniverseContext>
 {
     public UniverseGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level0)
     {
         enabled = ObjectToggles.UniverseEnabled;
     }
 
+    protected override void GenerateTemperature(UniverseContext context, Universe self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override async Task<Universe> GenerateSelf(UniverseContext context, Universe self)
     {
-        self.BaryonicMatterPercent = GenerateBaryonicMatterPercent(context, self);
-        self.DarkMatterPercent = GenerateDarkMatterPercent(context, self);
-        self.DarkEnergyPercent = GenerateDarkEnergyPercent(context, self);
-        self.ConnectivityFactor = GenerateConnectivityFactor(context, self);
-        self.Curvature = GenerateCurvature(context, self);
-        self.CosmicMicrowaveBackground = GenerateCosmicMicrowaveBackground(context, self);
+        GenerateBaryonicMatterPercent(context, self);
+        GenerateDarkMatterPercent(context, self);
+        GenerateDarkEnergyPercent(context, self);
+        GenerateConnectivityFactor(context, self);
+        GenerateCurvature(context, self);
+        GenerateCosmicMicrowaveBackground(context, self);
         RebalancePercentages(context, self);
 
         return self;
@@ -48,36 +53,36 @@ public class UniverseGenerator : GeneratorBase<Universe, UniverseContext>
         self.BaryonicMatterPercent = 100 - self.DarkEnergyPercent - self.DarkMatterPercent;
     }
 
-    private float GenerateCosmicMicrowaveBackground(UniverseContext context, Universe self)
+    private void GenerateCosmicMicrowaveBackground(UniverseContext context, Universe self)
     {
-        return AdvancedSettings.Universe.RandomGenerator.NextSingle(AdvancedSettings.Universe.MinCosmicMicrowaveBackground, AdvancedSettings.Universe.MaxCosmicMicrowaveBackground);
+        self.CosmicMicrowaveBackground = AdvancedSettings.Universe.RandomGenerator.NextSingle(AdvancedSettings.Universe.MinCosmicMicrowaveBackground, AdvancedSettings.Universe.MaxCosmicMicrowaveBackground);
     }
 
-    private float GenerateBaryonicMatterPercent(UniverseContext context, Universe self)
+    private void GenerateBaryonicMatterPercent(UniverseContext context, Universe self)
     {
-        return AdvancedSettings.Universe.RandomGenerator.NextSingle(BasicSettings.MinBaryonicMatterPercent, BasicSettings.MaxBaryonicMatterPercent);
+        self.BaryonicMatterPercent = AdvancedSettings.Universe.RandomGenerator.NextSingle(BasicSettings.MinBaryonicMatterPercent, BasicSettings.MaxBaryonicMatterPercent);
     }
 
-    private float GenerateDarkMatterPercent(UniverseContext context, Universe self)
+    private void GenerateDarkMatterPercent(UniverseContext context, Universe self)
     {
-        return AdvancedSettings.Universe.RandomGenerator.NextSingle(BasicSettings.MinDarkMatterPercent, BasicSettings.MaxDarkMatterPercent);
+        self.DarkMatterPercent = AdvancedSettings.Universe.RandomGenerator.NextSingle(BasicSettings.MinDarkMatterPercent, BasicSettings.MaxDarkMatterPercent);
     }
 
-    private float GenerateDarkEnergyPercent(UniverseContext context, Universe self)
+    private void GenerateDarkEnergyPercent(UniverseContext context, Universe self)
     {
-        return AdvancedSettings.Universe.RandomGenerator.NextSingle(BasicSettings.MinDarkEnergyPercent, BasicSettings.MaxDarkEnergyPercent);
+        self.DarkEnergyPercent = AdvancedSettings.Universe.RandomGenerator.NextSingle(BasicSettings.MinDarkEnergyPercent, BasicSettings.MaxDarkEnergyPercent);
     }
 
-    private float GenerateConnectivityFactor(UniverseContext context, Universe self)
+    private void GenerateConnectivityFactor(UniverseContext context, Universe self)
     {
-        return AdvancedSettings.Universe.RandomGenerator.NextSingle(AdvancedSettings.Universe.MinConnectivityFactor, AdvancedSettings.Universe.MaxConnectivityFactor);
+        self.ConnectivityFactor = AdvancedSettings.Universe.RandomGenerator.NextSingle(AdvancedSettings.Universe.MinConnectivityFactor, AdvancedSettings.Universe.MaxConnectivityFactor);
     }
 
-    private CurvatureType GenerateCurvature(UniverseContext context, Universe self)
+    private void GenerateCurvature(UniverseContext context, Universe self)
     {
         if (self.InflationOccurred)
         {
-            return CurvatureType.Flat;
+            self.Curvature = CurvatureType.Flat;
         }
         else
         {
@@ -88,56 +93,43 @@ public class UniverseGenerator : GeneratorBase<Universe, UniverseContext>
 
             if (randValue < flatVal)
             {
-                return CurvatureType.Flat;
+                self.Curvature = CurvatureType.Flat;
             }
             else if (randValue < sphericalVal)
             {
-                return CurvatureType.Spherical;
+                self.Curvature = CurvatureType.Spherical;
             }
             else
             {
-                return CurvatureType.Hyperbolic;
+                self.Curvature = CurvatureType.Hyperbolic;
             }
         }
     }
 
-    protected override float GenerateAge(UniverseContext context, Universe self)
+    protected override void GenerateAge(UniverseContext context, Universe self)
     {
-        return AdvancedSettings.Universe.RandomGenerator.NextSingle(BasicSettings.MinUniverseAge, BasicSettings.MaxUniverseAge);
-    }
-    
-    protected override double GenerateMass(UniverseContext context, Universe self)
-    {
-        return self.Children.Sum(c => c.Mass);
+        self.Age = AdvancedSettings.Universe.RandomGenerator.NextSingle(BasicSettings.MinUniverseAge, BasicSettings.MaxUniverseAge);
     }
 
-    protected override float GenerateDiameter(UniverseContext context, Universe self)
+    protected override void GenerateLifespan(UniverseContext context, Universe self)
     {
-        return Settings.Basic.AverageDimension;
+        self.Lifespan = float.MaxValue;
     }
 
-    protected override float GenerateLuminosity(UniverseContext context, Universe self)
+    protected override void GenerateDiameter(UniverseContext context, Universe self)
     {
-        return self.Children.Sum(c => c.Luminosity);
+        self.Diameter = Settings.Basic.AverageDimension;
     }
 
-    protected override float GenerateAbsoluteMagnitude(UniverseContext context, Universe self)
+    protected override void GeneratePosition(UniverseContext context, Universe self)
     {
-        return (float)(-2.5 * Math.Log10(self.Children.Sum(c => c.Luminosity)) + Settings.Advanced.PhysicalConstants.C);
+        self.Position = new Vector3(0, 0, 0);
     }
 
-    protected override float GenerateTemperature(UniverseContext context, Universe self)
+    protected override void GenerateBaseProperties(UniverseContext context, Universe self)
     {
-        return self.Children.Sum(c => c.Luminosity * c.Temperature) / self.Children.Sum(c => c.Luminosity);
-    }
-
-    protected override float GenerateLifespan(UniverseContext context, Universe self)
-    {
-        return float.MaxValue;
-    }
-
-    protected override Vector3 GeneratePosition(UniverseContext context, Universe self)
-    {
-        return new Vector3(0, 0, 0);
+        base.GenerateBaseProperties(context, self);
+        GenerateAge(context, self);
+        GenerateLifespan(context, self);
     }
 }

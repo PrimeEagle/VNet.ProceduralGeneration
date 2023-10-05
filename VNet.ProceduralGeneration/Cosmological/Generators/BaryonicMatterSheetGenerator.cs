@@ -6,7 +6,7 @@ using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class BaryonicMatterSheetGenerator : GeneratorBase<BaryonicMatterSheet, BaryonicMatterSheetContext>
+public class BaryonicMatterSheetGenerator : ContainerGeneratorBase<BaryonicMatterSheet, BaryonicMatterSheetContext>
 {
     public BaryonicMatterSheetGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level1)
     {

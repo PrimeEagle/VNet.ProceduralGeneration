@@ -3,7 +3,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
-public class Universe : AstronomicalObject
+public class Universe : AstronomicalObjectContainer
 {
     public float DimensionX { get; init; }
     public float DimensionY { get; init; }
