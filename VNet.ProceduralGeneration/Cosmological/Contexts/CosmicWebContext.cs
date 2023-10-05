@@ -1,22 +1,9 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
-using VNet.ProceduralGeneration.Cosmological.Enum;
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
 public class CosmicWebContext : ContextBase
 {
-    public double DarkEnergyPercent { get; set; }
-    public double DarkMatterPercent { get; set; }
-    public double BaryonicMatterPercent { get; set; }
-    public CurvatureType Curvature { get; set; }
-    public double ConnectivityFactor { get; set; }
-    public bool CosmicInflationOccurred { get; set; }
-    public bool CmbHasVariations { get; set; }
-    public double ExpansionRate { get; set; }
-    public double CosmicMicrowaveBackground { get; set; }
-    public bool IsInInflationPhase { get; set; }
-
-
     public CosmicWebContext()
     {
 
@@ -25,14 +12,5 @@ public class CosmicWebContext : ContextBase
     public CosmicWebContext(Universe universe)
     {
         LoadBaseProperties((AstronomicalObject)universe);
-
-        this.DarkEnergyPercent = universe.DarkEnergyPercent;
-        this.DarkMatterPercent = universe.DarkMatterPercent;
-        this.BaryonicMatterPercent = universe.BaryonicMatterPercent;
-        this.Curvature = universe.Curvature;
-        this.ConnectivityFactor = universe.ConnectivityFactor;
-        this.CosmicInflationOccurred = universe.InflationOccurred;
-        this.ExpansionRate = universe.ExpansionRate;
-        this.CosmicMicrowaveBackground = universe.CosmicMicrowaveBackground;
     }
 }

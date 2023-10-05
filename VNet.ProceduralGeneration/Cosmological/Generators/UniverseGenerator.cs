@@ -13,12 +13,7 @@ public class UniverseGenerator : ContainerGeneratorBase<Universe, UniverseContex
     {
         enabled = ObjectToggles.UniverseEnabled;
     }
-
-    protected override void GenerateTemperature(UniverseContext context, Universe self)
-    {
-        throw new NotImplementedException();
-    }
-
+    
     protected override async Task<Universe> GenerateSelf(UniverseContext context, Universe self)
     {
         GenerateBaryonicMatterPercent(context, self);
@@ -27,7 +22,7 @@ public class UniverseGenerator : ContainerGeneratorBase<Universe, UniverseContex
         GenerateConnectivityFactor(context, self);
         GenerateCurvature(context, self);
         GenerateCosmicMicrowaveBackground(context, self);
-        RebalancePercentages(context, self);
+        RebalanceMatterEnergyPercentages(context, self);
 
         return self;
     }
@@ -45,7 +40,7 @@ public class UniverseGenerator : ContainerGeneratorBase<Universe, UniverseContex
         return null;
     }
 
-    private static void RebalancePercentages(UniverseContext context, Universe self)
+    private static void RebalanceMatterEnergyPercentages(UniverseContext context, Universe self)
     {
         var sum = self.DarkEnergyPercent + self.DarkMatterPercent + self.BaryonicMatterPercent;
         self.DarkEnergyPercent = (self.DarkEnergyPercent / sum) * 100;
