@@ -5,216 +5,194 @@ using VNet.Configuration;
 using VNet.Mathematics.Randomization.Generation;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable InconsistentNaming
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 {
     public abstract class AstronomicalObject : IAstronomicalObject
     {
-        private float? _radius;
-        private double? _volume;
-        private double? _density;
-        private double? _size;
-        private float? _absoluteMagnitude;
-        private float? _apparentMagnitude;
-        private double? _displayAge;
-        private double? _displayLifespan;
-        private double? _displayMass;
-        private double? _displayDiameter;
-        private double? _displayRadius;
-        private double? _displayDensity;
-        private double? _displaySize;
-        private double? _displayVolume;
-        private double? _displayTemperature;
-        private float? _displayLuminosity;
-        private Vector3? _displayPosition;
-        private float? _displayAbsoluteMagnitude;
-        private Vector3? _apparentMagnitudeSource;
+        protected float? age;
+        protected float? lifespan;
+        protected double? mass;
+        protected float? diameter;
+        protected float? temperature;
+        protected float? luminosity;
+        protected Vector3 position;
 
-        protected GeneratorSettings settings;
+        protected float? radius;
+        protected double? volume;
+        protected double? density;
+        protected double? size;
+        protected float? absoluteMagnitude;
+        protected float? apparentMagnitude;
+        protected double? displayAge;
+        protected double? displayLifespan;
+        protected double? displayMass;
+        protected double? displayDiameter;
+        protected double? displayRadius;
+        protected double? displayDensity;
+        protected double? displaySize;
+        protected double? displayVolume;
+        protected double? displayTemperature;
+        protected float? displayLuminosity;
+        protected Vector3? displayPosition;
+        protected float? displayAbsoluteMagnitude;
+        protected Vector3? apparentMagnitudeSource;
+
+        protected readonly GeneratorSettings settings;
+
+        #region Base Properties
         public string Id { get; init; }
         public bool Enabled { get; set; }
-        public float Age { get; set; }                                                      // years
-        public float Lifespan { get; set; }                                                 // years
-        public virtual double Mass { get; set; }                                            // kg
-        public float Diameter { get; set; }                                                 // AU
-        public float Temperature { get; set; }                                              // Kelvin
-        public float Luminosity { get; set; }                                               // L⊙
-        public Vector3 Position { get; set; }                                               // AU
-
-
-        // calculated properties
-        public float Radius                                                                 // AU
+        public virtual float Age { get; set; }                                                      // years
+        public virtual float Lifespan { get; set; }                                                 // years
+        public virtual double Mass { get; set; }                                                    // kg
+        public virtual float Diameter { get; set; }                                                 // AU
+        public virtual float Temperature { get; set; }                                              // Kelvin
+        public virtual float Luminosity { get; set; }                                               // L⊙
+        public virtual Vector3 Position { get; set; }                                               // AU
+        public virtual float Radius                                                                         // AU
         {
             get
             {
-                if(!_radius.HasValue) CalculateRadius();
-                return _radius.Value;
+                if(!radius.HasValue) CalculateRadius();
+                return radius.Value;
             }
         }
-
-        public double Volume                                                                // AU³
+        public virtual double Volume                                                                // AU³
         {
             get
             {
-                if (!_volume.HasValue) CalculateVolume();
-                return _volume.Value;
+                if (!volume.HasValue) CalculateVolume();
+                return volume.Value;
             }
         }
-
-        public double Density                                                               // kg/AU³
+        public virtual double Density                                                               // kg/AU³
         {
             get
             {
-                if (!_density.HasValue) CalculateDensity();
-                return _density.Value;
+                if (!density.HasValue) CalculateDensity();
+                return density.Value;
             }
         }
-
-        public double Size                                                                  // AU or AU³
+        public virtual double Size                                                                  // AU or AU³
         {
             get
             {
-                if (!_size.HasValue) CalculateSize();
-                return _size.Value;
+                if (!size.HasValue) CalculateSize();
+                return size.Value;
             }
         }
-
-        public float AbsoluteMagnitude
+        public virtual float AbsoluteMagnitude
         {
             get
             {
-                if (!_absoluteMagnitude.HasValue) CalculateAbsoluteMagnitude();
-                return _absoluteMagnitude.Value;
+                if (!absoluteMagnitude.HasValue) CalculateAbsoluteMagnitude();
+                return absoluteMagnitude.Value;
             }
         }
-
-        public double DisplayAge
+        public virtual double DisplayAge
         {
             get
             {
-                if (!_displayAge.HasValue) CalculateDisplayAge();
-                return _displayAge.Value;
+                if (!displayAge.HasValue) CalculateDisplayAge();
+                return displayAge.Value;
             }
         }
-
-        public double DisplayLifespan
+        public virtual double DisplayLifespan
         {
             get
             {
-                if (!_displayLifespan.HasValue) CalculateDisplayLifespan();
-                return _displayLifespan.Value;
+                if (!displayLifespan.HasValue) CalculateDisplayLifespan();
+                return displayLifespan.Value;
             }
         }
-
-        public double DisplayMass
+        public virtual double DisplayMass
         {
             get
             {
-                if (!_displayMass.HasValue) CalculateDisplayMass();
-                return _displayMass.Value;
+                if (!displayMass.HasValue) CalculateDisplayMass();
+                return displayMass.Value;
             }
         }
-
-        public double DisplayDiameter
+        public virtual double DisplayDiameter
         {
             get
             {
-                if (!_displayDiameter.HasValue) CalculateDisplayDiameter();
-                return _displayDiameter.Value;
+                if (!displayDiameter.HasValue) CalculateDisplayDiameter();
+                return displayDiameter.Value;
             }
         }
-
-        public double DisplayTemperature
+        public virtual double DisplayTemperature
         {
             get
             {
-                if (!_displayTemperature.HasValue) CalculateDisplayTemperature();
-                return _displayTemperature.Value;
+                if (!displayTemperature.HasValue) CalculateDisplayTemperature();
+                return displayTemperature.Value;
             }
         }
-
-        public double DisplayLuminosity
+        public virtual double DisplayLuminosity
         {
             get
             {
-                if (!_displayLuminosity.HasValue) CalculateDisplayLuminosity();
-                return _displayLuminosity.Value;
+                if (!displayLuminosity.HasValue) CalculateDisplayLuminosity();
+                return displayLuminosity.Value;
             }
         }
-
-        public Vector3 DisplayPosition
+        public virtual Vector3 DisplayPosition
         {
             get
             {
-                if (!_displayPosition.HasValue) CalculateDisplayPosition();
-                return _displayPosition.Value;
+                if (!displayPosition.HasValue) CalculateDisplayPosition();
+                return displayPosition.Value;
             }
         }
-
-        public double DisplayRadius
+        public virtual double DisplayRadius
         {
             get
             {
-                if (!_displayRadius.HasValue) CalculateDisplayRadius();
-                return _displayRadius.Value;
+                if (!displayRadius.HasValue) CalculateDisplayRadius();
+                return displayRadius.Value;
             }
         }
-
-        public double DisplayVolume
+        public virtual double DisplayVolume
         {
             get
             {
-                if (!_displayVolume.HasValue) CalculateDisplayVolume();
-                return _displayVolume.Value;
+                if (!displayVolume.HasValue) CalculateDisplayVolume();
+                return displayVolume.Value;
             }
         }
-
-        public double DisplayDensity
+        public virtual double DisplayDensity
         {
             get
             {
-                if(!_displayDensity.HasValue) CalculateDisplayDensity();
-                return _displayDensity.Value;
+                if(!displayDensity.HasValue) CalculateDisplayDensity();
+                return displayDensity.Value;
             }
         }
-
-        public double DisplaySize
+        public virtual double DisplaySize
         {
             get
             {
-                if (!_displaySize.HasValue) CalculateDisplaySize();
-                return _displaySize.Value;
+                if (!displaySize.HasValue) CalculateDisplaySize();
+                return displaySize.Value;
             }
         }
-
-        public double DisplayAbsoluteMagnitude
+        public virtual double DisplayAbsoluteMagnitude
         {
             get
             {
-                if (!_displayAbsoluteMagnitude.HasValue) CalculateDisplayAbsoluteMagnitude();
-                return _displayAbsoluteMagnitude.Value;
+                if (!displayAbsoluteMagnitude.HasValue) CalculateDisplayAbsoluteMagnitude();
+                return displayAbsoluteMagnitude.Value;
             }
         }
-
-        public float ApparentMagnitude(Vector3 source)
-        {
-            if (_apparentMagnitudeSource == source && _apparentMagnitude.HasValue) return _apparentMagnitude.Value;
-
-            _apparentMagnitudeSource = source;
-            var distanceAu = Vector3.Distance(this.Position, source);
-            var distanceParsecs = distanceAu / 206265.0;
-            _apparentMagnitude = (float)(this.AbsoluteMagnitude + 5 * (Math.Log10(distanceParsecs) - 1));
-
-            return _apparentMagnitude.Value;
-        }
+#endregion Base Properties
 
         public AstronomicalObject Parent { get; set; }
         public List<AstronomicalObject> Children { get; set; }
         public Universe Universe => FindUniverse();
-
-
-
-
         protected AstronomicalObject()
         {
             this.Id = GenerateId();
@@ -230,21 +208,23 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
             this.Children = new List<AstronomicalObject>();
             settings = ConfigurationSettings<GeneratorSettings>.AppSettings;
         }
-        private void CalculateRadius()
+
+        #region Property Calculation Methods
+        protected virtual void CalculateRadius()
         {
-            _radius ??= this.Diameter / 2;
+            radius ??= this.Diameter / 2;
         }
-        private void CalculateVolume()
+        protected virtual void CalculateVolume()
         {
-            _volume = (4 / 3) * Math.PI * Math.Pow((this.Radius), 3);
+            volume = (4 / 3) * Math.PI * Math.Pow((this.Radius), 3);
         }
-        private void CalculateDensity()
+        protected virtual void CalculateDensity()
         {
-            _density = this.Mass / this.Volume;
+            density = this.Mass / this.Volume;
         }
-        private void CalculateSize()
+        protected virtual void CalculateSize()
         {
-            _size ??= settings.Advanced.Application.SizeMeaning switch
+            size ??= settings.Advanced.Application.SizeMeaning switch
             {
                 SizeType.Radius => this.Radius,
                 SizeType.Diameter => this.Diameter,
@@ -252,118 +232,118 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
                 _ => this.Diameter
             };
         }
-        private void CalculateDisplayAge()
+        protected virtual void CalculateDisplayAge()
         {
             if (settings.Advanced.Application.TimeConversionFactor == 0)
             {
-                _displayAge = this.Age;
+                displayAge = this.Age;
             }
             else
             {
-                _displayAge = this.Age * settings.Advanced.Application.TimeConversionFactor;
+                displayAge = this.Age * settings.Advanced.Application.TimeConversionFactor;
             }
         }
-        private void CalculateAbsoluteMagnitude()
+        protected virtual void CalculateAbsoluteMagnitude()
         {
-            _absoluteMagnitude ??= (float)(-2.5 * Math.Log10(this.Luminosity) + settings.Advanced.PhysicalConstants.C);
+            absoluteMagnitude ??= (float)(-2.5 * Math.Log10(this.Luminosity) + settings.Advanced.PhysicalConstants.C);
         }
-        private void CalculateDisplayLifespan()
+        protected virtual void CalculateDisplayLifespan()
         {
             if (settings.Advanced.Application.TimeConversionFactor == 0)
             {
-                _displayLifespan = this.Lifespan;
+                displayLifespan = this.Lifespan;
             }
             else
             {
-                _displayLifespan = this.Lifespan * settings.Advanced.Application.TimeConversionFactor;
+                displayLifespan = this.Lifespan * settings.Advanced.Application.TimeConversionFactor;
             }
         }
-        private void CalculateDisplayMass()
+        protected virtual void CalculateDisplayMass()
         {
             if (settings.Advanced.Application.MassConversionFactor == 0)
             {
-                _displayMass = this.Mass;
+                displayMass = this.Mass;
             }
             else
             {
-                _displayMass = this.Mass * settings.Advanced.Application.MassConversionFactor;
+                displayMass = this.Mass * settings.Advanced.Application.MassConversionFactor;
             }
         }
-        private void CalculateDisplayDiameter()
+        protected virtual void CalculateDisplayDiameter()
         {
             if (settings.Advanced.Application.LengthConversionFactor == 0)
             {
-                _displayDiameter = this.Diameter;
+                displayDiameter = this.Diameter;
             }
             else
             {
-                _displayDiameter = this.Diameter * settings.Advanced.Application.LengthConversionFactor;
+                displayDiameter = this.Diameter * settings.Advanced.Application.LengthConversionFactor;
             }
         }
-        private void CalculateDisplayTemperature()
+        protected virtual void CalculateDisplayTemperature()
         {
             if (settings.Advanced.Application.TemperatureConversionFactor == 0)
             {
-                _displayTemperature = this.Temperature;
+                displayTemperature = this.Temperature;
             }
             else
             {
-                _displayTemperature = this.Temperature * settings.Advanced.Application.LengthConversionFactor;
+                displayTemperature = this.Temperature * settings.Advanced.Application.LengthConversionFactor;
             }
         }
-        private void CalculateDisplayLuminosity()
+        protected virtual void CalculateDisplayLuminosity()
         {
             if (settings.Advanced.Application.LuminosityConversionFactor == 0)
             {
-                _displayLuminosity = this.Luminosity;
+                displayLuminosity = this.Luminosity;
             }
             else
             {
-                _displayLuminosity = this.Luminosity * settings.Advanced.Application.LuminosityConversionFactor;
+                displayLuminosity = this.Luminosity * settings.Advanced.Application.LuminosityConversionFactor;
             }
         }
-        private void CalculateDisplayPosition()
+        protected virtual void CalculateDisplayPosition()
         {
             if (settings.Advanced.Application.LengthConversionFactor == 0)
             {
-                _displayPosition = this.Position;
+                displayPosition = this.Position;
             }
             else
             {
-                _displayPosition = new Vector3(this.Position.X * (float)settings.Advanced.Application.LengthConversionFactor,
+                displayPosition = new Vector3(this.Position.X * (float)settings.Advanced.Application.LengthConversionFactor,
                     this.Position.Y * (float)settings.Advanced.Application.LengthConversionFactor,
                     this.Position.Z * (float)settings.Advanced.Application.LengthConversionFactor);
             }
         }
-        private void CalculateDisplayRadius()
+        protected virtual void CalculateDisplayRadius()
         {
             if (settings.Advanced.Application.LengthConversionFactor == 0)
             {
-                _displayRadius = this.Radius;
+                displayRadius = this.Radius;
             }
             else
             {
-                _displayRadius = this.Diameter * settings.Advanced.Application.LengthConversionFactor;
+                displayRadius = this.Diameter * settings.Advanced.Application.LengthConversionFactor;
             }
         }
-        private void CalculateDisplayVolume()
+        protected virtual void CalculateDisplayVolume()
         {
             if (settings.Advanced.Application.LengthConversionFactor == 0)
             {
-                _displayVolume = this.Volume;
+                displayVolume = this.Volume;
             }
             else
             {
-                _displayVolume = this.Diameter * Math.Pow(settings.Advanced.Application.LengthConversionFactor, 3);
+                displayVolume = this.Diameter * Math.Pow(settings.Advanced.Application.LengthConversionFactor, 3);
             }
         }
-        private void CalculateDisplayDensity()
+        protected virtual void CalculateDisplayDensity()
         {
-            _displayDensity = this.DisplayMass / this.DisplayVolume;
+            displayDensity = this.DisplayMass / this.DisplayVolume;
         }
-        private void CalculateDisplaySize()
+        protected virtual void CalculateDisplaySize()
         {
-            _displaySize ??= settings.Advanced.Application.SizeMeaning switch
+            displaySize ??= settings.Advanced.Application.SizeMeaning switch
             {
                 SizeType.Radius => this.DisplayRadius,
                 SizeType.Diameter => this.DisplayDiameter,
@@ -371,11 +351,11 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
                 _ => this.DisplayDiameter
             };
         }
-        private void CalculateDisplayAbsoluteMagnitude()
+        protected virtual void CalculateDisplayAbsoluteMagnitude()
         {
-            _displayAbsoluteMagnitude = this.AbsoluteMagnitude;
+            displayAbsoluteMagnitude = this.AbsoluteMagnitude;
         }
-        public void RecalculateProperties()
+        public virtual void RecalculateProperties()
         {
             CalculateRadius();
             CalculateVolume();
@@ -395,7 +375,20 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
             CalculateDisplaySize();
             CalculateDisplayAbsoluteMagnitude();
         }
-        public float EstimateSize()
+        public float ApparentMagnitude(Vector3 source)
+        {
+            if (apparentMagnitudeSource == source && apparentMagnitude.HasValue) return apparentMagnitude.Value;
+
+            apparentMagnitudeSource = source;
+            var distanceAu = Vector3.Distance(this.Position, source);
+            var distanceParsecs = distanceAu / 206265.0;
+            apparentMagnitude = (float)(this.AbsoluteMagnitude + 5 * (Math.Log10(distanceParsecs) - 1));
+
+            return apparentMagnitude.Value;
+        }
+        #endregion Property Calculation Methods
+
+        public float EstimateMemorySize()
         {
             return this.SizeInBytes();
         }

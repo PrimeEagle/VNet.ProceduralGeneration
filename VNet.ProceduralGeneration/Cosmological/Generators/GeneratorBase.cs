@@ -20,7 +20,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         protected readonly AdvancedGenerationSettings AdvancedSettings;
         protected readonly AstronomicalObjectToggleSettings ObjectToggles;
         protected readonly TheoreticalAstronomicalObjectToggleSettings TheoreticalObjectToggles;
-        protected readonly EventAggregator eventAggregator;
+        protected readonly EventAggregator EventAggregator;
         private readonly ParallelismLevel _parallelismLevel;
         private readonly SemaphoreSlim _semaphore;
 
@@ -34,7 +34,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             this.ObjectToggles = Settings.ObjectToggles;
             this.TheoreticalObjectToggles = Settings.TheoreticalObjectToggles;
             this._parallelismLevel = parallelismLevel;
-            this.eventAggregator = eventAggregator;
+            this.EventAggregator = eventAggregator;
             _semaphore = new SemaphoreSlim(GetDegreesOfParallelism());
         }
 
@@ -79,7 +79,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
             if (enabled)
             {
-                Events.EventBuilder.CreateGeneratingEvent(this.eventAggregator, nameof(T), null);
+                Events.EventBuilder.CreateGeneratingEvent(this.EventAggregator, nameof(T), null);
                 self = new T
                 {
                     Parent = parent,
@@ -103,11 +103,11 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             if (!enabled) return self;
             GenerateBaseProperties(context, self);
             self.AssignChildren();
-            Events.EventBuilder.CreateGeneratedEvent(this.eventAggregator, nameof(T), self);
+            Events.EventBuilder.CreateGeneratedEvent(this.EventAggregator, nameof(T), self);
 
-            Events.EventBuilder.CreatePostProcessingEvent(this.eventAggregator, nameof(T), self);
+            Events.EventBuilder.CreatePostProcessingEvent(this.EventAggregator, nameof(T), self);
             await PostProcess(context, self);
-            Events.EventBuilder.CreatePostProcessedEvent(this.eventAggregator, nameof(T), self);
+            Events.EventBuilder.CreatePostProcessedEvent(this.EventAggregator, nameof(T), self);
 
             return self;
         }

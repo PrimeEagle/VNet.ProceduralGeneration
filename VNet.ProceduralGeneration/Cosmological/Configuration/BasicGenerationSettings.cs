@@ -28,42 +28,42 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [PercentageWithProperties(new string[] { nameof(MinDarkMatterPercent), nameof(MinBaryonicMatterPercent) })]
         [DisplayName("Min Dark Energy Percent")]
         [Tooltip("Minimum amount of dark energy in the universe, as a percentage.")]
-        public double MinDarkEnergyPercent { get; init; }
+        public float MinDarkEnergyPercent { get; init; }
 
         [Range(0d, 100d)]
         [GreaterThanOrEqualToProperty(nameof(MinDarkEnergyPercent))]
         [PercentageWithProperties(new string[] { nameof(MaxDarkMatterPercent), nameof(MaxBaryonicMatterPercent) })]
         [DisplayName("Max Dark Energy Percent")]
         [Tooltip("Maximum amount of dark energy in the universe, as a percentage.")]
-        public double MaxDarkEnergyPercent { get; init; }
+        public float MaxDarkEnergyPercent { get; init; }
 
         [Range(0d, 100d)]
         [LessThanOrEqualToProperty(nameof(MaxDarkMatterPercent))]
         [PercentageWithProperties(new string[] { nameof(MinDarkEnergyPercent), nameof(MinBaryonicMatterPercent) })]
         [DisplayName("Min Dark Matter Percent")]
         [Tooltip("Minimum amount of dark matter in the universe, as a percentage.")]
-        public double MinDarkMatterPercent { get; init; }
+        public float MinDarkMatterPercent { get; init; }
 
         [Range(0d, 100d)]
         [GreaterThanOrEqualToProperty(nameof(MinDarkMatterPercent))]
         [PercentageWithProperties(new string[] { nameof(MaxDarkEnergyPercent), nameof(MaxBaryonicMatterPercent) })]
         [DisplayName("Max Dark Matter Percent")]
         [Tooltip("Maximum amount of dark matter in the universe, as a percentage.")]
-        public double MaxDarkMatterPercent { get; init; }
+        public float MaxDarkMatterPercent { get; init; }
 
         [Range(0d, 100d)]
         [LessThanOrEqualToProperty(nameof(MaxBaryonicMatterPercent))]
         [PercentageWithProperties(new string[] { nameof(MinDarkMatterPercent), nameof(MinDarkEnergyPercent) })]
         [DisplayName("Min Baryonic Matter Percent")]
         [Tooltip("Minimum amount of baryonic matter (normal matter) in the universe, as a percentage.")]
-        public double MinBaryonicMatterPercent { get; init; }
+        public float MinBaryonicMatterPercent { get; init; }
 
         [Range(0d, 100d)]
         [GreaterThanOrEqualToProperty(nameof(MinBaryonicMatterPercent))]
         [PercentageWithProperties(new string[] { nameof(MaxDarkMatterPercent), nameof(MaxDarkEnergyPercent) })]
         [DisplayName("Max Baryonic Matter Percent")]
         [Tooltip("Maximum amount of baryonic matter (normal matter) in the universe, as a percentage.")]
-        public double MaxBaryonicMatterPercent { get; init; }
+        public float MaxBaryonicMatterPercent { get; init; }
 
         [Range(0, 100e9)]
         [LessThanOrEqualToProperty(nameof(MaxUniverseAge))]

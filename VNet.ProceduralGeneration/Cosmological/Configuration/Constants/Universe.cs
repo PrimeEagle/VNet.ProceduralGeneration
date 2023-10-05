@@ -15,6 +15,8 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration.Constants
             internal static float CosmicMicrowaveBackgroundThreshold { get; } = 0.001f;                      // Kelvin
             internal static double InflationStart { get; } = 3.1709791983765e-43;                            // years
             internal static double InflationEnd { get; } = 3.1709791983765e-39;                              // years
+            internal static float MinCosmicMicrowaveBackground { get; } = 0.001f;                            // Kelvin
+            internal static float MaxCosmicMicrowaveBackground { get; } = 5.00f;                             // Kelvin
 
 
             internal static IRandomGenerationAlgorithm RandomGenerator { get; } = new DotNetGenerator();

@@ -39,9 +39,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
         public double DisplayAbsoluteMagnitude { get; }
 
 
-
-
-        public float EstimateSize();
+        public float EstimateMemorySize();
         public float ApparentMagnitude(Vector3 source);
         public void RecalculateProperties();
     }

@@ -65,6 +65,18 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Tooltip("The end of the inflation stage of the universe. Value = 0 means no inflation.")]
         public double InflationEnd { get; init; }
 
+        [Range(0, 100)]
+        [LessThanOrEqualToProperty(nameof(MaxCosmicMicrowaveBackground))]
+        [DisplayName("Min Cosmic Microwave Background")]
+        [Tooltip("The minimum value for the cosmic microwave background, in Kelvin.")]
+        public float MinCosmicMicrowaveBackground { get; init; }
+
+        [Range(0, 100)]
+        [GreaterThanOrEqualToProperty(nameof(MinCosmicMicrowaveBackground))]
+        [DisplayName("Max Cosmic Microwave Background")]
+        [Tooltip("The maximum value for the cosmic microwave background, in Kelvin.")]
+        public float MaxCosmicMicrowaveBackground { get; init; }
+
 
 
 
@@ -80,6 +92,8 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
             this.CosmicMicrowaveBackgroundThreshold = ConfigConstants.Universe.CosmicMicrowaveBackgroundThreshold;
             this.InflationStart = ConfigConstants.Universe.InflationStart;
             this.InflationEnd = ConfigConstants.Universe.InflationEnd;
+            this.MinCosmicMicrowaveBackground = ConfigConstants.Universe.MinCosmicMicrowaveBackground;
+            this.MaxCosmicMicrowaveBackground = ConfigConstants.Universe.MaxCosmicMicrowaveBackground;
         }
     }
 }
