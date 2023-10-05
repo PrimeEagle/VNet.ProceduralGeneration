@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -8,8 +7,43 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class NovaGenerator : GeneratorBase<Nova, NovaContext>
 {
-    public NovaGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
+    public NovaGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
+    }
+
+    protected override void GenerateDiameter(NovaContext context, Nova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GeneratePosition(NovaContext context, Nova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateAge(NovaContext context, Nova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateLifespan(NovaContext context, Nova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateMass(NovaContext context, Nova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateLuminosity(NovaContext context, Nova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateTemperature(NovaContext context, Nova self)
+    {
+        throw new NotImplementedException();
     }
 
     protected override Task<Nova> GenerateSelf(NovaContext context, Nova self)
@@ -23,41 +57,6 @@ public class NovaGenerator : GeneratorBase<Nova, NovaContext>
     }
 
     protected override Task PostProcess(NovaContext context, Nova self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateAge(NovaContext context, Nova self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateSize(NovaContext context, Nova self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override double GenerateMass(NovaContext context, Nova self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateAbsoluteMagnitude(NovaContext context, Nova self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateTemperature(NovaContext context, Nova self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateLifespan(NovaContext context, Nova self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override Vector3 GeneratePosition(NovaContext context, Nova self)
     {
         throw new NotImplementedException();
     }

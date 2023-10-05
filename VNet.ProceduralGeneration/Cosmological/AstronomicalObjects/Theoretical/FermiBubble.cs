@@ -2,4 +2,8 @@
 
 public class FermiBubble : TheoreticalAstronomicalObject
 {
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

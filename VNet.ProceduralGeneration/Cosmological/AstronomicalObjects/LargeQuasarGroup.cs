@@ -2,6 +2,8 @@
 
 public class LargeQuasarGroup : AstronomicalObjectContainer
 {
-    public int QuasarCount { get; set; }
-    public double Size { get; set; }
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -2,4 +2,8 @@
 
 public class NakedSingularity : TheoreticalAstronomicalObject
 {
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

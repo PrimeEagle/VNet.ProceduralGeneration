@@ -2,4 +2,8 @@
 
 public class DarkStar : TheoreticalAstronomicalObject
 {
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

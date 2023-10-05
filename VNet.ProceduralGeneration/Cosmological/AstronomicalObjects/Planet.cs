@@ -2,5 +2,8 @@
 
 public class Planet : AstronomicalObject
 {
-    public List<Moon> Moons { get; set; } = new();
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

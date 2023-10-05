@@ -2,6 +2,8 @@
 
 public class Comet : AstronomicalObject
 {
-    public double Size { get; set; }
-    public double TailLength { get; set; }
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -2,4 +2,8 @@
 
 public class CosmicDustLane : TheoreticalAstronomicalObject
 {
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

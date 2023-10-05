@@ -2,4 +2,8 @@
 
 public class PrimordialBlackHole : TheoreticalAstronomicalObject
 {
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

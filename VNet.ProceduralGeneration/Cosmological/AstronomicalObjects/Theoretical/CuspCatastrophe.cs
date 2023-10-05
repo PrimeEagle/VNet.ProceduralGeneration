@@ -2,4 +2,8 @@
 
 public class CuspCatastrophe : TheoreticalAstronomicalObject
 {
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

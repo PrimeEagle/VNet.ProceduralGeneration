@@ -1,5 +1,9 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
-public class Nova : Star
+public class Nova : AstronomicalObject
 {
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

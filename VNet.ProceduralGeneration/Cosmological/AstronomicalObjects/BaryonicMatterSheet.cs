@@ -2,4 +2,8 @@
 
 public class BaryonicMatterSheet : AstronomicalObjectContainer
 {
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

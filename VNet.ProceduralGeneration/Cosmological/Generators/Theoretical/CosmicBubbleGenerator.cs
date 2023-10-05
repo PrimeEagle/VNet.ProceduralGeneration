@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -8,8 +7,43 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 
 public class CosmicBubbleGenerator : GeneratorBase<CosmicBubble, CosmicBubbleContext>
 {
-    public CosmicBubbleGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
+    public CosmicBubbleGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
+    }
+
+    protected override void GenerateDiameter(CosmicBubbleContext context, CosmicBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GeneratePosition(CosmicBubbleContext context, CosmicBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateAge(CosmicBubbleContext context, CosmicBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateLifespan(CosmicBubbleContext context, CosmicBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateMass(CosmicBubbleContext context, CosmicBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateLuminosity(CosmicBubbleContext context, CosmicBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateTemperature(CosmicBubbleContext context, CosmicBubble self)
+    {
+        throw new NotImplementedException();
     }
 
     protected override Task<CosmicBubble> GenerateSelf(CosmicBubbleContext context, CosmicBubble self)
@@ -23,41 +57,6 @@ public class CosmicBubbleGenerator : GeneratorBase<CosmicBubble, CosmicBubbleCon
     }
 
     protected override Task PostProcess(CosmicBubbleContext context, CosmicBubble self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateAge(CosmicBubbleContext context, CosmicBubble self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateSize(CosmicBubbleContext context, CosmicBubble self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override double GenerateMass(CosmicBubbleContext context, CosmicBubble self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateAbsoluteMagnitude(CosmicBubbleContext context, CosmicBubble self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateTemperature(CosmicBubbleContext context, CosmicBubble self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateLifespan(CosmicBubbleContext context, CosmicBubble self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override Vector3 GeneratePosition(CosmicBubbleContext context, CosmicBubble self)
     {
         throw new NotImplementedException();
     }

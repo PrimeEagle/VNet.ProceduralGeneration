@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -8,8 +7,43 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class QuasarGenerator : GeneratorBase<Quasar, QuasarContext>
 {
-    public QuasarGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
+    public QuasarGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
+    }
+
+    protected override void GenerateDiameter(QuasarContext context, Quasar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GeneratePosition(QuasarContext context, Quasar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateAge(QuasarContext context, Quasar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateLifespan(QuasarContext context, Quasar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateMass(QuasarContext context, Quasar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateLuminosity(QuasarContext context, Quasar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateTemperature(QuasarContext context, Quasar self)
+    {
+        throw new NotImplementedException();
     }
 
     protected override Task<Quasar> GenerateSelf(QuasarContext context, Quasar self)
@@ -23,41 +57,6 @@ public class QuasarGenerator : GeneratorBase<Quasar, QuasarContext>
     }
 
     protected override Task PostProcess(QuasarContext context, Quasar self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateAge(QuasarContext context, Quasar self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateSize(QuasarContext context, Quasar self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override double GenerateMass(QuasarContext context, Quasar self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateAbsoluteMagnitude(QuasarContext context, Quasar self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateTemperature(QuasarContext context, Quasar self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateLifespan(QuasarContext context, Quasar self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override Vector3 GeneratePosition(QuasarContext context, Quasar self)
     {
         throw new NotImplementedException();
     }

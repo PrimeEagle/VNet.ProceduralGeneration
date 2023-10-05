@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -8,8 +7,43 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 
 public class FermiBubbleGenerator : GeneratorBase<FermiBubble, FermiBubbleContext>
 {
-    public FermiBubbleGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level3)
+    public FermiBubbleGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
+    }
+
+    protected override void GenerateDiameter(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GeneratePosition(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateAge(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateLifespan(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateMass(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateLuminosity(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateTemperature(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
     }
 
     protected override Task<FermiBubble> GenerateSelf(FermiBubbleContext context, FermiBubble self)
@@ -23,41 +57,6 @@ public class FermiBubbleGenerator : GeneratorBase<FermiBubble, FermiBubbleContex
     }
 
     protected override Task PostProcess(FermiBubbleContext context, FermiBubble self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateAge(FermiBubbleContext context, FermiBubble self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateSize(FermiBubbleContext context, FermiBubble self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override double GenerateMass(FermiBubbleContext context, FermiBubble self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateAbsoluteMagnitude(FermiBubbleContext context, FermiBubble self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateTemperature(FermiBubbleContext context, FermiBubble self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateLifespan(FermiBubbleContext context, FermiBubble self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override Vector3 GeneratePosition(FermiBubbleContext context, FermiBubble self)
     {
         throw new NotImplementedException();
     }

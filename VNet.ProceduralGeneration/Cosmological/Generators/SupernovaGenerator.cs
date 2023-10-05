@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -8,8 +7,43 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class SupernovaGenerator : GeneratorBase<Supernova, SupernovaContext>
 {
-    public SupernovaGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
+    public SupernovaGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
+    }
+
+    protected override void GenerateDiameter(SupernovaContext context, Supernova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GeneratePosition(SupernovaContext context, Supernova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateAge(SupernovaContext context, Supernova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateLifespan(SupernovaContext context, Supernova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateMass(SupernovaContext context, Supernova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateLuminosity(SupernovaContext context, Supernova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateTemperature(SupernovaContext context, Supernova self)
+    {
+        throw new NotImplementedException();
     }
 
     protected override Task<Supernova> GenerateSelf(SupernovaContext context, Supernova self)
@@ -23,41 +57,6 @@ public class SupernovaGenerator : GeneratorBase<Supernova, SupernovaContext>
     }
 
     protected override Task PostProcess(SupernovaContext context, Supernova self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateAge(SupernovaContext context, Supernova self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateSize(SupernovaContext context, Supernova self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override double GenerateMass(SupernovaContext context, Supernova self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateAbsoluteMagnitude(SupernovaContext context, Supernova self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateTemperature(SupernovaContext context, Supernova self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateLifespan(SupernovaContext context, Supernova self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override Vector3 GeneratePosition(SupernovaContext context, Supernova self)
     {
         throw new NotImplementedException();
     }

@@ -2,6 +2,8 @@
 
 public class GalaxyCluster : AstronomicalObjectContainer
 {
-    public List<Galaxy> Galaxies { get; set; } = new();
-    public bool ContainsDarkMatter { get; set; }
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

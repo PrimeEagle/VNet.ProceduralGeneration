@@ -31,10 +31,8 @@ public class CosmicWebContext : ContextBase
         this.BaryonicMatterPercent = universe.BaryonicMatterPercent;
         this.Curvature = universe.Curvature;
         this.ConnectivityFactor = universe.ConnectivityFactor;
-        this.CosmicInflationOccurred = universe.CosmicInflationOccurred;
-        this.CmbHasVariations = universe.CmbHasVariations;
+        this.CosmicInflationOccurred = universe.InflationOccurred;
         this.ExpansionRate = universe.ExpansionRate;
         this.CosmicMicrowaveBackground = universe.CosmicMicrowaveBackground;
-        this.IsInInflationPhase = universe.IsInInflationPhase;
     }
 }

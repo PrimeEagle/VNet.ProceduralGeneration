@@ -2,6 +2,9 @@
 {
     public class GalaxyGroup : AstronomicalObjectContainer
     {
-        public List<Galaxy> Galaxies { get; set; } = new();
+        internal override void AssignChildren()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -8,8 +7,43 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 
 public class FuzzballGenerator : GeneratorBase<Fuzzball, FuzzballContext>
 {
-    public FuzzballGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
+    public FuzzballGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
+    }
+
+    protected override void GenerateDiameter(FuzzballContext context, Fuzzball self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GeneratePosition(FuzzballContext context, Fuzzball self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateAge(FuzzballContext context, Fuzzball self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateLifespan(FuzzballContext context, Fuzzball self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateMass(FuzzballContext context, Fuzzball self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateLuminosity(FuzzballContext context, Fuzzball self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateTemperature(FuzzballContext context, Fuzzball self)
+    {
+        throw new NotImplementedException();
     }
 
     protected override Task<Fuzzball> GenerateSelf(FuzzballContext context, Fuzzball self)
@@ -23,41 +57,6 @@ public class FuzzballGenerator : GeneratorBase<Fuzzball, FuzzballContext>
     }
 
     protected override Task PostProcess(FuzzballContext context, Fuzzball self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateAge(FuzzballContext context, Fuzzball self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateSize(FuzzballContext context, Fuzzball self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override double GenerateMass(FuzzballContext context, Fuzzball self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateAbsoluteMagnitude(FuzzballContext context, Fuzzball self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateTemperature(FuzzballContext context, Fuzzball self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateLifespan(FuzzballContext context, Fuzzball self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override Vector3 GeneratePosition(FuzzballContext context, Fuzzball self)
     {
         throw new NotImplementedException();
     }

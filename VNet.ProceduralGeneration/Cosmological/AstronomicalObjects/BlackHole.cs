@@ -1,7 +1,9 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
-public class BlackHole : Star
+public class BlackHole : AstronomicalObject
 {
-    public double Spin { get; set; }
-    public double EventHorizonSize { get; set; }
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -2,4 +2,8 @@
 
 public class CosmicTornado : TheoreticalAstronomicalObject
 {
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

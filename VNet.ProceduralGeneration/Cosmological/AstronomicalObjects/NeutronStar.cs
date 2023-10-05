@@ -1,8 +1,9 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
-public class NeutronStar : Star
+public class NeutronStar : AstronomicalObject
 {
-    public double Mass { get; set; }
-    public double Radius { get; set; }
-    public double MagneticFieldStrength { get; set; }
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

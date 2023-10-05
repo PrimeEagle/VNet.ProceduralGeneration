@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -8,10 +7,19 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class BaryonicMatterFilamentGenerator : ContainerGeneratorBase<BaryonicMatterFilament, BaryonicMatterFilamentContext>
 {
-    public BaryonicMatterFilamentGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level1)
+    public BaryonicMatterFilamentGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
     }
 
+    protected override void GenerateDiameter(BaryonicMatterFilamentContext context, BaryonicMatterFilament self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GeneratePosition(BaryonicMatterFilamentContext context, BaryonicMatterFilament self)
+    {
+        throw new NotImplementedException();
+    }
 
     protected override Task<BaryonicMatterFilament> GenerateSelf(BaryonicMatterFilamentContext context, BaryonicMatterFilament self)
     {
@@ -24,41 +32,6 @@ public class BaryonicMatterFilamentGenerator : ContainerGeneratorBase<BaryonicMa
     }
 
     protected override Task PostProcess(BaryonicMatterFilamentContext context, BaryonicMatterFilament self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateAge(BaryonicMatterFilamentContext context, BaryonicMatterFilament self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateSize(BaryonicMatterFilamentContext context, BaryonicMatterFilament self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override double GenerateMass(BaryonicMatterFilamentContext context, BaryonicMatterFilament self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateAbsoluteMagnitude(BaryonicMatterFilamentContext context, BaryonicMatterFilament self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateTemperature(BaryonicMatterFilamentContext context, BaryonicMatterFilament self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateLifespan(BaryonicMatterFilamentContext context, BaryonicMatterFilament self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override Vector3 GeneratePosition(BaryonicMatterFilamentContext context, BaryonicMatterFilament self)
     {
         throw new NotImplementedException();
     }

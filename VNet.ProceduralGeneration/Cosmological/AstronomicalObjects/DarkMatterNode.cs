@@ -2,5 +2,8 @@
 
 public class DarkMatterNode : AstronomicalObjectContainer
 {
-    public float Intensity { get; set; }
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

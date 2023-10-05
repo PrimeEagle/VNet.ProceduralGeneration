@@ -2,5 +2,8 @@
 
 public class Supercluster : AstronomicalObjectContainer
 {
-    public List<GalaxyCluster> GalaxyClusters { get; set; } = new();
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

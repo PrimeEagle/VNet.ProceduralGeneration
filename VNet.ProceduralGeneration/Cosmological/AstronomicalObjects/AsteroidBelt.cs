@@ -2,5 +2,8 @@
 
 public class AsteroidBelt : AstronomicalObject
 {
-    public List<Asteroid> Asteroids { get; set; } = new();
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }

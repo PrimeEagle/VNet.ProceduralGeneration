@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
@@ -8,8 +7,43 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 
 public class WhiteHoleGenerator : GeneratorBase<WhiteHole, WhiteHoleContext>
 {
-    public WhiteHoleGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level4)
+    public WhiteHoleGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
+    }
+
+    protected override void GenerateDiameter(WhiteHoleContext context, WhiteHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GeneratePosition(WhiteHoleContext context, WhiteHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateAge(WhiteHoleContext context, WhiteHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateLifespan(WhiteHoleContext context, WhiteHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateMass(WhiteHoleContext context, WhiteHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateLuminosity(WhiteHoleContext context, WhiteHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateTemperature(WhiteHoleContext context, WhiteHole self)
+    {
+        throw new NotImplementedException();
     }
 
     protected override Task<WhiteHole> GenerateSelf(WhiteHoleContext context, WhiteHole self)
@@ -23,41 +57,6 @@ public class WhiteHoleGenerator : GeneratorBase<WhiteHole, WhiteHoleContext>
     }
 
     protected override Task PostProcess(WhiteHoleContext context, WhiteHole self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateAge(WhiteHoleContext context, WhiteHole self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateSize(WhiteHoleContext context, WhiteHole self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override double GenerateMass(WhiteHoleContext context, WhiteHole self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float CalculateAbsoluteMagnitude(WhiteHoleContext context, WhiteHole self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateTemperature(WhiteHoleContext context, WhiteHole self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override float GenerateLifespan(WhiteHoleContext context, WhiteHole self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override Vector3 GeneratePosition(WhiteHoleContext context, WhiteHole self)
     {
         throw new NotImplementedException();
     }

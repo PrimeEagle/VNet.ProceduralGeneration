@@ -1,7 +1,9 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
-public class Moon : Planet
+public class Moon : AstronomicalObject
 {
-    public string Name { get; set; }
-    public double Mass { get; set; }
+    internal override void AssignChildren()
+    {
+        throw new NotImplementedException();
+    }
 }
