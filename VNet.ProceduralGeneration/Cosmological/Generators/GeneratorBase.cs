@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using VNet.Configuration;
+﻿using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
@@ -14,7 +13,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
     {
         private bool _disposed = false;
 
-        protected bool enabled;
+        protected bool Enabled;
         protected readonly GeneratorSettings Settings;
         protected readonly BasicGenerationSettings BasicSettings;
         protected readonly AdvancedGenerationSettings AdvancedSettings;
@@ -85,7 +84,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         {
             T self;
 
-            if (enabled)
+            if (Enabled)
             {
                 Events.EventBuilder.CreateGeneratingEvent(this.EventAggregator, nameof(T), null);
                 self = new T
@@ -108,7 +107,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
             await GenerateChildren(context, self);
             
-            if (!enabled) return self;
+            if (!Enabled) return self;
             GenerateBaseProperties(context, self);
             self.AssignChildren();
             Events.EventBuilder.CreateGeneratedEvent(this.EventAggregator, nameof(T), self);

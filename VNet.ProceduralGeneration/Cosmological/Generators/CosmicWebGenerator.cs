@@ -11,7 +11,7 @@ public class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebCon
 {
     public CosmicWebGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level0)
     {
-        enabled = ObjectToggles.CosmicWebEnabled;
+        Enabled = ObjectToggles.CosmicWebEnabled;
     }
 
     protected override async Task<CosmicWeb> GenerateSelf(CosmicWebContext context, CosmicWeb self)

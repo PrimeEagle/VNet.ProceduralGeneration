@@ -10,7 +10,7 @@ public class BaryonicMatterNodeGenerator : ContainerGeneratorBase<BaryonicMatter
 {
     public BaryonicMatterNodeGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level1)
     {
-        enabled = ObjectToggles.BaryonicMatterNodesEnabled;
+        Enabled = ObjectToggles.BaryonicMatterNodesEnabled;
     }
 
     protected override void GenerateDiameter(BaryonicMatterNodeContext context, BaryonicMatterNode self)

@@ -11,7 +11,7 @@ public class UniverseGenerator : ContainerGeneratorBase<Universe, UniverseContex
 {
     public UniverseGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level0)
     {
-        enabled = ObjectToggles.UniverseEnabled;
+        Enabled = ObjectToggles.UniverseEnabled;
     }
     
     protected override async Task<Universe> GenerateSelf(UniverseContext context, Universe self)
