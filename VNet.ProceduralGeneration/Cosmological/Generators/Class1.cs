@@ -1,7 +1,5 @@
 ﻿using VNet.Scientific.Interpolation;
 using VNet.Scientific.Noise;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Processing;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators
 {
@@ -15,9 +13,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         public double ExpansionRate { get; set; } = 70 * 3.15e7 * 2.09e5;
         double initialRadiationStrength = 2.0;  // Arbitrarily chosen value; adjust as needed
         double radiationDecayRate = 0.05;  // Adjust to set how fast radiation diminishes over time
-        public int DilationIterations { get; set; } = 1; // Default number of dilation iterations
-        public int ErosionIterations { get; set; } = 1;  // Default number of erosion iterations
-
 
 
 
@@ -165,54 +160,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
             // Update the original volume reference to point to the expanded volume
             return expandedVolume;
-        }
-
-        public void ApplyMorphologicalOperations(double[,,] volume)
-        {
-            var x = volume.GetLength(0);
-            var y = volume.GetLength(1);
-            var z = volume.GetLength(2);
-
-            // Create a 2D image buffer for applying morphological operations
-            using (var imageBuffer = new Image<Rgba32>(x, y))
-            {
-                for (var k = 0; k < z; k++)
-                {
-                    // Load a 2D slice from the volume into the image buffer
-                    for (var i = 0; i < x; i++)
-                    {
-                        for (var j = 0; j < y; j++)
-                        {
-                            // Convert volume values (0.0 to 1.0) to grayscale image values (0 to 255)
-                            byte value = (byte)(volume[i, j, k] * 255);
-                            imageBuffer[i, j] = new Rgba32(value, value, value);
-                        }
-                    }
-
-                    // Apply dilation and erosion operations with configurable iterations
-                    // Apply dilation and erosion operations with configurable iterations
-                    for (var d = 0; d < DilationIterations; d++)
-                    {
-                        imageBuffer.Mutate(x => x.Dilate());
-                    }
-
-                    for (var e = 0; e < ErosionIterations; e++)
-                    {
-                        imageBuffer.Mutate(x => x.Erode());
-                    }
-
-
-                    // Update the 2D slice back into the volume
-                    for (var i = 0; i < x; i++)
-                    {
-                        for (var j = 0; j < y; j++)
-                        {
-                            // Convert the grayscale image value back to the volume range (0.0 to 1.0)
-                            volume[i, j, k] = imageBuffer[i, j].R / 255.0;
-                        }
-                    }
-                }
-            }
         }
     }
 }
