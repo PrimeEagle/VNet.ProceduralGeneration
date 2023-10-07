@@ -1,21 +1,16 @@
-﻿using System.Numerics;
+﻿using System.Drawing;
+using System.Numerics;
 
 namespace VNet.ProceduralGeneration.Heightmap
 {
     public static class HeightmapUtil
     {
-        public static Image<Rgba32> LoadImage(string imagePath)
+        public static Bitmap LoadImage(string imagePath)
         {
-            return Image.Load<Rgba32>(imagePath);
+            return new Bitmap(imagePath);
         }
 
-        public static Image<Rgba32> GaussianBlur(Image<Rgba32> image, float sigma = 5)
-        {
-            var blurredImage = image.Clone(ctx => ctx.GaussianBlur(sigma));
-            return blurredImage;
-        }
-
-        public static float[,] ImageToHeightmap(Image<Rgba32> image)
+        public static float[,] ImageToHeightmap(Bitmap image)
         {
             var heightmap = new float[image.Width, image.Height];
 
@@ -23,7 +18,7 @@ namespace VNet.ProceduralGeneration.Heightmap
             {
                 for (var x = 0; x < image.Width; x++)
                 {
-                    var pixel = image[x, y];
+                    var pixel = image.GetPixel(x, y);
                     var grayscaleValue = (pixel.R + pixel.G + pixel.B) / 3f / 255f;
                     heightmap[x, y] = grayscaleValue;
                 }
@@ -91,7 +86,7 @@ namespace VNet.ProceduralGeneration.Heightmap
             return gradientMap;
         }
 
-        public static float GetAverageIntensity(Image<Rgba32> heightMap)
+        public static float GetAverageIntensity(Bitmap heightMap)
         {
             float totalIntensity = 0;
             var pixelCount = 0;
@@ -100,7 +95,7 @@ namespace VNet.ProceduralGeneration.Heightmap
             {
                 for (var x = 0; x < heightMap.Width; x++)
                 {
-                    totalIntensity += heightMap[x, y].R; // Assuming grayscale, so R=G=B.
+                    totalIntensity += heightMap.GetPixel(x, y).R;
                     pixelCount++;
                 }
             }
@@ -108,4 +103,5 @@ namespace VNet.ProceduralGeneration.Heightmap
             return totalIntensity / pixelCount;
         }
     }
+
 }

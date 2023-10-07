@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
-using Color = SixLabors.ImageSharp.Color;
-using PointF = SixLabors.ImageSharp.PointF;
+
 
 namespace VNet.ProceduralGeneration.Heightmap
 {
