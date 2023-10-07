@@ -5,11 +5,6 @@ namespace VNet.ProceduralGeneration.Heightmap
 {
     public static class HeightmapUtil
     {
-        public static Bitmap LoadImage(string imagePath)
-        {
-            return new Bitmap(imagePath);
-        }
-
         public static float[,] ImageToHeightmap(Bitmap image)
         {
             var heightmap = new float[image.Width, image.Height];
@@ -103,5 +98,4 @@ namespace VNet.ProceduralGeneration.Heightmap
             return totalIntensity / pixelCount;
         }
     }
-
 }

@@ -83,7 +83,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
 
 
-            double currentRadiationStrength = initialRadiationStrength * Math.Exp(-radiationDecayRate * timeInYears);
+            var currentRadiationStrength = initialRadiationStrength * Math.Exp(-radiationDecayRate * timeInYears);
 
             for (var i = 0; i < x; i++)
             {

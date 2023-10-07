@@ -7,6 +7,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration.Constants
         internal static class Universe
         {
             internal static float GaussianSigma { get; } = 1.0f;
+            internal static int GaussianKernelSize { get; } = 5;
             internal static float MinConnectivityFactor { get; } = 5e9f;
             internal static float MaxConnectivityFactor { get; } = 20e9f;
             internal static float CurvatureFlatPercentage { get; } = 90.0f;

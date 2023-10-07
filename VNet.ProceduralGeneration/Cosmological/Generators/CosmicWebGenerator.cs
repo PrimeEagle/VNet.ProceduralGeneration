@@ -1,9 +1,13 @@
-﻿using System.Numerics;
+﻿using System.Drawing;
+using System.Numerics;
+using VNet.ImageProcessing;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Heightmap;
 using VNet.System.Events;
+#pragma warning disable IDE0060
+#pragma warning disable CA1416
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
@@ -16,14 +20,26 @@ public class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebCon
 
     protected override async Task<CosmicWeb> GenerateSelf(CosmicWebContext context, CosmicWeb self)
     {
-        self.Topology = LoadCosmicTopology();
+        switch (AdvancedSettings.CosmicWeb.CosmicWebGenerationMethod)
+        {
+            case CosmicWebGenerationMethod.Heightmap:
+                self.HeightmapTopology = LoadCosmicTopology();
+                break;
+            case CosmicWebGenerationMethod.Random:
+                break;
+            case CosmicWebGenerationMethod.Evolution:
+                break;
+            case CosmicWebGenerationMethod.None:
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
 
         return self;
     }
 
     protected override async Task GenerateChildren(CosmicWebContext context, CosmicWeb self)
     {
-        var baryonicMatterNodeCount = GetBaryonicMatterNodeCount(context, self.Topology.AverageIntensity);
+        var baryonicMatterNodeCount = GetBaryonicMatterNodeCount(context, self.HeightmapTopology.AverageIntensity);
         self.BaryonicMatterNodes = await GenerateBaryonicMatterNodes(self, baryonicMatterNodeCount);
         ApplyZOffsetsToBaryonicMatterNodes(self.BaryonicMatterNodes);
         SmoothZCoordinatesOfBaryonicMatterNodes(self.BaryonicMatterNodes);
@@ -31,7 +47,7 @@ public class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebCon
         ReduceBaryonicMatterNodes(self.BaryonicMatterNodes);
         RebalanceBaryonicMatterNodeCounts(self.BaryonicMatterNodes, self, baryonicMatterNodeCount);
 
-        var darkMatterNodeCount = GetDarkMatterNodeCount(context, self.Topology.AverageIntensity);
+        var darkMatterNodeCount = GetDarkMatterNodeCount(context, self.HeightmapTopology.AverageIntensity);
         self.DarkMatterNodes = await GenerateDarkMatterNodes(self, darkMatterNodeCount);
         ApplyZOffsetsToDarkMatterNodes(self.DarkMatterNodes);
         SmoothZCoordinatesOfDarkMatterNodes(self.DarkMatterNodes);
@@ -50,13 +66,13 @@ public class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebCon
         if (!BasicSettings.ApplyGravitationalEffectsToCosmicWeb) return;
     }
 
-    private CosmicWebTopology LoadCosmicTopology()
+    private CosmicWebHeightmapTopology LoadCosmicTopology()
     {
-        var heightMapImage = HeightmapUtil.LoadImage(BasicSettings.HeightmapFile);
+        var heightMapImage = new Bitmap(BasicSettings.HeightmapFile);
 
         if (AdvancedSettings.Universe.GaussianSigma > 0f)
         {
-            heightMapImage = HeightmapUtil.GaussianBlur(heightMapImage, AdvancedSettings.Universe.GaussianSigma);
+            heightMapImage = Enhancement.GaussianBlur(heightMapImage, AdvancedSettings.Universe.GaussianKernelSize, AdvancedSettings.Universe.GaussianSigma);
         }
 
         var heightMap = HeightmapUtil.ImageToHeightmap(heightMapImage);
@@ -67,7 +83,7 @@ public class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebCon
         var averageIntensity = HeightmapUtil.GetAverageIntensity(heightMapImage);
         var maxGradientMagnitude = gradientMap.Cast<Vector3>().Max(v => v.Length());
 
-        var topology = new CosmicWebTopology()
+        var topology = new CosmicWebHeightmapTopology()
         {
             AverageIntensity = averageIntensity,
             Heightmap = heightMap,
@@ -131,10 +147,10 @@ public class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebCon
 
     private SpatialGrid InitializeSpatialGrid(CosmicWeb cosmicWeb, SpatialGridContext context)
     {
-        var volumeMap = cosmicWeb.Topology.VolumeMap;
-        var gradientMap = cosmicWeb.Topology.GradientMap;
-        var intensityThreshold = cosmicWeb.Topology.AverageIntensity * context.NodeIntensityThresholdFactor;
-        var gradientMagnitudeThreshold = cosmicWeb.Topology.MaxGradientMagnitude * context.NodeGradientMagnitudeThresholdFactor;
+        var volumeMap = cosmicWeb.HeightmapTopology.VolumeMap;
+        var gradientMap = cosmicWeb.HeightmapTopology.GradientMap;
+        var intensityThreshold = cosmicWeb.HeightmapTopology.AverageIntensity * context.NodeIntensityThresholdFactor;
+        var gradientMagnitudeThreshold = cosmicWeb.HeightmapTopology.MaxGradientMagnitude * context.NodeGradientMagnitudeThresholdFactor;
 
         var spatialGrid = new SpatialGrid(volumeMap, (x, y, z) =>
         {
@@ -208,7 +224,7 @@ public class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebCon
 
         while (nodes.Count < targetNodeCount)
         {
-            var potentialNodes = GetPotentialBaryonicMatterNodes(nodes, cosmicWeb.Topology);
+            var potentialNodes = GetPotentialBaryonicMatterNodes(nodes, cosmicWeb.HeightmapTopology);
             if (potentialNodes.Count == 0) break;
 
             var randomSeed = potentialNodes[AdvancedSettings.CosmicWeb.RandomGenerator.Next(potentialNodes.Count)];
@@ -278,7 +294,7 @@ public class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebCon
 
         while (nodes.Count < targetNodeCount)
         {
-            var potentialNodes = GetPotentialDarkMatterNodes(nodes, cosmicWeb.Topology);
+            var potentialNodes = GetPotentialDarkMatterNodes(nodes, cosmicWeb.HeightmapTopology);
             if (potentialNodes.Count == 0) break;
 
             var randomSeed = potentialNodes[AdvancedSettings.CosmicWeb.RandomGenerator.Next(potentialNodes.Count)];
@@ -302,7 +318,7 @@ public class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebCon
     {
     }
 
-    private List<BaryonicMatterNode> GetPotentialBaryonicMatterNodes(IList<BaryonicMatterNode> nodes, CosmicWebTopology topology)
+    private List<BaryonicMatterNode> GetPotentialBaryonicMatterNodes(IList<BaryonicMatterNode> nodes, CosmicWebHeightmapTopology topology)
     {
         var potentialNodes = new List<BaryonicMatterNode>();
         var intensityThreshold = topology.AverageIntensity * AdvancedSettings.BaryonicMatterNode.TopologyIntensityThresholdFactor;
@@ -341,7 +357,7 @@ public class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebCon
         return potentialNodes;
     }
 
-    private List<DarkMatterNode> GetPotentialDarkMatterNodes(IList<DarkMatterNode> nodes, CosmicWebTopology topology)
+    private List<DarkMatterNode> GetPotentialDarkMatterNodes(IList<DarkMatterNode> nodes, CosmicWebHeightmapTopology topology)
     {
         var potentialNodes = new List<DarkMatterNode>();
         var intensityThreshold = topology.AverageIntensity * AdvancedSettings.DarkMatterNode.TopologyIntensityThresholdFactor;

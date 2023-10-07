@@ -13,6 +13,11 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Tooltip("The amount of gaussian blur to apply to the Heightmap Image File (0 = none).")]
         public float GaussianSigma { get; init; }
 
+        [Range(1, 99)]
+        [DisplayName("Gaussian Kernel Size")]
+        [Tooltip("This value creates an n x n grid and, for each pixel, looks at other pixels contained in the grid to determine the amount of blur to apply.")]
+        public int GaussianKernelSize { get; init; }
+
         [Range(0, 100)]
         [LessThanOrEqualToProperty(nameof(MaxConnectivityFactor))]
         [DisplayName("Min Connectivity Factor")]
@@ -83,6 +88,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         public UniverseGenerationSettings()
         {
             this.GaussianSigma = ConfigConstants.Universe.GaussianSigma;
+            this.GaussianKernelSize = ConfigConstants.Universe.GaussianKernelSize;
             this.MinConnectivityFactor = ConfigConstants.Universe.MinConnectivityFactor;
             this.MaxConnectivityFactor = ConfigConstants.Universe.MaxConnectivityFactor;
             this.CurvatureFlatPercentage = ConfigConstants.Universe.CurvatureFlatPercentage;

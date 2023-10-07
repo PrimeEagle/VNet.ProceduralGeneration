@@ -2,7 +2,7 @@
 
 public class CosmicWeb : AstronomicalObjectContainer
 {
-    public CosmicWebTopology Topology { get; set; }
+    public CosmicWebHeightmapTopology HeightmapTopology { get; set; }
     public IntergalacticMedium IntergalacticMedium { get; set; }
     public List<BaryonicMatterNode> BaryonicMatterNodes { get; set; } = new(); 
     public List<BaryonicMatterFilament> BaryonicMatterFilaments { get; set; } = new();
