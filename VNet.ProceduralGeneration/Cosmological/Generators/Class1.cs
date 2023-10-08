@@ -1,9 +1,11 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
+using MathNet.Numerics.LinearAlgebra;
 using VNet.ImageProcessing;
 using VNet.Scientific.Interpolation;
 using VNet.Scientific.Noise;
 // ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable MemberCanBeMadeStatic.Local
 #pragma warning disable CA1822
 #pragma warning disable CA1416
 
@@ -95,7 +97,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             IdentifyStructures(smoothedVolume);  // This should modify the smoothedVolume or another volume to represent the identified structures
 
             // 2. Label and Extract
-            int[,,] labels = LabelConnectedComponents(smoothedVolume, StructureThreshold); // This will give you a labeled volume
+            var labels = LabelConnectedComponents(smoothedVolume, StructureThreshold); // This will give you a labeled volume
             var extractedRegions = ExtractLabeledRegions(labels);
         }
 
@@ -524,7 +526,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                 {
                     for (var k = 1; k < z - 1; k++)
                     {
-                        double density = smoothedVolume[i, j, k];
+                        var density = smoothedVolume[i, j, k];
 
                         // Check against densityThreshold
                         if (density < DensityThreshold)
@@ -563,13 +565,19 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                 }
             }
         }
-
-
-        private Matrix<double> ComputeHessian(int i, int j, int k)
+        
+        private Matrix<double> ComputeHessian(int i, int j, int k, double[,,] volume)
         {
-            double dxx = _baryonicVolume[i + 1, j, k] - 2 * _baryonicVolume[i, j, k] + _baryonicVolume[i - 1, j, k];
-            double dyy = _baryonicVolume[i, j + 1, k] - 2 * _baryonicVolume[i, j, k] + _baryonicVolume[i, j - 1, k];
-            //... continue for dzz, dxy, dxz, dyz
+            var dxx = volume[i + 1, j, k] - 2 * volume[i, j, k] + volume[i - 1, j, k];
+            var dyy = volume[i, j + 1, k] - 2 * volume[i, j, k] + volume[i, j - 1, k];
+            var dzz = volume[i, j, k + 1] - 2 * volume[i, j, k] + volume[i, j, k - 1];
+
+            var dxy = (volume[i + 1, j + 1, k] - volume[i + 1, j - 1, k]
+                                               - volume[i - 1, j + 1, k] + volume[i - 1, j - 1, k]) * 0.25;
+            var dxz = (volume[i + 1, j, k + 1] - volume[i + 1, j, k - 1]
+                                               - volume[i - 1, j, k + 1] + volume[i - 1, j, k - 1]) * 0.25;
+            var dyz = (volume[i, j + 1, k + 1] - volume[i, j + 1, k - 1]
+                                               - volume[i, j - 1, k + 1] + volume[i, j - 1, k - 1]) * 0.25;
 
             var hessian = Matrix<double>.Build.DenseOfArray(new double[,]
             {
@@ -583,18 +591,18 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
         public int[,,] LabelConnectedComponents(double[,,] structureVolume, double threshold)
         {
-            int x = structureVolume.GetLength(0);
-            int y = structureVolume.GetLength(1);
-            int z = structureVolume.GetLength(2);
+            var x = structureVolume.GetLength(0);
+            var y = structureVolume.GetLength(1);
+            var z = structureVolume.GetLength(2);
 
-            int[,,] labels = new int[x, y, z];  // Volume to store labels
-            int currentLabel = 1;
+            var labels = new int[x, y, z];  // Volume to store labels
+            var currentLabel = 1;
 
-            for (int i = 0; i < x; i++)
+            for (var i = 0; i < x; i++)
             {
-                for (int j = 0; j < y; j++)
+                for (var j = 0; j < y; j++)
                 {
-                    for (int k = 0; k < z; k++)
+                    for (var k = 0; k < z; k++)
                     {
                         if (structureVolume[i, j, k] > threshold && labels[i, j, k] == 0)
                         {
@@ -610,11 +618,11 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
         private void FloodFill(double[,,] structureVolume, int[,,] labels, int x, int y, int z, int label, double threshold)
         {
-            int maxX = structureVolume.GetLength(0);
-            int maxY = structureVolume.GetLength(1);
-            int maxZ = structureVolume.GetLength(2);
+            var maxX = structureVolume.GetLength(0);
+            var maxY = structureVolume.GetLength(1);
+            var maxZ = structureVolume.GetLength(2);
 
-            Queue<(int x, int y, int z)> queue = new Queue<(int x, int y, int z)>();
+            var queue = new Queue<(int x, int y, int z)>();
             queue.Enqueue((x, y, z));
 
             while (queue.Count > 0)
@@ -644,13 +652,13 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         {
             var regions = new Dictionary<int, List<(int x, int y, int z)>>();
 
-            for (int i = 0; i < labels.GetLength(0); i++)
+            for (var i = 0; i < labels.GetLength(0); i++)
             {
-                for (int j = 0; j < labels.GetLength(1); j++)
+                for (var j = 0; j < labels.GetLength(1); j++)
                 {
-                    for (int k = 0; k < labels.GetLength(2); k++)
+                    for (var k = 0; k < labels.GetLength(2); k++)
                     {
-                        int label = labels[i, j, k];
+                        var label = labels[i, j, k];
                         if (label > 0)
                         {
                             if (!regions.ContainsKey(label))
@@ -676,10 +684,10 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             var x = volume.GetLength(0);
             var y = volume.GetLength(1);
             var z = volume.GetLength(2);
-            double[,,] smoothedVolume = new double[x, y, z];
+            var smoothedVolume = new double[x, y, z];
 
             // Define a kernel radius based on sigma.
-            int kernelRadius = (int)Math.Ceiling(3 * sigma);
+            var kernelRadius = (int)Math.Ceiling(3 * sigma);
 
             for (var i = 0; i < x; i++)
             {
@@ -700,7 +708,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                                         j + dy >= 0 && j + dy < y &&
                                         k + dz >= 0 && k + dz < z)
                                     {
-                                        double weight = GaussianKernel(Math.Sqrt(dx * dx + dy * dy + dz * dz), sigma);
+                                        var weight = GaussianKernel(Math.Sqrt(dx * dx + dy * dy + dz * dz), sigma);
                                         sum += weight * volume[i + dx, j + dy, k + dz];
                                         weightSum += weight;
                                     }
