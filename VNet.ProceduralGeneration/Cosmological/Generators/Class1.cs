@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using System.Drawing.Imaging;
-using MathNet.Numerics.LinearAlgebra;
-using VNet.ImageProcessing;
+﻿using MathNet.Numerics.LinearAlgebra;
 using VNet.Scientific.Interpolation;
 using VNet.Scientific.Noise;
 // ReSharper disable MemberCanBePrivate.Global
@@ -30,7 +27,12 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         private double[,,] _hydrogenVolume;
         private double[,,] _heliumVolume;
         private double[,,] _metalVolume;
-
+        double[,,] massArray;
+        double[,,] velocityXArray;
+        double[,,] velocityYArray;
+        double[,,] velocityZArray;
+        double[,,] tempMassArray; // Used for intermediate calculations during advection.
+        private double _totalEnergy;
         public double BaryonicFeedbackThreshold { get; set; } = 1.2; // Arbitrarily set, adjust as needed
         public double BaryonicFeedbackStrength { get; set; } = 0.1; // Represents how much density is reduced due to feedback
         public double BaryonicFeedbackSpread { get; set; } = 0.5; // Represents the proportion of the feedback density that gets spread to neighbors
@@ -39,7 +41,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         public double CoolingRate { get; set; } = 0.01; // Arbitrarily set, adjust as needed
         private double baseTemperature = 2.7;  // Base temperature, e.g., of CMB in Kelvin
         private const double temperatureFluctuationRange = 0.05; // Adjust as needed; represents the range of temperature variation around the base
-
         private readonly INoiseAlgorithm _temperatureNoiseAlgorithm;
         public double BaseCoolingRate { get; set; } = 0.01; // Base value
         public double BaseHeatingRate { get; set; } = 0.1; // Base value
@@ -55,19 +56,15 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         public double GalacticFeedbackEnergy { get; set; } = 1.0; // Arbitrary energy value to represent feedback strength
         public double DensityThreshold { get; set; } = 0.2;  // Example value, adjust as needed
         public double StructureThreshold { get; set; } = 0.5;  // Example value, adjust as needed
+        private double _sigma = 0.5;
 
 
 
 
-
-
-
-
-
-        public CosmicWebGeneratorX(INoiseAlgorithm noiseAlgorithm, IInterpolationAlgorithm interpolationAlgorithm)
+        public CosmicWebGeneratorX(INoiseAlgorithm noiseAlgorithm, IInterpolationAlgorithm interpolationAlgorithm, INoiseAlgorithm temperatureNoiseAlgorithm)
         {
-            noiseAlgorithm = noiseAlgorithm;
-            _temperatureNoiseAlgorithm = _temperatureNoiseAlgorithm;
+            _noiseAlgorithm = noiseAlgorithm;
+            _temperatureNoiseAlgorithm = temperatureNoiseAlgorithm;
             _interpolationAlgorithm = interpolationAlgorithm;
             _darkEnergyEffect = Math.Pow(1 + DarkEnergyPercentage / 100.0, 0.5) - 1; // This is a simplified representation. In reality, the effect of dark energy might be derived from more sophisticated models.
         }
@@ -81,19 +78,23 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             while (currentTime < totalSimulationTime)
             {
                 ApplyGravity(timeStep);
+                UpdateVelocitiesBasedOnForces(timeStep);
                 ApplyRadiation(timeStep);
                 ApplyBaryonicFeedback(timeStep);
+                ApplyStarFormationAndChemicalEvolution(timeStep);
                 ApplyHeatingAndCooling(timeStep);
                 ApplyInteractions(timeStep);
                 ApplyMerging();
                 ApplyGalacticFeedback(timeStep);
-                ApplyStarFormationAndChemicalEvolution(timeStep);
+                
                 ApplyExpansion(timeStep);
+                AdvectMass(timeStep);
+                HandleBoundaries();
 
                 currentTime += timeStep;
             }
 
-            var smoothedVolume = ApplyGaussianSmoothing(volume, sigma);  // Sigma is your chosen smoothing scale
+            var smoothedVolume = ApplyGaussianSmoothing(_baryonicVolume, _sigma);  // Sigma is your chosen smoothing scale
             IdentifyStructures(smoothedVolume);  // This should modify the smoothedVolume or another volume to represent the identified structures
 
             // 2. Label and Extract
@@ -132,10 +133,119 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                         _heliumVolume[i, j, k] = 0.25 * totalBaryonicDensity;
                         _metalVolume[i, j, k] = 0.0; // Initially no metals
 
+                        massArray[i, j, k] = _baryonicVolume[i, j, k] + _darkMatterVolume[i, j, k];
+                        _totalEnergy += _temperatureVolume[i, j, k];
                     }
                 }
             }
         }
+
+        private void UpdateVelocitiesBasedOnForces(double timeStep)
+        {
+            var xLen = massArray.GetLength(0);
+            var yLen = massArray.GetLength(1);
+            var zLen = massArray.GetLength(2);
+
+            const double voxelSideLength = 1.0; // If your voxel has a specific side length, set it here.
+            const double r2 = voxelSideLength * voxelSideLength; // Square of distance between voxel centers
+
+            // For each voxel in the volume
+            for (var i = 0; i < xLen; i++)
+            {
+                for (var j = 0; j < yLen; j++)
+                {
+                    for (var k = 0; k < zLen; k++)
+                    {
+                        double accelerationX = 0;
+                        double accelerationY = 0;
+                        double accelerationZ = 0;
+
+                        // Loop over neighboring voxels to compute the gravitational effects
+                        for (var dx = -1; dx <= 1; dx++)
+                        {
+                            for (var dy = -1; dy <= 1; dy++)
+                            {
+                                for (var dz = -1; dz <= 1; dz++)
+                                {
+                                    var ni = i + dx;
+                                    var nj = j + dy;
+                                    var nk = k + dz;
+
+                                    // Ensure neighbor is within bounds and is not the current voxel itself
+                                    if (ni < 0 || ni >= xLen || nj < 0 || nj >= yLen || nk < 0 || nk >= zLen || (dx == 0 && dy == 0 && dz == 0)) continue;
+                                    var aGrav = GravitationalConstant * massArray[ni, nj, nk] / r2;
+                                    accelerationX += dx == 0 ? 0 : (dx / Math.Abs(dx)) * aGrav; // Directional influence
+                                    accelerationY += dy == 0 ? 0 : (dy / Math.Abs(dy)) * aGrav;
+                                    accelerationZ += dz == 0 ? 0 : (dz / Math.Abs(dz)) * aGrav;
+                                }
+                            }
+                        }
+
+                        // Update velocities using computed acceleration
+                        velocityXArray[i, j, k] += accelerationX * timeStep;
+                        velocityYArray[i, j, k] += accelerationY * timeStep;
+                        velocityZArray[i, j, k] += accelerationZ * timeStep;
+                    }
+                }
+            }
+        }
+
+        private void AdvectMass(double timeStep)
+        {
+            Array.Copy(massArray, tempMassArray, massArray.Length);
+
+            for (var i = 0; i < massArray.GetLength(0); i++)
+            {
+                for (var j = 0; j < massArray.GetLength(1); j++)
+                {
+                    for (var k = 0; k < massArray.GetLength(2); k++)
+                    {
+                        var dx = (int)(velocityXArray[i, j, k] * timeStep);
+                        var dy = (int)(velocityYArray[i, j, k] * timeStep);
+                        var dz = (int)(velocityZArray[i, j, k] * timeStep);
+
+                        var newX = i + dx;
+                        var newY = j + dy;
+                        var newZ = k + dz;
+
+                        if (!IsWithinBounds(newX, newY, newZ)) continue;
+                        tempMassArray[newX, newY, newZ] += massArray[i, j, k];
+                        tempMassArray[i, j, k] -= massArray[i, j, k];
+                    }
+                }
+            }
+
+            Array.Copy(tempMassArray, massArray, massArray.Length);
+        }
+
+        private bool IsWithinBounds(int x, int y, int z)
+        {
+            return x >= 0 && x < massArray.GetLength(0) &&
+                   y >= 0 && y < massArray.GetLength(1) &&
+                   z >= 0 && z < massArray.GetLength(2);
+        }
+
+        private void HandleBoundaries()
+        {
+            for (var i = 0; i < massArray.GetLength(0); i++)
+            {
+                for (var j = 0; j < massArray.GetLength(1); j++)
+                {
+                    for (var k = 0; k < massArray.GetLength(2); k++)
+                    {
+                        if (i != 0 && i != massArray.GetLength(0) - 1 &&
+                            j != 0 && j != massArray.GetLength(1) - 1 &&
+                            k != 0 && k != massArray.GetLength(2) - 1) continue;
+                        // Assuming the temperature volume gives the thermal energy per unit mass
+                        _totalEnergy -= massArray[i, j, k] * _temperatureVolume[i, j, k];
+                        massArray[i, j, k] = 0;
+                        _temperatureVolume[i, j, k] = 0; // resetting the temperature as well
+                    }
+                }
+            }
+        }
+
+
 
         public void ApplyGalacticFeedback(double timeInYears)
         {
@@ -150,12 +260,19 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                     for (var k = 0; k < z; k++)
                     {
                         // Feedback is triggered in high-density regions (e.g., galactic centers)
-                        if (!(_baryonicVolume[i, j, k] > GalacticFeedbackThreshold)) continue;
-                        // Reduce local density due to feedback
-                        _baryonicVolume[i, j, k] -= GalacticFeedbackEnergy * timeInYears;
+                        if (_baryonicVolume[i, j, k] <= GalacticFeedbackThreshold) continue;
 
-                        // Increase local temperature due to energy injection
-                        _temperatureVolume[i, j, k] += GalacticFeedbackEnergy * timeInYears;
+                        // Calculate the energy change due to feedback
+                        var energyReductionFromDensity = GalacticFeedbackEnergy * timeInYears;
+                        var energyIncreaseFromTemperature = GalacticFeedbackEnergy * timeInYears;
+
+                        // Update the total energy
+                        _totalEnergy -= energyReductionFromDensity; // reduction in energy due to loss of mass
+                        _totalEnergy += energyIncreaseFromTemperature; // increase in energy due to temperature increase
+
+                        // Apply the feedback effects
+                        _baryonicVolume[i, j, k] -= energyReductionFromDensity;
+                        _temperatureVolume[i, j, k] += energyIncreaseFromTemperature;
 
                         // Distribute feedback energy to nearby cells, simulating the outward push of feedback
                         for (var dx = -1; dx <= 1; dx++)
@@ -167,8 +284,15 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                                     if (i + dx < 0 || i + dx >= x ||
                                         j + dy < 0 || j + dy >= y ||
                                         k + dz < 0 || k + dz >= z) continue;
-                                    _baryonicVolume[i + dx, j + dy, k + dz] -= GalacticFeedbackEnergy * timeInYears / 3; // distributing some energy to neighbors
-                                    _temperatureVolume[i + dx, j + dy, k + dz] += GalacticFeedbackEnergy * timeInYears / 3; // raising temperature in neighboring cells
+
+                                    var localEnergyReduction = GalacticFeedbackEnergy * timeInYears / 3;
+                                    var localEnergyIncrease = GalacticFeedbackEnergy * timeInYears / 3;
+
+                                    _totalEnergy -= localEnergyReduction; // reduction in energy due to loss of mass
+                                    _totalEnergy += localEnergyIncrease; // increase in energy due to temperature increase
+
+                                    _baryonicVolume[i + dx, j + dy, k + dz] -= localEnergyReduction;
+                                    _temperatureVolume[i + dx, j + dy, k + dz] += localEnergyIncrease;
                                 }
                             }
                         }
@@ -176,6 +300,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                 }
             }
         }
+
 
 
         public void ApplyStarFormationAndChemicalEvolution(double timeInYears)
@@ -190,17 +315,30 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                 {
                     for (var k = 0; k < z; k++)
                     {
-                        if (!(_baryonicVolume[i, j, k] > StarFormationThreshold) || !(_temperatureVolume[i, j, k] < 10)) continue; // Arbitrary temperature threshold
+                        if (_baryonicVolume[i, j, k] <= StarFormationThreshold || _temperatureVolume[i, j, k] >= 10) continue; // Arbitrary temperature threshold
                         var starsFormed = StarFormationRate * _baryonicVolume[i, j, k] * timeInYears;
+
+                        // Update the total energy: We're assuming that the formation of stars maintains the energy (mass-energy equivalence).
+                        // But if there's a release of energy during star formation, that would need to be accounted for.
+                        _totalEnergy -= starsFormed;
+
+                        // Reduce baryonic matter due to star formation
                         _baryonicVolume[i, j, k] -= starsFormed;
 
-                        // Convert a portion of the formed stars into metals
-                        _metalVolume[i, j, k] += 0.02 * starsFormed; // Assuming 2% of star mass is converted to metals, adjust as needed
-                        _hydrogenVolume[i, j, k] -= 0.98 * starsFormed; // Remaining 98% remains as hydrogen
+                        // Convert a portion of the formed stars into metals and update total energy
+                        var metalFormed = 0.02 * starsFormed; // Assuming 2% of star mass is converted to metals
+                        _metalVolume[i, j, k] += metalFormed;
+                        _totalEnergy += metalFormed;
+
+                        // Convert the rest into hydrogen and update total energy
+                        var hydrogenFormed = 0.98 * starsFormed; // Remaining 98% remains as hydrogen
+                        _hydrogenVolume[i, j, k] -= hydrogenFormed;
+                        _totalEnergy -= hydrogenFormed;
                     }
                 }
             }
         }
+
 
         public void ApplyMerging()
         {
@@ -216,11 +354,14 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                 {
                     for (var k = 0; k < z; k++)
                     {
-                        if (!(_baryonicVolume[i, j, k] > MergingThreshold)) continue;
+                        if (_baryonicVolume[i, j, k] <= MergingThreshold) continue;
+
                         var excessMass = _baryonicVolume[i, j, k] - MergingThreshold;
                         changeInMass[i, j, k] -= excessMass; // Remove excess mass from the current cell
 
-                        // Distribute the excess mass among neighboring cells
+                        var countNeighbors = 0; // Count valid neighbors to distribute mass uniformly
+
+                        // Count valid neighbors
                         for (var dx = -MergingRadius; dx <= MergingRadius; dx++)
                         {
                             for (var dy = -MergingRadius; dy <= MergingRadius; dy++)
@@ -231,7 +372,24 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                                         j + dy >= 0 && j + dy < y &&
                                         k + dz >= 0 && k + dz < z)
                                     {
-                                        changeInMass[i + dx, j + dy, k + dz] += excessMass / (3 * MergingRadius * MergingRadius); // Uniform distribution
+                                        countNeighbors++;
+                                    }
+                                }
+                            }
+                        }
+
+                        // Distribute the excess mass among valid neighboring cells
+                        for (var dx = -MergingRadius; dx <= MergingRadius; dx++)
+                        {
+                            for (var dy = -MergingRadius; dy <= MergingRadius; dy++)
+                            {
+                                for (var dz = -MergingRadius; dz <= MergingRadius; dz++)
+                                {
+                                    if (i + dx >= 0 && i + dx < x &&
+                                        j + dy >= 0 && j + dy < y &&
+                                        k + dz >= 0 && k + dz < z)
+                                    {
+                                        changeInMass[i + dx, j + dy, k + dz] += excessMass / countNeighbors;
                                     }
                                 }
                             }
@@ -240,18 +398,19 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                 }
             }
 
-            // Apply the changes to the main volume
+            // Apply the changes to the main volume, ensuring no negative densities
             for (var i = 0; i < x; i++)
             {
                 for (var j = 0; j < y; j++)
                 {
                     for (var k = 0; k < z; k++)
                     {
-                        _baryonicVolume[i, j, k] += changeInMass[i, j, k];
+                        _baryonicVolume[i, j, k] = Math.Max(0, _baryonicVolume[i, j, k] + changeInMass[i, j, k]);
                     }
                 }
             }
         }
+
 
         public void ApplyInteractions(double timeInYears)
         {
@@ -274,7 +433,8 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
                         // Shock heating due to collisions (simplified)
                         // Detect significant gradients in density (e.g., collisions)
-                        double densityGradient = 0; // Calculate using neighboring cells; left as an exercise
+                        var densityGradient = CalculateDensityGradient(i, j, k);
+
                         if (densityGradient > 0.5) // Arbitrary threshold
                         {
                             _temperatureVolume[i, j, k] += 10; // Increase temperature due to shock
@@ -283,6 +443,36 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                 }
             }
         }
+
+        private double CalculateDensityGradient(int i, int j, int k)
+        {
+            var x = _baryonicVolume.GetLength(0);
+            var y = _baryonicVolume.GetLength(1);
+            var z = _baryonicVolume.GetLength(2);
+
+            double gradient = 0;
+
+            for (var dx = -1; dx <= 1; dx++)
+            {
+                for (var dy = -1; dy <= 1; dy++)
+                {
+                    for (var dz = -1; dz <= 1; dz++)
+                    {
+                        if (i + dx >= 0 && i + dx < x &&
+                            j + dy >= 0 && j + dy < y &&
+                            k + dz >= 0 && k + dz < z)
+                        {
+                            gradient += Math.Abs(_baryonicVolume[i + dx, j + dy, k + dz] - _baryonicVolume[i, j, k]);
+                        }
+                    }
+                }
+            }
+
+            // Normalize by number of neighbors (for a 3x3x3 cube it's 27 cells minus the center cell)
+            gradient /= 26.0;
+            return gradient;
+        }
+
 
         public void ApplyGravity(double timeInYears, int range = 1)
         {
@@ -314,8 +504,13 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                                     if (i + dx < 0 || i + dx >= x ||
                                         j + dy < 0 || j + dy >= y ||
                                         k + dz < 0 || k + dz >= z) continue;
-                                    gravitationalEffectBaryonic += GravitationalConstant * _baryonicVolume[i + dx, j + dy, k + dz];
-                                    gravitationalEffectDarkMatter += GravitationalConstant * _darkMatterVolume[i + dx, j + dy, k + dz];
+
+                                    double distanceSquared = dx * dx + dy * dy + dz * dz;
+                                    if (distanceSquared == 0) continue;  // prevent self-interaction
+
+                                    // Consider gravitational effects from both baryonic and dark matter
+                                    gravitationalEffectBaryonic += GravitationalConstant * (_baryonicVolume[i + dx, j + dy, k + dz] + _darkMatterVolume[i + dx, j + dy, k + dz]) / distanceSquared;
+                                    gravitationalEffectDarkMatter += GravitationalConstant * (_baryonicVolume[i + dx, j + dy, k + dz] + _darkMatterVolume[i + dx, j + dy, k + dz]) / distanceSquared;
                                 }
                             }
                         }
@@ -330,6 +525,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             Array.Copy(updatedBaryonicVolume, _baryonicVolume, updatedBaryonicVolume.Length);
             Array.Copy(updatedDarkMatterVolume, _darkMatterVolume, updatedDarkMatterVolume.Length);
         }
+
 
         public void ApplyRadiation(double timeInYears, int range = 1)
         {
@@ -354,12 +550,13 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                             {
                                 for (var dz = -range; dz <= range; dz++)
                                 {
-                                    if (i + dx >= 0 && i + dx < x &&
-                                        j + dy >= 0 && j + dy < y &&
-                                        k + dz >= 0 && k + dz < z)
-                                    {
-                                        radiationEffect -= currentRadiationStrength * _baryonicVolume[i + dx, j + dy, k + dz];
-                                    }
+                                    if (i + dx < 0 || i + dx >= x ||
+                                        j + dy < 0 || j + dy >= y ||
+                                        k + dz < 0 || k + dz >= z) continue;
+                                    double distanceSquared = dx * dx + dy * dy + dz * dz;
+                                    if (distanceSquared == 0) continue;  // prevent self-interaction
+
+                                    radiationEffect -= currentRadiationStrength * _baryonicVolume[i + dx, j + dy, k + dz] / distanceSquared;
                                 }
                             }
                         }
@@ -369,6 +566,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                 }
             }
         }
+
 
         public void ApplyExpansion(double timeInYears)
         {
@@ -386,7 +584,8 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             var y = _baryonicVolume.GetLength(1);
             var z = _baryonicVolume.GetLength(2);
 
-            var feedbackEffects = new double[x, y, z]; // Store the effects here first to prevent double counting
+            var feedbackEffects = new double[x, y, z];
+            var energyInjected = new double[x, y, z]; // To track the change in energy due to feedback
 
             for (var i = 0; i < x; i++)
             {
@@ -397,13 +596,17 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                         if (!(_baryonicVolume[i, j, k] > BaryonicFeedbackThreshold)) continue;
                         var feedback = BaryonicFeedbackStrength * timeInYears;
                         _baryonicVolume[i, j, k] -= feedback;
-                        feedbackEffects[i, j, k] = feedback * BaryonicFeedbackSpread; // Portion to spread
-                        _temperatureVolume[i, j, k] += HeatingRate * timeInYears;
+                        feedbackEffects[i, j, k] = feedback * BaryonicFeedbackSpread;
+
+                        // Increase in temperature due to feedback (energy injection)
+                        var energyChange = HeatingRate * timeInYears;
+                        _temperatureVolume[i, j, k] += energyChange;
+                        energyInjected[i, j, k] = energyChange;
                     }
                 }
             }
 
-            // Spread the feedback effects
+            // Spread the feedback effects and the energy
             for (var i = 0; i < x; i++)
             {
                 for (var j = 0; j < y; j++)
@@ -411,20 +614,19 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                     for (var k = 0; k < z; k++)
                     {
                         if (!(feedbackEffects[i, j, k] > 0)) continue;
-                        // Propagate the feedback to neighboring cells
+
                         for (var dx = -1; dx <= 1; dx++)
                         {
                             for (var dy = -1; dy <= 1; dy++)
                             {
                                 for (var dz = -1; dz <= 1; dz++)
                                 {
-                                    if (i + dx >= 0 && i + dx < x &&
-                                        j + dy >= 0 && j + dy < y &&
-                                        k + dz >= 0 && k + dz < z &&
-                                        !(dx == 0 && dy == 0 && dz == 0)) // Exclude the central cell
-                                    {
-                                        _baryonicVolume[i + dx, j + dy, k + dz] += feedbackEffects[i, j, k] / 26.0; // Evenly distribute to 26 neighboring cells
-                                    }
+                                    if (i + dx < 0 || i + dx >= x ||
+                                        j + dy < 0 || j + dy >= y ||
+                                        k + dz < 0 || k + dz >= z ||
+                                        dx == 0 && dy == 0 && dz == 0) continue;
+                                    _baryonicVolume[i + dx, j + dy, k + dz] += feedbackEffects[i, j, k] / 26.0;
+                                    _temperatureVolume[i + dx, j + dy, k + dz] += energyInjected[i, j, k] / 26.0;
                                 }
                             }
                         }
@@ -432,6 +634,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                 }
             }
         }
+
 
 
         public void ApplyHeatingAndCooling(double timeInYears)
@@ -447,21 +650,24 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                     for (var k = 0; k < z; k++)
                     {
                         var localDensity = _baryonicVolume[i, j, k];
-
-                        // Calculate density-dependent cooling and heating rates
                         var effectiveCoolingRate = BaseCoolingRate * (1 + CoolingRateDensityFactor * localDensity);
                         var effectiveHeatingRate = BaseHeatingRate * (1 - HeatingRateDensityFactor * localDensity);
-
-                        // Collisional effects: scales with density squared
                         effectiveCoolingRate += CollisionalCoolingFactor * localDensity * localDensity;
                         effectiveHeatingRate += CollisionalHeatingFactor * localDensity * localDensity;
 
-                        _temperatureVolume[i, j, k] -= effectiveCoolingRate * timeInYears * _temperatureVolume[i, j, k];
-                        _temperatureVolume[i, j, k] += effectiveHeatingRate * timeInYears;
+                        var energyChangeDueToCooling = effectiveCoolingRate * timeInYears * _temperatureVolume[i, j, k];
+                        var energyChangeDueToHeating = effectiveHeatingRate * timeInYears;
+
+                        _temperatureVolume[i, j, k] -= energyChangeDueToCooling;
+                        _temperatureVolume[i, j, k] += energyChangeDueToHeating;
+
+                        _totalEnergy -= energyChangeDueToCooling;
+                        _totalEnergy += energyChangeDueToHeating;
                     }
                 }
             }
         }
+
 
 
 
@@ -545,21 +751,20 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                         var evd = hessian.Evd();
                         var eigenValues = evd.EigenValues;
 
-                        if (eigenValues[0].Real > 0 && eigenValues[1].Real > 0 && eigenValues[2].Real > 0)
+                        switch (eigenValues[0].Real)
                         {
-                            // Node
-                        }
-                        else if (eigenValues[0].Real > 0 && eigenValues[1].Real > 0 && eigenValues[2].Real < 0)
-                        {
-                            // Filament
-                        }
-                        else if (eigenValues[0].Real > 0 && eigenValues[1].Real < 0 && eigenValues[2].Real < 0)
-                        {
-                            // Sheet
-                        }
-                        else
-                        {
-                            // Other, or you can classify as void
+                            case > 0 when eigenValues[1].Real > 0 && eigenValues[2].Real > 0:
+                                // Node
+                                break;
+                            case > 0 when eigenValues[1].Real > 0 && eigenValues[2].Real < 0:
+                                // Filament
+                                break;
+                            case > 0 when eigenValues[1].Real < 0 && eigenValues[2].Real < 0:
+                                // Sheet
+                                break;
+                            default:
+                                // Other, or you can classify as void
+                                break;
                         }
                     }
                 }
@@ -604,11 +809,9 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                 {
                     for (var k = 0; k < z; k++)
                     {
-                        if (structureVolume[i, j, k] > threshold && labels[i, j, k] == 0)
-                        {
-                            FloodFill(structureVolume, labels, i, j, k, currentLabel, threshold);
-                            currentLabel++;
-                        }
+                        if (!(structureVolume[i, j, k] > threshold) || labels[i, j, k] != 0) continue;
+                        FloodFill(structureVolume, labels, i, j, k, currentLabel, threshold);
+                        currentLabel++;
                     }
                 }
             }
@@ -659,14 +862,12 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                     for (var k = 0; k < labels.GetLength(2); k++)
                     {
                         var label = labels[i, j, k];
-                        if (label > 0)
+                        if (label <= 0) continue;
+                        if (!regions.ContainsKey(label))
                         {
-                            if (!regions.ContainsKey(label))
-                            {
-                                regions[label] = new List<(int x, int y, int z)>();
-                            }
-                            regions[label].Add((i, j, k));
+                            regions[label] = new List<(int x, int y, int z)>();
                         }
+                        regions[label].Add((i, j, k));
                     }
                 }
             }
@@ -704,14 +905,12 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                             {
                                 for (var dz = -kernelRadius; dz <= kernelRadius; dz++)
                                 {
-                                    if (i + dx >= 0 && i + dx < x &&
-                                        j + dy >= 0 && j + dy < y &&
-                                        k + dz >= 0 && k + dz < z)
-                                    {
-                                        var weight = GaussianKernel(Math.Sqrt(dx * dx + dy * dy + dz * dz), sigma);
-                                        sum += weight * volume[i + dx, j + dy, k + dz];
-                                        weightSum += weight;
-                                    }
+                                    if (i + dx < 0 || i + dx >= x ||
+                                        j + dy < 0 || j + dy >= y ||
+                                        k + dz < 0 || k + dz >= z) continue;
+                                    var weight = GaussianKernel(Math.Sqrt(dx * dx + dy * dy + dz * dz), sigma);
+                                    sum += weight * volume[i + dx, j + dy, k + dz];
+                                    weightSum += weight;
                                 }
                             }
                         }
