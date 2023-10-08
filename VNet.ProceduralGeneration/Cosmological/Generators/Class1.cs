@@ -3,6 +3,8 @@ using VNet.Scientific.Interpolation;
 using VNet.Scientific.Noise;
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable MemberCanBeMadeStatic.Local
+// ReSharper disable PossibleLossOfFraction
+#pragma warning disable CS0649 // Field is never assigned to, and will always have its default value
 #pragma warning disable CA1822
 #pragma warning disable CA1416
 
@@ -16,22 +18,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         public double GravitationalConstant { get; set; } = 1.0;
         public double TimeScalingFactor { get; set; } = 1.0;
         public double ExpansionRate { get; set; } = 70 * 3.15e7 * 2.09e5;
-        double initialRadiationStrength = 2.0; // Arbitrarily chosen value; adjust as needed
-        double radiationDecayRate = 0.05; // Adjust to set how fast radiation diminishes over time
+        private const double _initialRadiationStrength = 2.0; // Arbitrarily chosen value; adjust as needed
+        private const double _radiationDecayRate = 0.05; // Adjust to set how fast radiation diminishes over time
         public double BaryonicMatterPercentage { get; set; } = 4.6; // Adjust as per cosmological data
         public double DarkMatterPercentage { get; set; } = 26.8; // Adjust as per cosmological data
         public double DarkEnergyPercentage { get; set; } = 68.6; // Adjust as per cosmological data
-        private double _darkEnergyEffect; // Represents the effect of dark energy on the expansion
+        private readonly double _darkEnergyEffect; // Represents the effect of dark energy on the expansion
         private double[,,] _baryonicVolume;
         private double[,,] _darkMatterVolume;
         private double[,,] _hydrogenVolume;
         private double[,,] _heliumVolume;
         private double[,,] _metalVolume;
-        double[,,] massArray;
-        double[,,] velocityXArray;
-        double[,,] velocityYArray;
-        double[,,] velocityZArray;
-        double[,,] tempMassArray; // Used for intermediate calculations during advection.
+        private double[,,] _massArray;
+        private double[,,] _velocityXArray;
+        private double[,,] _velocityYArray;
+        private double[,,] _velocityZArray;
+        private double[,,] _tempMassArray; // Used for intermediate calculations during advection.
         private double _totalEnergy;
         public double BaryonicFeedbackThreshold { get; set; } = 1.2; // Arbitrarily set, adjust as needed
         public double BaryonicFeedbackStrength { get; set; } = 0.1; // Represents how much density is reduced due to feedback
@@ -39,8 +41,8 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         private double[,,] _temperatureVolume;
         public double HeatingRate { get; set; } = 0.1; // Arbitrarily set, adjust as needed
         public double CoolingRate { get; set; } = 0.01; // Arbitrarily set, adjust as needed
-        private double baseTemperature = 2.7;  // Base temperature, e.g., of CMB in Kelvin
-        private const double temperatureFluctuationRange = 0.05; // Adjust as needed; represents the range of temperature variation around the base
+        private readonly double _baseTemperature = 2.7;  // Base temperature, e.g., of CMB in Kelvin
+        private const double TemperatureFluctuationRange = 0.05; // Adjust as needed; represents the range of temperature variation around the base
         private readonly INoiseAlgorithm _temperatureNoiseAlgorithm;
         public double BaseCoolingRate { get; set; } = 0.01; // Base value
         public double BaseHeatingRate { get; set; } = 0.1; // Base value
@@ -56,7 +58,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         public double GalacticFeedbackEnergy { get; set; } = 1.0; // Arbitrary energy value to represent feedback strength
         public double DensityThreshold { get; set; } = 0.2;  // Example value, adjust as needed
         public double StructureThreshold { get; set; } = 0.5;  // Example value, adjust as needed
-        private double _sigma = 0.5;
+        private readonly double _sigma = 0.5;
 
 
 
@@ -124,16 +126,16 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                         _darkMatterVolume[i, j, k] = totalNoise * DarkMatterPercentage / 100.0;
                         // Create temperature fluctuations based on noise
                         var temperatureNoise = _temperatureNoiseAlgorithm.GenerateSingleSample(); // Assumed to be in range [-1, 1]
-                        var temperatureFluctuation = temperatureNoise * temperatureFluctuationRange;
+                        var temperatureFluctuation = temperatureNoise * TemperatureFluctuationRange;
 
-                        _temperatureVolume[i, j, k] = baseTemperature + temperatureFluctuation;
+                        _temperatureVolume[i, j, k] = _baseTemperature + temperatureFluctuation;
 
                         var totalBaryonicDensity = _baryonicVolume[i, j, k];
                         _hydrogenVolume[i, j, k] = 0.75 * totalBaryonicDensity;
                         _heliumVolume[i, j, k] = 0.25 * totalBaryonicDensity;
                         _metalVolume[i, j, k] = 0.0; // Initially no metals
 
-                        massArray[i, j, k] = _baryonicVolume[i, j, k] + _darkMatterVolume[i, j, k];
+                        _massArray[i, j, k] = _baryonicVolume[i, j, k] + _darkMatterVolume[i, j, k];
                         _totalEnergy += _temperatureVolume[i, j, k];
                     }
                 }
@@ -142,9 +144,9 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
         private void UpdateVelocitiesBasedOnForces(double timeStep)
         {
-            var xLen = massArray.GetLength(0);
-            var yLen = massArray.GetLength(1);
-            var zLen = massArray.GetLength(2);
+            var xLen = _massArray.GetLength(0);
+            var yLen = _massArray.GetLength(1);
+            var zLen = _massArray.GetLength(2);
 
             const double voxelSideLength = 1.0; // If your voxel has a specific side length, set it here.
             const double r2 = voxelSideLength * voxelSideLength; // Square of distance between voxel centers
@@ -173,7 +175,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
                                     // Ensure neighbor is within bounds and is not the current voxel itself
                                     if (ni < 0 || ni >= xLen || nj < 0 || nj >= yLen || nk < 0 || nk >= zLen || (dx == 0 && dy == 0 && dz == 0)) continue;
-                                    var aGrav = GravitationalConstant * massArray[ni, nj, nk] / r2;
+                                    var aGrav = GravitationalConstant * _massArray[ni, nj, nk] / r2;
                                     accelerationX += dx == 0 ? 0 : (dx / Math.Abs(dx)) * aGrav; // Directional influence
                                     accelerationY += dy == 0 ? 0 : (dy / Math.Abs(dy)) * aGrav;
                                     accelerationZ += dz == 0 ? 0 : (dz / Math.Abs(dz)) * aGrav;
@@ -182,9 +184,9 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                         }
 
                         // Update velocities using computed acceleration
-                        velocityXArray[i, j, k] += accelerationX * timeStep;
-                        velocityYArray[i, j, k] += accelerationY * timeStep;
-                        velocityZArray[i, j, k] += accelerationZ * timeStep;
+                        _velocityXArray[i, j, k] += accelerationX * timeStep;
+                        _velocityYArray[i, j, k] += accelerationY * timeStep;
+                        _velocityZArray[i, j, k] += accelerationZ * timeStep;
                     }
                 }
             }
@@ -192,53 +194,53 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
         private void AdvectMass(double timeStep)
         {
-            Array.Copy(massArray, tempMassArray, massArray.Length);
+            Array.Copy(_massArray, _tempMassArray, _massArray.Length);
 
-            for (var i = 0; i < massArray.GetLength(0); i++)
+            for (var i = 0; i < _massArray.GetLength(0); i++)
             {
-                for (var j = 0; j < massArray.GetLength(1); j++)
+                for (var j = 0; j < _massArray.GetLength(1); j++)
                 {
-                    for (var k = 0; k < massArray.GetLength(2); k++)
+                    for (var k = 0; k < _massArray.GetLength(2); k++)
                     {
-                        var dx = (int)(velocityXArray[i, j, k] * timeStep);
-                        var dy = (int)(velocityYArray[i, j, k] * timeStep);
-                        var dz = (int)(velocityZArray[i, j, k] * timeStep);
+                        var dx = (int)(_velocityXArray[i, j, k] * timeStep);
+                        var dy = (int)(_velocityYArray[i, j, k] * timeStep);
+                        var dz = (int)(_velocityZArray[i, j, k] * timeStep);
 
                         var newX = i + dx;
                         var newY = j + dy;
                         var newZ = k + dz;
 
                         if (!IsWithinBounds(newX, newY, newZ)) continue;
-                        tempMassArray[newX, newY, newZ] += massArray[i, j, k];
-                        tempMassArray[i, j, k] -= massArray[i, j, k];
+                        _tempMassArray[newX, newY, newZ] += _massArray[i, j, k];
+                        _tempMassArray[i, j, k] -= _massArray[i, j, k];
                     }
                 }
             }
 
-            Array.Copy(tempMassArray, massArray, massArray.Length);
+            Array.Copy(_tempMassArray, _massArray, _massArray.Length);
         }
 
         private bool IsWithinBounds(int x, int y, int z)
         {
-            return x >= 0 && x < massArray.GetLength(0) &&
-                   y >= 0 && y < massArray.GetLength(1) &&
-                   z >= 0 && z < massArray.GetLength(2);
+            return x >= 0 && x < _massArray.GetLength(0) &&
+                   y >= 0 && y < _massArray.GetLength(1) &&
+                   z >= 0 && z < _massArray.GetLength(2);
         }
 
         private void HandleBoundaries()
         {
-            for (var i = 0; i < massArray.GetLength(0); i++)
+            for (var i = 0; i < _massArray.GetLength(0); i++)
             {
-                for (var j = 0; j < massArray.GetLength(1); j++)
+                for (var j = 0; j < _massArray.GetLength(1); j++)
                 {
-                    for (var k = 0; k < massArray.GetLength(2); k++)
+                    for (var k = 0; k < _massArray.GetLength(2); k++)
                     {
-                        if (i != 0 && i != massArray.GetLength(0) - 1 &&
-                            j != 0 && j != massArray.GetLength(1) - 1 &&
-                            k != 0 && k != massArray.GetLength(2) - 1) continue;
+                        if (i != 0 && i != _massArray.GetLength(0) - 1 &&
+                            j != 0 && j != _massArray.GetLength(1) - 1 &&
+                            k != 0 && k != _massArray.GetLength(2) - 1) continue;
                         // Assuming the temperature volume gives the thermal energy per unit mass
-                        _totalEnergy -= massArray[i, j, k] * _temperatureVolume[i, j, k];
-                        massArray[i, j, k] = 0;
+                        _totalEnergy -= _massArray[i, j, k] * _temperatureVolume[i, j, k];
+                        _massArray[i, j, k] = 0;
                         _temperatureVolume[i, j, k] = 0; // resetting the temperature as well
                     }
                 }
@@ -533,7 +535,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             var y = _baryonicVolume.GetLength(1);
             var z = _baryonicVolume.GetLength(2);
 
-            var currentRadiationStrength = initialRadiationStrength * Math.Exp(-radiationDecayRate * timeInYears);
+            var currentRadiationStrength = _initialRadiationStrength * Math.Exp(-_radiationDecayRate * timeInYears);
 
             // Only applying radiation effects to the baryonic volume
             for (var i = 0; i < x; i++)
