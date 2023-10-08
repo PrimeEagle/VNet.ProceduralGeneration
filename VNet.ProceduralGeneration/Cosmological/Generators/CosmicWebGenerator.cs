@@ -1,17 +1,18 @@
-﻿using System.Drawing;
-using System.Numerics;
-using VNet.ImageProcessing;
+﻿using System.Numerics;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
-using VNet.ProceduralGeneration.Heightmap;
 using VNet.System.Events;
+// ReSharper disable MemberCanBeMadeStatic.Local
+// ReSharper disable ClassNeverInstantiated.Global
+#pragma warning disable CA2208
+#pragma warning disable CA1822
 #pragma warning disable IDE0060
 #pragma warning disable CA1416
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebContext>
+public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebContext>
 {
     public CosmicWebGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level0)
     {
@@ -23,11 +24,13 @@ public class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebCon
         switch (AdvancedSettings.CosmicWeb.CosmicWebGenerationMethod)
         {
             case CosmicWebGenerationMethod.Heightmap:
-                self.HeightmapTopology = LoadCosmicTopology();
+                GenerateCosmicWebByHeightmap(context, self);
                 break;
             case CosmicWebGenerationMethod.Random:
+                GenerateCosmicWebRandomly(context, self);
                 break;
             case CosmicWebGenerationMethod.Evolution:
+                GenerateCosmicWebByEvolution(context, self);
                 break;
             case CosmicWebGenerationMethod.None:
             default:
@@ -64,35 +67,6 @@ public class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebCon
     private void ApplyGravitationalEffects(CosmicWeb self)
     {
         if (!BasicSettings.ApplyGravitationalEffectsToCosmicWeb) return;
-    }
-
-    private CosmicWebHeightmapTopology LoadCosmicTopology()
-    {
-        var heightMapImage = new Bitmap(BasicSettings.HeightmapFile);
-
-        if (AdvancedSettings.Universe.GaussianSigma > 0f)
-        {
-            heightMapImage = Enhancement.GaussianBlur(heightMapImage, AdvancedSettings.Universe.GaussianKernelSize, AdvancedSettings.Universe.GaussianSigma);
-        }
-
-        var heightMap = HeightmapUtil.ImageToHeightmap(heightMapImage);
-
-        var extrusionLevel = (BasicSettings.DimensionZ / BasicSettings.DimensionX) * heightMap.GetLength(0);
-        var volumeMap = HeightmapUtil.ExtrudeHeightmapToVolumeMap(heightMap, (int)extrusionLevel);
-        var gradientMap = HeightmapUtil.VolumeMapToGradientMap(volumeMap);
-        var averageIntensity = HeightmapUtil.GetAverageIntensity(heightMapImage);
-        var maxGradientMagnitude = gradientMap.Cast<Vector3>().Max(v => v.Length());
-
-        var topology = new CosmicWebHeightmapTopology()
-        {
-            AverageIntensity = averageIntensity,
-            Heightmap = heightMap,
-            VolumeMap = volumeMap,
-            GradientMap = gradientMap,
-            MaxGradientMagnitude = maxGradientMagnitude
-        };
-
-        return topology;
     }
 
     private async Task<List<BaryonicMatterNode>> GenerateBaryonicMatterNodes(CosmicWeb cosmicWeb, int numberToGenerate)
@@ -143,23 +117,6 @@ public class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebCon
         var results = await Task.WhenAll(tasks);
 
         return results.ToList();
-    }
-
-    private SpatialGrid InitializeSpatialGrid(CosmicWeb cosmicWeb, SpatialGridContext context)
-    {
-        var volumeMap = cosmicWeb.HeightmapTopology.VolumeMap;
-        var gradientMap = cosmicWeb.HeightmapTopology.GradientMap;
-        var intensityThreshold = cosmicWeb.HeightmapTopology.AverageIntensity * context.NodeIntensityThresholdFactor;
-        var gradientMagnitudeThreshold = cosmicWeb.HeightmapTopology.MaxGradientMagnitude * context.NodeGradientMagnitudeThresholdFactor;
-
-        var spatialGrid = new SpatialGrid(volumeMap, (x, y, z) =>
-        {
-            var gradient = gradientMap[x, y, z];
-            var intensity = volumeMap[x, y, z];
-            return intensity > intensityThreshold && gradient.Length() > gradientMagnitudeThreshold ? SpatialGridCellStatus.Available : SpatialGridCellStatus.Unavailable;
-        });
-
-        return spatialGrid;
     }
 
     private void MergeBaryonicMatterNodes(IList<BaryonicMatterNode> nodes)
