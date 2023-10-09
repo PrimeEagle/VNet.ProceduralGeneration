@@ -12,19 +12,18 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                                              where TContext : ContextBase
     {
         private bool _disposed = false;
+        private readonly ParallelismLevel _parallelismLevel;
+        private readonly SemaphoreSlim _semaphore;
+
 
         protected bool Enabled;
+        protected TContext Context;
         protected readonly GeneratorSettings Settings;
         protected readonly BasicGenerationSettings BasicSettings;
         protected readonly AdvancedGenerationSettings AdvancedSettings;
         protected readonly AstronomicalObjectToggleSettings ObjectToggles;
         protected readonly TheoreticalAstronomicalObjectToggleSettings TheoreticalObjectToggles;
         protected readonly EventAggregator EventAggregator;
-        private readonly ParallelismLevel _parallelismLevel;
-        private readonly SemaphoreSlim _semaphore;
-
-
-
         protected abstract void GenerateDiameter(TContext context, T self);
         protected abstract void GeneratePosition(TContext context, T self);
         protected abstract void GenerateAge(TContext context, T self);
@@ -83,6 +82,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         public async Task<T> Generate(TContext context, AstronomicalObject parent)
         {
             T self;
+            this.Context = context;
 
             if (Enabled)
             {
