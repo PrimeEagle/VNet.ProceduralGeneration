@@ -19,15 +19,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
 {
     private readonly INoiseAlgorithm _noiseAlgorithm;
     private readonly IInterpolationAlgorithm _interpolationAlgorithm;
-    public double GravitationalConstant { get; set; } = 1.0;
-    public double TimeScalingFactor { get; set; } = 1.0;
-    public double ExpansionRate { get; set; } = 70 * 3.15e7 * 2.09e5;
-    private const double _initialRadiationStrength = 2.0; // Arbitrarily chosen value; adjust as needed
-    private const double _radiationDecayRate = 0.05; // Adjust to set how fast radiation diminishes over time
-    public double BaryonicMatterPercentage { get; set; } = 4.6; // Adjust as per cosmological data
-    public double DarkMatterPercentage { get; set; } = 26.8; // Adjust as per cosmological data
-    public double DarkEnergyPercentage { get; set; } = 68.6; // Adjust as per cosmological data
-    private double _darkEnergyEffect; // Represents the effect of dark energy on the expansion
+    private readonly INoiseAlgorithm _temperatureNoiseAlgorithm;
     private double[,,] _baryonicVolume;
     private double[,,] _darkMatterVolume;
     private readonly double[,,] _hydrogenVolume;
@@ -37,17 +29,24 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
     private readonly double[,,] _velocityXArray;
     private readonly double[,,] _velocityYArray;
     private readonly double[,,] _velocityZArray;
-    private readonly double[,,] _tempMassArray; // Used for intermediate calculations during advection.
+    private readonly double[,,] _tempMassArray;
+    private double[,,] _temperatureVolume;
+    private double _darkEnergyEffect; // Represents the effect of dark energy on the expansion
     private double _totalEnergy;
+    
+
+
+    public double ExpansionRate { get; set; } = 70 * 3.15e7 * 2.09e5;
+    private const double _initialRadiationStrength = 2.0; // Arbitrarily chosen value; adjust as needed
+    private const double _radiationDecayRate = 0.05; // Adjust to set how fast radiation diminishes over time
+    public double BaryonicMatterPercentage { get; set; } = 4.6; // Adjust as per cosmological data
+    public double DarkMatterPercentage { get; set; } = 26.8; // Adjust as per cosmological data
+    public double DarkEnergyPercentage { get; set; } = 68.6; // Adjust as per cosmological data
     public double BaryonicFeedbackThreshold { get; set; } = 1.2; // Arbitrarily set, adjust as needed
     public double BaryonicFeedbackStrength { get; set; } = 0.1; // Represents how much density is reduced due to feedback
     public double BaryonicFeedbackSpread { get; set; } = 0.5; // Represents the proportion of the feedback density that gets spread to neighbors
-    private double[,,] _temperatureVolume;
-    public double HeatingRate { get; set; } = 0.1; // Arbitrarily set, adjust as needed
-    public double CoolingRate { get; set; } = 0.01; // Arbitrarily set, adjust as needed
     private const double BaseTemperature = 2.7; // Base temperature, e.g., of CMB in Kelvin
     private const double TemperatureFluctuationRange = 0.05; // Adjust as needed; represents the range of temperature variation around the base
-    private readonly INoiseAlgorithm _temperatureNoiseAlgorithm;
     public double BaseCoolingRate { get; set; } = 0.01; // Base value
     public double BaseHeatingRate { get; set; } = 0.1; // Base value
     public double CoolingRateDensityFactor { get; set; } = 0.05; // Adjusts the influence of density on cooling rate
@@ -107,7 +106,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         var extractedRegions = ExtractLabeledRegions(labels);
     }
 
-    public void InitializeVolumes()
+    private void InitializeVolumes()
     {
         _baryonicVolume = new double[MapX, MapY, MapZ];
         _darkMatterVolume = new double[MapX, MapY, MapZ];
@@ -166,7 +165,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
 
                         // Ensure neighbor is within bounds and is not the current voxel itself
                         if (ni < 0 || ni >= MapX || nj < 0 || nj >= MapY || nk < 0 || nk >= MapZ || (dx == 0 && dy == 0 && dz == 0)) continue;
-                        var aGravity = GravitationalConstant * _massArray[ni, nj, nk];
+                        var aGravity = AdvancedSettings.PhysicalConstants.G * _massArray[ni, nj, nk];
                         accelerationX += dx == 0 ? 0 : (dx / Math.Abs(dx)) * aGravity;
                         accelerationY += dy == 0 ? 0 : (dy / Math.Abs(dy)) * aGravity;
                         accelerationZ += dz == 0 ? 0 : (dz / Math.Abs(dz)) * aGravity;
@@ -224,7 +223,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         });
     }
 
-    public void ApplyGalacticFeedback(double timeInYears)
+    private void ApplyGalacticFeedback(double timeInYears)
     {
         RunVolumeFunction((int i, int j, int k) =>
         {
@@ -268,7 +267,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         });
     }
 
-    public void ApplyStarFormationAndChemicalEvolution(double timeInYears)
+    private void ApplyStarFormationAndChemicalEvolution(double timeInYears)
     {
         RunVolumeFunction((int i, int j, int k) =>
         {
@@ -294,7 +293,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         });
     }
 
-    public void ApplyMerging()
+    private void ApplyMerging()
     {
         var changeInMass = new double[MapX, MapY, MapZ]; // To track the change in mass for each cell
 
@@ -345,7 +344,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         RunVolumeFunction((int i, int j, int k) => { _baryonicVolume[i, j, k] = Math.Max(0, _baryonicVolume[i, j, k] + changeInMass[i, j, k]); });
     }
 
-    public void ApplyInteractions(double timeInYears)
+    private void ApplyInteractions(double timeInYears)
     {
         RunVolumeFunction((int i, int j, int k) =>
         {
@@ -392,9 +391,9 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         return gradient;
     }
 
-    public void ApplyGravity(double timeInYears, int range = 1)
+    private void ApplyGravity(double timeInYears, int range = 1)
     {
- 
+
         var updatedBaryonicVolume = new double[MapX, MapY, MapZ];
         var updatedDarkMatterVolume = new double[MapX, MapY, MapZ];
 
@@ -419,14 +418,14 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
                         if (distanceSquared == 0) continue; // prevent self-interaction
 
                         // Consider gravitational effects from both baryonic and dark matter
-                        gravitationalEffectBaryonic += GravitationalConstant * (_baryonicVolume[i + dx, j + dy, k + dz] + _darkMatterVolume[i + dx, j + dy, k + dz]) / distanceSquared;
-                        gravitationalEffectDarkMatter += GravitationalConstant * (_baryonicVolume[i + dx, j + dy, k + dz] + _darkMatterVolume[i + dx, j + dy, k + dz]) / distanceSquared;
+                        gravitationalEffectBaryonic += AdvancedSettings.PhysicalConstants.G * (_baryonicVolume[i + dx, j + dy, k + dz] + _darkMatterVolume[i + dx, j + dy, k + dz]) / distanceSquared;
+                        gravitationalEffectDarkMatter += AdvancedSettings.PhysicalConstants.G * (_baryonicVolume[i + dx, j + dy, k + dz] + _darkMatterVolume[i + dx, j + dy, k + dz]) / distanceSquared;
                     }
                 }
             }
 
-            updatedBaryonicVolume[i, j, k] = _baryonicVolume[i, j, k] + gravitationalEffectBaryonic * timeInYears * TimeScalingFactor;
-            updatedDarkMatterVolume[i, j, k] = _darkMatterVolume[i, j, k] + gravitationalEffectDarkMatter * timeInYears * TimeScalingFactor;
+            updatedBaryonicVolume[i, j, k] = _baryonicVolume[i, j, k] + gravitationalEffectBaryonic * timeInYears;
+            updatedDarkMatterVolume[i, j, k] = _darkMatterVolume[i, j, k] + gravitationalEffectDarkMatter * timeInYears;
         });
 
         // Copy updated values back to the original volumes
@@ -434,7 +433,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         Array.Copy(updatedDarkMatterVolume, _darkMatterVolume, updatedDarkMatterVolume.Length);
     }
 
-    public void ApplyRadiation(double timeInYears, int range = 1)
+    private void ApplyRadiation(double timeInYears, int range = 1)
     {
         var currentRadiationStrength = _initialRadiationStrength * Math.Exp(-_radiationDecayRate * timeInYears);
 
@@ -463,7 +462,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         });
     }
 
-    public void ApplyExpansion(double timeInYears)
+    private void ApplyExpansion(double timeInYears)
     {
         // The effect of dark energy accelerates the expansion of the universe
         var expansionFactor = 1.0 + (ExpansionRate + _darkEnergyEffect) * timeInYears;
@@ -473,7 +472,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         _darkMatterVolume = InterpolateVolume(_darkMatterVolume, expansionFactor);
     }
 
-    public void ApplyBaryonicFeedback(double timeInYears)
+    private void ApplyBaryonicFeedback(double timeInYears)
     {
         var feedbackEffects = new double[MapX, MapY, MapZ];
         var energyInjected = new double[MapX, MapY, MapZ]; // To track the change in energy due to feedback
@@ -486,7 +485,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
             feedbackEffects[i, j, k] = feedback * BaryonicFeedbackSpread;
 
             // Increase in temperature due to feedback (energy injection)
-            var energyChange = HeatingRate * timeInYears;
+            var energyChange = BaseHeatingRate * timeInYears;
             _temperatureVolume[i, j, k] += energyChange;
             energyInjected[i, j, k] = energyChange;
         });
@@ -515,7 +514,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         });
     }
 
-    public void ApplyHeatingAndCooling(double timeInYears)
+    private void ApplyHeatingAndCooling(double timeInYears)
     {
         RunVolumeFunction((int i, int j, int k) =>
         {
@@ -566,7 +565,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         return expandedVolume;
     }
 
-    public void IdentifyStructures(double[,,] smoothedVolume)
+    private void IdentifyStructures(double[,,] smoothedVolume)
     {
         RunVolumeFunction((int i, int j, int k) =>
         {
@@ -605,7 +604,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         });
     }
 
-    public int[,,] LabelConnectedComponents(double[,,] structureVolume, double threshold)
+    private int[,,] LabelConnectedComponents(double[,,] structureVolume, double threshold)
     {
         var labels = new int[MapX, MapY, MapZ]; // Volume to store labels
         var currentLabel = 1;
@@ -647,7 +646,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         }
     }
 
-    public Dictionary<int, List<(int x, int y, int z)>> ExtractLabeledRegions(int[,,] labels)
+    private Dictionary<int, List<(int x, int y, int z)>> ExtractLabeledRegions(int[,,] labels)
     {
         var regions = new Dictionary<int, List<(int x, int y, int z)>>();
 
