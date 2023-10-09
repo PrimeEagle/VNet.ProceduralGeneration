@@ -1,4 +1,6 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Enum;
+
 // ReSharper disable SuggestBaseTypeForParameterInConstructor
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts;
@@ -13,6 +15,10 @@ public class CosmicWebContext : ContextBase
     public double DarkEnergyPercentage { get; set; }
     public float CosmicMicrowaveBackground { get; set; }
     public double ExpansionRate { get; set; }
+    public CurvatureType Curvature { get; set; }
+    public int CountBaryonicMatterPercentageFactor { get; set; }
+    public int CountDarkMatterPercentageFactor { get; set; }
+    public int CountDarkEnergyPercentageFactor { get; set; }
 
 
 

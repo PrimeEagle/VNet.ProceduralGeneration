@@ -1,8 +1,6 @@
 ﻿using VNet.Mathematics.LinearAlgebra.Matrix;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
-using VNet.Scientific.Interpolation;
-using VNet.Scientific.Noise;
 using VNet.Scientific.NumericalVolumes;
 
 // ReSharper disable MemberCanBeMadeStatic.Local
@@ -13,7 +11,6 @@ using VNet.Scientific.NumericalVolumes;
 #pragma warning disable CA1822
 #pragma warning disable IDE0060
 #pragma warning disable CS0649
-
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
@@ -36,45 +33,6 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
 
 
 
-    public INoiseAlgorithm NoiseAlgorithm;
-    public IInterpolationAlgorithm InterpolationAlgorithm;
-    public INoiseAlgorithm TemperatureNoiseAlgorithm;
-    public double InitialRadiationStrength = 2.0;
-    public double RadiationDecayRate = 0.05;
-    public double BaryonicFeedbackThreshold { get; set; } = 1.2;
-    public double BaryonicFeedbackStrength { get; set; } = 0.1;
-    public double BaryonicFeedbackSpread { get; set; } = 0.5;
-    public double TemperatureFluctuationRange = 0.05;
-    public double BaseCoolingRate { get; set; } = 0.01;
-    public double BaseHeatingRate { get; set; } = 0.1;
-    public double CoolingRateDensityFactor { get; set; } = 0.05;
-    public double HeatingRateDensityFactor { get; set; } = 0.02;
-    public double CollisionalCoolingFactor { get; set; } = 0.02;
-    public double CollisionalHeatingFactor { get; set; } = 0.01;
-    public double StellarFormationMinimumDensityThreshold { get; set; } = 1.5;
-    public double StellarFormationRate { get; set; } = 0.05; // Fraction of gas converted to stars
-    public double MergingThreshold { get; set; } = 2.0;
-    public int MergingRadius { get; set; } = 2;
-    public double GalacticFeedbackThreshold { get; set; } = 2.5;
-    public double GalacticFeedbackEnergy { get; set; } = 1.0;
-    public double DensityThreshold { get; set; } = 0.2;
-    public double StructureThreshold { get; set; } = 0.5;
-    public double Sigma = 0.5;
-    public double InitialHydrogenPercentage = 75.0;
-    public double InitialHeliumPercentage = 25.0;
-    public double InitialMetalPercentage = 0.0;
-    public double StarFormationMaximumTemperatureThreshold = 10.0;
-    public double ShockHeatingMinimumDensityThreshold = 0.5;
-    public double TimeStep = 1;
-    public double PercentOfStarMassConvertedToMetals = 2.0;
-    public double PercentOfStarMassRetainedAsHydrogen = 98.0;
-    public double TemperatureIncreaseDueToShockHeating = 10.0;
-    public int MaxEffectiveRangeOfGravity = 1;
-    public int MaxEffectiveRangeOfRadiation = 1;
-
-
-
-
     private void GenerateCosmicWebByEvolution(CosmicWeb self)
     {
         _darkEnergyEffect = Math.Pow(1 + Context.DarkEnergyPercentage / 100.0, 0.5) - 1;
@@ -91,20 +49,20 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
             ApplyBaryonicFeedback(currentTime);
             ApplyStarFormationAndChemicalEvolution(currentTime);
             ApplyHeatingAndCooling(currentTime);
-            ApplyInteractions(currentTime);
+            ApplyShockHeating(currentTime);
             ApplyMerging();
             ApplyGalacticFeedback(currentTime);
             ApplyExpansion(currentTime);
             AdvectMass(currentTime);
             HandleBoundaries();
 
-            currentTime += TimeStep;
+            currentTime += AdvancedSettings.CosmicWeb.Evolution.TimeStep;
         }
 
-        var smoothedVolume = VolumeProcessing.ApplyGaussianSmoothing(_baryonicVolume, Sigma);
+        var smoothedVolume = VolumeProcessing.ApplyGaussianSmoothing(_baryonicVolume, AdvancedSettings.CosmicWeb.Evolution.SigmaForStructureIdentification);
         IdentifyStructures(smoothedVolume);
 
-        var labels = LabelConnectedComponents(smoothedVolume, StructureThreshold);
+        var labels = LabelConnectedComponents(smoothedVolume);
         var extractedRegions = ExtractLabeledRegions(labels);
     }
 
@@ -116,17 +74,19 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
 
         VolumeFunctions.RunVolumeFunction(Context.MapX, Context.MapY, Context.MapZ, (int i, int j, int k) =>
         {
-            var totalNoise = NoiseAlgorithm.GenerateSingleSample();
+            var totalNoise = AdvancedSettings.CosmicWeb.Evolution.NoiseAlgorithm.GenerateSingleSample();
 
             _baryonicVolume[i, j, k] = totalNoise * Context.BaryonicMatterPercentage / 100.0;
             _darkMatterVolume[i, j, k] = totalNoise * Context.DarkMatterPercentage / 100.0;
-            var temperatureNoise = TemperatureNoiseAlgorithm.GenerateSingleSample(); // Assumed to be in range [-1, 1]
-            var temperatureFluctuation = temperatureNoise * TemperatureFluctuationRange;
+            
+            var temperatureNoise = AdvancedSettings.CosmicWeb.Evolution.TemperatureNoiseAlgorithm.GenerateSingleSample(); // Assumed to be in range [-1, 1]
+            var temperatureFluctuation = temperatureNoise * AdvancedSettings.CosmicWeb.Evolution.TemperatureFluctuationRange;
             _temperatureVolume[i, j, k] = Context.CosmicMicrowaveBackground + temperatureFluctuation;
+
             var totalBaryonicDensity = _baryonicVolume[i, j, k];
-            _hydrogenVolume[i, j, k] = InitialHydrogenPercentage / 100 * totalBaryonicDensity;
-            _heliumVolume[i, j, k] = InitialHeliumPercentage / 100 * totalBaryonicDensity;
-            _metalVolume[i, j, k] = InitialMetalPercentage / 100 * totalBaryonicDensity;
+            _hydrogenVolume[i, j, k] = AdvancedSettings.CosmicWeb.Evolution.InitialHydrogenPercentage / 100 * totalBaryonicDensity;
+            _heliumVolume[i, j, k] = AdvancedSettings.CosmicWeb.Evolution.InitialHeliumPercentage / 100 * totalBaryonicDensity;
+            _metalVolume[i, j, k] = AdvancedSettings.CosmicWeb.Evolution.InitialMetalPercentage / 100 * totalBaryonicDensity;
             _massArray[i, j, k] = _baryonicVolume[i, j, k] + _darkMatterVolume[i, j, k];
             _totalEnergy += _temperatureVolume[i, j, k];
         });
@@ -198,10 +158,10 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
     {
         VolumeFunctions.RunVolumeFunction(Context.MapX, Context.MapY, Context.MapZ, (int i, int j, int k) =>
         {
-            if (_baryonicVolume[i, j, k] <= GalacticFeedbackThreshold) return;
+            if (_baryonicVolume[i, j, k] <= AdvancedSettings.CosmicWeb.Evolution.GalacticFeedbackThreshold) return;
 
-            var energyReductionFromDensity = GalacticFeedbackEnergy * timeInYears;
-            var energyIncreaseFromTemperature = GalacticFeedbackEnergy * timeInYears;
+            var energyReductionFromDensity = AdvancedSettings.CosmicWeb.Evolution.GalacticFeedbackEnergy * timeInYears;
+            var energyIncreaseFromTemperature = AdvancedSettings.CosmicWeb.Evolution.GalacticFeedbackEnergy * timeInYears;
 
             _totalEnergy -= energyReductionFromDensity;
             _totalEnergy += energyIncreaseFromTemperature;
@@ -213,8 +173,8 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
             {
                 if (!IsWithinBounds(i + dx, j + dy, k + dz)) return;
 
-                var localEnergyReduction = GalacticFeedbackEnergy * timeInYears / 3;
-                var localEnergyIncrease = GalacticFeedbackEnergy * timeInYears / 3;
+                var localEnergyReduction = AdvancedSettings.CosmicWeb.Evolution.GalacticFeedbackEnergy * timeInYears / 3;
+                var localEnergyIncrease = AdvancedSettings.CosmicWeb.Evolution.GalacticFeedbackEnergy * timeInYears / 3;
 
                 _totalEnergy -= localEnergyReduction;
                 _totalEnergy += localEnergyIncrease;
@@ -229,17 +189,17 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
     {
         VolumeFunctions.RunVolumeFunction(Context.MapX, Context.MapY, Context.MapZ, (int i, int j, int k) =>
         {
-            if (_baryonicVolume[i, j, k] <= StellarFormationMinimumDensityThreshold || _temperatureVolume[i, j, k] >= StarFormationMaximumTemperatureThreshold) return;
-            var starsFormed = StellarFormationRate * _baryonicVolume[i, j, k] * timeInYears;
+            if (_baryonicVolume[i, j, k] <= AdvancedSettings.CosmicWeb.Evolution.StellarFormationMinimumDensityThreshold || _temperatureVolume[i, j, k] >= AdvancedSettings.CosmicWeb.Evolution.StarFormationMaximumTemperatureThreshold) return;
+            var starsFormed = AdvancedSettings.CosmicWeb.Evolution.PercentGasConvertedToStars / 100 * _baryonicVolume[i, j, k] * timeInYears;
 
             _totalEnergy -= starsFormed;
             _baryonicVolume[i, j, k] -= starsFormed;
 
-            var metalFormed = PercentOfStarMassConvertedToMetals / 100 * starsFormed;
+            var metalFormed = AdvancedSettings.CosmicWeb.Evolution.PercentOfStarMassConvertedToMetals / 100 * starsFormed;
             _metalVolume[i, j, k] += metalFormed;
             _totalEnergy += metalFormed;
 
-            var hydrogenFormed = PercentOfStarMassRetainedAsHydrogen / 100 * starsFormed;
+            var hydrogenFormed = AdvancedSettings.CosmicWeb.Evolution.PercentOfStarMassRetainedAsHydrogen / 100 * starsFormed;
             _hydrogenVolume[i, j, k] -= hydrogenFormed;
             _totalEnergy -= hydrogenFormed;
         });
@@ -251,20 +211,20 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
 
         VolumeFunctions.RunVolumeFunction(Context.MapX, Context.MapY, Context.MapZ, (int i, int j, int k) =>
         {
-            if (_baryonicVolume[i, j, k] <= MergingThreshold) return;
+            if (_baryonicVolume[i, j, k] <= AdvancedSettings.CosmicWeb.Evolution.MergingThreshold) return;
 
-            var excessMass = _baryonicVolume[i, j, k] - MergingThreshold;
+            var excessMass = _baryonicVolume[i, j, k] - AdvancedSettings.CosmicWeb.Evolution.MergingThreshold;
             changeInMass[i, j, k] -= excessMass;
 
             var countNeighbors = 0;
 
-            VolumeFunctions.RunNeighborFunction(-MergingRadius, MergingRadius, (int dx, int dy, int dz) =>
+            VolumeFunctions.RunNeighborFunction(-AdvancedSettings.CosmicWeb.Evolution.MergingRadius, AdvancedSettings.CosmicWeb.Evolution.MergingRadius, (int dx, int dy, int dz) =>
             {
                 if (!IsWithinBounds(i + dx, j + dy, k + dz)) return;
                 countNeighbors++;
             });
 
-            VolumeFunctions.RunNeighborFunction(-MergingRadius, MergingRadius, (int dx, int dy, int dz) =>
+            VolumeFunctions.RunNeighborFunction(-AdvancedSettings.CosmicWeb.Evolution.MergingRadius, AdvancedSettings.CosmicWeb.Evolution.MergingRadius, (int dx, int dy, int dz) =>
             {
                 if (!IsWithinBounds(i + dx, j + dy, k + dz)) return;
                 changeInMass[i + dx, j + dy, k + dz] += excessMass / countNeighbors;
@@ -274,20 +234,14 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         VolumeFunctions.RunVolumeFunction(Context.MapX, Context.MapY, Context.MapZ, (int i, int j, int k) => { _baryonicVolume[i, j, k] = Math.Max(0, _baryonicVolume[i, j, k] + changeInMass[i, j, k]); });
     }
 
-    private void ApplyInteractions(double timeInYears)
+    private void ApplyShockHeating(double timeInYears)
     {
         VolumeFunctions.RunVolumeFunction(Context.MapX, Context.MapY, Context.MapZ, (int i, int j, int k) =>
         {
-            if (_baryonicVolume[i, j, k] > StellarFormationMinimumDensityThreshold && _temperatureVolume[i, j, k] < StarFormationMaximumTemperatureThreshold)
-            {
-                var starsFormed = StellarFormationRate * _baryonicVolume[i, j, k] * timeInYears;
-                _baryonicVolume[i, j, k] -= starsFormed;
-            }
-
             var densityGradient = CalculateDensityGradient(i, j, k);
-            if (densityGradient > ShockHeatingMinimumDensityThreshold) 
+            if (densityGradient > AdvancedSettings.CosmicWeb.Evolution.ShockHeatingMinimumDensityThreshold) 
             {
-                _temperatureVolume[i, j, k] += TemperatureIncreaseDueToShockHeating;
+                _temperatureVolume[i, j, k] += AdvancedSettings.CosmicWeb.Evolution.TemperatureIncreaseDueToShockHeating;
             }
         });
     }
@@ -318,7 +272,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
             double gravitationalEffectBaryonic = 0;
             double gravitationalEffectDarkMatter = 0;
 
-            VolumeFunctions.RunNeighborFunction(-MaxEffectiveRangeOfGravity, MaxEffectiveRangeOfGravity, (int dx, int dy, int dz) =>
+            VolumeFunctions.RunNeighborFunction(-AdvancedSettings.CosmicWeb.Evolution.MaxEffectiveRangeOfGravity, AdvancedSettings.CosmicWeb.Evolution.MaxEffectiveRangeOfGravity, (int dx, int dy, int dz) =>
             {
                 if (!IsWithinBounds(i + dx, j + dy, k + dz)) return;
                 double distanceSquared = dx * dx + dy * dy + dz * dz;
@@ -337,15 +291,15 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         Array.Copy(updatedDarkMatterVolume, _darkMatterVolume, updatedDarkMatterVolume.Length);
     }
 
-    private void ApplyRadiation(double timeInYears, int range = 1)
+    private void ApplyRadiation(double timeInYears)
     {
-        var currentRadiationStrength = InitialRadiationStrength * Math.Exp(-RadiationDecayRate * timeInYears);
+        var currentRadiationStrength = AdvancedSettings.CosmicWeb.Evolution.InitialRadiationStrength * Math.Exp(-AdvancedSettings.CosmicWeb.Evolution.RadiationDecayRate * timeInYears);
 
         VolumeFunctions.RunVolumeFunction(Context.MapX, Context.MapY, Context.MapZ, (int i, int j, int k) =>
         {
             double radiationEffect = 0;
 
-            VolumeFunctions.RunNeighborFunction(-range, range, (int dx, int dy, int dz) =>
+            VolumeFunctions.RunNeighborFunction(-AdvancedSettings.CosmicWeb.Evolution.MaxEffectiveRangeOfRadiation, AdvancedSettings.CosmicWeb.Evolution.MaxEffectiveRangeOfRadiation, (int dx, int dy, int dz) =>
             {
                 if (!IsWithinBounds(i + dx, j + dy, k + dz)) return;
                 double distanceSquared = dx * dx + dy * dy + dz * dz;
@@ -361,8 +315,8 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
     private void ApplyExpansion(double timeInYears)
     {
         var expansionFactor = 1.0 + (Context.ExpansionRate * 3.15e7 * 2.09e5 + _darkEnergyEffect) * timeInYears;
-        _baryonicVolume = VolumeProcessing.InterpolateVolume(_baryonicVolume, expansionFactor, InterpolationAlgorithm);
-        _darkMatterVolume = VolumeProcessing.InterpolateVolume(_darkMatterVolume, expansionFactor, InterpolationAlgorithm);
+        _baryonicVolume = VolumeProcessing.InterpolateVolume(_baryonicVolume, expansionFactor, AdvancedSettings.CosmicWeb.Evolution.InterpolationAlgorithm);
+        _darkMatterVolume = VolumeProcessing.InterpolateVolume(_darkMatterVolume, expansionFactor, AdvancedSettings.CosmicWeb.Evolution.InterpolationAlgorithm);
     }
 
     private void ApplyBaryonicFeedback(double timeInYears)
@@ -372,12 +326,12 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
 
         VolumeFunctions.RunVolumeFunction(Context.MapX, Context.MapY, Context.MapZ, (int i, int j, int k) =>
         {
-            if (!(_baryonicVolume[i, j, k] > BaryonicFeedbackThreshold)) return;
-            var feedback = BaryonicFeedbackStrength * timeInYears;
+            if (!(_baryonicVolume[i, j, k] > AdvancedSettings.CosmicWeb.Evolution.BaryonicFeedbackThreshold)) return;
+            var feedback = AdvancedSettings.CosmicWeb.Evolution.BaryonicFeedbackStrength * timeInYears;
             _baryonicVolume[i, j, k] -= feedback;
-            feedbackEffects[i, j, k] = feedback * BaryonicFeedbackSpread;
+            feedbackEffects[i, j, k] = feedback * AdvancedSettings.CosmicWeb.Evolution.BaryonicFeedbackSpread;
 
-            var energyChange = BaseHeatingRate * timeInYears;
+            var energyChange = AdvancedSettings.CosmicWeb.Evolution.BaseHeatingRate * timeInYears;
             _temperatureVolume[i, j, k] += energyChange;
             energyInjected[i, j, k] = energyChange;
         });
@@ -400,10 +354,10 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         VolumeFunctions.RunVolumeFunction(Context.MapX, Context.MapY, Context.MapZ, (int i, int j, int k) =>
         {
             var localDensity = _baryonicVolume[i, j, k];
-            var effectiveCoolingRate = BaseCoolingRate * (1 + CoolingRateDensityFactor * localDensity);
-            var effectiveHeatingRate = BaseHeatingRate * (1 - HeatingRateDensityFactor * localDensity);
-            effectiveCoolingRate += CollisionalCoolingFactor * localDensity * localDensity;
-            effectiveHeatingRate += CollisionalHeatingFactor * localDensity * localDensity;
+            var effectiveCoolingRate = AdvancedSettings.CosmicWeb.Evolution.BaseCoolingRate * (1 + AdvancedSettings.CosmicWeb.Evolution.CoolingRateDensityFactor * localDensity);
+            var effectiveHeatingRate = AdvancedSettings.CosmicWeb.Evolution.BaseHeatingRate * (1 - AdvancedSettings.CosmicWeb.Evolution.HeatingRateDensityFactor * localDensity);
+            effectiveCoolingRate += AdvancedSettings.CosmicWeb.Evolution.CollisionalCoolingFactor * localDensity * localDensity;
+            effectiveHeatingRate += AdvancedSettings.CosmicWeb.Evolution.CollisionalHeatingFactor * localDensity * localDensity;
 
             var energyChangeDueToCooling = effectiveCoolingRate * timeInYears * _temperatureVolume[i, j, k];
             var energyChangeDueToHeating = effectiveHeatingRate * timeInYears;
@@ -422,13 +376,13 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         {
             var density = smoothedVolume[i, j, k];
 
-            if (density < DensityThreshold)
+            if (density < AdvancedSettings.CosmicWeb.Evolution.DensityThresholdForVoidIdentification)
             {
                 // Void
                 return;
             }
 
-            if (density < StructureThreshold)
+            if (density < AdvancedSettings.CosmicWeb.Evolution.DensityThresholdForStructureIdentification)
             {
                 // Uninteresting region, can skip or label accordingly
                 return;
@@ -454,15 +408,15 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         });
     }
 
-    private int[,,] LabelConnectedComponents(double[,,] structureVolume, double threshold)
+    private int[,,] LabelConnectedComponents(double[,,] structureVolume)
     {
         var labels = new int[Context.MapX, Context.MapY, Context.MapZ];
         var currentLabel = 1;
 
         VolumeFunctions.RunVolumeFunction(Context.MapX, Context.MapY, Context.MapZ, (int i, int j, int k) =>
         {
-            if (!(structureVolume[i, j, k] > threshold) || labels[i, j, k] != 0) return;
-            VolumeProcessing.FloodFill(structureVolume, labels, i, j, k, currentLabel, threshold);
+            if (!(structureVolume[i, j, k] > AdvancedSettings.CosmicWeb.Evolution.DensityThresholdForStructureIdentification) || labels[i, j, k] != 0) return;
+            VolumeProcessing.FloodFill(structureVolume, labels, i, j, k, currentLabel, AdvancedSettings.CosmicWeb.Evolution.DensityThresholdForStructureIdentification);
             currentLabel++;
         });
 
@@ -473,23 +427,17 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
     {
         var regions = new Dictionary<int, List<(int x, int y, int z)>>();
 
-        for (var i = 0; i < labels.GetLength(0); i++)
+        VolumeFunctions.RunVolumeFunction(labels.GetLength(0), labels.GetLength(1), labels.GetLength(2), (int i, int j, int k) =>
         {
-            for (var j = 0; j < labels.GetLength(1); j++)
+            var label = labels[i, j, k];
+            if (label <= 0) return;
+            if (!regions.ContainsKey(label))
             {
-                for (var k = 0; k < labels.GetLength(2); k++)
-                {
-                    var label = labels[i, j, k];
-                    if (label <= 0) continue;
-                    if (!regions.ContainsKey(label))
-                    {
-                        regions[label] = new List<(int x, int y, int z)>();
-                    }
-
-                    regions[label].Add((i, j, k));
-                }
+                regions[label] = new List<(int x, int y, int z)>();
             }
-        }
+
+            regions[label].Add((i, j, k));
+        });
 
         return regions;
     }

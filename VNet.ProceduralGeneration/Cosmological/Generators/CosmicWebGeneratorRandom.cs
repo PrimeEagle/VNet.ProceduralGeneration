@@ -11,7 +11,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebContext>
 {
-    private void GenerateCosmicWebRandomly(CosmicWebContext context, CosmicWeb self)
+    private void GenerateCosmicWebRandomly(CosmicWeb self)
     {
 
     }
