@@ -1,6 +1,6 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
-public class ProtoplanetaryDisk : AstronomicalObjectContainer
+public class Planetesimal : AstronomicalObject
 {
     internal override void AssignChildren()
     {

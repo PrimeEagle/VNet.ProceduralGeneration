@@ -5,7 +5,7 @@ using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class ProtoplanetaryDiskGenerator : GeneratorBase<ProtoplanetaryDisk, ProtoplanetaryDiskContext>
+public class ProtoplanetaryDiskGenerator : ContainerGeneratorBase<ProtoplanetaryDisk, ProtoplanetaryDiskContext>
 {
     public ProtoplanetaryDiskGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
