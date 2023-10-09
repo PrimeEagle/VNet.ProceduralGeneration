@@ -6,6 +6,7 @@ using VNet.System.Events;
 // ReSharper disable MemberCanBeMadeStatic.Local
 // ReSharper disable ClassNeverInstantiated.Global
 // ReSharper disable UnusedParameter.Local
+#pragma warning disable IDE0051
 #pragma warning disable IDE0060
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 #pragma warning disable CA2208
