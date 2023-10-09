@@ -9,6 +9,10 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
     public class CosmicWebGenerationSettings : ISettings
     {
+        public CosmicWebGenerationEvolutionSettings Evolution { get; set; }
+        public CosmicWebGenerationHeightmapSettings Heightmap { get; set; }
+        public CosmicWebGenerationRandomizedSettings Randomized { get; set; }
+
         [Required]
         [DisplayName("Random Generator")]
         [Tooltip("The random generation algorithm to use.")]
@@ -22,6 +26,9 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
 
         public CosmicWebGenerationSettings()
         {
+            this.Evolution = new CosmicWebGenerationEvolutionSettings();
+            this.Heightmap = new CosmicWebGenerationHeightmapSettings();
+            this.Randomized = new CosmicWebGenerationRandomizedSettings();
             this.RandomGenerator = ConfigConstants.CosmicWeb.RandomGenerator;
             this.CosmicWebGenerationMethod = ConfigConstants.CosmicWeb.CosmicWebGenerationMethod;
         }
