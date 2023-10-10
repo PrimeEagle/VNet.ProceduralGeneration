@@ -1,7 +1,9 @@
 ﻿using System.Numerics;
-using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.Scientific.NumericalVolumes;
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable InconsistentNaming
+#pragma warning disable CS8629 // Nullable value type may be null.
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 {
@@ -68,6 +70,10 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
                 return absoluteMagnitude.Value;
             }
         }
+        public virtual Vector3 Orientation { get; set; }
+        public virtual BoundingBox<float> BoundingBox { get; set; }
+        public List<Vector3> Points { get; set; }
+
         #endregion Base Properties
 
         #region Property Calculation Methods
@@ -114,9 +120,11 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 
         protected AstronomicalObjectContainer() : base()
         {
+            this.Points = new List<Vector3>();
         }
         protected AstronomicalObjectContainer(AstronomicalObject parent) : base(parent)
         {
+            this.Points = new List<Vector3>();
         }
     }
 }

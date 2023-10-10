@@ -1,6 +1,6 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
-public class DarkMatterVoid : AstronomicalObjectContainer
+public class DarkMatterVoid : Void
 {
     internal override void AssignChildren()
     {

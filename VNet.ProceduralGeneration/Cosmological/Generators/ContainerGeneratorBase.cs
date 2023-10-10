@@ -1,6 +1,8 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.Scientific.NumericalVolumes;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators
@@ -39,10 +41,21 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             throw new NotImplementedException();
         }
 
+        protected virtual void GenerateBoundingBox(TContext context, T self)
+        {
+            self.BoundingBox = new BoundingBox<float>(self.Position, 1, self.Orientation);
+        }
+
+        protected virtual void GeneratePoints(TContext context, T self)
+        {
+            throw new NotImplementedException();
+        }
+
         protected override void GenerateBaseProperties(TContext context, T self)
         {
             GenerateDiameter(context, self);
             GeneratePosition(context, self);
+            GenerateBoundingBox(context, self);
         }
     }
 }

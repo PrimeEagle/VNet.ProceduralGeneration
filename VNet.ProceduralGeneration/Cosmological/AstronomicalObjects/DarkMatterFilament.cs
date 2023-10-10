@@ -1,6 +1,6 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 {
-    public class DarkMatterFilament : AstronomicalObjectContainer
+    public class DarkMatterFilament : Filament
     {
         internal override void AssignChildren()
         {

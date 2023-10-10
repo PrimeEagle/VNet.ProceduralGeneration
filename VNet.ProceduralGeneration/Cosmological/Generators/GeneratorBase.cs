@@ -4,6 +4,8 @@ using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
+// ReSharper disable MemberCanBePrivate.Global
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators
 {
