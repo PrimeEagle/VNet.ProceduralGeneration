@@ -69,7 +69,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         public float MinOverlapAmount { get; set; }
         public float MaxOverlapAmount { get; set; }
         public IRandomGenerationAlgorithm RandomAlgorithm { get; set; }
-        
+
         public List<VSphere> GenerateSpheres(float[,,] volume)
         {
             var volumeSize = volume.GetLength(0) * volume.GetLength(1) * volume.GetLength(2);
@@ -100,7 +100,8 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                 {
                     var overlapAmount = CalculateOverlapAmount(sphere, spheres);
 
-                    if (overlapAmount < MinOverlapAmount || overlapAmount > MaxOverlapAmount)
+                    if ((overlapAmount < MinOverlapAmount || overlapAmount > MaxOverlapAmount) ||
+                        (spheres.Count(x => CalculateOverlapAmount(sphere, new List<VSphere> { x }) > 0) / (float)spheres.Count) > PercentageOfOverlappingSpheres)
                     {
                         sphere = new VSphere(new Vector3(
                             RandomAlgorithm.NextSingle() * (volume.GetLength(0) - diameter),
