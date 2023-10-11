@@ -51,9 +51,14 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             self.BoundingBox = new BoundingBox<float>(self.Position, 1, self.Orientation);
         }
 
-        protected virtual void GeneratePointCloud(TContext context, T self)
+        protected virtual void GenerateInterior(TContext context, T self)
         {
-            self.PointCloud = new List<Vector3>();
+            self.Interior = new List<Vector3>();
+        }
+
+        protected virtual void GenerateWarpedSurface(TContext context, T self)
+        {
+            self.WarpedSurface = new List<Vector3>();
         }
 
         protected override void GenerateBaseProperties(TContext context, T self)
@@ -62,7 +67,8 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             GeneratePosition(context, self);
             GenerateOrientation(context, self);
             GenerateBoundingBox(context, self);
-            GeneratePointCloud(context, self);
+            GenerateInterior(context, self);
+            GenerateWarpedSurface(context, self);
         }
     }
 }

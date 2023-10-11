@@ -65,7 +65,8 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
         }
         public virtual Vector3 Orientation { get; set; }
         public virtual BoundingBox<float> BoundingBox { get; set; }
-        public List<Vector3> PointCloud { get; set; }
+        public List<Vector3> WarpedSurface { get; set; }
+        public List<Vector3> Interior { get; set; }
 
         #endregion Base Properties
 
