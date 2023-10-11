@@ -147,7 +147,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         public float Diameter { get; }
         public float Thickness { get; }
         public Vector3 OrientationNormal { get; set; }
-
         public BoundingBox<float> OrientedBoundingBox { get; set; }
         public List<Vector3> Points { get; private set; }
         public INoiseAlgorithm NoiseAlgorithm { get; set; }
@@ -356,7 +355,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             intersection2 = new Vector3();
 
             var lineDirection = Vector3.Cross(c1.OrientationNormal, c2.OrientationNormal);
-            if (lineDirection.LengthSquared() < 1e-10)
+            if (lineDirection.LengthSquared() < float.Epsilon)
                 return false;
 
             lineDirection = Vector3.Normalize(lineDirection);
@@ -507,7 +506,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             var endPointDifference = desiredEndPoint - (cylinder.Center + cylinder.Direction * cylinder.Length / 2);
             move = endPointDifference.Length();
 
-            var currentDirection = cylinder.Direction;  // Fetch the cylinder's current orientation
+            var currentDirection = cylinder.Direction;
             var dot = Vector3.Dot(currentDirection, Vector3.Normalize(directionToNeighbor));
             rotate = (float)Math.Acos(dot) * (180.0f / (float)Math.PI);
 

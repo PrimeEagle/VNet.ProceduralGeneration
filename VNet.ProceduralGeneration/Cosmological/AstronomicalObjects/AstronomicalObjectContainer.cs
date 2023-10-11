@@ -65,7 +65,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
         }
         public virtual Vector3 Orientation { get; set; }
         public virtual BoundingBox<float> BoundingBox { get; set; }
-        public List<Vector3> Points { get; set; }
+        public List<Vector3> PointCloud { get; set; }
 
         #endregion Base Properties
 
@@ -113,11 +113,9 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 
         protected AstronomicalObjectContainer() : base()
         {
-            this.Points = new List<Vector3>();
         }
         protected AstronomicalObjectContainer(AstronomicalObject parent) : base(parent)
         {
-            this.Points = new List<Vector3>();
         }
     }
 }

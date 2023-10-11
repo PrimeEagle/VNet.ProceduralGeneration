@@ -41,21 +41,28 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             throw new NotImplementedException();
         }
 
+        protected virtual void GenerateOrientation(TContext context, T self)
+        {
+            throw new NotImplementedException();
+        }
+
         protected virtual void GenerateBoundingBox(TContext context, T self)
         {
             self.BoundingBox = new BoundingBox<float>(self.Position, 1, self.Orientation);
         }
 
-        protected virtual void GeneratePoints(TContext context, T self)
+        protected virtual void GeneratePointCloud(TContext context, T self)
         {
-            throw new NotImplementedException();
+            self.PointCloud = new List<Vector3>();
         }
 
         protected override void GenerateBaseProperties(TContext context, T self)
         {
             GenerateDiameter(context, self);
             GeneratePosition(context, self);
+            GenerateOrientation(context, self);
             GenerateBoundingBox(context, self);
+            GeneratePointCloud(context, self);
         }
     }
 }
