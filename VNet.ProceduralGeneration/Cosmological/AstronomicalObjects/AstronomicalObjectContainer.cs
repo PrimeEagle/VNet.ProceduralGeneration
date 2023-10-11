@@ -9,13 +9,6 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 {
     public abstract class AstronomicalObjectContainer : AstronomicalObject
     {
-        protected float? age;
-        protected float? lifespan;
-        protected double? mass;
-        protected float? luminosity;
-        protected float? temperature;
-        protected float? absoluteMagnitude;
-
         #region Base Properties
 
         public override float Age                                                                    // years
