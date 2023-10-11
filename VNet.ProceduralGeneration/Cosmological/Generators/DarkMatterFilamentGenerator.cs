@@ -5,7 +5,7 @@ using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class DarkMatterFilamentGenerator : ContainerGeneratorBase<DarkMatterFilament, DarkMatterFilamentContext>
+public class DarkMatterFilamentGenerator : FilamentGeneratorBase<DarkMatterFilament, DarkMatterFilamentContext>
 {
     protected override Task GenerateChildren(DarkMatterFilamentContext context, DarkMatterFilament self)
     {

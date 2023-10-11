@@ -1,4 +1,6 @@
 ﻿using System.Numerics;
+using VNet.Mathematics.Randomization;
+using VNet.Scientific.Noise;
 using VNet.Scientific.NumericalVolumes;
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable InconsistentNaming

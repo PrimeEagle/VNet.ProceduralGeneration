@@ -5,7 +5,7 @@ using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class DarkMatterVoidGenerator : ContainerGeneratorBase<DarkMatterVoid, DarkMatterVoidContext>
+public class DarkMatterVoidGenerator : VoidGeneratorBase<DarkMatterVoid, DarkMatterVoidContext>
 {
     public DarkMatterVoidGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
