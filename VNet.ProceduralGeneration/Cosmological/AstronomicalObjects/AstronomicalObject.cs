@@ -5,8 +5,13 @@ using VNet.Configuration;
 using VNet.Mathematics.Randomization.Generation;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.Scientific.NumericalVolumes;
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable InconsistentNaming
+// ReSharper disable PropertyCanBeMadeInitOnly.Global
+// ReSharper disable UnassignedField.Global
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+#pragma warning disable CS8629 // Nullable value type may be null.
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 {
@@ -19,6 +24,8 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
         protected float? temperature;
         protected float? luminosity;
         protected Vector3 position;
+        protected Vector3? orientation;
+
 
         protected float? radius;
         protected double? volume;
@@ -52,7 +59,9 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
         public virtual float Temperature { get; set; }                                              // Kelvin
         public virtual float Luminosity { get; set; }                                               // L⊙
         public virtual Vector3 Position { get; set; }                                               // AU
-        public virtual float Radius                                                                         // AU
+        public virtual BoundingBox<float> BoundingBox { get; set; }
+        public virtual Vector3 Orientation { get; set; }
+        public virtual float Radius                                                                 // AU
         {
             get
             {
@@ -191,7 +200,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 #endregion Base Properties
 
         public AstronomicalObject Parent { get; set; }
-        public List<AstronomicalObject> Children { get; set; }
+        protected List<AstronomicalObject> Children { get; set; }
         public Universe Universe => FindUniverse();
         protected AstronomicalObject()
         {
@@ -429,5 +438,6 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
             return (Universe)main;
         }
         internal abstract void AssignChildren();
+        public abstract void UpdateBoundingBox();
     }
 }

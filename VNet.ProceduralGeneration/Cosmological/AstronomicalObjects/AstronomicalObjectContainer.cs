@@ -1,9 +1,7 @@
 ﻿using System.Numerics;
-using VNet.Mathematics.Randomization;
-using VNet.Scientific.Noise;
-using VNet.Scientific.NumericalVolumes;
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable InconsistentNaming
+// ReSharper disable CollectionNeverQueried.Global
 #pragma warning disable CS8629 // Nullable value type may be null.
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
@@ -65,8 +63,6 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
                 return absoluteMagnitude.Value;
             }
         }
-        public virtual Vector3 Orientation { get; set; }
-        public virtual BoundingBox<float> BoundingBox { get; set; }
         public List<Vector3> WarpedSurface { get; set; }
         public List<Vector3> Interior { get; set; }
 
@@ -117,6 +113,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
         protected AstronomicalObjectContainer() : base()
         {
         }
+
         protected AstronomicalObjectContainer(AstronomicalObject parent) : base(parent)
         {
         }

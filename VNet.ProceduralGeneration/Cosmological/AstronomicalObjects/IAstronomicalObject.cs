@@ -12,6 +12,8 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
         public float Temperature { get; set; }                                              // Kelvin
         public float Luminosity { get; set; }                                               // L⊙
         public Vector3 Position { get; set; }                                               // AU
+        public Vector3 Orientation { get; set; }
+
 
 
         // calculated properties

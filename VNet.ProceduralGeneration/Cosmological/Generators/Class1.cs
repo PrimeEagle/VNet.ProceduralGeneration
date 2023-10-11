@@ -33,31 +33,31 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             this.OrientedBoundingBox = new BoundingBox<float>(this.Center, this.Diameter / 2, Vector3.One * this.Diameter);
         }
 
-        public void Warp(INoiseAlgorithm noiseAlgorithm, float warpAmount)
-        {
-            var radius = Diameter / 2.0f;
-            var numberOfPoints = (int)(4.0 * Math.PI * Math.Pow(radius, 2));
+        //public void Warp(INoiseAlgorithm noiseAlgorithm, float warpAmount)
+        //{
+        //    var radius = Diameter / 2.0f;
+        //    var numberOfPoints = (int)(4.0 * Math.PI * Math.Pow(radius, 2));
 
-            for (var i = 0; i < numberOfPoints; i++)
-            {
-                var u = RandomAlgorithm.NextSingle();
-                var v = RandomAlgorithm.NextSingle();
+        //    for (var i = 0; i < numberOfPoints; i++)
+        //    {
+        //        var u = RandomAlgorithm.NextSingle();
+        //        var v = RandomAlgorithm.NextSingle();
 
-                var theta = 2.0f * (float)Math.PI * u;
-                var phi = (float)Math.Acos(2.0f * v - 1.0f);
+        //        var theta = 2.0f * (float)Math.PI * u;
+        //        var phi = (float)Math.Acos(2.0f * v - 1.0f);
 
-                var pointOnSphere = new Vector3(
-                    radius * (float)Math.Sin(phi) * (float)Math.Cos(theta),
-                    radius * (float)Math.Sin(phi) * (float)Math.Sin(theta),
-                    radius * (float)Math.Cos(phi)
-                );
+        //        var pointOnSphere = new Vector3(
+        //            radius * (float)Math.Sin(phi) * (float)Math.Cos(theta),
+        //            radius * (float)Math.Sin(phi) * (float)Math.Sin(theta),
+        //            radius * (float)Math.Cos(phi)
+        //        );
 
-                var warpFactor = (float)noiseAlgorithm.GenerateSpatialSingleSample(new double[] { pointOnSphere.X, pointOnSphere.Y, pointOnSphere.Z });
-                var warpedPoint = pointOnSphere + pointOnSphere * warpFactor * warpAmount;
+        //        var warpFactor = (float)noiseAlgorithm.GenerateSpatialSingleSample(new double[] { pointOnSphere.X, pointOnSphere.Y, pointOnSphere.Z });
+        //        var warpedPoint = pointOnSphere + pointOnSphere * warpFactor * warpAmount;
 
-                Points.Add(Center + warpedPoint);
-            }
-        }
+        //        Points.Add(Center + warpedPoint);
+        //    }
+        //}
     }
 
     public class RandomSphereGenerator

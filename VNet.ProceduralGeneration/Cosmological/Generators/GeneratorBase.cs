@@ -28,6 +28,8 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         protected readonly EventAggregator EventAggregator;
         protected abstract void GenerateDiameter(TContext context, T self);
         protected abstract void GeneratePosition(TContext context, T self);
+        protected abstract void GenerateBoundingBox(TContext context, T self);
+        protected abstract void GenerateOrientation(TContext context, T self);
         protected abstract void GenerateAge(TContext context, T self);
         protected abstract void GenerateLifespan(TContext context, T self);
         protected abstract void GenerateMass(TContext context, T self);
@@ -143,6 +145,8 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         {
             GenerateDiameter(context, self);
             GeneratePosition(context, self);
+            GenerateOrientation(context, self);
+            GenerateBoundingBox(context, self);
             GenerateAge(context, self);
             GenerateLifespan(context, self);
             GenerateMass(context, self);

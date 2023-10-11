@@ -2,6 +2,7 @@
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.Scientific.NumericalVolumes;
 using VNet.System.Events;
 // ReSharper disable MemberCanBeMadeStatic.Local
 #pragma warning disable CA1822
@@ -12,7 +13,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                                                            where T : AstronomicalObjectContainer, new()
                                                            where TContext : ContextBase
     {
-
         protected VoidGeneratorBase(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
         {
         }
@@ -36,15 +36,14 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                             k / (float)VoidSurfaceResolution
                         ) - new Vector3(radius, radius, radius) + self.Position;
 
-                        if ((point - self.Position).Length() <= radius)
+                        if (!((point - self.Position).Length() <= radius)) continue;
+
+                        float warpAmount = context.SurfaceNoiseAlgorithm.GenerateSpatialSingleSample(point) * VoidSurfaceWarpingFactor;
+                        var direction = Vector3.Normalize(point - self.Position);
+                        var warpedPoint = point + direction * warpAmount;
+                        if ((warpedPoint - self.Position).Length() <= radius)
                         {
-                            float warpAmount = context.SurfaceNoiseAlgorithm.GenerateSpatialSingleSample(point) * VoidSurfaceWarpingFactor;
-                            var direction = Vector3.Normalize(point - self.Position);
-                            var warpedPoint = point + direction * warpAmount;
-                            if ((warpedPoint - self.Position).Length() <= radius)
-                            {
-                                self.WarpedSurface.Add(warpedPoint);
-                            }
+                            self.WarpedSurface.Add(warpedPoint);
                         }
                     }
                 }
@@ -78,6 +77,11 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         private bool PointOverlap(IEnumerable<Vector3> points, Vector3 newPoint)
         {
             return points.Any(point => Vector3.Distance(point, newPoint) < 0.01f);
+        }
+
+        protected override void GenerateBoundingBox(TContext context, T self)
+        {
+            self.BoundingBox = new BoundingBox<float>(self.Position, 1, new Vector3(0, 0, 1) * self.Diameter);
         }
     }
 }

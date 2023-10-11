@@ -2,7 +2,6 @@
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
-using VNet.Scientific.NumericalVolumes;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators
@@ -39,16 +38,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         protected override void GenerateMass(TContext context, T self)
         {
             throw new NotImplementedException();
-        }
-
-        protected virtual void GenerateOrientation(TContext context, T self)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected virtual void GenerateBoundingBox(TContext context, T self)
-        {
-            self.BoundingBox = new BoundingBox<float>(self.Position, 1, self.Orientation);
         }
 
         protected virtual void GenerateWarpedSurface(TContext context, T self)
