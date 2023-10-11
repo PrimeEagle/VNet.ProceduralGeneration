@@ -2,6 +2,12 @@
 using VNet.Mathematics.Randomization.Generation;
 using VNet.Scientific.Noise;
 using VNet.Scientific.NumericalVolumes;
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable MemberCanBeMadeStatic.Local
+// ReSharper disable CollectionNeverQueried.Global
+// ReSharper disable PropertyCanBeMadeInitOnly.Global
+#pragma warning disable CA1822
+#pragma warning disable CS8618
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators
 {
@@ -11,10 +17,9 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         public float Diameter { get; }
         public BoundingBox<float> OrientedBoundingBox { get; set; }
         public List<Vector3> Points { get; private set; }
-        INoiseAlgorithm NoiseAlgorithm { get; set; }
-        private IRandomGenerationAlgorithm RandomAlgorithm { get; set; }
-
-
+        public INoiseAlgorithm NoiseAlgorithm { get; set; }
+        public IRandomGenerationAlgorithm RandomAlgorithm { get; set; }
+        
         public VSphere(Vector3 center, float diameter)
         {
             Center = center;
@@ -57,16 +62,14 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
     public class RandomSphereGenerator
     {
-        private Random _random = new Random();
-
         public float PercentageOfVolumeCoveredBySpheres { get; set; }
         public float MinSphereSize { get; set; }
         public float MaxSphereSize { get; set; }
         public float PercentageOfOverlappingSpheres { get; set; }
         public float MinOverlapAmount { get; set; }
         public float MaxOverlapAmount { get; set; }
-
-
+        public IRandomGenerationAlgorithm RandomAlgorithm { get; set; }
+        
         public List<VSphere> GenerateSpheres(float[,,] volume)
         {
             var volumeSize = volume.GetLength(0) * volume.GetLength(1) * volume.GetLength(2);
@@ -75,7 +78,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
             while (targetSphereVolume > 0)
             {
-                var diameter = (float)(_random.NextDouble() * (MaxSphereSize - MinSphereSize) + MinSphereSize);
+                var diameter = RandomAlgorithm.NextSingle() * (MaxSphereSize - MinSphereSize) + MinSphereSize;
                 var sphereVolume = (float)(4.0 / 3.0 * Math.PI * Math.Pow(diameter / 2, 3));
 
                 if (sphereVolume > targetSphereVolume)
@@ -85,9 +88,9 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                 }
 
                 var center = new Vector3(
-                    (float)(_random.NextDouble() * (volume.GetLength(0) - diameter)),
-                    (float)(_random.NextDouble() * (volume.GetLength(1) - diameter)),
-                    (float)(_random.NextDouble() * (volume.GetLength(2) - diameter))
+                    RandomAlgorithm.NextSingle() * (volume.GetLength(0) - diameter),
+                    RandomAlgorithm.NextSingle() * (volume.GetLength(1) - diameter),
+                    RandomAlgorithm.NextSingle() * (volume.GetLength(2) - diameter)
                 );
 
                 var sphere = new VSphere(center, diameter);
@@ -100,9 +103,9 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                     if (overlapAmount < MinOverlapAmount || overlapAmount > MaxOverlapAmount)
                     {
                         sphere = new VSphere(new Vector3(
-                            (float)(_random.NextDouble() * (volume.GetLength(0) - diameter)),
-                            (float)(_random.NextDouble() * (volume.GetLength(1) - diameter)),
-                            (float)(_random.NextDouble() * (volume.GetLength(2) - diameter))
+                            RandomAlgorithm.NextSingle() * (volume.GetLength(0) - diameter),
+                            RandomAlgorithm.NextSingle() * (volume.GetLength(1) - diameter),
+                            RandomAlgorithm.NextSingle() * (volume.GetLength(2) - diameter)
                         ), diameter);
                     }
                     else
@@ -142,12 +145,12 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         public Vector3 Center { get; }
         public float Diameter { get; }
         public float Thickness { get; }
-        public Vector3 Normal { get; set; }  // Indicates the orientation of the circle. This should be a normalized vector.
+        public Vector3 OrientationNormal { get; set; }
 
         public BoundingBox<float> OrientedBoundingBox { get; set; }
         public List<Vector3> Points { get; private set; }
-        INoiseAlgorithm NoiseAlgorithm { get; set; }
-        private IRandomGenerationAlgorithm RandomAlgorithm { get; set; }
+        public INoiseAlgorithm NoiseAlgorithm { get; set; }
+        public IRandomGenerationAlgorithm RandomAlgorithm { get; set; }
 
 
         public SCircle(Vector3 center, float diameter, float thickness)
@@ -161,26 +164,20 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
         public void UpdateBoundingBox()
         {
-            // Determine the rotation axis and angle between current orientation and the Normal
-            var currentOrientation = Vector3.Transform(new Vector3(0, 0, 1), this.OrientedBoundingBox.Rotation); // Extract current orientation from bounding box
-            var rotationAxis = Vector3.Cross(currentOrientation, this.Normal);
+            var defaultOrientation = new Vector3(0, 0, 1);
+            var rotationAxis = Vector3.Cross(defaultOrientation, this.OrientationNormal);
 
-            rotationAxis = rotationAxis.LengthSquared() < 1e-10 ? currentOrientation : // If the vectors are nearly parallel, just use the current orientation
-                // Check for near co-linearity
-                Vector3.Normalize(rotationAxis);
-
-            var dot = Vector3.Dot(currentOrientation, this.Normal);
-            var rotationAngle = (float)Math.Acos(Math.Clamp(dot, -1.0f, 1.0f));  // Ensure clamping due to precision errors
+            rotationAxis = rotationAxis.LengthSquared() < 1e-10 ? defaultOrientation : Vector3.Normalize(rotationAxis);
+            var dot = Vector3.Dot(defaultOrientation, this.OrientationNormal);
+            var rotationAngle = (float)Math.Acos(Math.Clamp(dot, -1.0f, 1.0f));
 
             var rotation = Quaternion.CreateFromAxisAngle(rotationAxis, rotationAngle);
 
-            // Update the bounding box based on the circle's orientation and position
             var rotationMatrix = Matrix4x4.CreateFromQuaternion(rotation);
             this.OrientedBoundingBox = new BoundingBox<float>(this.Center, this.Diameter / 2, Vector3.Transform(new Vector3(this.Diameter, this.Diameter, this.Thickness), rotationMatrix));
         }
 
-
-        public void Warp(INoiseAlgorithm noiseAlgorithm, float warpAmount)
+        public void Warp(float warpAmount)
         {
             var numberOfPoints = (int)(Math.PI * Math.Pow(Diameter, 2));
 
@@ -195,8 +192,8 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                     Center.Z
                 );
 
-                var warpFactorXY = (float)noiseAlgorithm.GenerateSpatialSingleSample(new double[] { pointOnCircle.X, pointOnCircle.Y });
-                var warpedPoint = pointOnCircle + Vector3.Normalize(pointOnCircle - Center) * warpFactorXY * warpAmount;
+                var warpFactorXy = (float)NoiseAlgorithm.GenerateSpatialSingleSample(new double[] { pointOnCircle.X, pointOnCircle.Y });
+                var warpedPoint = pointOnCircle + Vector3.Normalize(pointOnCircle - Center) * warpFactorXy * warpAmount;
 
                 Points.Add(warpedPoint);
             }
@@ -205,10 +202,9 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
     public class RandomCircleGenerator
     {
-        private Random _random = new Random();
-
         public float MinThickness { get; set; }
         public float MaxThickness { get; set; }
+        public IRandomGenerationAlgorithm RandomAlgorithm { get; set; }
 
         public List<SCircle> GenerateCirclesFromIntersections(List<VSphere> spheres)
         {
@@ -224,76 +220,68 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                     var distance = Vector3.Distance(sphere1.Center, sphere2.Center);
                     var combinedRadii = (sphere1.Diameter + sphere2.Diameter) / 2;
 
-                    // Check if spheres intersect
-                    if (distance < combinedRadii)
+                    if (!(distance < combinedRadii)) continue;
+
+                    var direction = Vector3.Normalize(sphere2.Center - sphere1.Center);
+                    var circleCenter = sphere1.Center + direction * (sphere1.Diameter / 2);
+                    var approxCircleDiameter = combinedRadii - distance;
+                    var thickness = RandomAlgorithm.NextSingle() * (MaxThickness - MinThickness) + MinThickness;
+                    var circle = new SCircle(circleCenter, approxCircleDiameter, thickness)
                     {
-                        // Calculate intersection circle center (approximation)
-                        var direction = Vector3.Normalize(sphere2.Center - sphere1.Center);
-                        var circleCenter = sphere1.Center + direction * (sphere1.Diameter / 2);
+                        OrientationNormal = direction
+                    };
+                    circle.UpdateBoundingBox();
 
-                        var circleDiameter = combinedRadii - distance; // Approximate diameter
-                        var thickness = (float)(_random.NextDouble() * (MaxThickness - MinThickness) + MinThickness);
-
-                        // Create the SCircle with the calculated orientation
-                        var circle = new SCircle(circleCenter, circleDiameter, thickness)
-                        {
-                            // Set the circle's normal to the direction between the sphere centers
-                            Normal = direction
-                        };
-
-                        // Update the circle's oriented bounding box to match this orientation
-                        circle.UpdateBoundingBox();
-
-                        circles.Add(circle);
-                    }
+                    circles.Add(circle);
                 }
             }
 
             return circles;
         }
     }
-
-
+    
     public class FCylinder
     {
+        private Vector3 _direction;
         public Vector3 Center { get; set; }
         public float Diameter { get; }
         public float Length { get; set; }
         public Vector3 Direction
         {
-            get
-            {
-                return Vector3.Transform(new Vector3(0, 0, 1), this.OrientedBoundingBox.Rotation);  // Default direction is Z-axis, transformed by the bounding box's rotation.
-            }
+            get => _direction;
             set
             {
-                var currentDirection = Direction;
+                var currentDirection = _direction;
                 var targetDirection = Vector3.Normalize(value);
-
-                // Find rotation axis and angle
                 var rotationAxis = Vector3.Cross(currentDirection, targetDirection);
                 var dot = Vector3.Dot(currentDirection, targetDirection);
-                var rotationAngle = (float)Math.Acos(dot);  // Angle between current and target direction
-
+                var rotationAngle = (float)Math.Acos(dot);
                 var rotation = Quaternion.CreateFromAxisAngle(rotationAxis, rotationAngle);
 
-                this.OrientedBoundingBox.Rotation = Matrix4x4.CreateFromQuaternion(rotation) * this.OrientedBoundingBox.Rotation;
+                this.OrientedBoundingBox.Rotation = Matrix4x4.CreateFromQuaternion(rotation);
+                _direction = targetDirection;
 
                 UpdateBoundingBox();
             }
         }
-
-
-
         public BoundingBox<float> OrientedBoundingBox { get; set; }
         public List<Vector3> Points { get; private set; }
-        INoiseAlgorithm NoiseAlgorithm { get; set; }
-        private IRandomGenerationAlgorithm RandomAlgorithm { get; set; }
+        public INoiseAlgorithm NoiseAlgorithm { get; set; }
+        public IRandomGenerationAlgorithm RandomAlgorithm { get; set; }
 
         public void UpdateBoundingBox()
         {
-            var orientation = Vector3.Transform(new Vector3(0, 0, 1), this.OrientedBoundingBox.Rotation);  // Extract direction from the current rotation
-            this.OrientedBoundingBox = new BoundingBox<float>(this.Center, this.Diameter / 2, orientation * this.Length);
+            var defaultOrientation = new Vector3(0, 0, 1);
+            var rotationAxis = Vector3.Cross(defaultOrientation, _direction);
+
+            rotationAxis = rotationAxis.LengthSquared() < 1e-10 ? defaultOrientation :
+                Vector3.Normalize(rotationAxis);
+
+            var dot = Vector3.Dot(defaultOrientation, _direction);
+            var rotationAngle = (float)Math.Acos(Math.Clamp(dot, -1.0f, 1.0f));
+            var rotation = Quaternion.CreateFromAxisAngle(rotationAxis, rotationAngle);
+            var rotationMatrix = Matrix4x4.CreateFromQuaternion(rotation);
+            this.OrientedBoundingBox = new BoundingBox<float>(this.Center, this.Diameter / 2, Vector3.Transform(new Vector3(this.Diameter, this.Diameter, this.Length), rotationMatrix));
         }
 
         public FCylinder(Vector3 center, float diameter, float length)
@@ -305,7 +293,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             Points = new List<Vector3>();
         }
 
-        public void Warp(INoiseAlgorithm noiseAlgorithm, float warpAmount)
+        public void Warp(float warpAmount)
         {
             var numberOfPoints = (int)(Math.PI * Diameter * Length);
 
@@ -331,8 +319,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
     public class RandomCylinderGenerator
     {
-        private Random _random = new Random();
-
         public List<FCylinder> GenerateCylindersFromIntersections(List<SCircle> circles)
         {
             var cylinders = new List<FCylinder>();
@@ -344,27 +330,52 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                     var circle1 = circles[i];
                     var circle2 = circles[j];
 
-                    var distance = Vector3.Distance(circle1.Center, circle2.Center);
+                    if (!GetCircleIntersection(circle1, circle2, out var intersection1, out var intersection2)) continue;
 
-                    // Check if circles intersect
-                    if (distance < (circle1.Diameter / 2 + circle2.Diameter / 2))
+                    var cylinderCenter = (intersection1 + intersection2) / 2;
+                    var cylinderDirection = Vector3.Normalize(intersection2 - intersection1);
+                    var cylinderLength = Vector3.Distance(intersection1, intersection2);
+                    var cylinderDiameter = Math.Min(circle1.Diameter, circle2.Diameter);
+
+                    var newCylinder = new FCylinder(cylinderCenter, cylinderDiameter, cylinderLength)
                     {
-                        // Calculate intersection cylinder properties (approximation)
-                        var direction = Vector3.Normalize(circle2.Center - circle1.Center);
-                        var cylinderLength = distance;
-                        var cylinderDiameter = Math.Min(circle1.Diameter, circle2.Diameter);
-                        var cylinderCenter = circle1.Center + direction * distance / 2;
+                        Direction = cylinderDirection
+                    };
 
-                        cylinders.Add(new FCylinder(cylinderCenter, cylinderDiameter, cylinderLength));
-                    }
+                    cylinders.Add(newCylinder);
                 }
             }
 
             return cylinders;
         }
+
+        private bool GetCircleIntersection(SCircle c1, SCircle c2, out Vector3 intersection1, out Vector3 intersection2)
+        {
+            intersection1 = new Vector3();
+            intersection2 = new Vector3();
+
+            var lineDirection = Vector3.Cross(c1.OrientationNormal, c2.OrientationNormal);
+            if (lineDirection.LengthSquared() < 1e-10)
+                return false;
+
+            lineDirection = Vector3.Normalize(lineDirection);
+
+            var t = Vector3.Dot(c1.OrientationNormal, (c1.Center - c2.Center)) / Vector3.Dot(c1.OrientationNormal, lineDirection);
+            var intersectionPoint = c2.Center + t * lineDirection;
+            var distanceToC1 = Vector3.Distance(c1.Center, intersectionPoint);
+            var distanceToC2 = Vector3.Distance(c2.Center, intersectionPoint);
+
+            if (distanceToC1 > c1.Diameter / 2 || distanceToC2 > c2.Diameter / 2)
+                return false;
+
+            var distanceFromCenterToIntersection = Math.Sqrt((c1.Diameter / 2 * c1.Diameter / 2) - (distanceToC1 * distanceToC1));
+            intersection1 = intersectionPoint + lineDirection * (float)distanceFromCenterToIntersection;
+            intersection2 = intersectionPoint - lineDirection * (float)distanceFromCenterToIntersection;
+
+            return true;
+        }
     }
-
-
+    
     public class CylinderMerger
     {
         public float MaxCylinderMergeDistance { get; set; }
@@ -392,7 +403,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                         cylinders.RemoveAt(j);
                         merged = true;
                         anyMerged = true;
-                        break;  // Exit inner loop since cylinder[i] is now merged
+                        break;
                     }
 
                     if (!merged)
@@ -416,7 +427,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                 return false;
             }
 
-            // Calculate angle between orientations (simple approach using dot product)
             var dir1 = Vector3.Normalize(cyl1.Center - (cyl1.Center - new Vector3(0, 0, cyl1.Length / 2)));
             var dir2 = Vector3.Normalize(cyl2.Center - (cyl2.Center - new Vector3(0, 0, cyl2.Length / 2)));
             var dot = Vector3.Dot(dir1, dir2);
@@ -454,10 +464,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                 {
                     var cylinder = cylinders[i];
                     var closestNeighbor = FindClosestNeighbor(cylinder, cylinders);
-
-                    // Calculate adjustments
-                    float moveAmount, rotateAmount, lengthAdjustAmount;
-                    var canAdjust = CalculateAdjustments(cylinder, closestNeighbor, out moveAmount, out rotateAmount, out lengthAdjustAmount);
+                    var canAdjust = CalculateAdjustments(cylinder, closestNeighbor, out var moveAmount, out var rotateAmount, out var lengthAdjustAmount);
 
                     if (canAdjust)
                     {
@@ -467,7 +474,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                     else
                     {
                         cylinders.RemoveAt(i);
-                        i--; // adjust index due to removal
+                        i--;
                     }
                 }
             }
@@ -475,13 +482,13 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             return cylinders;
         }
 
-        private FCylinder FindClosestNeighbor(FCylinder cylinder, List<FCylinder> cylinders)
+        private FCylinder? FindClosestNeighbor(FCylinder cylinder, List<FCylinder> cylinders)
         {
             var minDistance = float.MaxValue;
-            FCylinder closest = null;
+            FCylinder? closest = null;
             foreach (var other in cylinders)
             {
-                if (other == cylinder) continue; // skip self
+                if (other == cylinder) continue;
 
                 var distance = Vector3.Distance(cylinder.Center, other.Center);
                 if (!(distance < minDistance)) continue;
@@ -493,56 +500,36 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
         private bool CalculateAdjustments(FCylinder cylinder, FCylinder neighbor, out float move, out float rotate, out float lengthAdjust)
         {
-            move = rotate = lengthAdjust = 0f;
-
-            // Calculate the vector pointing from cylinder to neighbor
             var directionToNeighbor = neighbor.Center - cylinder.Center;
-
-            // Calculate the desired end point for our cylinder to touch the neighbor
             var desiredEndPoint = cylinder.Center + Vector3.Normalize(directionToNeighbor) * (directionToNeighbor.Length() - neighbor.Length / 2 - cylinder.Length / 2);
 
-            // 1. Position Adjustments:
-            // Calculate the move amount as the difference between current endpoint and desired endpoint
-            var endPointDifference = desiredEndPoint - (cylinder.Center + new Vector3(0, 0, cylinder.Length / 2));
+            var endPointDifference = desiredEndPoint - (cylinder.Center + cylinder.Direction * cylinder.Length / 2);
             move = endPointDifference.Length();
 
-            // 2. Orientation Adjustments:
-            // Calculate the angle between the cylinder's current direction and the desired direction to the neighbor
-            var currentDirection = new Vector3(0, 0, 1);  // Assuming cylinders are oriented along the Z axis
+            var currentDirection = cylinder.Direction;  // Fetch the cylinder's current orientation
             var dot = Vector3.Dot(currentDirection, Vector3.Normalize(directionToNeighbor));
             rotate = (float)Math.Acos(dot) * (180.0f / (float)Math.PI);
 
-            // 3. Length Adjustments:
-            // Adjust the length so that both endpoints of the cylinder touch those of its neighbor
             lengthAdjust = directionToNeighbor.Length() - cylinder.Length - neighbor.Length;
 
-            // Check if adjustments are within the specified limits
             if (move < MinLatticeMove || move > MaxLatticeMove) return false;
             if (rotate < MinLatticeRotate || rotate > MaxLatticeRotate) return false;
             return !(lengthAdjust < MinLatticeLengthAdjust) && !(lengthAdjust > MaxLatticeLengthAdjust);
         }
 
-
         private void ApplyAdjustments(FCylinder cylinder, float moveAmount, float rotateAmount, float lengthAdjustAmount)
         {
-            // 1. Move the cylinder
-            var currentOrientation = Vector3.Transform(new Vector3(0, 0, 1), cylinder.OrientedBoundingBox.Rotation); // Extract orientation from bounding box's rotation matrix
+            var currentOrientation = Vector3.Transform(new Vector3(0, 0, 1), cylinder.OrientedBoundingBox.Rotation);
             cylinder.Center += currentOrientation * moveAmount;
 
-            // 2. Rotate the cylinder
-            // We rotate around all three axes by the rotateAmount.
             var rotationX = Matrix4x4.CreateRotationX(MathF.PI * rotateAmount / 180.0f);
             var rotationY = Matrix4x4.CreateRotationY(MathF.PI * rotateAmount / 180.0f);
             var rotationZ = Matrix4x4.CreateRotationZ(MathF.PI * rotateAmount / 180.0f);
             var combinedRotation = rotationX * rotationY * rotationZ;
 
-            // Update the bounding box's rotation matrix
             cylinder.OrientedBoundingBox.Rotation = combinedRotation * cylinder.OrientedBoundingBox.Rotation;
-
-            // 3. Adjust the cylinder's length
             cylinder.Length += lengthAdjustAmount;
 
-            // Adjust the bounding box based on the new cylinder dimensions
             var newOrientation = Vector3.Transform(new Vector3(0, 0, 1), cylinder.OrientedBoundingBox.Rotation);
             cylinder.OrientedBoundingBox = new BoundingBox<float>(cylinder.Center, cylinder.Diameter / 2, newOrientation * cylinder.Length);
         }
@@ -553,22 +540,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         public Vector3 Center { get; set; }
         public float Diameter { get; set; }
         public BoundingBox<float> OrientedBoundingBox { get; private set; }
-        private INoiseAlgorithm _noiseAlgorithm;
+        public readonly INoiseAlgorithm NoiseAlgorithm;
 
         public NSphere(Vector3 center, float diameter, INoiseAlgorithm noiseAlgorithm)
         {
             Center = center;
             Diameter = diameter;
-            _noiseAlgorithm = noiseAlgorithm;
+            NoiseAlgorithm = noiseAlgorithm;
             OrientedBoundingBox = new BoundingBox<float>(center, diameter / 2, Vector3.One * diameter);
         }
 
-        public void Warp(INoiseAlgorithm noiseAlgorithm, float warpAmount)
+        public void Warp(float warpAmount)
         {
             var displacement = new Vector3(
-                (float)noiseAlgorithm.GenerateSpatialSingleSample(new double[] { Center.X }),
-                (float)noiseAlgorithm.GenerateSpatialSingleSample(new double[] { Center.Y }),
-                (float)noiseAlgorithm.GenerateSpatialSingleSample(new double[] { Center.Z })
+                (float)NoiseAlgorithm.GenerateSpatialSingleSample(new double[] { Center.X }),
+                (float)NoiseAlgorithm.GenerateSpatialSingleSample(new double[] { Center.Y }),
+                (float)NoiseAlgorithm.GenerateSpatialSingleSample(new double[] { Center.Z })
             );
 
             Center += displacement * warpAmount;
@@ -578,9 +565,10 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
     public class NSphereGenerator
     {
-        private Random _random = new Random();
         public float MinNSphereSize { get; set; }
         public float MaxNSphereSize { get; set; }
+        public IRandomGenerationAlgorithm RandomAlgorithm { get; set; }
+
 
         public List<NSphere> GenerateSpheresFromCylinderEnds(List<FCylinder> cylinders, INoiseAlgorithm noiseAlgorithm)
         {
@@ -588,12 +576,10 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
             foreach (var cylinder in cylinders)
             {
-                var direction = Vector3.Transform(new Vector3(0, 0, 1), cylinder.OrientedBoundingBox.Rotation); // Extract direction from cylinder's bounding box
+                var direction = Vector3.Transform(new Vector3(0, 0, 1), cylinder.OrientedBoundingBox.Rotation);
                 var endpoint1 = cylinder.Center - direction * cylinder.Length / 2;
                 var endpoint2 = cylinder.Center + direction * cylinder.Length / 2;
-
-                // Generate random size within the given limits
-                var diameter = (float)(_random.NextDouble() * (MaxNSphereSize - MinNSphereSize) + MinNSphereSize);
+                var diameter = RandomAlgorithm.NextSingle() * (MaxNSphereSize - MinNSphereSize) + MinNSphereSize;
 
                 spheres.Add(new NSphere(endpoint1, diameter, noiseAlgorithm));
                 spheres.Add(new NSphere(endpoint2, diameter, noiseAlgorithm));
