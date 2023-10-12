@@ -15,7 +15,7 @@ using VNet.Scientific.NumericalVolumes;
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 {
-    public abstract class AstronomicalObject : IAstronomicalObject, IInteriorObject
+    public abstract class AstronomicalObject : IAstronomicalObject
     {
         protected float? age;
         protected float? lifespan;

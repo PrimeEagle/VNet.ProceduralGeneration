@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts
 {
-    public class UniverseContext : ContextBase
+    public class UniverseContext : ContainerContextBase
     {
         public double MinDarkEnergyPercent { get; set; }
         public double MaxDarkEnergyPercent { get; set; }

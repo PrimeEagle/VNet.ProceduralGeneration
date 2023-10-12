@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public class BaryonicMatterNodeContext : ContextBase
+public class BaryonicMatterNodeContext : NodeContext
 {
     public SpatialGrid SpatialGrid { get; init; }
     public CosmicWebHeightmapTopology Topology { get; init; }

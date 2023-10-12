@@ -19,8 +19,10 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration.Constants
             internal static float LuminosityConversionFactor { get; } = 0f;
             internal static double ElectricalCurrentConversionFactor { get; } = 0d;
             internal static SizeType SizeMeaning { get; } = SizeType.Diameter;
-            internal static string LuaPluginFolder { get; } = "plugins_lua";
-            internal static string CSharpPluginFolder { get; } = "plugins_csharp";
+            internal static bool ApplyGravitationalEffectsPreventDarkMatterClumping { get; } = true;
+            internal static bool ApplyGravitationalEffectsDampenBaryonicMatter { get; } = true;
+            internal static float MinimumDarkMatterDistanceToPreventClumping { get; } = 0.1f;
+            internal static float BaryonicMatterDampeningFactor { get; } = 0.5f;
         }
     }
 }

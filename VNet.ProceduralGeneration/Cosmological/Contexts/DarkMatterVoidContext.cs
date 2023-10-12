@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public class DarkMatterVoidContext : ContextBase
+public class DarkMatterVoidContext : VoidContext
 {
     public DarkMatterVoidContext()
     {

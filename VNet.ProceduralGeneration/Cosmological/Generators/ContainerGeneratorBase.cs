@@ -8,7 +8,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 {
     public abstract class ContainerGeneratorBase<T, TContext> : GeneratorBase<T, TContext>, IDisposable
                                                       where T : AstronomicalObjectContainer, new()
-                                                      where TContext : ContextBase
+                                                      where TContext : ContainerContextBase
     {
 
         protected ContainerGeneratorBase(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
@@ -78,7 +78,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
         protected virtual void ApplyGravitationalEffects(TContext context, T self, float timeInYears)
         {
-            if (!Settings.Basic.ApplyGravitationalEffectsToCosmicWeb) return;
+            if (!Settings.Basic.ApplyGravitationalEffects) return;
 
             var netDisplacements = new List<Vector3>();
             var netVelocities = new List<Vector3>();
@@ -99,12 +99,12 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                     var direction = self.InteriorObjects[j].Position - self.InteriorObjects[i].Position;
                     var distance = direction.Length();
 
-                    if (preventDarkMatterClumping)
+                    if (Settings.Advanced.Application.ApplyGravitationalEffectsPreventDarkMatterClumping)
                     {
                         // Prevent dark matter from clumping too densely
-                        if (self.InteriorObjects[i].MatterType == MatterType.DarkMatter && self.InteriorObjects[j].MatterType == MatterType.DarkMatter && distance < minDarkMatterDistance)
+                        if (self.InteriorObjects[i].MatterType == MatterType.DarkMatter && self.InteriorObjects[j].MatterType == MatterType.DarkMatter && distance < Settings.Advanced.Application.MinimumDarkMatterDistanceToPreventClumping)
                         {
-                            distance = minDarkMatterDistance;
+                            distance = Settings.Advanced.Application.MinimumDarkMatterDistanceToPreventClumping;
                         }
                     }
 
@@ -115,12 +115,12 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                     var velocity = acceleration * timeInYears;
                     var displacement = 0.5f * acceleration * timeInYears * timeInYears;
 
-                    if (dampBaryonicMatter)
+                    if (Settings.Advanced.Application.ApplyGravitationalEffectsDampenBaryonicMatter)
                     {
                         // Damping for Baryonic matter
                         if (self.InteriorObjects[i].MatterType == MatterType.BaryonicMatter)
                         {
-                            velocity *= dampingFactorForBaryonic;
+                            velocity *= Settings.Advanced.Application.BaryonicMatterDampeningFactor;
                         }
                     }
 

@@ -3,9 +3,8 @@ using VNet.ProceduralGeneration.Cosmological.Enum;
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 {
-    public interface IInteriorObject
+    public class UndefinedAstronomicalObject : IUndefinedAstronomicalObject
     {
-        public Type? Type { get; set; }
         public double Mass { get; set; }                                                    // kg
         public Vector3 Position { get; set; }                                               // AU
         public MatterType MatterType { get; set; }

@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Configuration.Constants;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
 // ReSharper disable ClassNeverInstantiated.Global
 
@@ -88,17 +89,24 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Tooltip("Whether 'size' refers to the radius, diameter, or volume of an object.")]
         public SizeType SizeMeaning { get; set; }
 
-        [Required]
-        [DirectoryExists]
-        [DisplayName("Lua Plugin Folder")]
-        [Tooltip("The folder that contains Lua plugins that should be loaded.")]
-        public string LuaPluginFolder { get; init; }
+        [DisplayName("Prevent Dark Matter Clumping")]
+        [Tooltip("If 'Apply Gravitational Effects' is enabled, determines whether dark matter clumping should be prevented.")]
+        public bool ApplyGravitationalEffectsPreventDarkMatterClumping { get; init; }
 
-        [Required]
-        [DirectoryExists]
-        [DisplayName("C# Plugin Folder")]
-        [Tooltip("The folder that contains C# plugins that should be loaded.")]
-        public string CSharpPluginFolder { get; init; }
+        [DisplayName("Dampen Baryonic Matter")]
+        [Tooltip("If 'Apply Gravitational Effects' is enabled, determines whether the gravitation effects on baryonic matter should be dampened.")]
+        public bool ApplyGravitationalEffectsDampenBaryonicMatter { get; init; }
+
+        [RequiredIfTrue(nameof(ApplyGravitationalEffectsPreventDarkMatterClumping))]
+        [DisplayName("Minimum Dark Matter Distance to Prevent Clumping")]
+        [Tooltip("If 'Prevent Dark Matter Clumping' is enabled, the minimum distance allowed between dark matter.")]
+        public float MinimumDarkMatterDistanceToPreventClumping { get; init; }
+
+        [RequiredIfTrue(nameof(ApplyGravitationalEffectsDampenBaryonicMatter))]
+        [Range(0, 1)]
+        [DisplayName("Baryonic Matter Dampening Factor")]
+        [Tooltip("If 'Dampen Baryonic Matter' is enabled, the dampening factor applied to baryonic matter.")]
+        public float BaryonicMatterDampeningFactor { get; init; }
 
 
 
@@ -116,8 +124,10 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
             this.LuminosityConversionFactor = ConfigConstants.Application.LuminosityConversionFactor;
             this.ElectricalCurrentConversionFactor = ConfigConstants.Application.ElectricalCurrentConversionFactor;
             this.SizeMeaning = ConfigConstants.Application.SizeMeaning;
-            this.LuaPluginFolder = ConfigConstants.Application.LuaPluginFolder;
-            this.CSharpPluginFolder = ConfigConstants.Application.CSharpPluginFolder;
+            this.ApplyGravitationalEffectsPreventDarkMatterClumping = ConfigConstants.Application.ApplyGravitationalEffectsPreventDarkMatterClumping;
+            this.ApplyGravitationalEffectsDampenBaryonicMatter = ConfigConstants.Application.ApplyGravitationalEffectsDampenBaryonicMatter;
+            this.MinimumDarkMatterDistanceToPreventClumping = ConfigConstants.Application.MinimumDarkMatterDistanceToPreventClumping;
+            this.BaryonicMatterDampeningFactor = ConfigConstants.Application.BaryonicMatterDampeningFactor;
         }
     }
 }

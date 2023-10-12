@@ -3,18 +3,15 @@ using VNet.ProceduralGeneration.Cosmological.Enum;
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 {
-    public interface IAstronomicalObject
+    public interface IAstronomicalObject : IUndefinedAstronomicalObject
     {
         public string Id { get; init; }
         public float Age { get; set; }                                                      // years
         public float Lifespan { get; set; }                                                 // years
-        public double Mass { get; set; }                                                    // kg
         public float Diameter { get; set; }                                                 // AU
         public float Temperature { get; set; }                                              // Kelvin
         public float Luminosity { get; set; }                                               // L⊙
-        public Vector3 Position { get; set; }                                               // AU
         public Vector3 Orientation { get; set; }
-        public MatterType MatterType { get; set; }
 
 
 

@@ -6,8 +6,8 @@ using VNet.System.Events;
 namespace VNet.ProceduralGeneration.Cosmological.Generators
 {
     public abstract class FilamentGeneratorBase<T, TContext> : ContainerGeneratorBase<T, TContext>, IDisposable
-                                                 where T : AstronomicalObjectContainer, new()
-                                                 where TContext : ContextBase
+                                                 where T : Filament, new()
+                                                 where TContext : FilamentContext
     {
 
         protected FilamentGeneratorBase(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)

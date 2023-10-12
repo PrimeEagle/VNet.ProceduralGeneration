@@ -5,7 +5,7 @@ using VNet.ProceduralGeneration.Cosmological.Enum;
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public class CosmicWebContext : ContextBase
+public class CosmicWebContext : ContainerContextBase
 {
     public int MapX { get; set; }
     public int MapY { get; set; }

@@ -1,5 +1,5 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public class DebrisDiskContext : ContextBase
+public class DebrisDiskContext : ContainerContextBase
 {
 }

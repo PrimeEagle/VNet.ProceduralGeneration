@@ -67,7 +67,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
         }
         protected List<AstronomicalObject> Children { get; set; }
 
-        public List<IInteriorObject> InteriorObjects { get; set; }
+        public List<IUndefinedAstronomicalObject> InteriorObjects { get; set; }
 
         public List<Vector3> WarpedSurface { get; set; }
 

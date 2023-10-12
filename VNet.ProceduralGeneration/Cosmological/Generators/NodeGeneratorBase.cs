@@ -6,8 +6,8 @@ using VNet.System.Events;
 namespace VNet.ProceduralGeneration.Cosmological.Generators
 {
     public abstract class NodeGeneratorBase<T, TContext> : ContainerGeneratorBase<T, TContext>, IDisposable
-                                                 where T : AstronomicalObjectContainer, new()
-                                                 where TContext : ContextBase
+                                                 where T : Node, new()
+                                                 where TContext : NodeContext
     {
 
         protected NodeGeneratorBase(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)

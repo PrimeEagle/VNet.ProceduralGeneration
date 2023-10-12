@@ -15,7 +15,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Contexts
 
 
 
-        protected void LoadBaseProperties(AstronomicalObject astronomicalObject)
+        protected virtual void LoadBaseProperties(AstronomicalObject astronomicalObject)
         {
             this.Age= astronomicalObject.Age;
             this.Mass = astronomicalObject.Mass;

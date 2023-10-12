@@ -123,9 +123,9 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Tooltip("The starting number of dark matter voids, before being adjusted due to environmental factors.")]
         public int DarkMatterVoidBaseCount { get; init; }
 
-        [DisplayName("Apply Gravitational Effects to Cosmic Web")]
-        [Tooltip("Whether positions of nodes, filaments, sheets, and voids in the cosmic web should be adjusted due to gravity. Increases processing time.")]
-        public bool ApplyGravitationalEffectsToCosmicWeb { get; init; }
+        [DisplayName("Apply Gravitational Effects")]
+        [Tooltip("Whether contents of astronomical object containers should be adjusted due to gravity. Increases processing time.")]
+        public bool ApplyGravitationalEffects { get; init; }
 
         [DisplayName("Average Dimension (Calculated)")]
         [Tooltip("Average of the map X, Y, and Z dimensions.")]
@@ -153,25 +153,38 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         [Tooltip("The folder that contains heightmap files.")]
         public string HeightmapFolder { get; init; }
 
+        [Required]
+        [DirectoryExists]
+        [DisplayName("Lua Plugin Folder")]
+        [Tooltip("The folder that contains Lua plugins that should be loaded.")]
+        public string LuaPluginFolder { get; init; }
+
+        [Required]
+        [DirectoryExists]
+        [DisplayName("C# Plugin Folder")]
+        [Tooltip("The folder that contains C# plugins that should be loaded.")]
+        public string CSharpPluginFolder { get; init; }
 
 
 
         public BasicGenerationSettings()
         {
-            this.DimensionX = ConfigConstants.DimensionX;
-            this.DimensionY = ConfigConstants.DimensionY;
-            this.DimensionZ = ConfigConstants.DimensionZ;
-            this.MinDarkEnergyPercent = ConfigConstants.MinDarkEnergyPercent;
-            this.MaxDarkEnergyPercent = ConfigConstants.MaxDarkEnergyPercent;
-            this.MinDarkMatterPercent = ConfigConstants.MinDarkMatterPercent;
-            this.MaxDarkMatterPercent = ConfigConstants.MaxDarkMatterPercent;
-            this.MinBaryonicMatterPercent = ConfigConstants.MinBaryonicMatterPercent;
-            this.MaxBaryonicMatterPercent = ConfigConstants.MaxBaryonicMatterPercent;
-            this.MinUniverseAge = ConfigConstants.MinUniverseAge;
-            this.MaxUniverseAge = ConfigConstants.MaxUniverseAge;
-            this.ApplyGravitationalEffectsToCosmicWeb = ConfigConstants.ApplyGravitationalEffectsToCosmicWeb;
-            this.HeightmapFolder = ConfigConstants.HeightmapFolder;
-            this.HeightmapFile = ConfigConstants.HeightmapFile;
+            this.DimensionX = ConfigConstants.Basic.DimensionX;
+            this.DimensionY = ConfigConstants.Basic.DimensionY;
+            this.DimensionZ = ConfigConstants.Basic.DimensionZ;
+            this.MinDarkEnergyPercent = ConfigConstants.Basic.MinDarkEnergyPercent;
+            this.MaxDarkEnergyPercent = ConfigConstants.Basic.MaxDarkEnergyPercent;
+            this.MinDarkMatterPercent = ConfigConstants.Basic.MinDarkMatterPercent;
+            this.MaxDarkMatterPercent = ConfigConstants.Basic.MaxDarkMatterPercent;
+            this.MinBaryonicMatterPercent = ConfigConstants.Basic.MinBaryonicMatterPercent;
+            this.MaxBaryonicMatterPercent = ConfigConstants.Basic.MaxBaryonicMatterPercent;
+            this.MinUniverseAge = ConfigConstants.Basic.MinUniverseAge;
+            this.MaxUniverseAge = ConfigConstants.Basic.MaxUniverseAge;
+            this.ApplyGravitationalEffects = ConfigConstants.Basic.ApplyGravitationalEffects;
+            this.HeightmapFolder = ConfigConstants.Basic.HeightmapFolder;
+            this.HeightmapFile = ConfigConstants.Basic.HeightmapFile;
+            this.LuaPluginFolder = ConfigConstants.Basic.LuaPluginFolder;
+            this.CSharpPluginFolder = ConfigConstants.Basic.CSharpPluginFolder;
         }
 
         private float CalculateAverageDim()

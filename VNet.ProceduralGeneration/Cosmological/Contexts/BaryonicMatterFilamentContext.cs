@@ -2,7 +2,7 @@
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public class BaryonicMatterFilamentContext : ContextBase
+public class BaryonicMatterFilamentContext : FilamentContext
 {
     public BaryonicMatterFilamentContext()
     {
