@@ -54,7 +54,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         {
             base.GenerateInteriorObjects(context, self);
 
-            var internalPoints = new List<Vector3>();
+            var internalPoints = new List<IInteriorObject>();
             var targetNumPoints = (int)((1 - VoidInteriorSparsity) * VoidInteriorMaxContents);
 
             while (internalPoints.Count < targetNumPoints)
@@ -65,18 +65,21 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                     context.InteriorRandomizationAlgorithm.NextSingle() * self.Diameter
                 ) - new Vector3(self.Radius, self.Radius, self.Radius) + self.Position;
 
-                if ((randomPoint - self.Position).Length() < self.Radius && !PointOverlap(internalPoints, randomPoint))
+                if (!((randomPoint - self.Position).Length() < self.Radius) || PointOverlap(internalPoints, randomPoint)) continue;
+                var newInteriorObject = new InteriorObject()
                 {
-                    internalPoints.Add(randomPoint);
-                }
+                    Position = randomPoint
+                };
+
+                internalPoints.Add(newInteriorObject);
             }
 
             self.InteriorObjects = internalPoints;
         }
 
-        private bool PointOverlap(IEnumerable<Vector3> points, Vector3 newPoint)
+        private bool PointOverlap(IEnumerable<IInteriorObject> points, Vector3 newPoint)
         {
-            return points.Any(point => Vector3.Distance(point, newPoint) < 0.01f);
+            return points.Any(i => Vector3.Distance(i.Position, newPoint) < 0.01f);
         }
 
         protected override void GenerateBoundingBox(TContext context, T self)
