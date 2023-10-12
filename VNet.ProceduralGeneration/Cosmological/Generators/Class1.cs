@@ -13,25 +13,25 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 {
     public class VSphere
     {
-        public Vector3 Center { get; }
-        public float Diameter { get; }
-        public BoundingBox<float> OrientedBoundingBox { get; set; }
-        public List<Vector3> Points { get; private set; }
-        public INoiseAlgorithm NoiseAlgorithm { get; set; }
-        public IRandomGenerationAlgorithm RandomAlgorithm { get; set; }
+        //public Vector3 Center { get; }
+        //public float Diameter { get; }
+        //public BoundingBox<float> OrientedBoundingBox { get; set; }
+        //public List<Vector3> Points { get; private set; }
+        //public INoiseAlgorithm NoiseAlgorithm { get; set; }
+        //public IRandomGenerationAlgorithm RandomAlgorithm { get; set; }
         
-        public VSphere(Vector3 center, float diameter)
-        {
-            Center = center;
-            Diameter = diameter;
-            OrientedBoundingBox = new BoundingBox<float>(center, diameter / 2, Vector3.One * diameter);
-            Points = new List<Vector3>();
-        }
+        //public VSphere(Vector3 center, float diameter)
+        //{
+        //    Center = center;
+        //    Diameter = diameter;
+        //    OrientedBoundingBox = new BoundingBox<float>(center, diameter / 2, Vector3.One * diameter);
+        //    Points = new List<Vector3>();
+        //}
 
-        public void UpdateBoundingBox()
-        {
-            this.OrientedBoundingBox = new BoundingBox<float>(this.Center, this.Diameter / 2, Vector3.One * this.Diameter);
-        }
+        //public void UpdateBoundingBox()
+        //{
+        //    this.OrientedBoundingBox = new BoundingBox<float>(this.Center, this.Diameter / 2, Vector3.One * this.Diameter);
+        //}
 
         //public void Warp(INoiseAlgorithm noiseAlgorithm, float warpAmount)
         //{

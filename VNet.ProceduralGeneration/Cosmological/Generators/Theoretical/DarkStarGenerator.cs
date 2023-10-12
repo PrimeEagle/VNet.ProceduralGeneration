@@ -21,6 +21,16 @@ public class DarkStarGenerator : GeneratorBase<DarkStar, DarkStarContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(DarkStarContext context, DarkStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(DarkStarContext context, DarkStar self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(DarkStarContext context, DarkStar self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class DarkStarGenerator : GeneratorBase<DarkStar, DarkStarContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(DarkStarContext context, DarkStar self)
+    protected override void SetMatterType(DarkStarContext context, DarkStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(DarkStarContext context, DarkStar self)
     {
         throw new NotImplementedException();
     }

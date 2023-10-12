@@ -7,12 +7,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class CubewanoGenerator : GeneratorBase<Cubewano, CubewanoContext>
 {
+    protected override void GenerateOrientation(CubewanoContext context, Cubewano self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(CubewanoContext context, Cubewano self)
     {
         throw new NotImplementedException();
     }
 
     protected override Task GenerateChildren(CubewanoContext context, Cubewano self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void SetMatterType(CubewanoContext context, Cubewano self)
     {
         throw new NotImplementedException();
     }
@@ -42,6 +52,11 @@ public class CubewanoGenerator : GeneratorBase<Cubewano, CubewanoContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(CubewanoContext context, Cubewano self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Task<Cubewano> GenerateSelf(CubewanoContext context, Cubewano self)
     {
         throw new NotImplementedException();
@@ -52,7 +67,7 @@ public class CubewanoGenerator : GeneratorBase<Cubewano, CubewanoContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(CubewanoContext context, Cubewano self)
+    protected override void PostProcess(CubewanoContext context, Cubewano self)
     {
         throw new NotImplementedException();
     }

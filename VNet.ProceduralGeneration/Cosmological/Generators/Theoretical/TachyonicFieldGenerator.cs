@@ -21,6 +21,16 @@ public class TachyonicFieldGenerator : GeneratorBase<TachyonicField, TachyonicFi
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(TachyonicFieldContext context, TachyonicField self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(TachyonicFieldContext context, TachyonicField self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(TachyonicFieldContext context, TachyonicField self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class TachyonicFieldGenerator : GeneratorBase<TachyonicField, TachyonicFi
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(TachyonicFieldContext context, TachyonicField self)
+    protected override void SetMatterType(TachyonicFieldContext context, TachyonicField self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(TachyonicFieldContext context, TachyonicField self)
     {
         throw new NotImplementedException();
     }

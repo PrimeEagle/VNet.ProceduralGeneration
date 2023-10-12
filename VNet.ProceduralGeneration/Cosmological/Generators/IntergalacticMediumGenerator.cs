@@ -21,6 +21,16 @@ public class IntergalacticMediumGenerator : GeneratorBase<IntergalacticMedium, I
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(IntergalacticMediumContext context, IntergalacticMedium self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(IntergalacticMediumContext context, IntergalacticMedium self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(IntergalacticMediumContext context, IntergalacticMedium self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class IntergalacticMediumGenerator : GeneratorBase<IntergalacticMedium, I
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(IntergalacticMediumContext context, IntergalacticMedium self)
+    protected override void SetMatterType(IntergalacticMediumContext context, IntergalacticMedium self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(IntergalacticMediumContext context, IntergalacticMedium self)
     {
         throw new NotImplementedException();
     }

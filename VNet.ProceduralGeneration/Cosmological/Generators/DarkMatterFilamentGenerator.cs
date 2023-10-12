@@ -22,12 +22,22 @@ public class DarkMatterFilamentGenerator : FilamentGeneratorBase<DarkMatterFilam
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(DarkMatterFilamentContext context, DarkMatterFilament self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(DarkMatterFilamentContext context, DarkMatterFilament self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Task<DarkMatterFilament> GenerateSelf(DarkMatterFilamentContext context, DarkMatterFilament self)
     {
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(DarkMatterFilamentContext context, DarkMatterFilament self)
+    protected override void PostProcess(DarkMatterFilamentContext context, DarkMatterFilament self)
     {
         throw new NotImplementedException();
     }

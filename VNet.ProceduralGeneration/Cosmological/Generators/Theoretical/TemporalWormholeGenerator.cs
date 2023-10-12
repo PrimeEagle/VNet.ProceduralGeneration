@@ -21,6 +21,16 @@ public class TemporalWormholeGenerator : GeneratorBase<TemporalWormhole, Tempora
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(TemporalWormholeContext context, TemporalWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(TemporalWormholeContext context, TemporalWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(TemporalWormholeContext context, TemporalWormhole self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class TemporalWormholeGenerator : GeneratorBase<TemporalWormhole, Tempora
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(TemporalWormholeContext context, TemporalWormhole self)
+    protected override void SetMatterType(TemporalWormholeContext context, TemporalWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(TemporalWormholeContext context, TemporalWormhole self)
     {
         throw new NotImplementedException();
     }

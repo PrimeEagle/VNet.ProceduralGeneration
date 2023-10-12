@@ -7,12 +7,22 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class JumboGenerator : GeneratorBase<Jumbo, JumboContext>
 {
+    protected override void GenerateOrientation(JumboContext context, Jumbo self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(JumboContext context, Jumbo self)
     {
         throw new NotImplementedException();
     }
 
     protected override Task GenerateChildren(JumboContext context, Jumbo self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void SetMatterType(JumboContext context, Jumbo self)
     {
         throw new NotImplementedException();
     }
@@ -42,6 +52,11 @@ public class JumboGenerator : GeneratorBase<Jumbo, JumboContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(JumboContext context, Jumbo self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Task<Jumbo> GenerateSelf(JumboContext context, Jumbo self)
     {
         throw new NotImplementedException();
@@ -52,7 +67,7 @@ public class JumboGenerator : GeneratorBase<Jumbo, JumboContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(JumboContext context, Jumbo self)
+    protected override void PostProcess(JumboContext context, Jumbo self)
     {
         throw new NotImplementedException();
     }

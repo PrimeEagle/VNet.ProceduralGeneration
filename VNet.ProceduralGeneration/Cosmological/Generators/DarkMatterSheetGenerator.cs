@@ -21,6 +21,16 @@ public class DarkMatterSheetGenerator : SheetGeneratorBase<DarkMatterSheet, Dark
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(DarkMatterSheetContext context, DarkMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(DarkMatterSheetContext context, DarkMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Task<DarkMatterSheet> GenerateSelf(DarkMatterSheetContext context, DarkMatterSheet self)
     {
         throw new NotImplementedException();
@@ -31,7 +41,7 @@ public class DarkMatterSheetGenerator : SheetGeneratorBase<DarkMatterSheet, Dark
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(DarkMatterSheetContext context, DarkMatterSheet self)
+    protected override void PostProcess(DarkMatterSheetContext context, DarkMatterSheet self)
     {
         throw new NotImplementedException();
     }

@@ -21,6 +21,16 @@ public class WhiteHoleGenerator : GeneratorBase<WhiteHole, WhiteHoleContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(WhiteHoleContext context, WhiteHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(WhiteHoleContext context, WhiteHole self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(WhiteHoleContext context, WhiteHole self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class WhiteHoleGenerator : GeneratorBase<WhiteHole, WhiteHoleContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(WhiteHoleContext context, WhiteHole self)
+    protected override void SetMatterType(WhiteHoleContext context, WhiteHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(WhiteHoleContext context, WhiteHole self)
     {
         throw new NotImplementedException();
     }

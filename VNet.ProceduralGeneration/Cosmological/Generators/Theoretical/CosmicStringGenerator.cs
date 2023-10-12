@@ -21,6 +21,16 @@ public class CosmicStringGenerator : GeneratorBase<CosmicString, CosmicStringCon
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(CosmicStringContext context, CosmicString self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(CosmicStringContext context, CosmicString self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(CosmicStringContext context, CosmicString self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class CosmicStringGenerator : GeneratorBase<CosmicString, CosmicStringCon
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(CosmicStringContext context, CosmicString self)
+    protected override void SetMatterType(CosmicStringContext context, CosmicString self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(CosmicStringContext context, CosmicString self)
     {
         throw new NotImplementedException();
     }

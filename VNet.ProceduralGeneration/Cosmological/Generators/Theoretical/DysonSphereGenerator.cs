@@ -21,6 +21,16 @@ public class DysonSphereGenerator : GeneratorBase<DysonSphere, DysonSphereContex
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(DysonSphereContext context, DysonSphere self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(DysonSphereContext context, DysonSphere self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(DysonSphereContext context, DysonSphere self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class DysonSphereGenerator : GeneratorBase<DysonSphere, DysonSphereContex
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(DysonSphereContext context, DysonSphere self)
+    protected override void SetMatterType(DysonSphereContext context, DysonSphere self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(DysonSphereContext context, DysonSphere self)
     {
         throw new NotImplementedException();
     }

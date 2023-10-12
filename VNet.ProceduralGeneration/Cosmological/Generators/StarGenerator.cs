@@ -21,6 +21,16 @@ public class StarGenerator : GeneratorBase<Star, StarContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(StarContext context, Star self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(StarContext context, Star self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(StarContext context, Star self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class StarGenerator : GeneratorBase<Star, StarContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(StarContext context, Star self)
+    protected override void SetMatterType(StarContext context, Star self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(StarContext context, Star self)
     {
         throw new NotImplementedException();
     }

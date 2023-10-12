@@ -21,6 +21,16 @@ public class FuzzballGenerator : GeneratorBase<Fuzzball, FuzzballContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(FuzzballContext context, Fuzzball self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(FuzzballContext context, Fuzzball self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(FuzzballContext context, Fuzzball self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class FuzzballGenerator : GeneratorBase<Fuzzball, FuzzballContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(FuzzballContext context, Fuzzball self)
+    protected override void SetMatterType(FuzzballContext context, Fuzzball self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(FuzzballContext context, Fuzzball self)
     {
         throw new NotImplementedException();
     }

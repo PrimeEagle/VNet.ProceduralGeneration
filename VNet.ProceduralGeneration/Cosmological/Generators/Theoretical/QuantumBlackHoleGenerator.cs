@@ -21,6 +21,16 @@ public class QuantumBlackHoleGenerator : GeneratorBase<QuantumBlackHole, Quantum
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(QuantumBlackHoleContext context, QuantumBlackHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(QuantumBlackHoleContext context, QuantumBlackHole self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(QuantumBlackHoleContext context, QuantumBlackHole self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class QuantumBlackHoleGenerator : GeneratorBase<QuantumBlackHole, Quantum
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(QuantumBlackHoleContext context, QuantumBlackHole self)
+    protected override void SetMatterType(QuantumBlackHoleContext context, QuantumBlackHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(QuantumBlackHoleContext context, QuantumBlackHole self)
     {
         throw new NotImplementedException();
     }

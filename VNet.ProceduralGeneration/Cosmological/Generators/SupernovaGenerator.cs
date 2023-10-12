@@ -21,6 +21,16 @@ public class SupernovaGenerator : GeneratorBase<Supernova, SupernovaContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(SupernovaContext context, Supernova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(SupernovaContext context, Supernova self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(SupernovaContext context, Supernova self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class SupernovaGenerator : GeneratorBase<Supernova, SupernovaContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(SupernovaContext context, Supernova self)
+    protected override void SetMatterType(SupernovaContext context, Supernova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(SupernovaContext context, Supernova self)
     {
         throw new NotImplementedException();
     }

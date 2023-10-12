@@ -21,6 +21,16 @@ public class BraneGenerator : GeneratorBase<Brane, BraneContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(BraneContext context, Brane self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(BraneContext context, Brane self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(BraneContext context, Brane self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class BraneGenerator : GeneratorBase<Brane, BraneContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(BraneContext context, Brane self)
+    protected override void SetMatterType(BraneContext context, Brane self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(BraneContext context, Brane self)
     {
         throw new NotImplementedException();
     }

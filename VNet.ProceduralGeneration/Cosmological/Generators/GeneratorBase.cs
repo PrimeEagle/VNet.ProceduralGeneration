@@ -37,7 +37,8 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         protected abstract void GenerateTemperature(TContext context, T self);
         protected abstract Task<T> GenerateSelf(TContext context, T self);
         protected abstract Task GenerateChildren(TContext context, T self);
-        protected abstract Task PostProcess(TContext context, T self);
+        protected abstract void SetMatterType(TContext context, T self);
+        protected abstract void PostProcess(TContext context, T self);
 
         protected GeneratorBase(EventAggregator eventAggregator, ParallelismLevel parallelismLevel)
         {
@@ -83,7 +84,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             return Math.Min(values.calculated, values.configured);
         }
 
-        public async Task<T> Generate(TContext context, AstronomicalObject parent)
+        public virtual async Task<T> Generate(TContext context, AstronomicalObject parent)
         {
             T self;
             this.Context = context;
@@ -117,7 +118,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             Events.EventBuilder.CreateGeneratedEvent(this.EventAggregator, nameof(T), self);
 
             Events.EventBuilder.CreatePostProcessingEvent(this.EventAggregator, nameof(T), self);
-            await PostProcess(context, self);
+            PostProcess(context, self);
             Events.EventBuilder.CreatePostProcessedEvent(this.EventAggregator, nameof(T), self);
 
             return self;
@@ -143,6 +144,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
         protected virtual void GenerateBaseProperties(TContext context, T self)
         {
+            SetMatterType(context, self);
             GenerateDiameter(context, self);
             GeneratePosition(context, self);
             GenerateOrientation(context, self);

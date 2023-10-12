@@ -21,6 +21,16 @@ public class QuasarGenerator : GeneratorBase<Quasar, QuasarContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(QuasarContext context, Quasar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(QuasarContext context, Quasar self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(QuasarContext context, Quasar self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class QuasarGenerator : GeneratorBase<Quasar, QuasarContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(QuasarContext context, Quasar self)
+    protected override void SetMatterType(QuasarContext context, Quasar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(QuasarContext context, Quasar self)
     {
         throw new NotImplementedException();
     }

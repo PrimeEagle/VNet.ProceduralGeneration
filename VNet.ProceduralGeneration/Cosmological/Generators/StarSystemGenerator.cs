@@ -21,6 +21,16 @@ public class StarSystemGenerator : ContainerGeneratorBase<StarSystem, StarSystem
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(StarSystemContext context, StarSystem self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(StarSystemContext context, StarSystem self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Task<StarSystem> GenerateSelf(StarSystemContext context, StarSystem self)
     {
         throw new NotImplementedException();
@@ -31,7 +41,7 @@ public class StarSystemGenerator : ContainerGeneratorBase<StarSystem, StarSystem
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(StarSystemContext context, StarSystem self)
+    protected override void PostProcess(StarSystemContext context, StarSystem self)
     {
         throw new NotImplementedException();
     }

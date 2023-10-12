@@ -21,6 +21,16 @@ public class DebrisDiskGenerator : ContainerGeneratorBase<DebrisDisk, DebrisDisk
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(DebrisDiskContext context, DebrisDisk self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(DebrisDiskContext context, DebrisDisk self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Task<DebrisDisk> GenerateSelf(DebrisDiskContext context, DebrisDisk self)
     {
         throw new NotImplementedException();
@@ -31,7 +41,7 @@ public class DebrisDiskGenerator : ContainerGeneratorBase<DebrisDisk, DebrisDisk
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(DebrisDiskContext context, DebrisDisk self)
+    protected override void PostProcess(DebrisDiskContext context, DebrisDisk self)
     {
         throw new NotImplementedException();
     }

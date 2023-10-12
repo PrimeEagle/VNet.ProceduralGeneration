@@ -21,6 +21,16 @@ public class GalaxyGroupGenerator : ContainerGeneratorBase<GalaxyGroup, GalaxyGr
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(GalaxyGroupContext context, GalaxyGroup self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(GalaxyGroupContext context, GalaxyGroup self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Task<GalaxyGroup> GenerateSelf(GalaxyGroupContext context, GalaxyGroup self)
     {
         throw new NotImplementedException();
@@ -31,7 +41,7 @@ public class GalaxyGroupGenerator : ContainerGeneratorBase<GalaxyGroup, GalaxyGr
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(GalaxyGroupContext context, GalaxyGroup self)
+    protected override void PostProcess(GalaxyGroupContext context, GalaxyGroup self)
     {
         throw new NotImplementedException();
     }

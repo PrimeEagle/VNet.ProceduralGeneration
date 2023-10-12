@@ -21,6 +21,16 @@ public class DomainWallGenerator : GeneratorBase<DomainWall, DomainWallContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(DomainWallContext context, DomainWall self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(DomainWallContext context, DomainWall self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(DomainWallContext context, DomainWall self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class DomainWallGenerator : GeneratorBase<DomainWall, DomainWallContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(DomainWallContext context, DomainWall self)
+    protected override void SetMatterType(DomainWallContext context, DomainWall self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(DomainWallContext context, DomainWall self)
     {
         throw new NotImplementedException();
     }

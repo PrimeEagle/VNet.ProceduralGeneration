@@ -21,6 +21,16 @@ public class AsteroidBeltGenerator : GeneratorBase<AsteroidBelt, AsteroidBeltCon
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(AsteroidBeltContext context, AsteroidBelt self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(AsteroidBeltContext context, AsteroidBelt self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(AsteroidBeltContext context, AsteroidBelt self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class AsteroidBeltGenerator : GeneratorBase<AsteroidBelt, AsteroidBeltCon
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(AsteroidBeltContext context, AsteroidBelt self)
+    protected override void SetMatterType(AsteroidBeltContext context, AsteroidBelt self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(AsteroidBeltContext context, AsteroidBelt self)
     {
         throw new NotImplementedException();
     }

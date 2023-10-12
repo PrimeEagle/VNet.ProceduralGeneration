@@ -21,6 +21,16 @@ public class QuarkStarGenerator : GeneratorBase<QuarkStar, QuarkStarContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(QuarkStarContext context, QuarkStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(QuarkStarContext context, QuarkStar self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(QuarkStarContext context, QuarkStar self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class QuarkStarGenerator : GeneratorBase<QuarkStar, QuarkStarContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(QuarkStarContext context, QuarkStar self)
+    protected override void SetMatterType(QuarkStarContext context, QuarkStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(QuarkStarContext context, QuarkStar self)
     {
         throw new NotImplementedException();
     }

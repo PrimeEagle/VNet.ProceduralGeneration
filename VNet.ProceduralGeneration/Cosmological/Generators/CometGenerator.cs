@@ -21,6 +21,16 @@ public class CometGenerator : GeneratorBase<Comet, CometContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(CometContext context, Comet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(CometContext context, Comet self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(CometContext context, Comet self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class CometGenerator : GeneratorBase<Comet, CometContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(CometContext context, Comet self)
+    protected override void SetMatterType(CometContext context, Comet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(CometContext context, Comet self)
     {
         throw new NotImplementedException();
     }

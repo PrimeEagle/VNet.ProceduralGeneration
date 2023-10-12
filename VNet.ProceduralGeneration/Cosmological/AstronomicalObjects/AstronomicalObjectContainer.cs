@@ -1,4 +1,6 @@
 ﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.Enum;
+
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable InconsistentNaming
 // ReSharper disable CollectionNeverQueried.Global
@@ -63,8 +65,11 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
                 return absoluteMagnitude.Value;
             }
         }
+        protected List<AstronomicalObject> Children { get; set; }
+
+        public List<IInteriorObject> InteriorObjects { get; set; }
+
         public List<Vector3> WarpedSurface { get; set; }
-        public List<Vector3> Interior { get; set; }
 
         #endregion Base Properties
 
@@ -112,10 +117,12 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 
         protected AstronomicalObjectContainer() : base()
         {
+            this.MatterType = MatterType.None;
         }
 
         protected AstronomicalObjectContainer(AstronomicalObject parent) : base(parent)
         {
+            this.MatterType = MatterType.None;
         }
     }
 }

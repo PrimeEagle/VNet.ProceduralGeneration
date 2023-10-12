@@ -21,6 +21,16 @@ public class CuspCatastropheGenerator : GeneratorBase<CuspCatastrophe, CuspCatas
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(CuspCatastropheContext context, CuspCatastrophe self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(CuspCatastropheContext context, CuspCatastrophe self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(CuspCatastropheContext context, CuspCatastrophe self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class CuspCatastropheGenerator : GeneratorBase<CuspCatastrophe, CuspCatas
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(CuspCatastropheContext context, CuspCatastrophe self)
+    protected override void SetMatterType(CuspCatastropheContext context, CuspCatastrophe self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(CuspCatastropheContext context, CuspCatastrophe self)
     {
         throw new NotImplementedException();
     }

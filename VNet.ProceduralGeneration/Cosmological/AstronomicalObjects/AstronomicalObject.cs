@@ -15,7 +15,7 @@ using VNet.Scientific.NumericalVolumes;
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 {
-    public abstract class AstronomicalObject : IAstronomicalObject
+    public abstract class AstronomicalObject : IAstronomicalObject, IInteriorObject
     {
         protected float? age;
         protected float? lifespan;
@@ -61,6 +61,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
         public virtual Vector3 Position { get; set; }                                               // AU
         public virtual BoundingBox<float> BoundingBox { get; set; }
         public virtual Vector3 Orientation { get; set; }
+        public MatterType MatterType { get; set; }
         public virtual float Radius                                                                 // AU
         {
             get
@@ -200,13 +201,11 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 #endregion Base Properties
 
         public AstronomicalObject Parent { get; set; }
-        protected List<AstronomicalObject> Children { get; set; }
         public Universe Universe => FindUniverse();
         protected AstronomicalObject()
         {
             this.Id = GenerateId();
             this.Enabled = true;
-            this.Children = new List<AstronomicalObject>();
             settings = ConfigurationSettings<GeneratorSettings>.AppSettings;
         }
         protected AstronomicalObject(AstronomicalObject parent)
@@ -214,7 +213,6 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
             this.Id = GenerateId();
             this.Parent = parent;
             this.Enabled = true;
-            this.Children = new List<AstronomicalObject>();
             settings = ConfigurationSettings<GeneratorSettings>.AppSettings;
         }
 
@@ -438,6 +436,10 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
             return (Universe)main;
         }
         internal abstract void AssignChildren();
-        public abstract void UpdateBoundingBox();
+
+        public virtual void UpdateBoundingBox()
+        {
+            this.BoundingBox = new BoundingBox<float>(this.position, 1, Vector3.UnitZ);
+        }
     }
 }

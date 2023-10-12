@@ -21,6 +21,16 @@ public class NovaGenerator : GeneratorBase<Nova, NovaContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(NovaContext context, Nova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(NovaContext context, Nova self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(NovaContext context, Nova self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class NovaGenerator : GeneratorBase<Nova, NovaContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(NovaContext context, Nova self)
+    protected override void SetMatterType(NovaContext context, Nova self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(NovaContext context, Nova self)
     {
         throw new NotImplementedException();
     }

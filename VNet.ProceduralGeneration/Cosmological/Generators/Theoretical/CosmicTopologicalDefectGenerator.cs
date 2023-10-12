@@ -21,6 +21,16 @@ public class CosmicTopologicalDefectGenerator : GeneratorBase<CosmicTopologicalD
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class CosmicTopologicalDefectGenerator : GeneratorBase<CosmicTopologicalD
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    protected override void SetMatterType(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
     {
         throw new NotImplementedException();
     }

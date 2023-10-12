@@ -21,6 +21,16 @@ public class SpatialWormholeGenerator : GeneratorBase<SpatialWormhole, SpatialWo
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(SpatialWormholeContext context, SpatialWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(SpatialWormholeContext context, SpatialWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(SpatialWormholeContext context, SpatialWormhole self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class SpatialWormholeGenerator : GeneratorBase<SpatialWormhole, SpatialWo
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(SpatialWormholeContext context, SpatialWormhole self)
+    protected override void SetMatterType(SpatialWormholeContext context, SpatialWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(SpatialWormholeContext context, SpatialWormhole self)
     {
         throw new NotImplementedException();
     }

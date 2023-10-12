@@ -21,6 +21,16 @@ public class PreonStarGenerator : GeneratorBase<PreonStar, PreonStarContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(PreonStarContext context, PreonStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(PreonStarContext context, PreonStar self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(PreonStarContext context, PreonStar self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class PreonStarGenerator : GeneratorBase<PreonStar, PreonStarContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(PreonStarContext context, PreonStar self)
+    protected override void SetMatterType(PreonStarContext context, PreonStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(PreonStarContext context, PreonStar self)
     {
         throw new NotImplementedException();
     }

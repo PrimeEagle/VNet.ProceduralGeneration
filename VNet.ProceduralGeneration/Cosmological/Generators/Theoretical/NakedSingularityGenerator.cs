@@ -21,6 +21,16 @@ public class NakedSingularityGenerator : GeneratorBase<NakedSingularity, NakedSi
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(NakedSingularityContext context, NakedSingularity self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(NakedSingularityContext context, NakedSingularity self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(NakedSingularityContext context, NakedSingularity self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class NakedSingularityGenerator : GeneratorBase<NakedSingularity, NakedSi
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(NakedSingularityContext context, NakedSingularity self)
+    protected override void SetMatterType(NakedSingularityContext context, NakedSingularity self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(NakedSingularityContext context, NakedSingularity self)
     {
         throw new NotImplementedException();
     }

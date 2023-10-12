@@ -21,6 +21,16 @@ public class MagnetarGenerator : GeneratorBase<Magnetar, MagnetarContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(MagnetarContext context, Magnetar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(MagnetarContext context, Magnetar self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(MagnetarContext context, Magnetar self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class MagnetarGenerator : GeneratorBase<Magnetar, MagnetarContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(MagnetarContext context, Magnetar self)
+    protected override void SetMatterType(MagnetarContext context, Magnetar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(MagnetarContext context, Magnetar self)
     {
         throw new NotImplementedException();
     }

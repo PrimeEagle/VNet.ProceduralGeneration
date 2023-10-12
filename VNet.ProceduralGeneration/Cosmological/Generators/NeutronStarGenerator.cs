@@ -21,6 +21,16 @@ public class NeutronStarGenerator : GeneratorBase<NeutronStar, NeutronStarContex
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(NeutronStarContext context, NeutronStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(NeutronStarContext context, NeutronStar self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(NeutronStarContext context, NeutronStar self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class NeutronStarGenerator : GeneratorBase<NeutronStar, NeutronStarContex
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(NeutronStarContext context, NeutronStar self)
+    protected override void SetMatterType(NeutronStarContext context, NeutronStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(NeutronStarContext context, NeutronStar self)
     {
         throw new NotImplementedException();
     }

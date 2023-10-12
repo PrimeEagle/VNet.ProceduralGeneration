@@ -21,6 +21,16 @@ public class DarkMatterNodeGenerator : NodeGeneratorBase<DarkMatterNode, DarkMat
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(DarkMatterNodeContext context, DarkMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(DarkMatterNodeContext context, DarkMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Task<DarkMatterNode> GenerateSelf(DarkMatterNodeContext context, DarkMatterNode self)
     {
         throw new NotImplementedException();
@@ -31,7 +41,7 @@ public class DarkMatterNodeGenerator : NodeGeneratorBase<DarkMatterNode, DarkMat
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(DarkMatterNodeContext context, DarkMatterNode self)
+    protected override void PostProcess(DarkMatterNodeContext context, DarkMatterNode self)
     {
         throw new NotImplementedException();
     }

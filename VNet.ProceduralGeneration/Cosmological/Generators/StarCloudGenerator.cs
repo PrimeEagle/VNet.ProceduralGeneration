@@ -21,6 +21,16 @@ public class StarCloudGenerator : ContainerGeneratorBase<StarCloud, StarCloudCon
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(StarCloudContext context, StarCloud self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(StarCloudContext context, StarCloud self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Task<StarCloud> GenerateSelf(StarCloudContext context, StarCloud self)
     {
         throw new NotImplementedException();
@@ -31,7 +41,7 @@ public class StarCloudGenerator : ContainerGeneratorBase<StarCloud, StarCloudCon
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(StarCloudContext context, StarCloud self)
+    protected override void PostProcess(StarCloudContext context, StarCloud self)
     {
         throw new NotImplementedException();
     }

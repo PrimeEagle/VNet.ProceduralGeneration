@@ -21,6 +21,16 @@ public class MoonGenerator : GeneratorBase<Moon, MoonContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(MoonContext context, Moon self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(MoonContext context, Moon self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(MoonContext context, Moon self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class MoonGenerator : GeneratorBase<Moon, MoonContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(MoonContext context, Moon self)
+    protected override void SetMatterType(MoonContext context, Moon self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(MoonContext context, Moon self)
     {
         throw new NotImplementedException();
     }

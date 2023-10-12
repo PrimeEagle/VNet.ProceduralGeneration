@@ -21,6 +21,16 @@ public class CosmicTornadoGenerator : GeneratorBase<CosmicTornado, CosmicTornado
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(CosmicTornadoContext context, CosmicTornado self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(CosmicTornadoContext context, CosmicTornado self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(CosmicTornadoContext context, CosmicTornado self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class CosmicTornadoGenerator : GeneratorBase<CosmicTornado, CosmicTornado
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(CosmicTornadoContext context, CosmicTornado self)
+    protected override void SetMatterType(CosmicTornadoContext context, CosmicTornado self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(CosmicTornadoContext context, CosmicTornado self)
     {
         throw new NotImplementedException();
     }

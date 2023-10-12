@@ -23,6 +23,16 @@ public class BaryonicMatterNodeGenerator : NodeGeneratorBase<BaryonicMatterNode,
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected async override Task<BaryonicMatterNode> GenerateSelf(BaryonicMatterNodeContext context, BaryonicMatterNode self)
     {
         if (context.SpatialGrid != null)
@@ -59,11 +69,6 @@ public class BaryonicMatterNodeGenerator : NodeGeneratorBase<BaryonicMatterNode,
     protected async override Task GenerateChildren(BaryonicMatterNodeContext context, BaryonicMatterNode self)
     {
         
-    }
-
-    protected override Task PostProcess(BaryonicMatterNodeContext context, BaryonicMatterNode self)
-    {
-        return null;
     }
 
     private Vector3 TransformBasePosition((int, int, int) basePosition)

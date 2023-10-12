@@ -21,6 +21,16 @@ public class MonopoleGenerator : GeneratorBase<Monopole, MonopoleContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(MonopoleContext context, Monopole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(MonopoleContext context, Monopole self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(MonopoleContext context, Monopole self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class MonopoleGenerator : GeneratorBase<Monopole, MonopoleContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(MonopoleContext context, Monopole self)
+    protected override void SetMatterType(MonopoleContext context, Monopole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(MonopoleContext context, Monopole self)
     {
         throw new NotImplementedException();
     }

@@ -21,6 +21,16 @@ public class VoidGalaxyGenerator : ContainerGeneratorBase<VoidGalaxy, VoidGalaxy
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(VoidGalaxyContext context, VoidGalaxy self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(VoidGalaxyContext context, VoidGalaxy self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Task<VoidGalaxy> GenerateSelf(VoidGalaxyContext context, VoidGalaxy self)
     {
         throw new NotImplementedException();
@@ -31,7 +41,7 @@ public class VoidGalaxyGenerator : ContainerGeneratorBase<VoidGalaxy, VoidGalaxy
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(VoidGalaxyContext context, VoidGalaxy self)
+    protected override void PostProcess(VoidGalaxyContext context, VoidGalaxy self)
     {
         throw new NotImplementedException();
     }

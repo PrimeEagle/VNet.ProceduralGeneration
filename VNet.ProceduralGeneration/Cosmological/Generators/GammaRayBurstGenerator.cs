@@ -21,6 +21,16 @@ public class GammaRayBurstGenerator : GeneratorBase<GammaRayBurst, GammaRayBurst
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(GammaRayBurstContext context, GammaRayBurst self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(GammaRayBurstContext context, GammaRayBurst self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(GammaRayBurstContext context, GammaRayBurst self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class GammaRayBurstGenerator : GeneratorBase<GammaRayBurst, GammaRayBurst
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(GammaRayBurstContext context, GammaRayBurst self)
+    protected override void SetMatterType(GammaRayBurstContext context, GammaRayBurst self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(GammaRayBurstContext context, GammaRayBurst self)
     {
         throw new NotImplementedException();
     }

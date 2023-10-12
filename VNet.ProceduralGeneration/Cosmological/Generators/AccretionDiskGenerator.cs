@@ -21,6 +21,16 @@ public class AccretionDiskGenerator : GeneratorBase<AccretionDisk, AccretionDisk
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(AccretionDiskContext context, AccretionDisk self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(AccretionDiskContext context, AccretionDisk self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(AccretionDiskContext context, AccretionDisk self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class AccretionDiskGenerator : GeneratorBase<AccretionDisk, AccretionDisk
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(AccretionDiskContext context, AccretionDisk self)
+    protected override void SetMatterType(AccretionDiskContext context, AccretionDisk self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(AccretionDiskContext context, AccretionDisk self)
     {
         throw new NotImplementedException();
     }

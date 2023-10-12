@@ -22,6 +22,11 @@ public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid,
         throw new NotImplementedException();
     }
 
+    protected override void GenerateOrientation(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Task<BaryonicMatterVoid> GenerateSelf(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
     {
         throw new NotImplementedException();
@@ -32,7 +37,7 @@ public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid,
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
+    protected override void PostProcess(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
     {
         throw new NotImplementedException();
     }

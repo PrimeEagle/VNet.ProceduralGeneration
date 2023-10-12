@@ -50,9 +50,9 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             }
         }
 
-        protected override void GenerateInterior(TContext context, T self)
+        protected override void GenerateInteriorObjects(TContext context, T self)
         {
-            base.GenerateInterior(context, self);
+            base.GenerateInteriorObjects(context, self);
 
             var internalPoints = new List<Vector3>();
             var targetNumPoints = (int)((1 - VoidInteriorSparsity) * VoidInteriorMaxContents);
@@ -71,7 +71,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                 }
             }
 
-            self.Interior = internalPoints;
+            self.InteriorObjects = internalPoints;
         }
 
         private bool PointOverlap(IEnumerable<Vector3> points, Vector3 newPoint)
@@ -81,7 +81,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
         protected override void GenerateBoundingBox(TContext context, T self)
         {
-            self.BoundingBox = new BoundingBox<float>(self.Position, 1, new Vector3(0, 0, 1) * self.Diameter);
+            self.BoundingBox = new BoundingBox<float>(self.Position, 1, Vector3.UnitZ * self.Diameter);
         }
     }
 }

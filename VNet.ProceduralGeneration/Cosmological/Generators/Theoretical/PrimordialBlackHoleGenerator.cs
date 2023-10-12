@@ -21,6 +21,16 @@ public class PrimordialBlackHoleGenerator : GeneratorBase<PrimordialBlackHole, P
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(PrimordialBlackHoleContext context, PrimordialBlackHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(PrimordialBlackHoleContext context, PrimordialBlackHole self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(PrimordialBlackHoleContext context, PrimordialBlackHole self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class PrimordialBlackHoleGenerator : GeneratorBase<PrimordialBlackHole, P
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(PrimordialBlackHoleContext context, PrimordialBlackHole self)
+    protected override void SetMatterType(PrimordialBlackHoleContext context, PrimordialBlackHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(PrimordialBlackHoleContext context, PrimordialBlackHole self)
     {
         throw new NotImplementedException();
     }

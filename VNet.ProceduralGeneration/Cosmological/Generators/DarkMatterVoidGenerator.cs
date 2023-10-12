@@ -21,6 +21,11 @@ public class DarkMatterVoidGenerator : VoidGeneratorBase<DarkMatterVoid, DarkMat
         throw new NotImplementedException();
     }
 
+    protected override void GenerateOrientation(DarkMatterVoidContext context, DarkMatterVoid self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Task<DarkMatterVoid> GenerateSelf(DarkMatterVoidContext context, DarkMatterVoid self)
     {
         throw new NotImplementedException();
@@ -31,7 +36,7 @@ public class DarkMatterVoidGenerator : VoidGeneratorBase<DarkMatterVoid, DarkMat
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(DarkMatterVoidContext context, DarkMatterVoid self)
+    protected override void PostProcess(DarkMatterVoidContext context, DarkMatterVoid self)
     {
         throw new NotImplementedException();
     }

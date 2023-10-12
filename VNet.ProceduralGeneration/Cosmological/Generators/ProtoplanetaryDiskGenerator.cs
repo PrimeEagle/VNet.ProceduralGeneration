@@ -21,6 +21,16 @@ public class ProtoplanetaryDiskGenerator : ContainerGeneratorBase<Protoplanetary
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,7 @@ public class ProtoplanetaryDiskGenerator : ContainerGeneratorBase<Protoplanetary
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
+    protected override void PostProcess(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
     {
         throw new NotImplementedException();
     }

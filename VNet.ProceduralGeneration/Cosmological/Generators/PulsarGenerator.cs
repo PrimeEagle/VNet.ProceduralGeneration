@@ -21,6 +21,16 @@ public class PulsarGenerator : GeneratorBase<Pulsar, PulsarContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(PulsarContext context, Pulsar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(PulsarContext context, Pulsar self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(PulsarContext context, Pulsar self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class PulsarGenerator : GeneratorBase<Pulsar, PulsarContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(PulsarContext context, Pulsar self)
+    protected override void SetMatterType(PulsarContext context, Pulsar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(PulsarContext context, Pulsar self)
     {
         throw new NotImplementedException();
     }

@@ -21,6 +21,16 @@ public class StellarNurseryGenerator : GeneratorBase<StellarNursery, StellarNurs
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(StellarNurseryContext context, StellarNursery self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(StellarNurseryContext context, StellarNursery self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(StellarNurseryContext context, StellarNursery self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class StellarNurseryGenerator : GeneratorBase<StellarNursery, StellarNurs
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(StellarNurseryContext context, StellarNursery self)
+    protected override void SetMatterType(StellarNurseryContext context, StellarNursery self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(StellarNurseryContext context, StellarNursery self)
     {
         throw new NotImplementedException();
     }

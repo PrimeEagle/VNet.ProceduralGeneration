@@ -21,6 +21,16 @@ public class QuasarJetGenerator : GeneratorBase<QuasarJet, QuasarJetContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(QuasarJetContext context, QuasarJet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(QuasarJetContext context, QuasarJet self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(QuasarJetContext context, QuasarJet self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class QuasarJetGenerator : GeneratorBase<QuasarJet, QuasarJetContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(QuasarJetContext context, QuasarJet self)
+    protected override void SetMatterType(QuasarJetContext context, QuasarJet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(QuasarJetContext context, QuasarJet self)
     {
         throw new NotImplementedException();
     }

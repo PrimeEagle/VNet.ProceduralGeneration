@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.Enum;
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
 {
@@ -13,6 +14,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
         public float Luminosity { get; set; }                                               // L⊙
         public Vector3 Position { get; set; }                                               // AU
         public Vector3 Orientation { get; set; }
+        public MatterType MatterType { get; set; }
 
 
 
@@ -44,5 +46,6 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects
         public float EstimateMemorySize();
         public float ApparentMagnitude(Vector3 source);
         public void RecalculateProperties();
+        public void UpdateBoundingBox();
     }
 }

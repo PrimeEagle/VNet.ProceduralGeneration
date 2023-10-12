@@ -45,9 +45,9 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             self.WarpedSurface = new List<Vector3>();
         }
 
-        protected virtual void GenerateInterior(TContext context, T self)
+        protected virtual void GenerateInteriorObjects(TContext context, T self)
         {
-            self.Interior = new List<Vector3>();
+            throw new NotImplementedException();
         }
 
         protected virtual void GenerateInteriorRandomizationAlgorithm(TContext context, T self)
@@ -60,6 +60,11 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             throw new NotImplementedException();
         }
 
+        protected override void SetMatterType(TContext context, T self)
+        {
+            self.MatterType = MatterType.None;
+        }
+
         protected override void GenerateBaseProperties(TContext context, T self)
         {
             GenerateDiameter(context, self);
@@ -69,7 +74,71 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
             GenerateSurfaceNoiseAlgorithm(context, self);
             GenerateInteriorRandomizationAlgorithm(context, self);
             GenerateWarpedSurface(context, self);
-            GenerateInterior(context, self);
+        }
+
+        protected virtual void ApplyGravitationalEffects(TContext context, T self, float timeInYears)
+        {
+            if (!Settings.Basic.ApplyGravitationalEffectsToCosmicWeb) return;
+
+            var netDisplacements = new List<Vector3>();
+            var netVelocities = new List<Vector3>();
+
+            for (var i = 0; i < self.InteriorObjects.Count; i++)
+            {
+                netDisplacements.Add(Vector3.Zero);
+                netVelocities.Add(Vector3.Zero);
+            }
+
+            // Calculate gravitational effects
+            for (var i = 0; i < self.InteriorObjects.Count; i++)
+            {
+                for (var j = 0; j < self.InteriorObjects.Count; j++)
+                {
+                    if (i == j) continue;
+
+                    var direction = self.InteriorObjects[j].Position - self.InteriorObjects[i].Position;
+                    var distance = direction.Length();
+
+                    if (preventDarkMatterClumping)
+                    {
+                        // Prevent dark matter from clumping too densely
+                        if (self.InteriorObjects[i].MatterType == MatterType.DarkMatter && self.InteriorObjects[j].MatterType == MatterType.DarkMatter && distance < minDarkMatterDistance)
+                        {
+                            distance = minDarkMatterDistance;
+                        }
+                    }
+
+                    direction = Vector3.Normalize(direction);
+
+                    var force = Settings.Advanced.PhysicalConstants.G * self.InteriorObjects[i].Mass * self.InteriorObjects[j].Mass / (distance * distance);
+                    var acceleration = force / self.InteriorObjects[i].Mass;
+                    var velocity = acceleration * timeInYears;
+                    var displacement = 0.5f * acceleration * timeInYears * timeInYears;
+
+                    if (dampBaryonicMatter)
+                    {
+                        // Damping for Baryonic matter
+                        if (self.InteriorObjects[i].MatterType == MatterType.BaryonicMatter)
+                        {
+                            velocity *= dampingFactorForBaryonic;
+                        }
+                    }
+
+                    netVelocities[i] += Vector3.Multiply(direction, (float)velocity);
+                    netDisplacements[i] += Vector3.Multiply(direction, (float)displacement);
+                }
+            }
+
+            // Update positions
+            for (var i = 0; i < self.InteriorObjects.Count; i++)
+            {
+                self.InteriorObjects[i].Position += netDisplacements[i];
+            }
+        }
+
+        protected override void PostProcess(TContext context, T self)
+        {
+            ApplyGravitationalEffects(context, self, self.Age);
         }
     }
 }

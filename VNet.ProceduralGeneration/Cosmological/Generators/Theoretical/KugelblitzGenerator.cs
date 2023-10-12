@@ -21,6 +21,16 @@ public class KugelblitzGenerator : GeneratorBase<Kugelblitz, KugelblitzContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(KugelblitzContext context, Kugelblitz self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(KugelblitzContext context, Kugelblitz self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(KugelblitzContext context, Kugelblitz self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class KugelblitzGenerator : GeneratorBase<Kugelblitz, KugelblitzContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(KugelblitzContext context, Kugelblitz self)
+    protected override void SetMatterType(KugelblitzContext context, Kugelblitz self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(KugelblitzContext context, Kugelblitz self)
     {
         throw new NotImplementedException();
     }

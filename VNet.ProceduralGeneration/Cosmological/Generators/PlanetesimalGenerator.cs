@@ -21,6 +21,16 @@ public class PlanetesimalGenerator : GeneratorBase<Planetesimal, PlanetesimalCon
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(PlanetesimalContext context, Planetesimal self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(PlanetesimalContext context, Planetesimal self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(PlanetesimalContext context, Planetesimal self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class PlanetesimalGenerator : GeneratorBase<Planetesimal, PlanetesimalCon
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(PlanetesimalContext context, Planetesimal self)
+    protected override void SetMatterType(PlanetesimalContext context, Planetesimal self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(PlanetesimalContext context, Planetesimal self)
     {
         throw new NotImplementedException();
     }

@@ -21,6 +21,16 @@ public class LargeQuasarGroupGenerator : ContainerGeneratorBase<LargeQuasarGroup
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(LargeQuasarGroupContext context, LargeQuasarGroup self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(LargeQuasarGroupContext context, LargeQuasarGroup self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Task<LargeQuasarGroup> GenerateSelf(LargeQuasarGroupContext context, LargeQuasarGroup self)
     {
         throw new NotImplementedException();
@@ -31,7 +41,7 @@ public class LargeQuasarGroupGenerator : ContainerGeneratorBase<LargeQuasarGroup
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(LargeQuasarGroupContext context, LargeQuasarGroup self)
+    protected override void PostProcess(LargeQuasarGroupContext context, LargeQuasarGroup self)
     {
         throw new NotImplementedException();
     }

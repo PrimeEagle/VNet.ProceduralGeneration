@@ -21,6 +21,16 @@ public class CosmicBubbleGenerator : GeneratorBase<CosmicBubble, CosmicBubbleCon
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(CosmicBubbleContext context, CosmicBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(CosmicBubbleContext context, CosmicBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(CosmicBubbleContext context, CosmicBubble self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class CosmicBubbleGenerator : GeneratorBase<CosmicBubble, CosmicBubbleCon
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(CosmicBubbleContext context, CosmicBubble self)
+    protected override void SetMatterType(CosmicBubbleContext context, CosmicBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(CosmicBubbleContext context, CosmicBubble self)
     {
         throw new NotImplementedException();
     }

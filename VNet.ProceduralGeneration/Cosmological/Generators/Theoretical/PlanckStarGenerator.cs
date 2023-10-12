@@ -21,6 +21,16 @@ public class PlanckStarGenerator : GeneratorBase<PlanckStar, PlanckStarContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(PlanckStarContext context, PlanckStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(PlanckStarContext context, PlanckStar self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(PlanckStarContext context, PlanckStar self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class PlanckStarGenerator : GeneratorBase<PlanckStar, PlanckStarContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(PlanckStarContext context, PlanckStar self)
+    protected override void SetMatterType(PlanckStarContext context, PlanckStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(PlanckStarContext context, PlanckStar self)
     {
         throw new NotImplementedException();
     }

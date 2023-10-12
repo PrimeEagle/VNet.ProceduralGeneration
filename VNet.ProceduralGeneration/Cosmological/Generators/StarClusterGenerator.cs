@@ -21,6 +21,16 @@ public class StarClusterGenerator : ContainerGeneratorBase<StarCluster, StarClus
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(StarClusterContext context, StarCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(StarClusterContext context, StarCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Task<StarCluster> GenerateSelf(StarClusterContext context, StarCluster self)
     {
         throw new NotImplementedException();
@@ -31,7 +41,7 @@ public class StarClusterGenerator : ContainerGeneratorBase<StarCluster, StarClus
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(StarClusterContext context, StarCluster self)
+    protected override void PostProcess(StarClusterContext context, StarCluster self)
     {
         throw new NotImplementedException();
     }

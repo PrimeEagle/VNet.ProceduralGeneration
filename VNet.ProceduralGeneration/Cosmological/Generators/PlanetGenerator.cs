@@ -21,6 +21,16 @@ public class PlanetGenerator : GeneratorBase<Planet, PlanetContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(PlanetContext context, Planet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(PlanetContext context, Planet self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(PlanetContext context, Planet self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class PlanetGenerator : GeneratorBase<Planet, PlanetContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(PlanetContext context, Planet self)
+    protected override void SetMatterType(PlanetContext context, Planet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(PlanetContext context, Planet self)
     {
         throw new NotImplementedException();
     }

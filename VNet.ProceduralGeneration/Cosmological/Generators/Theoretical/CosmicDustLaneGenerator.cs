@@ -21,6 +21,16 @@ public class CosmicDustLaneGenerator : GeneratorBase<CosmicDustLane, CosmicDustL
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(CosmicDustLaneContext context, CosmicDustLane self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(CosmicDustLaneContext context, CosmicDustLane self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(CosmicDustLaneContext context, CosmicDustLane self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class CosmicDustLaneGenerator : GeneratorBase<CosmicDustLane, CosmicDustL
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(CosmicDustLaneContext context, CosmicDustLane self)
+    protected override void SetMatterType(CosmicDustLaneContext context, CosmicDustLane self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(CosmicDustLaneContext context, CosmicDustLane self)
     {
         throw new NotImplementedException();
     }

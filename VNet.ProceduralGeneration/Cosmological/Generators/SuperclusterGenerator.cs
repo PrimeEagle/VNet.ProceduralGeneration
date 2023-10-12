@@ -21,6 +21,16 @@ public class SuperclusterGenerator : ContainerGeneratorBase<Supercluster, Superc
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(SuperclusterContext context, Supercluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(SuperclusterContext context, Supercluster self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Task<Supercluster> GenerateSelf(SuperclusterContext context, Supercluster self)
     {
         throw new NotImplementedException();
@@ -31,7 +41,7 @@ public class SuperclusterGenerator : ContainerGeneratorBase<Supercluster, Superc
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(SuperclusterContext context, Supercluster self)
+    protected override void PostProcess(SuperclusterContext context, Supercluster self)
     {
         throw new NotImplementedException();
     }

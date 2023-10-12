@@ -21,6 +21,16 @@ public class BaryonicMatterFilamentGenerator : FilamentGeneratorBase<BaryonicMat
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(BaryonicMatterFilamentContext context, BaryonicMatterFilament self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(BaryonicMatterFilamentContext context, BaryonicMatterFilament self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Task<BaryonicMatterFilament> GenerateSelf(BaryonicMatterFilamentContext context, BaryonicMatterFilament self)
     {
         throw new NotImplementedException();
@@ -31,7 +41,7 @@ public class BaryonicMatterFilamentGenerator : FilamentGeneratorBase<BaryonicMat
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(BaryonicMatterFilamentContext context, BaryonicMatterFilament self)
+    protected override void PostProcess(BaryonicMatterFilamentContext context, BaryonicMatterFilament self)
     {
         throw new NotImplementedException();
     }

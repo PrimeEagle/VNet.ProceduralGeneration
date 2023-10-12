@@ -21,6 +21,16 @@ public class NebulaGenerator : GeneratorBase<Nebula, NebulaContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(NebulaContext context, Nebula self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(NebulaContext context, Nebula self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(NebulaContext context, Nebula self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class NebulaGenerator : GeneratorBase<Nebula, NebulaContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(NebulaContext context, Nebula self)
+    protected override void SetMatterType(NebulaContext context, Nebula self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(NebulaContext context, Nebula self)
     {
         throw new NotImplementedException();
     }

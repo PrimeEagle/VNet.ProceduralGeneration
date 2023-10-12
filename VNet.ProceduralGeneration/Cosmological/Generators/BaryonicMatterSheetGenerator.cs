@@ -21,6 +21,16 @@ public class BaryonicMatterSheetGenerator : SheetGeneratorBase<BaryonicMatterShe
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override Task<BaryonicMatterSheet> GenerateSelf(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
     {
         throw new NotImplementedException();
@@ -31,7 +41,7 @@ public class BaryonicMatterSheetGenerator : SheetGeneratorBase<BaryonicMatterShe
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
+    protected override void PostProcess(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
     {
         throw new NotImplementedException();
     }

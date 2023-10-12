@@ -21,6 +21,16 @@ public class BlackHoleGenerator : GeneratorBase<BlackHole, BlackHoleContext>
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(BlackHoleContext context, BlackHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(BlackHoleContext context, BlackHole self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(BlackHoleContext context, BlackHole self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class BlackHoleGenerator : GeneratorBase<BlackHole, BlackHoleContext>
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(BlackHoleContext context, BlackHole self)
+    protected override void SetMatterType(BlackHoleContext context, BlackHole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(BlackHoleContext context, BlackHole self)
     {
         throw new NotImplementedException();
     }

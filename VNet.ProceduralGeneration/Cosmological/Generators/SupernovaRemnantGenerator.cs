@@ -21,6 +21,16 @@ public class SupernovaRemnantGenerator : GeneratorBase<SupernovaRemnant, Superno
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(SupernovaRemnantContext context, SupernovaRemnant self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(SupernovaRemnantContext context, SupernovaRemnant self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(SupernovaRemnantContext context, SupernovaRemnant self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class SupernovaRemnantGenerator : GeneratorBase<SupernovaRemnant, Superno
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(SupernovaRemnantContext context, SupernovaRemnant self)
+    protected override void SetMatterType(SupernovaRemnantContext context, SupernovaRemnant self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(SupernovaRemnantContext context, SupernovaRemnant self)
     {
         throw new NotImplementedException();
     }

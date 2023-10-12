@@ -21,6 +21,16 @@ public class TransdimensionalWormholeGenerator : GeneratorBase<TransdimensionalW
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class TransdimensionalWormholeGenerator : GeneratorBase<TransdimensionalW
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
+    protected override void SetMatterType(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
     {
         throw new NotImplementedException();
     }

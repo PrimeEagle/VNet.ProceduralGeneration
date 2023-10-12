@@ -21,6 +21,16 @@ public class FermiBubbleGenerator : GeneratorBase<FermiBubble, FermiBubbleContex
         throw new NotImplementedException();
     }
 
+    protected override void GenerateBoundingBox(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateOrientation(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(FermiBubbleContext context, FermiBubble self)
     {
         throw new NotImplementedException();
@@ -56,7 +66,12 @@ public class FermiBubbleGenerator : GeneratorBase<FermiBubble, FermiBubbleContex
         throw new NotImplementedException();
     }
 
-    protected override Task PostProcess(FermiBubbleContext context, FermiBubble self)
+    protected override void SetMatterType(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void PostProcess(FermiBubbleContext context, FermiBubble self)
     {
         throw new NotImplementedException();
     }

@@ -35,11 +35,6 @@ public class UniverseGenerator : ContainerGeneratorBase<Universe, UniverseContex
         self.CosmicWeb = await Task.Run(() => cosmicWebGenerator.Generate(cosmicWebContext, self));
     }
 
-    protected override Task PostProcess(UniverseContext context, Universe self)
-    {
-        return null;
-    }
-
     private static void RebalanceMatterEnergyPercentages(UniverseContext context, Universe self)
     {
         var sum = self.DarkEnergyPercent + self.DarkMatterPercent + self.BaryonicMatterPercent;
@@ -101,6 +96,11 @@ public class UniverseGenerator : ContainerGeneratorBase<Universe, UniverseContex
         }
     }
 
+    protected override void GenerateOrientation(UniverseContext context, Universe self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateAge(UniverseContext context, Universe self)
     {
         self.Age = AdvancedSettings.Universe.RandomGenerator.NextSingle(BasicSettings.MinUniverseAge, BasicSettings.MaxUniverseAge);
@@ -119,6 +119,11 @@ public class UniverseGenerator : ContainerGeneratorBase<Universe, UniverseContex
     protected override void GeneratePosition(UniverseContext context, Universe self)
     {
         self.Position = new Vector3(0, 0, 0);
+    }
+
+    protected override void GenerateBoundingBox(UniverseContext context, Universe self)
+    {
+        throw new NotImplementedException();
     }
 
     protected override void GenerateBaseProperties(UniverseContext context, Universe self)
