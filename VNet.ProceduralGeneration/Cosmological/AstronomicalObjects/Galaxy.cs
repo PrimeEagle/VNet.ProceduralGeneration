@@ -1,6 +1,8 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 
-public class Galaxy : AstronomicalObjectContainer
+namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+
+public class Galaxy : AstronomicalObjectGroup
 {
     internal override void AssignChildren()
     {

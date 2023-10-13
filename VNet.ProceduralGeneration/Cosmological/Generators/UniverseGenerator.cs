@@ -2,18 +2,20 @@
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.System.Events;
+
 // ReSharper disable UnusedParameter.Local
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class UniverseGenerator : ContainerGeneratorBase<Universe, UniverseContext>
+public class UniverseGenerator : GroupGeneratorBase<Universe, UniverseContext>
 {
     public UniverseGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level0)
     {
         Enabled = ObjectToggles.UniverseEnabled;
     }
-    
+
     protected override async Task<Universe> GenerateSelf(UniverseContext context, Universe self)
     {
         GenerateBaryonicMatterPercent(context, self);
@@ -29,17 +31,22 @@ public class UniverseGenerator : ContainerGeneratorBase<Universe, UniverseContex
 
     protected override async Task GenerateChildren(UniverseContext context, Universe self)
     {
-        var cosmicWebGenerator = new CosmicWebGenerator(this.EventAggregator);
+        var cosmicWebGenerator = new CosmicWebGenerator(EventAggregator);
         var cosmicWebContext = new CosmicWebContext(self);
 
         self.CosmicWeb = await Task.Run(() => cosmicWebGenerator.Generate(cosmicWebContext, self));
     }
 
+    protected override void SetMatterType(UniverseContext context, Universe self)
+    {
+        throw new NotImplementedException();
+    }
+
     private static void RebalanceMatterEnergyPercentages(UniverseContext context, Universe self)
     {
         var sum = self.DarkEnergyPercent + self.DarkMatterPercent + self.BaryonicMatterPercent;
-        self.DarkEnergyPercent = (self.DarkEnergyPercent / sum) * 100;
-        self.DarkMatterPercent = (self.DarkMatterPercent / sum) * 100;
+        self.DarkEnergyPercent = self.DarkEnergyPercent / sum * 100;
+        self.DarkMatterPercent = self.DarkMatterPercent / sum * 100;
         self.BaryonicMatterPercent = 100 - self.DarkEnergyPercent - self.DarkMatterPercent;
     }
 
@@ -82,46 +89,30 @@ public class UniverseGenerator : ContainerGeneratorBase<Universe, UniverseContex
             var randValue = AdvancedSettings.Universe.RandomGenerator.NextDouble();
 
             if (randValue < flatVal)
-            {
                 self.Curvature = CurvatureType.Flat;
-            }
             else if (randValue < sphericalVal)
-            {
                 self.Curvature = CurvatureType.Spherical;
-            }
             else
-            {
                 self.Curvature = CurvatureType.Hyperbolic;
-            }
         }
     }
 
-    protected override void GenerateOrientation(UniverseContext context, Universe self)
+    protected override void GenerateWarpedSurface(UniverseContext context, Universe self)
     {
         throw new NotImplementedException();
     }
 
-    protected override void GenerateAge(UniverseContext context, Universe self)
+    protected override void GenerateInteriorObjects(UniverseContext context, Universe self)
     {
-        self.Age = AdvancedSettings.Universe.RandomGenerator.NextSingle(BasicSettings.MinUniverseAge, BasicSettings.MaxUniverseAge);
+        throw new NotImplementedException();
     }
 
-    protected override void GenerateLifespan(UniverseContext context, Universe self)
+    protected override void GenerateInteriorRandomizationAlgorithm(UniverseContext context, Universe self)
     {
-        self.Lifespan = float.MaxValue;
+        throw new NotImplementedException();
     }
 
-    protected override void GenerateDiameter(UniverseContext context, Universe self)
-    {
-        self.Diameter = Settings.Basic.AverageDimension;
-    }
-
-    protected override void GeneratePosition(UniverseContext context, Universe self)
-    {
-        self.Position = new Vector3(0, 0, 0);
-    }
-
-    protected override void GenerateBoundingBox(UniverseContext context, Universe self)
+    protected override void GenerateSurfaceNoiseAlgorithm(UniverseContext context, Universe self)
     {
         throw new NotImplementedException();
     }

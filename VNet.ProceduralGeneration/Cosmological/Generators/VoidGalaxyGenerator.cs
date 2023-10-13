@@ -1,34 +1,15 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
-using VNet.ProceduralGeneration.Cosmological.Contexts;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
+using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class VoidGalaxyGenerator : ContainerGeneratorBase<VoidGalaxy, VoidGalaxyContext>
+public class VoidGalaxyGenerator : GroupGeneratorBase<VoidGalaxy, VoidGalaxyContext>
 {
     public VoidGalaxyGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
-    }
-
-    protected override void GenerateDiameter(VoidGalaxyContext context, VoidGalaxy self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GeneratePosition(VoidGalaxyContext context, VoidGalaxy self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateBoundingBox(VoidGalaxyContext context, VoidGalaxy self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateOrientation(VoidGalaxyContext context, VoidGalaxy self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task<VoidGalaxy> GenerateSelf(VoidGalaxyContext context, VoidGalaxy self)
@@ -41,7 +22,27 @@ public class VoidGalaxyGenerator : ContainerGeneratorBase<VoidGalaxy, VoidGalaxy
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(VoidGalaxyContext context, VoidGalaxy self)
+    protected override void SetMatterType(VoidGalaxyContext context, VoidGalaxy self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateWarpedSurface(VoidGalaxyContext context, VoidGalaxy self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateInteriorObjects(VoidGalaxyContext context, VoidGalaxy self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateInteriorRandomizationAlgorithm(VoidGalaxyContext context, VoidGalaxy self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateSurfaceNoiseAlgorithm(VoidGalaxyContext context, VoidGalaxy self)
     {
         throw new NotImplementedException();
     }

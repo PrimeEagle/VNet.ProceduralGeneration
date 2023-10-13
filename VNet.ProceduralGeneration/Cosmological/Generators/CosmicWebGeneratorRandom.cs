@@ -3,7 +3,9 @@ using VNet.Mathematics.Randomization.Generation;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using Void = VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Void;
+
 // ReSharper disable SuggestBaseTypeForParameter
 // ReSharper disable MemberCanBeMadeStatic.Local
 // ReSharper disable ClassNeverInstantiated.Global
@@ -12,7 +14,7 @@ using Void = VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Void;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebContext>
+public partial class CosmicWebGenerator : GroupGeneratorBase<CosmicWeb, CosmicWebContext>
 {
     private void GenerateCosmicWebRandomly(CosmicWebContext context, CosmicWeb self)
     {
@@ -34,35 +36,35 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
             switch (matterType)
             {
                 case MatterType.BaryonicMatter:
-                    var baryonicMatterVoidContext = new BaryonicMatterVoidContext()
+                    var baryonicMatterVoidContext = new BaryonicMatterVoidContext
                     {
                         DiameterCreateRange = (GetMinimumVoidDiameter(matterType), GetMaximumVoidDiameter(matterType)),
                         RandomizationAlgorithm = GetVoidRandomizationAlgorithm(matterType)
                     };
-                    var baryonicMatterVoidGenerator = new BaryonicMatterVoidGenerator(this.EventAggregator, ParallelismLevel.Level1);
+                    var baryonicMatterVoidGenerator = new BaryonicMatterVoidGenerator(EventAggregator, ParallelismLevel.Level1);
                     var newBaryonicMatterVoid = await baryonicMatterVoidGenerator.Generate(baryonicMatterVoidContext, self.Parent);
 
                     baryonicMatterVoidContext.PositionXCreateRange = (0, Settings.Basic.DimensionX - newBaryonicMatterVoid.Diameter);
                     baryonicMatterVoidContext.PositionYCreateRange = (0, Settings.Basic.DimensionY - newBaryonicMatterVoid.Diameter);
                     baryonicMatterVoidContext.PositionZCreateRange = (0, Settings.Basic.DimensionZ - newBaryonicMatterVoid.Diameter);
-                    baryonicMatterVoidGenerator.RegeneratePosition(baryonicMatterVoidContext, newBaryonicMatterVoid);
+                    baryonicMatterVoidGenerator.GeneratePosition(baryonicMatterVoidContext, newBaryonicMatterVoid);
 
                     self.BaryonicMatterVoids.Add(newBaryonicMatterVoid);
                     totalVoidVolume += newBaryonicMatterVoid.Volume;
                     break;
                 case MatterType.DarkMatter:
-                    var darkMatterVoidContext = new DarkMatterVoidContext()
+                    var darkMatterVoidContext = new DarkMatterVoidContext
                     {
                         DiameterCreateRange = (GetMinimumVoidDiameter(matterType), GetMaximumVoidDiameter(matterType)),
                         RandomizationAlgorithm = GetVoidRandomizationAlgorithm(matterType)
                     };
-                    var darkMatterVoidGenerator = new DarkMatterVoidGenerator(this.EventAggregator, ParallelismLevel.Level1);
+                    var darkMatterVoidGenerator = new DarkMatterVoidGenerator(EventAggregator, ParallelismLevel.Level1);
                     var newDarkMatterVoid = await darkMatterVoidGenerator.Generate(darkMatterVoidContext, self.Parent);
 
                     darkMatterVoidContext.PositionXCreateRange = (0, Settings.Basic.DimensionX - newDarkMatterVoid.Diameter);
                     darkMatterVoidContext.PositionYCreateRange = (0, Settings.Basic.DimensionY - newDarkMatterVoid.Diameter);
                     darkMatterVoidContext.PositionZCreateRange = (0, Settings.Basic.DimensionZ - newDarkMatterVoid.Diameter);
-                    darkMatterVoidGenerator.RegeneratePosition(darkMatterVoidContext, newDarkMatterVoid);
+                    darkMatterVoidGenerator.GeneratePosition(darkMatterVoidContext, newDarkMatterVoid);
 
                     self.DarkMatterVoids.Add(newDarkMatterVoid);
                     totalVoidVolume += newDarkMatterVoid.Volume;
@@ -78,19 +80,15 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
             {
                 var overlapAmount = CalculateOverlapAmount(sphere, spheres);
 
-                if ((overlapAmount < GetMinimumVoidOverlap(matterType) || overlapAmount > GetMaximumVoidOverlap(matterType)) ||
-                    (spheres.Count(x => CalculateOverlapAmount(sphere, new List<VSphere> { x }) > 0) / (float)spheres.Count) > GetPercentageOfOverlappingVoids(matterType))
-                {
+                if (overlapAmount < GetMinimumVoidOverlap(matterType) || overlapAmount > GetMaximumVoidOverlap(matterType) ||
+                    spheres.Count(x => CalculateOverlapAmount(sphere, new List<VSphere> {x}) > 0) / (float) spheres.Count > GetPercentageOfOverlappingVoids(matterType))
                     sphere = new VSphere(new Vector3(
                         RandomAlgorithm.NextSingle() * (volume.GetLength(0) - diameter),
                         RandomAlgorithm.NextSingle() * (volume.GetLength(1) - diameter),
                         RandomAlgorithm.NextSingle() * (volume.GetLength(2) - diameter)
                     ), diameter);
-                }
                 else
-                {
                     acceptableOverlap = true;
-                }
             }
 
             spheres.Add(sphere);
@@ -109,10 +107,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
             var distanceBetweenCenters = Vector3.Distance(voidItem.Position, existingVoid.Position);
             var combinedRadii = voidItem.Radius + existingVoid.Radius;
 
-            if (distanceBetweenCenters < combinedRadii)
-            {
-                overlapAmount += combinedRadii - distanceBetweenCenters;
-            }
+            if (distanceBetweenCenters < combinedRadii) overlapAmount += combinedRadii - distanceBetweenCenters;
         }
 
         return overlapAmount;

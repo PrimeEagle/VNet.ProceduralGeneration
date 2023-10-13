@@ -1,5 +1,7 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.Contexts;
+﻿using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
 
-public class GalaxyGroupContext : ContainerContextBase
+namespace VNet.ProceduralGeneration.Cosmological.Contexts;
+
+public class GalaxyGroupContext : GroupContextBase
 {
 }

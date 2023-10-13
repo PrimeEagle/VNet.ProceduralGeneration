@@ -1,5 +1,7 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.Contexts;
+﻿using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
 
-public class StarClusterContext : ContainerContextBase
+namespace VNet.ProceduralGeneration.Cosmological.Contexts;
+
+public class StarClusterContext : GroupContextBase
 {
 }

@@ -189,3 +189,4 @@
 
 //    //This implementation generates a heat map of air temperature on a planet based on the planet's radius, the radius and temperature of the star, the distance of the star, and the density of the planet's atmosphere.It calculates the luminosity and effective temperature of the star, as well as the temperature gradient of the atmosphere, and then generates the temperature map for each pixel by calculating the distance from the center of the planet and using the temperature gradient to determine the temperature at that point.The resulting temperature map is returned as a two-dimensional array.
 //}
+

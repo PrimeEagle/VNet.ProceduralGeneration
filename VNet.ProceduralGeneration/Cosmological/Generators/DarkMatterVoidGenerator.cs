@@ -1,6 +1,7 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
@@ -9,21 +10,6 @@ public class DarkMatterVoidGenerator : VoidGeneratorBase<DarkMatterVoid, DarkMat
 {
     public DarkMatterVoidGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
-    }
-
-    protected override void GenerateDiameter(DarkMatterVoidContext context, DarkMatterVoid self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GeneratePosition(DarkMatterVoidContext context, DarkMatterVoid self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateOrientation(DarkMatterVoidContext context, DarkMatterVoid self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task<DarkMatterVoid> GenerateSelf(DarkMatterVoidContext context, DarkMatterVoid self)
@@ -36,7 +22,17 @@ public class DarkMatterVoidGenerator : VoidGeneratorBase<DarkMatterVoid, DarkMat
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(DarkMatterVoidContext context, DarkMatterVoid self)
+    protected override void SetMatterType(DarkMatterVoidContext context, DarkMatterVoid self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateInteriorRandomizationAlgorithm(DarkMatterVoidContext context, DarkMatterVoid self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateSurfaceNoiseAlgorithm(DarkMatterVoidContext context, DarkMatterVoid self)
     {
         throw new NotImplementedException();
     }

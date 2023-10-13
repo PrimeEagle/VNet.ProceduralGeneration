@@ -1,69 +1,68 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 using VNet.System.Events;
 
-namespace VNet.ProceduralGeneration.Cosmological.Events
+namespace VNet.ProceduralGeneration.Cosmological.Events;
+
+public static class EventBuilder
 {
-    public static class EventBuilder
+    public static async void CreateGeneratingEvent(EventAggregator eventAggregator, string source, AstronomicalObject astronomicalObject)
     {
-        public static async void CreateGeneratingEvent(EventAggregator eventAggregator, string source, AstronomicalObject astronomicalObject)
+        var sourceName = GetName(source);
+        var id = astronomicalObject != null ? astronomicalObject.Id : string.Empty;
+
+        var e = new GeneratingEvent
         {
-            var sourceName = GetName(source);
-            var id = astronomicalObject != null ? astronomicalObject.Id : string.Empty;
+            Id = id,
+            Source = sourceName
+        };
 
-            var e = new GeneratingEvent()
-            {
-                Id = id,
-                Source = sourceName
-            };
+        await eventAggregator.PublishAsync(e);
+    }
 
-            await eventAggregator.PublishAsync(e);
-        }
+    public static async void CreateGeneratedEvent(EventAggregator eventAggregator, string source, AstronomicalObject astronomicalObject)
+    {
+        var sourceName = GetName(source);
+        var id = astronomicalObject.Id;
 
-        public static async void CreateGeneratedEvent(EventAggregator eventAggregator, string source, AstronomicalObject astronomicalObject)
+        var e = new GeneratedEvent
         {
-            var sourceName = GetName(source);
-            var id = astronomicalObject.Id;
+            Id = id,
+            Source = sourceName
+        };
 
-            var e = new GeneratedEvent()
-            {
-                Id = id,
-                Source = sourceName
-            };
+        await eventAggregator.PublishAsync(e);
+    }
 
-            await eventAggregator.PublishAsync(e);
-        }
+    public static async void CreatePostProcessingEvent(EventAggregator eventAggregator, string source, AstronomicalObject astronomicalObject)
+    {
+        var sourceName = GetName(source);
+        var id = astronomicalObject.Id;
 
-        public static async void CreatePostProcessingEvent(EventAggregator eventAggregator, string source, AstronomicalObject astronomicalObject)
+        var e = new PostProcessingEvent
         {
-            var sourceName = GetName(source);
-            var id = astronomicalObject.Id;
+            Id = id,
+            Source = sourceName
+        };
 
-            var e = new PostProcessingEvent()
-            {
-                Id = id,
-                Source = sourceName
-            };
+        await eventAggregator.PublishAsync(e);
+    }
 
-            await eventAggregator.PublishAsync(e);
-        }
+    public static async void CreatePostProcessedEvent(EventAggregator eventAggregator, string source, AstronomicalObject astronomicalObject)
+    {
+        var sourceName = GetName(source);
+        var id = astronomicalObject.Id;
 
-        public static async void CreatePostProcessedEvent(EventAggregator eventAggregator, string source, AstronomicalObject astronomicalObject)
+        var e = new PostProcessedEvent
         {
-            var sourceName = GetName(source);
-            var id = astronomicalObject.Id;
+            Id = id,
+            Source = sourceName
+        };
 
-            var e = new PostProcessedEvent()
-            {
-                Id = id,
-                Source = sourceName
-            };
+        await eventAggregator.PublishAsync(e);
+    }
 
-            await eventAggregator.PublishAsync(e);
-        }
-
-        private static string GetName(string source)
-        {
-            return source.Replace("Generator", "");
-        }
+    private static string GetName(string source)
+    {
+        return source.Replace("Generator", "");
     }
 }

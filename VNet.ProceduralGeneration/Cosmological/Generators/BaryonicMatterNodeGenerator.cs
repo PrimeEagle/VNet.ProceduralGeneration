@@ -2,6 +2,7 @@
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
@@ -13,27 +14,7 @@ public class BaryonicMatterNodeGenerator : NodeGeneratorBase<BaryonicMatterNode,
         Enabled = ObjectToggles.BaryonicMatterNodesEnabled;
     }
 
-    protected override void GenerateDiameter(BaryonicMatterNodeContext context, BaryonicMatterNode self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GeneratePosition(BaryonicMatterNodeContext context, BaryonicMatterNode self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateBoundingBox(BaryonicMatterNodeContext context, BaryonicMatterNode self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateOrientation(BaryonicMatterNodeContext context, BaryonicMatterNode self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected async override Task<BaryonicMatterNode> GenerateSelf(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    protected override async Task<BaryonicMatterNode> GenerateSelf(BaryonicMatterNodeContext context, BaryonicMatterNode self)
     {
         if (context.SpatialGrid != null)
         {
@@ -48,10 +29,10 @@ public class BaryonicMatterNodeGenerator : NodeGeneratorBase<BaryonicMatterNode,
         {
             var xStart = -1 * BasicSettings.DimensionX / 2;
             var xEnd = BasicSettings.DimensionX / 2;
-            
+
             var yStart = -1 * BasicSettings.DimensionY / 2;
             var yEnd = BasicSettings.DimensionY / 2;
-            
+
             var zStart = -1 * BasicSettings.DimensionZ / 2;
             var zEnd = BasicSettings.DimensionZ / 2;
 
@@ -60,15 +41,19 @@ public class BaryonicMatterNodeGenerator : NodeGeneratorBase<BaryonicMatterNode,
             var z = zStart + (zEnd - zStart) * AdvancedSettings.Universe.RandomGenerator.NextSingle();
 
             self.Position = new Vector3(x, y, z);
-            self.Luminosity = -30 + (60) * AdvancedSettings.Universe.RandomGenerator.NextSingle();
+            self.Luminosity = -30 + 60 * AdvancedSettings.Universe.RandomGenerator.NextSingle();
         }
 
         return self;
     }
 
-    protected async override Task GenerateChildren(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    protected override async Task GenerateChildren(BaryonicMatterNodeContext context, BaryonicMatterNode self)
     {
-        
+    }
+
+    protected override void SetMatterType(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
     }
 
     private Vector3 TransformBasePosition((int, int, int) basePosition)
@@ -76,7 +61,7 @@ public class BaryonicMatterNodeGenerator : NodeGeneratorBase<BaryonicMatterNode,
         var posX = basePosition.Item1;
         var posY = basePosition.Item2;
         var posZ = basePosition.Item3;
-        
+
         var mapX = BasicSettings.DimensionX;
         var mapY = BasicSettings.DimensionY;
         var mapZ = BasicSettings.DimensionZ;
@@ -91,4 +76,23 @@ public class BaryonicMatterNodeGenerator : NodeGeneratorBase<BaryonicMatterNode,
         return shiftedVector;
     }
 
+    protected override void GenerateWarpedSurface(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateInteriorObjects(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateInteriorRandomizationAlgorithm(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateSurfaceNoiseAlgorithm(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
 }

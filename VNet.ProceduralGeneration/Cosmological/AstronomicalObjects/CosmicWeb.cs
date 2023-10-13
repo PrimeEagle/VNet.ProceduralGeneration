@@ -1,28 +1,30 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 
-public class CosmicWeb : AstronomicalObjectContainer
+namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+
+public class CosmicWeb : AstronomicalObjectGroup
 {
     public CosmicWebHeightmapTopology HeightmapTopology { get; set; }
     public IntergalacticMedium IntergalacticMedium { get; set; }
-    public List<BaryonicMatterNode> BaryonicMatterNodes { get; set; } = new(); 
+    public List<BaryonicMatterNode> BaryonicMatterNodes { get; set; } = new();
     public List<BaryonicMatterFilament> BaryonicMatterFilaments { get; set; } = new();
     public List<BaryonicMatterSheet> BaryonicMatterSheets { get; set; } = new();
     public List<BaryonicMatterVoid> BaryonicMatterVoids { get; set; } = new();
-    public List<DarkMatterNode> DarkMatterNodes { get; set; } = new(); 
+    public List<DarkMatterNode> DarkMatterNodes { get; set; } = new();
     public List<DarkMatterFilament> DarkMatterFilaments { get; set; } = new();
     public List<DarkMatterSheet> DarkMatterSheets { get; set; } = new();
     public List<DarkMatterVoid> DarkMatterVoids { get; set; } = new();
 
     internal override void AssignChildren()
     {
-        this.Children.Add(this.IntergalacticMedium);
-        this.Children.AddRange(this.BaryonicMatterNodes);
-        this.Children.AddRange(this.BaryonicMatterFilaments);
-        this.Children.AddRange(this.BaryonicMatterSheets);
-        this.Children.AddRange(this.BaryonicMatterVoids);
-        this.Children.AddRange(this.DarkMatterNodes);
-        this.Children.AddRange(this.DarkMatterFilaments);
-        this.Children.AddRange(this.DarkMatterSheets);
-        this.Children.AddRange(this.DarkMatterVoids);
+        Children.Add(IntergalacticMedium);
+        Children.AddRange(BaryonicMatterNodes);
+        Children.AddRange(BaryonicMatterFilaments);
+        Children.AddRange(BaryonicMatterSheets);
+        Children.AddRange(BaryonicMatterVoids);
+        Children.AddRange(DarkMatterNodes);
+        Children.AddRange(DarkMatterFilaments);
+        Children.AddRange(DarkMatterSheets);
+        Children.AddRange(DarkMatterVoids);
     }
 }

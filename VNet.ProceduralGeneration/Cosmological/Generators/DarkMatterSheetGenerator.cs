@@ -1,6 +1,7 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
@@ -9,26 +10,6 @@ public class DarkMatterSheetGenerator : SheetGeneratorBase<DarkMatterSheet, Dark
 {
     public DarkMatterSheetGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
-    }
-
-    protected override void GenerateDiameter(DarkMatterSheetContext context, DarkMatterSheet self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GeneratePosition(DarkMatterSheetContext context, DarkMatterSheet self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateBoundingBox(DarkMatterSheetContext context, DarkMatterSheet self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateOrientation(DarkMatterSheetContext context, DarkMatterSheet self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task<DarkMatterSheet> GenerateSelf(DarkMatterSheetContext context, DarkMatterSheet self)
@@ -41,7 +22,27 @@ public class DarkMatterSheetGenerator : SheetGeneratorBase<DarkMatterSheet, Dark
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(DarkMatterSheetContext context, DarkMatterSheet self)
+    protected override void SetMatterType(DarkMatterSheetContext context, DarkMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateWarpedSurface(DarkMatterSheetContext context, DarkMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateInteriorObjects(DarkMatterSheetContext context, DarkMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateInteriorRandomizationAlgorithm(DarkMatterSheetContext context, DarkMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateSurfaceNoiseAlgorithm(DarkMatterSheetContext context, DarkMatterSheet self)
     {
         throw new NotImplementedException();
     }

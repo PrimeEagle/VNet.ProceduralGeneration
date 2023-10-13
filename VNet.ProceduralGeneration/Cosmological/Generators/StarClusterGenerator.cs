@@ -1,34 +1,15 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class StarClusterGenerator : ContainerGeneratorBase<StarCluster, StarClusterContext>
+public class StarClusterGenerator : GroupGeneratorBase<StarCluster, StarClusterContext>
 {
     public StarClusterGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
-    }
-
-    protected override void GenerateDiameter(StarClusterContext context, StarCluster self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GeneratePosition(StarClusterContext context, StarCluster self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateBoundingBox(StarClusterContext context, StarCluster self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateOrientation(StarClusterContext context, StarCluster self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task<StarCluster> GenerateSelf(StarClusterContext context, StarCluster self)
@@ -41,7 +22,27 @@ public class StarClusterGenerator : ContainerGeneratorBase<StarCluster, StarClus
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(StarClusterContext context, StarCluster self)
+    protected override void SetMatterType(StarClusterContext context, StarCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateWarpedSurface(StarClusterContext context, StarCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateInteriorObjects(StarClusterContext context, StarCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateInteriorRandomizationAlgorithm(StarClusterContext context, StarCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateSurfaceNoiseAlgorithm(StarClusterContext context, StarCluster self)
     {
         throw new NotImplementedException();
     }

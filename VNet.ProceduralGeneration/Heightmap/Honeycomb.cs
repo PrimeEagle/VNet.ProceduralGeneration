@@ -1,67 +1,62 @@
 ﻿using System.Drawing;
 
+namespace VNet.ProceduralGeneration.Heightmap;
 
-namespace VNet.ProceduralGeneration.Heightmap
+public class Honeycomb
 {
-    public class Honeycomb
+    private static readonly Random _random = new();
+
+    public static Bitmap GenerateHeightMap(
+        int width,
+        int height,
+        int minHexSize,
+        int maxHexSize,
+        int hexOffsetVariation,
+        double maxDistColorFactor)
     {
-        private static readonly Random _random = new();
+        var heightMap = new Bitmap(width, height);
+        var hexHeight = (int) (Math.Sqrt(3) * minHexSize);
 
-        public static Bitmap GenerateHeightMap(
-            int width,
-            int height,
-            int minHexSize,
-            int maxHexSize,
-            int hexOffsetVariation,
-            double maxDistColorFactor)
+        for (var y = 0; y < height; y += hexHeight)
         {
-            var heightMap = new Bitmap(width, height);
-            var hexHeight = (int)(Math.Sqrt(3) * minHexSize);
-
-            for (var y = 0; y < height; y += hexHeight)
+            for (var x = 0; x < width; x += (int) Math.Round(maxHexSize * 1.5))
             {
-                for (var x = 0; x < width; x += (int)Math.Round(maxHexSize * 1.5))
+                var centerX = x + _random.Next(-hexOffsetVariation, hexOffsetVariation);
+                var centerY = y + _random.Next(-hexOffsetVariation, hexOffsetVariation);
+
+                var adjustedHexSize = _random.Next(minHexSize, maxHexSize);
+
+                for (var offsetY = -adjustedHexSize; offsetY <= adjustedHexSize; offsetY++)
+                for (var offsetX = -adjustedHexSize; offsetX <= adjustedHexSize; offsetX++)
                 {
-                    var centerX = x + (_random.Next(-hexOffsetVariation, hexOffsetVariation));
-                    var centerY = y + (_random.Next(-hexOffsetVariation, hexOffsetVariation));
+                    var pixelX = centerX + offsetX;
+                    var pixelY = centerY + offsetY;
 
-                    var adjustedHexSize = _random.Next(minHexSize, maxHexSize);
-
-                    for (var offsetY = -adjustedHexSize; offsetY <= adjustedHexSize; offsetY++)
+                    if (pixelX >= 0 && pixelX < width && pixelY >= 0 && pixelY < height)
                     {
-                        for (var offsetX = -adjustedHexSize; offsetX <= adjustedHexSize; offsetX++)
-                        {
-                            var pixelX = centerX + offsetX;
-                            var pixelY = centerY + offsetY;
+                        var dist = HexagonalDistance(pixelX - centerX, pixelY - centerY, adjustedHexSize);
 
-                            if (pixelX >= 0 && pixelX < width && pixelY >= 0 && pixelY < height)
-                            {
-                                var dist = HexagonalDistance(pixelX - centerX, pixelY - centerY, adjustedHexSize);
-
-                                var color = (byte)(255 * Math.Min(1, maxDistColorFactor * (1 - dist)));
-                                heightMap.SetPixel(pixelX, pixelY, global::System.Drawing.Color.FromArgb(color, color, color));
-                            }
-                        }
+                        var color = (byte) (255 * Math.Min(1, maxDistColorFactor * (1 - dist)));
+                        heightMap.SetPixel(pixelX, pixelY, Color.FromArgb(color, color, color));
                     }
-                }
-                if ((y / hexHeight) % 2 == 0)
-                {
-                    // Offset every other row for a hexagonal pattern
-                    y += hexHeight / 2;
                 }
             }
 
-            return heightMap;
+            if (y / hexHeight % 2 == 0)
+                // Offset every other row for a hexagonal pattern
+                y += hexHeight / 2;
         }
 
-        private static double HexagonalDistance(int x, int y, int hexSize)
-        {
-            var q2 = (2.0 / 3 * x) / hexSize;
-            var r2 = (-1.0 / 3 * x + Math.Sqrt(3) / 3 * y) / hexSize;
+        return heightMap;
+    }
 
-            var dist = Math.Max(Math.Abs(q2), Math.Max(Math.Abs(r2), Math.Abs(-q2 - r2)));
+    private static double HexagonalDistance(int x, int y, int hexSize)
+    {
+        var q2 = 2.0 / 3 * x / hexSize;
+        var r2 = (-1.0 / 3 * x + Math.Sqrt(3) / 3 * y) / hexSize;
 
-            return dist;
-        }
+        var dist = Math.Max(Math.Abs(q2), Math.Max(Math.Abs(r2), Math.Abs(-q2 - r2)));
+
+        return dist;
     }
 }

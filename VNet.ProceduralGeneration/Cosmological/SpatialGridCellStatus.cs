@@ -2,8 +2,8 @@
 
 public enum SpatialGridCellStatus
 {
-    Available, 
-    Processing, 
-    Unavailable, 
+    Available,
+    Processing,
+    Unavailable,
     Done
 }

@@ -1,12 +1,22 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 
 // ReSharper disable SuggestBaseTypeForParameterInConstructor
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
-public class CosmicWebContext : ContainerContextBase
+public class CosmicWebContext : GroupContextBase
 {
+    public CosmicWebContext()
+    {
+    }
+
+    public CosmicWebContext(Universe universe)
+    {
+        LoadBaseProperties(universe);
+    }
+
     public int MapX { get; set; }
     public int MapY { get; set; }
     public int MapZ { get; set; }
@@ -19,16 +29,4 @@ public class CosmicWebContext : ContainerContextBase
     public int CountBaryonicMatterPercentageFactor { get; set; }
     public int CountDarkMatterPercentageFactor { get; set; }
     public int CountDarkEnergyPercentageFactor { get; set; }
-
-
-
-
-    public CosmicWebContext()
-    {
-    }
-
-    public CosmicWebContext(Universe universe)
-    {
-        LoadBaseProperties((AstronomicalObject)universe);
-    }
 }

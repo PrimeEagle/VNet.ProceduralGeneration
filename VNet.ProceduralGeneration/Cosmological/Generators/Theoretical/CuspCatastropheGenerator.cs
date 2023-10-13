@@ -1,6 +1,7 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
@@ -9,51 +10,6 @@ public class CuspCatastropheGenerator : GeneratorBase<CuspCatastrophe, CuspCatas
 {
     public CuspCatastropheGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
-    }
-
-    protected override void GenerateDiameter(CuspCatastropheContext context, CuspCatastrophe self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GeneratePosition(CuspCatastropheContext context, CuspCatastrophe self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateBoundingBox(CuspCatastropheContext context, CuspCatastrophe self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateOrientation(CuspCatastropheContext context, CuspCatastrophe self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateAge(CuspCatastropheContext context, CuspCatastrophe self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateLifespan(CuspCatastropheContext context, CuspCatastrophe self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateMass(CuspCatastropheContext context, CuspCatastrophe self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateLuminosity(CuspCatastropheContext context, CuspCatastrophe self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateTemperature(CuspCatastropheContext context, CuspCatastrophe self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task<CuspCatastrophe> GenerateSelf(CuspCatastropheContext context, CuspCatastrophe self)

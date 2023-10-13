@@ -1,34 +1,15 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class GalaxyGenerator : ContainerGeneratorBase<Galaxy, GalaxyContext>
+public class GalaxyGenerator : GroupGeneratorBase<Galaxy, GalaxyContext>
 {
     public GalaxyGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
-    }
-
-    protected override void GenerateDiameter(GalaxyContext context, Galaxy self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GeneratePosition(GalaxyContext context, Galaxy self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateBoundingBox(GalaxyContext context, Galaxy self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateOrientation(GalaxyContext context, Galaxy self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task<Galaxy> GenerateSelf(GalaxyContext context, Galaxy self)
@@ -41,7 +22,27 @@ public class GalaxyGenerator : ContainerGeneratorBase<Galaxy, GalaxyContext>
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(GalaxyContext context, Galaxy self)
+    protected override void SetMatterType(GalaxyContext context, Galaxy self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateWarpedSurface(GalaxyContext context, Galaxy self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateInteriorObjects(GalaxyContext context, Galaxy self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateInteriorRandomizationAlgorithm(GalaxyContext context, Galaxy self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateSurfaceNoiseAlgorithm(GalaxyContext context, Galaxy self)
     {
         throw new NotImplementedException();
     }

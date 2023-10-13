@@ -2,6 +2,7 @@
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
@@ -10,21 +11,6 @@ public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid,
 {
     public BaryonicMatterVoidGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
-    }
-
-    protected override void GenerateDiameter(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GeneratePosition(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateOrientation(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task<BaryonicMatterVoid> GenerateSelf(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
@@ -37,6 +23,21 @@ public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid,
         throw new NotImplementedException();
     }
 
+    protected override void SetMatterType(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateInteriorRandomizationAlgorithm(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateSurfaceNoiseAlgorithm(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void PostProcess(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
     {
         throw new NotImplementedException();
@@ -45,40 +46,7 @@ public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid,
 
 public class SphereGenerator
 {
-    private static readonly Random random = new Random();
-
-    public struct Sphere
-    {
-        public Vector3 Center;
-        public float Radius;
-
-        public Sphere(Vector3 center, float radius)
-        {
-            Center = center;
-            Radius = radius;
-        }
-    }
-
-    public struct WarpedSphere
-    {
-        public Vector3 Center;
-        public float BaseRadius;
-        public List<Vector3> SurfacePoints;  // These points represent the warped surface
-    }
-
-    public struct IntersectionCircle
-    {
-        public Vector3 Center;
-        public float Radius;
-        public Vector3 Normal;
-
-        public IntersectionCircle(Vector3 center, float radius, Vector3 normal)
-        {
-            Center = center;
-            Radius = radius;
-            Normal = normal;
-        }
-    }
+    private static readonly Random random = new();
 
     public List<Sphere> GenerateBaseSpheres(float[,,] volumeMap, float maxCoveragePercentage, float isolatedSpherePercentage)
     {
@@ -145,24 +113,22 @@ public class SphereGenerator
         var intersectionCircles = new List<IntersectionCircle>();
 
         for (var i = 0; i < warpedSpheres.Count; i++)
+        for (var j = i + 1; j < warpedSpheres.Count; j++)
         {
-            for (var j = i + 1; j < warpedSpheres.Count; j++)
+            // Check warped points of sphere A against base of sphere B
+            foreach (var point in warpedSpheres[i].SurfacePoints.Where(point => IsPointInsideSphere(point, warpedSpheres[j])))
             {
-                // Check warped points of sphere A against base of sphere B
-                foreach (var point in warpedSpheres[i].SurfacePoints.Where(point => IsPointInsideSphere(point, warpedSpheres[j])))
-                {
-                    if (!TryGetIntersectionCircle(warpedSpheres[i], warpedSpheres[j], out var circle)) continue;
-                    intersectionCircles.Add(circle);
-                    break;  // No need to check further for this pair
-                }
+                if (!TryGetIntersectionCircle(warpedSpheres[i], warpedSpheres[j], out var circle)) continue;
+                intersectionCircles.Add(circle);
+                break; // No need to check further for this pair
+            }
 
-                // Check warped points of sphere B against base of sphere A
-                foreach (var point in warpedSpheres[j].SurfacePoints.Where(point => IsPointInsideSphere(point, warpedSpheres[i])))
-                {
-                    if (!TryGetIntersectionCircle(warpedSpheres[i], warpedSpheres[j], out var circle)) continue;
-                    intersectionCircles.Add(circle);
-                    break;  // No need to check further for this pair
-                }
+            // Check warped points of sphere B against base of sphere A
+            foreach (var point in warpedSpheres[j].SurfacePoints.Where(point => IsPointInsideSphere(point, warpedSpheres[i])))
+            {
+                if (!TryGetIntersectionCircle(warpedSpheres[i], warpedSpheres[j], out var circle)) continue;
+                intersectionCircles.Add(circle);
+                break; // No need to check further for this pair
             }
         }
 
@@ -177,10 +143,9 @@ public class SphereGenerator
             var combinedRadius = newSphere.Radius + sphere.Radius;
 
             if (distance <= combinedRadius) // If spheres overlap or touch
-            {
                 return false;
-            }
         }
+
         return true;
     }
 
@@ -190,22 +155,16 @@ public class SphereGenerator
         float sum = 0;
 
         for (var i = -1; i <= 1; i++)
-        {
-            for (var j = -1; j <= 1; j++)
+        for (var j = -1; j <= 1; j++)
+        for (var k = -1; k <= 1; k++)
+            if (IsInBounds(x + i, y + j, z + k, volumeMap))
             {
-                for (var k = -1; k <= 1; k++)
-                {
-                    if (IsInBounds(x + i, y + j, z + k, volumeMap))
-                    {
-                        sum += volumeMap[x + i, y + j, z + k];
-                        count++;
-                    }
-                }
+                sum += volumeMap[x + i, y + j, z + k];
+                count++;
             }
-        }
 
         var avg = sum / count;
-        return (0.5f - avg) + ((float)random.NextDouble() * 0.1f);
+        return 0.5f - avg + (float) random.NextDouble() * 0.1f;
     }
 
     private bool IsInBounds(int x, int y, int z, float[,,] volumeMap)
@@ -217,9 +176,9 @@ public class SphereGenerator
 
     private float CalculateSphereVolumePercentage(Sphere sphere, float[,,] volumeMap)
     {
-        var sphereVolume = (4.0f / 3.0f) * (float)Math.PI * (float)Math.Pow(sphere.Radius, 3);
+        var sphereVolume = 4.0f / 3.0f * (float) Math.PI * (float) Math.Pow(sphere.Radius, 3);
         float totalVolume = volumeMap.GetLength(0) * volumeMap.GetLength(1) * volumeMap.GetLength(2);
-        return (sphereVolume / totalVolume) * 100;
+        return sphereVolume / totalVolume * 100;
     }
 
     private bool IsPointInsideSphere(Vector3 point, WarpedSphere sphere)
@@ -230,11 +189,11 @@ public class SphereGenerator
 
     private Vector3 RandomPointOnSphere(Vector3 center, float radius)
     {
-        var theta = (float)(2 * Math.PI * random.NextDouble());
-        var phi = (float)(Math.Acos(2 * random.NextDouble() - 1));
-        var x = center.X + radius * (float)Math.Sin(phi) * (float)Math.Cos(theta);
-        var y = center.Y + radius * (float)Math.Sin(phi) * (float)Math.Sin(theta);
-        var z = center.Z + radius * (float)Math.Cos(phi);
+        var theta = (float) (2 * Math.PI * random.NextDouble());
+        var phi = (float) Math.Acos(2 * random.NextDouble() - 1);
+        var x = center.X + radius * (float) Math.Sin(phi) * (float) Math.Cos(theta);
+        var y = center.Y + radius * (float) Math.Sin(phi) * (float) Math.Sin(theta);
+        var z = center.Z + radius * (float) Math.Cos(phi);
         return new Vector3(x, y, z);
     }
 
@@ -248,9 +207,9 @@ public class SphereGenerator
         if (dist > a.BaseRadius + b.BaseRadius || dist < Math.Abs(a.BaseRadius - b.BaseRadius))
             return false;
 
-        var aToCenter = ((a.BaseRadius * a.BaseRadius) - (b.BaseRadius * b.BaseRadius) + (dist * dist)) / (2.0f * dist);
+        var aToCenter = (a.BaseRadius * a.BaseRadius - b.BaseRadius * b.BaseRadius + dist * dist) / (2.0f * dist);
         var center = a.Center + aToCenter * Vector3.Normalize(d);
-        var circleRadius = (float)Math.Sqrt((a.BaseRadius * a.BaseRadius) - (aToCenter * aToCenter));
+        var circleRadius = (float) Math.Sqrt(a.BaseRadius * a.BaseRadius - aToCenter * aToCenter);
 
         circle = new IntersectionCircle(center, circleRadius, Vector3.Normalize(d));
         return true;
@@ -259,6 +218,39 @@ public class SphereGenerator
     // Placeholder for Perlin noise. In Unity, use Mathf.PerlinNoise.
     private float PerlinNoise(float x, float y, float z)
     {
-        return 0.5f;  // Placeholder
+        return 0.5f; // Placeholder
+    }
+
+    public struct Sphere
+    {
+        public Vector3 Center;
+        public float Radius;
+
+        public Sphere(Vector3 center, float radius)
+        {
+            Center = center;
+            Radius = radius;
+        }
+    }
+
+    public struct WarpedSphere
+    {
+        public Vector3 Center;
+        public float BaseRadius;
+        public List<Vector3> SurfacePoints; // These points represent the warped surface
+    }
+
+    public struct IntersectionCircle
+    {
+        public Vector3 Center;
+        public float Radius;
+        public Vector3 Normal;
+
+        public IntersectionCircle(Vector3 center, float radius, Vector3 normal)
+        {
+            Center = center;
+            Radius = radius;
+            Normal = normal;
+        }
     }
 }

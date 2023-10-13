@@ -1,8 +1,5 @@
-﻿using VNet.System.Events;
+﻿namespace VNet.ProceduralGeneration.Cosmological.Events;
 
-namespace VNet.ProceduralGeneration.Cosmological.Events
+public class PostProcessedEvent : CosmologicalEventBase
 {
-    public class PostProcessedEvent : CosmologicalEventBase
-    {
-    }
 }

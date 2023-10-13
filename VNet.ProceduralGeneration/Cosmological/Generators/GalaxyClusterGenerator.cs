@@ -1,34 +1,15 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class GalaxyClusterGenerator : ContainerGeneratorBase<GalaxyCluster, GalaxyClusterContext>
+public class GalaxyClusterGenerator : GroupGeneratorBase<GalaxyCluster, GalaxyClusterContext>
 {
     public GalaxyClusterGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
-    }
-
-    protected override void GenerateDiameter(GalaxyClusterContext context, GalaxyCluster self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GeneratePosition(GalaxyClusterContext context, GalaxyCluster self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateBoundingBox(GalaxyClusterContext context, GalaxyCluster self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateOrientation(GalaxyClusterContext context, GalaxyCluster self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task<GalaxyCluster> GenerateSelf(GalaxyClusterContext context, GalaxyCluster self)
@@ -41,7 +22,27 @@ public class GalaxyClusterGenerator : ContainerGeneratorBase<GalaxyCluster, Gala
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(GalaxyClusterContext context, GalaxyCluster self)
+    protected override void SetMatterType(GalaxyClusterContext context, GalaxyCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateWarpedSurface(GalaxyClusterContext context, GalaxyCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateInteriorObjects(GalaxyClusterContext context, GalaxyCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateInteriorRandomizationAlgorithm(GalaxyClusterContext context, GalaxyCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateSurfaceNoiseAlgorithm(GalaxyClusterContext context, GalaxyCluster self)
     {
         throw new NotImplementedException();
     }

@@ -1,5 +1,7 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.Contexts;
+﻿using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
 
-public class StellarNurseryContext : ContainerContextBase
+namespace VNet.ProceduralGeneration.Cosmological.Contexts;
+
+public class StellarNurseryContext : GroupContextBase
 {
 }

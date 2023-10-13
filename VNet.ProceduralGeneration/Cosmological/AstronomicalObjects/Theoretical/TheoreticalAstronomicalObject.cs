@@ -1,6 +1,7 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
+
+namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+
+public abstract class TheoreticalAstronomicalObject : AstronomicalObject
 {
-    public abstract class TheoreticalAstronomicalObject : AstronomicalObject
-    {
-    }
 }

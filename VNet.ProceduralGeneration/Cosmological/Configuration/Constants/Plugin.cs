@@ -1,11 +1,10 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.Configuration.Constants
+﻿namespace VNet.ProceduralGeneration.Cosmological.Configuration.Constants;
+
+internal static partial class ConfigConstants
 {
-    internal static partial class ConfigConstants
+    internal static class Plugin
     {
-        internal static class Plugin
-        {
-            internal static string ApiVersion { get; } = "1.0";
-            internal static string[] CompatibleApiVersions { get; } = new string[] { "1.0" };
-        }
+        internal static string ApiVersion { get; } = "1.0";
+        internal static string[] CompatibleApiVersions { get; } = {"1.0"};
     }
 }

@@ -1,9 +1,8 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.Enum
+﻿namespace VNet.ProceduralGeneration.Cosmological.Enum;
+
+public enum SizeType
 {
-    public enum SizeType
-    {
-        Radius,
-        Diameter,
-        Volume
-    }
+    Radius,
+    Diameter,
+    Volume
 }

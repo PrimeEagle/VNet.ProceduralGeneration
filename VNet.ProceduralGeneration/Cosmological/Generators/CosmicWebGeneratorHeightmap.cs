@@ -3,6 +3,7 @@ using System.Numerics;
 using VNet.ImageProcessing;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.ProceduralGeneration.Heightmap;
 
 // ReSharper disable MemberCanBeMadeStatic.Local
@@ -14,7 +15,7 @@ using VNet.ProceduralGeneration.Heightmap;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebContext>
+public partial class CosmicWebGenerator : GroupGeneratorBase<CosmicWeb, CosmicWebContext>
 {
     private void GenerateCosmicWebByHeightmap(CosmicWebContext context, CosmicWeb self)
     {
@@ -25,20 +26,17 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
     {
         var heightMapImage = new Bitmap(BasicSettings.HeightmapFile);
 
-        if (AdvancedSettings.Universe.GaussianSigma > 0f)
-        {
-            heightMapImage = Enhancement.GaussianBlur(heightMapImage, AdvancedSettings.Universe.GaussianKernelSize, AdvancedSettings.Universe.GaussianSigma);
-        }
+        if (AdvancedSettings.Universe.GaussianSigma > 0f) heightMapImage = Enhancement.GaussianBlur(heightMapImage, AdvancedSettings.Universe.GaussianKernelSize, AdvancedSettings.Universe.GaussianSigma);
 
         var heightMap = HeightmapUtil.ImageToHeightmap(heightMapImage);
 
-        var extrusionLevel = (BasicSettings.DimensionZ / BasicSettings.DimensionX) * heightMap.GetLength(0);
-        var volumeMap = HeightmapUtil.ExtrudeHeightmapToVolumeMap(heightMap, (int)extrusionLevel);
+        var extrusionLevel = BasicSettings.DimensionZ / BasicSettings.DimensionX * heightMap.GetLength(0);
+        var volumeMap = HeightmapUtil.ExtrudeHeightmapToVolumeMap(heightMap, (int) extrusionLevel);
         var gradientMap = HeightmapUtil.VolumeMapToGradientMap(volumeMap);
         var averageIntensity = HeightmapUtil.GetAverageIntensity(heightMapImage);
         var maxGradientMagnitude = gradientMap.Cast<Vector3>().Max(v => v.Length());
 
-        var topology = new CosmicWebHeightmapTopology()
+        var topology = new CosmicWebHeightmapTopology
         {
             AverageIntensity = averageIntensity,
             Heightmap = heightMap,

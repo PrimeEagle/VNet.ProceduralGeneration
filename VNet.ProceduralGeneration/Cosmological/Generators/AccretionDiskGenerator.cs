@@ -1,6 +1,7 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
@@ -9,51 +10,6 @@ public class AccretionDiskGenerator : GeneratorBase<AccretionDisk, AccretionDisk
 {
     public AccretionDiskGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
-    }
-
-    protected override void GenerateDiameter(AccretionDiskContext context, AccretionDisk self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GeneratePosition(AccretionDiskContext context, AccretionDisk self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateBoundingBox(AccretionDiskContext context, AccretionDisk self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateOrientation(AccretionDiskContext context, AccretionDisk self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateAge(AccretionDiskContext context, AccretionDisk self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateLifespan(AccretionDiskContext context, AccretionDisk self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateMass(AccretionDiskContext context, AccretionDisk self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateLuminosity(AccretionDiskContext context, AccretionDisk self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateTemperature(AccretionDiskContext context, AccretionDisk self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task<AccretionDisk> GenerateSelf(AccretionDiskContext context, AccretionDisk self)

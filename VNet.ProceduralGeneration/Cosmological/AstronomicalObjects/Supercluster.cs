@@ -1,6 +1,8 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 
-public class Supercluster : AstronomicalObjectContainer
+namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+
+public class Supercluster : AstronomicalObjectGroup
 {
     internal override void AssignChildren()
     {

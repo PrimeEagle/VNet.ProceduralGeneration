@@ -1,6 +1,8 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 
-public class ProtoplanetaryDisk : AstronomicalObjectContainer
+namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+
+public class ProtoplanetaryDisk : AstronomicalObjectGroup
 {
     internal override void AssignChildren()
     {

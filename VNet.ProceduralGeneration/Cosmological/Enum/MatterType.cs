@@ -1,9 +1,8 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.Enum
+﻿namespace VNet.ProceduralGeneration.Cosmological.Enum;
+
+public enum MatterType
 {
-    public enum MatterType
-    {
-        None,
-        BaryonicMatter,
-        DarkMatter
-    }
+    None,
+    BaryonicMatter,
+    DarkMatter
 }

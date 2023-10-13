@@ -1,10 +1,9 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical
+﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+
+public class WhiteHole : TheoreticalAstronomicalObject
 {
-    public class WhiteHole : TheoreticalAstronomicalObject
+    internal override void AssignChildren()
     {
-        internal override void AssignChildren()
-        {
-            throw new NotImplementedException();
-        }
+        throw new NotImplementedException();
     }
 }

@@ -1,59 +1,15 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class ProtoplanetaryDiskGenerator : ContainerGeneratorBase<ProtoplanetaryDisk, ProtoplanetaryDiskContext>
+public class ProtoplanetaryDiskGenerator : GroupGeneratorBase<ProtoplanetaryDisk, ProtoplanetaryDiskContext>
 {
     public ProtoplanetaryDiskGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
-    }
-
-    protected override void GenerateDiameter(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GeneratePosition(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateBoundingBox(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateOrientation(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateAge(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateLifespan(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateMass(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateLuminosity(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateTemperature(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task<ProtoplanetaryDisk> GenerateSelf(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
@@ -66,7 +22,27 @@ public class ProtoplanetaryDiskGenerator : ContainerGeneratorBase<Protoplanetary
         throw new NotImplementedException();
     }
 
-    protected override void PostProcess(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
+    protected override void SetMatterType(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateWarpedSurface(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateInteriorObjects(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateInteriorRandomizationAlgorithm(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateSurfaceNoiseAlgorithm(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
     {
         throw new NotImplementedException();
     }

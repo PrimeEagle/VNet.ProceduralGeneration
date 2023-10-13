@@ -1,9 +1,8 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.Enum
+﻿namespace VNet.ProceduralGeneration.Cosmological.Enum;
+
+public enum NebulaType
 {
-    public enum NebulaType
-    {
-        MolecularCloud,
-        HiiRegion,
-        SupernovaRemnant
-    }
+    MolecularCloud,
+    HiiRegion,
+    SupernovaRemnant
 }

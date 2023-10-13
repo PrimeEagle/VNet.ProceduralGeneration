@@ -5,5 +5,5 @@ public enum CosmicWebGenerationMethod
     None,
     Random,
     Heightmap,
-    Evolution,
+    Evolution
 }

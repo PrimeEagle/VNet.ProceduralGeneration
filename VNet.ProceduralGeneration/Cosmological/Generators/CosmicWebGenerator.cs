@@ -2,8 +2,10 @@
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.Scientific.NumericalVolumes;
 using VNet.System.Events;
+
 // ReSharper disable MemberCanBeMadeStatic.Local
 // ReSharper disable ClassNeverInstantiated.Global
 // ReSharper disable UnusedParameter.Local
@@ -14,31 +16,11 @@ using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebContext>
+public partial class CosmicWebGenerator : GroupGeneratorBase<CosmicWeb, CosmicWebContext>
 {
     public CosmicWebGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level0)
     {
         Enabled = ObjectToggles.CosmicWebEnabled;
-    }
-
-    protected override void GenerateDiameter(CosmicWebContext context, CosmicWeb self)
-    {
-        self.Diameter = (context.MapX + context.MapY + context.MapZ) / 3;
-    }
-
-    protected override void GeneratePosition(CosmicWebContext context, CosmicWeb self)
-    {
-        self.Position = new Vector3(0, 0, 0);
-    }
-
-    protected override void GenerateBoundingBox(CosmicWebContext context, CosmicWeb self)
-    {
-        self.BoundingBox = new BoundingBox<float>(self.Position, 1, self.Orientation);
-    }
-
-    protected override void GenerateOrientation(CosmicWebContext context, CosmicWeb self)
-    {
-        self.Orientation = Vector3.UnitZ;
     }
 
     protected override async Task<CosmicWeb> GenerateSelf(CosmicWebContext context, CosmicWeb self)
