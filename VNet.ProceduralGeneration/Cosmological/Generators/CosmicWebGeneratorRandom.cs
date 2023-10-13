@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using VNet.Mathematics.Randomization.Generation;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
@@ -35,22 +36,34 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
                 case MatterType.BaryonicMatter:
                     var baryonicMatterVoidContext = new BaryonicMatterVoidContext()
                     {
-
+                        DiameterCreateRange = (GetMinimumVoidDiameter(matterType), GetMaximumVoidDiameter(matterType)),
+                        RandomizationAlgorithm = GetVoidRandomizationAlgorithm(matterType)
                     };
-
                     var baryonicMatterVoidGenerator = new BaryonicMatterVoidGenerator(this.EventAggregator, ParallelismLevel.Level1);
                     var newBaryonicMatterVoid = await baryonicMatterVoidGenerator.Generate(baryonicMatterVoidContext, self.Parent);
+
+                    baryonicMatterVoidContext.PositionXCreateRange = (0, Settings.Basic.DimensionX - newBaryonicMatterVoid.Diameter);
+                    baryonicMatterVoidContext.PositionYCreateRange = (0, Settings.Basic.DimensionY - newBaryonicMatterVoid.Diameter);
+                    baryonicMatterVoidContext.PositionZCreateRange = (0, Settings.Basic.DimensionZ - newBaryonicMatterVoid.Diameter);
+                    baryonicMatterVoidGenerator.RegeneratePosition(baryonicMatterVoidContext, newBaryonicMatterVoid);
+
                     self.BaryonicMatterVoids.Add(newBaryonicMatterVoid);
                     totalVoidVolume += newBaryonicMatterVoid.Volume;
                     break;
                 case MatterType.DarkMatter:
                     var darkMatterVoidContext = new DarkMatterVoidContext()
                     {
-
+                        DiameterCreateRange = (GetMinimumVoidDiameter(matterType), GetMaximumVoidDiameter(matterType)),
+                        RandomizationAlgorithm = GetVoidRandomizationAlgorithm(matterType)
                     };
-
                     var darkMatterVoidGenerator = new DarkMatterVoidGenerator(this.EventAggregator, ParallelismLevel.Level1);
                     var newDarkMatterVoid = await darkMatterVoidGenerator.Generate(darkMatterVoidContext, self.Parent);
+
+                    darkMatterVoidContext.PositionXCreateRange = (0, Settings.Basic.DimensionX - newDarkMatterVoid.Diameter);
+                    darkMatterVoidContext.PositionYCreateRange = (0, Settings.Basic.DimensionY - newDarkMatterVoid.Diameter);
+                    darkMatterVoidContext.PositionZCreateRange = (0, Settings.Basic.DimensionZ - newDarkMatterVoid.Diameter);
+                    darkMatterVoidGenerator.RegeneratePosition(darkMatterVoidContext, newDarkMatterVoid);
+
                     self.DarkMatterVoids.Add(newDarkMatterVoid);
                     totalVoidVolume += newDarkMatterVoid.Volume;
                     break;
@@ -59,23 +72,6 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
                     throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null);
             }
 
-
-
-            var diameter = RandomAlgorithm.NextSingle() * (GetMaximumVoidDiameter(matterType) - GetMinimumVoidDiameter(matterType)) + GetMinimumVoidDiameter(matterType);
-            var sphereVolume = (float)(4.0 / 3.0 * Math.PI * Math.Pow(diameter / 2, 3));
-
-            if (sphereVolume > targetSphereVolume)
-            {
-                diameter = (float)Math.Pow(targetSphereVolume * 3.0 / (4.0 * Math.PI), 1.0 / 3.0) * 2;
-                sphereVolume = targetSphereVolume;
-            }
-            var center = new Vector3(
-                RandomAlgorithm.NextSingle() * (Settings.Basic.DimensionX - diameter),
-                RandomAlgorithm.NextSingle() * (Settings.Basic.DimensionY - diameter),
-                RandomAlgorithm.NextSingle() * (Settings.Basic.DimensionZ - diameter)
-            );
-
-            var sphere = new VSphere(center, diameter);
 
             var acceptableOverlap = false;
             while (!acceptableOverlap)
@@ -181,8 +177,19 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
     {
         return matterType switch
         {
-            MatterType.BaryonicMatter => Settings.Advanced.CosmicWeb.Randomized.GetPercentageOfOverlappingBaryonicMatterVoids,
-            MatterType.DarkMatter => Settings.Advanced.CosmicWeb.Randomized.GetPercentageOfOverlappingDarkMatterVoids,
+            MatterType.BaryonicMatter => Settings.Advanced.CosmicWeb.Randomized.PercentageOfOverlappingBaryonicMatterVoids,
+            MatterType.DarkMatter => Settings.Advanced.CosmicWeb.Randomized.PercentageOfOverlappingDarkMatterVoids,
+            MatterType.None => throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null),
+            _ => throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null)
+        };
+    }
+
+    private IRandomGenerationAlgorithm GetVoidRandomizationAlgorithm(MatterType matterType)
+    {
+        return matterType switch
+        {
+            MatterType.BaryonicMatter => Settings.Advanced.CosmicWeb.Randomized.BaryonicMatterRandomizationAlgorithm,
+            MatterType.DarkMatter => Settings.Advanced.CosmicWeb.Randomized.DarkMatterRandomizationAlgorithm,
             MatterType.None => throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null),
             _ => throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null)
         };
