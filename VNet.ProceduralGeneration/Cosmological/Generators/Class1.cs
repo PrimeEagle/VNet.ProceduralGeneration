@@ -70,57 +70,57 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         public float MaxOverlapAmount { get; set; }
         public IRandomGenerationAlgorithm RandomAlgorithm { get; set; }
 
-        public List<VSphere> GenerateSpheres(float[,,] volume)
-        {
-            var volumeSize = volume.GetLength(0) * volume.GetLength(1) * volume.GetLength(2);
-            var targetSphereVolume = volumeSize * PercentageOfVolumeCoveredBySpheres;
-            var spheres = new List<VSphere>();
+        //public List<VSphere> GenerateSpheres(float[,,] volume)
+        //{
+        //    var volumeSize = volume.GetLength(0) * volume.GetLength(1) * volume.GetLength(2);
+        //    var targetSphereVolume = volumeSize * PercentageOfVolumeCoveredBySpheres;
+        //    var spheres = new List<VSphere>();
 
-            while (targetSphereVolume > 0)
-            {
-                var diameter = RandomAlgorithm.NextSingle() * (MaxSphereSize - MinSphereSize) + MinSphereSize;
-                var sphereVolume = (float)(4.0 / 3.0 * Math.PI * Math.Pow(diameter / 2, 3));
+        //    while (targetSphereVolume > 0)
+        //    {
+        //        var diameter = RandomAlgorithm.NextSingle() * (MaxSphereSize - MinSphereSize) + MinSphereSize;
+        //        var sphereVolume = (float)(4.0 / 3.0 * Math.PI * Math.Pow(diameter / 2, 3));
 
-                if (sphereVolume > targetSphereVolume)
-                {
-                    diameter = (float)Math.Pow(targetSphereVolume * 3.0 / (4.0 * Math.PI), 1.0 / 3.0) * 2;
-                    sphereVolume = targetSphereVolume;
-                }
+        //        if (sphereVolume > targetSphereVolume)
+        //        {
+        //            diameter = (float)Math.Pow(targetSphereVolume * 3.0 / (4.0 * Math.PI), 1.0 / 3.0) * 2;
+        //            sphereVolume = targetSphereVolume;
+        //        }
 
-                var center = new Vector3(
-                    RandomAlgorithm.NextSingle() * (volume.GetLength(0) - diameter),
-                    RandomAlgorithm.NextSingle() * (volume.GetLength(1) - diameter),
-                    RandomAlgorithm.NextSingle() * (volume.GetLength(2) - diameter)
-                );
+        //        var center = new Vector3(
+        //            RandomAlgorithm.NextSingle() * (volume.GetLength(0) - diameter),
+        //            RandomAlgorithm.NextSingle() * (volume.GetLength(1) - diameter),
+        //            RandomAlgorithm.NextSingle() * (volume.GetLength(2) - diameter)
+        //        );
 
-                var sphere = new VSphere(center, diameter);
+        //        var sphere = new VSphere(center, diameter);
 
-                var acceptableOverlap = false;
-                while (!acceptableOverlap)
-                {
-                    var overlapAmount = CalculateOverlapAmount(sphere, spheres);
+        //        var acceptableOverlap = false;
+        //        while (!acceptableOverlap)
+        //        {
+        //            var overlapAmount = CalculateOverlapAmount(sphere, spheres);
 
-                    if ((overlapAmount < MinOverlapAmount || overlapAmount > MaxOverlapAmount) ||
-                        (spheres.Count(x => CalculateOverlapAmount(sphere, new List<VSphere> { x }) > 0) / (float)spheres.Count) > PercentageOfOverlappingSpheres)
-                    {
-                        sphere = new VSphere(new Vector3(
-                            RandomAlgorithm.NextSingle() * (volume.GetLength(0) - diameter),
-                            RandomAlgorithm.NextSingle() * (volume.GetLength(1) - diameter),
-                            RandomAlgorithm.NextSingle() * (volume.GetLength(2) - diameter)
-                        ), diameter);
-                    }
-                    else
-                    {
-                        acceptableOverlap = true;
-                    }
-                }
+        //            if ((overlapAmount < MinOverlapAmount || overlapAmount > MaxOverlapAmount) ||
+        //                (spheres.Count(x => CalculateOverlapAmount(sphere, new List<VSphere> { x }) > 0) / (float)spheres.Count) > PercentageOfOverlappingSpheres)
+        //            {
+        //                sphere = new VSphere(new Vector3(
+        //                    RandomAlgorithm.NextSingle() * (volume.GetLength(0) - diameter),
+        //                    RandomAlgorithm.NextSingle() * (volume.GetLength(1) - diameter),
+        //                    RandomAlgorithm.NextSingle() * (volume.GetLength(2) - diameter)
+        //                ), diameter);
+        //            }
+        //            else
+        //            {
+        //                acceptableOverlap = true;
+        //            }
+        //        }
 
-                spheres.Add(sphere);
-                targetSphereVolume -= sphereVolume;
-            }
+        //        spheres.Add(sphere);
+        //        targetSphereVolume -= sphereVolume;
+        //    }
 
-            return spheres;
-        }
+        //    return spheres;
+        //}
 
         private float CalculateOverlapAmount(VSphere sphere, List<VSphere> existingSpheres)
         {

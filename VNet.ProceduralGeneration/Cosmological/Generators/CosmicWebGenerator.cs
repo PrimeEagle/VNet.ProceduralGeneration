@@ -51,13 +51,13 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
         switch (AdvancedSettings.CosmicWeb.CosmicWebGenerationMethod)
         {
             case CosmicWebGenerationMethod.Heightmap:
-                GenerateCosmicWebByHeightmap(self);
+                GenerateCosmicWebByHeightmap(context, self);
                 break;
             case CosmicWebGenerationMethod.Random:
-                GenerateCosmicWebRandomly(self);
+                GenerateCosmicWebRandomly(context, self);
                 break;
             case CosmicWebGenerationMethod.Evolution:
-                GenerateCosmicWebByEvolution(self);
+                GenerateCosmicWebByEvolution(context, self);
                 break;
             case CosmicWebGenerationMethod.None:
             default:

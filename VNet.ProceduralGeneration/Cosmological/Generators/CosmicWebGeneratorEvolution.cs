@@ -33,7 +33,7 @@ public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, Cosm
 
 
 
-    private void GenerateCosmicWebByEvolution(CosmicWeb self)
+    private void GenerateCosmicWebByEvolution(CosmicWebContext context, CosmicWeb self)
     {
         _darkEnergyEffect = Math.Pow(1 + Context.DarkEnergyPercentage / 100.0, 0.5) - 1;
 

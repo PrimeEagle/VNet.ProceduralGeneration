@@ -16,7 +16,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebContext>
 {
-    private void GenerateCosmicWebByHeightmap(CosmicWeb self)
+    private void GenerateCosmicWebByHeightmap(CosmicWebContext context, CosmicWeb self)
     {
         self.HeightmapTopology = LoadHeightmapTopology();
     }

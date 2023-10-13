@@ -4,6 +4,7 @@ using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
 
+
 namespace VNet.ProceduralGeneration.Cosmological.Generators
 {
     public abstract class ContainerGeneratorBase<T, TContext> : GeneratorBase<T, TContext>, IDisposable
@@ -13,6 +14,15 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
         protected ContainerGeneratorBase(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
         {
+        }
+
+        public override async Task<T> Generate(TContext context, AstronomicalObject parent)
+        {
+            var self = await base.Generate(context, parent);
+            GenerateWarpedSurface(context, self);
+            GenerateInteriorObjects(context, self);
+
+            return self;
         }
 
         protected override void GenerateAge(TContext context, T self)
@@ -89,7 +99,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                 netVelocities.Add(Vector3.Zero);
             }
 
-            // Calculate gravitational effects
             for (var i = 0; i < self.InteriorObjects.Count; i++)
             {
                 for (var j = 0; j < self.InteriorObjects.Count; j++)
@@ -101,7 +110,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
                     if (Settings.Advanced.Application.ApplyGravitationalEffectsPreventDarkMatterClumping)
                     {
-                        // Prevent dark matter from clumping too densely
                         if (self.InteriorObjects[i].MatterType == MatterType.DarkMatter && self.InteriorObjects[j].MatterType == MatterType.DarkMatter && distance < Settings.Advanced.Application.MinimumDarkMatterDistanceToPreventClumping)
                         {
                             distance = Settings.Advanced.Application.MinimumDarkMatterDistanceToPreventClumping;
@@ -117,7 +125,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
 
                     if (Settings.Advanced.Application.ApplyGravitationalEffectsDampenBaryonicMatter)
                     {
-                        // Damping for Baryonic matter
                         if (self.InteriorObjects[i].MatterType == MatterType.BaryonicMatter)
                         {
                             velocity *= Settings.Advanced.Application.BaryonicMatterDampeningFactor;
@@ -129,7 +136,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
                 }
             }
 
-            // Update positions
             for (var i = 0; i < self.InteriorObjects.Count; i++)
             {
                 self.InteriorObjects[i].Position += netDisplacements[i];
@@ -139,6 +145,11 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators
         protected override void PostProcess(TContext context, T self)
         {
             ApplyGravitationalEffects(context, self, self.Age);
+        }
+
+        protected bool PointsOverlap(IEnumerable<IUndefinedAstronomicalObject> points, IUndefinedAstronomicalObject newPoint)
+        {
+            return points.Any(i => Vector3.Distance(i.Position, newPoint.Position) < 0.01f);
         }
     }
 }

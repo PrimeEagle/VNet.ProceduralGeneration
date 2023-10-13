@@ -1,17 +1,190 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Enum;
+using Void = VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Void;
+// ReSharper disable SuggestBaseTypeForParameter
 // ReSharper disable MemberCanBeMadeStatic.Local
 // ReSharper disable ClassNeverInstantiated.Global
 #pragma warning disable CA1822
-#pragma warning disable IDE0060
 
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public partial class CosmicWebGenerator : ContainerGeneratorBase<CosmicWeb, CosmicWebContext>
 {
-    private void GenerateCosmicWebRandomly(CosmicWeb self)
+    private void GenerateCosmicWebRandomly(CosmicWebContext context, CosmicWeb self)
     {
+        GenerateRandomVoids(context, self, MatterType.BaryonicMatter);
 
+
+        GenerateRandomVoids(context, self, MatterType.BaryonicMatter);
+    }
+
+    private async void GenerateRandomVoids(CosmicWebContext context, CosmicWeb self, MatterType matterType)
+    {
+        var volumeSize = Settings.Basic.DimensionX * Settings.Basic.DimensionY * Settings.Basic.DimensionZ;
+        var targetTotalVoidVolume = volumeSize * GetPercentageOfVolumeCoveredByVoids(matterType) / 100;
+        var totalVoidVolume = 0d;
+        var voids = new List<Void>();
+
+        while (targetTotalVoidVolume > totalVoidVolume)
+        {
+            switch (matterType)
+            {
+                case MatterType.BaryonicMatter:
+                    var baryonicMatterVoidContext = new BaryonicMatterVoidContext()
+                    {
+
+                    };
+
+                    var baryonicMatterVoidGenerator = new BaryonicMatterVoidGenerator(this.EventAggregator, ParallelismLevel.Level1);
+                    var newBaryonicMatterVoid = await baryonicMatterVoidGenerator.Generate(baryonicMatterVoidContext, self.Parent);
+                    self.BaryonicMatterVoids.Add(newBaryonicMatterVoid);
+                    totalVoidVolume += newBaryonicMatterVoid.Volume;
+                    break;
+                case MatterType.DarkMatter:
+                    var darkMatterVoidContext = new DarkMatterVoidContext()
+                    {
+
+                    };
+
+                    var darkMatterVoidGenerator = new DarkMatterVoidGenerator(this.EventAggregator, ParallelismLevel.Level1);
+                    var newDarkMatterVoid = await darkMatterVoidGenerator.Generate(darkMatterVoidContext, self.Parent);
+                    self.DarkMatterVoids.Add(newDarkMatterVoid);
+                    totalVoidVolume += newDarkMatterVoid.Volume;
+                    break;
+                case MatterType.None:
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null);
+            }
+
+
+
+            var diameter = RandomAlgorithm.NextSingle() * (GetMaximumVoidDiameter(matterType) - GetMinimumVoidDiameter(matterType)) + GetMinimumVoidDiameter(matterType);
+            var sphereVolume = (float)(4.0 / 3.0 * Math.PI * Math.Pow(diameter / 2, 3));
+
+            if (sphereVolume > targetSphereVolume)
+            {
+                diameter = (float)Math.Pow(targetSphereVolume * 3.0 / (4.0 * Math.PI), 1.0 / 3.0) * 2;
+                sphereVolume = targetSphereVolume;
+            }
+            var center = new Vector3(
+                RandomAlgorithm.NextSingle() * (Settings.Basic.DimensionX - diameter),
+                RandomAlgorithm.NextSingle() * (Settings.Basic.DimensionY - diameter),
+                RandomAlgorithm.NextSingle() * (Settings.Basic.DimensionZ - diameter)
+            );
+
+            var sphere = new VSphere(center, diameter);
+
+            var acceptableOverlap = false;
+            while (!acceptableOverlap)
+            {
+                var overlapAmount = CalculateOverlapAmount(sphere, spheres);
+
+                if ((overlapAmount < GetMinimumVoidOverlap(matterType) || overlapAmount > GetMaximumVoidOverlap(matterType)) ||
+                    (spheres.Count(x => CalculateOverlapAmount(sphere, new List<VSphere> { x }) > 0) / (float)spheres.Count) > GetPercentageOfOverlappingVoids(matterType))
+                {
+                    sphere = new VSphere(new Vector3(
+                        RandomAlgorithm.NextSingle() * (volume.GetLength(0) - diameter),
+                        RandomAlgorithm.NextSingle() * (volume.GetLength(1) - diameter),
+                        RandomAlgorithm.NextSingle() * (volume.GetLength(2) - diameter)
+                    ), diameter);
+                }
+                else
+                {
+                    acceptableOverlap = true;
+                }
+            }
+
+            spheres.Add(sphere);
+            targetSphereVolume -= sphereVolume;
+        }
+
+        return spheres;
+    }
+
+    private float CalculateOverlapAmount(Void voidItem, List<Void> existingVoids)
+    {
+        float overlapAmount = 0;
+
+        foreach (var existingVoid in existingVoids)
+        {
+            var distanceBetweenCenters = Vector3.Distance(voidItem.Position, existingVoid.Position);
+            var combinedRadii = voidItem.Radius + existingVoid.Radius;
+
+            if (distanceBetweenCenters < combinedRadii)
+            {
+                overlapAmount += combinedRadii - distanceBetweenCenters;
+            }
+        }
+
+        return overlapAmount;
+    }
+
+    private float GetPercentageOfVolumeCoveredByVoids(MatterType matterType)
+    {
+        return matterType switch
+        {
+            MatterType.BaryonicMatter => Settings.Advanced.CosmicWeb.Randomized.PercentageOfVolumeCoveredByBaryonicMatterVoids,
+            MatterType.DarkMatter => Settings.Advanced.CosmicWeb.Randomized.PercentageOfVolumeCoveredByDarkMatterMatterVoids,
+            MatterType.None => throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null),
+            _ => throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null)
+        };
+    }
+
+    private float GetMaximumVoidDiameter(MatterType matterType)
+    {
+        return matterType switch
+        {
+            MatterType.BaryonicMatter => Settings.Advanced.CosmicWeb.Randomized.MaximumBaryonicMatterVoidDiameter,
+            MatterType.DarkMatter => Settings.Advanced.CosmicWeb.Randomized.MaximumDarkMatterVoidDiameter,
+            MatterType.None => throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null),
+            _ => throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null)
+        };
+    }
+
+    private float GetMinimumVoidDiameter(MatterType matterType)
+    {
+        return matterType switch
+        {
+            MatterType.BaryonicMatter => Settings.Advanced.CosmicWeb.Randomized.MinimumBaryonicMatterVoidDiameter,
+            MatterType.DarkMatter => Settings.Advanced.CosmicWeb.Randomized.MinimumDarkMatterVoidDiameter,
+            MatterType.None => throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null),
+            _ => throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null)
+        };
+    }
+
+    private float GetMaximumVoidOverlap(MatterType matterType)
+    {
+        return matterType switch
+        {
+            MatterType.BaryonicMatter => Settings.Advanced.CosmicWeb.Randomized.MaximumBaryonicMatterVoidOverlap,
+            MatterType.DarkMatter => Settings.Advanced.CosmicWeb.Randomized.MaximumDarkMatterVoidOverlap,
+            MatterType.None => throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null),
+            _ => throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null)
+        };
+    }
+
+    private float GetMinimumVoidOverlap(MatterType matterType)
+    {
+        return matterType switch
+        {
+            MatterType.BaryonicMatter => Settings.Advanced.CosmicWeb.Randomized.MinimumBaryonicMatterVoidOverlap,
+            MatterType.DarkMatter => Settings.Advanced.CosmicWeb.Randomized.MinimumDarkMatterVoidOverlap,
+            MatterType.None => throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null),
+            _ => throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null)
+        };
+    }
+
+    private float GetPercentageOfOverlappingVoids(MatterType matterType)
+    {
+        return matterType switch
+        {
+            MatterType.BaryonicMatter => Settings.Advanced.CosmicWeb.Randomized.GetPercentageOfOverlappingBaryonicMatterVoids,
+            MatterType.DarkMatter => Settings.Advanced.CosmicWeb.Randomized.GetPercentageOfOverlappingDarkMatterVoids,
+            MatterType.None => throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null),
+            _ => throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null)
+        };
     }
 }
