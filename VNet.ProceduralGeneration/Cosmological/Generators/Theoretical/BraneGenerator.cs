@@ -31,4 +31,9 @@ public class BraneGenerator : GeneratorBase<Brane, BraneContext>
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(BraneContext context, Brane self)
+    {
+        throw new NotImplementedException();
+    }
 }

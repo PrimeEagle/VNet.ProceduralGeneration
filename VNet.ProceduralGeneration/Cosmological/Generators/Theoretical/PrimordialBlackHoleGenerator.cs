@@ -31,4 +31,9 @@ public class PrimordialBlackHoleGenerator : GeneratorBase<PrimordialBlackHole, P
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(PrimordialBlackHoleContext context, PrimordialBlackHole self)
+    {
+        throw new NotImplementedException();
+    }
 }

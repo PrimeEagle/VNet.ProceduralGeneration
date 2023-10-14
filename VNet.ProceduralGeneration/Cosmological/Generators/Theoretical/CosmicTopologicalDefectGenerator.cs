@@ -31,4 +31,9 @@ public class CosmicTopologicalDefectGenerator : GeneratorBase<CosmicTopologicalD
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    {
+        throw new NotImplementedException();
+    }
 }

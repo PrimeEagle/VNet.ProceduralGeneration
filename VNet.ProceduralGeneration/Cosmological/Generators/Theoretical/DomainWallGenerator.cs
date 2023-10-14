@@ -11,7 +11,7 @@ public class DomainWallGenerator : GeneratorBase<DomainWall, DomainWallContext>
     public DomainWallGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
     }
-    
+
     protected override Task<DomainWall> GenerateSelf(DomainWallContext context, DomainWall self)
     {
         throw new NotImplementedException();
@@ -28,6 +28,11 @@ public class DomainWallGenerator : GeneratorBase<DomainWall, DomainWallContext>
     }
 
     protected override void PostProcess(DomainWallContext context, DomainWall self)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal override void AssignChildren(DomainWallContext context, DomainWall self)
     {
         throw new NotImplementedException();
     }

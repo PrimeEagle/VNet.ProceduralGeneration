@@ -31,4 +31,9 @@ public class AccretionDiskGenerator : GeneratorBase<AccretionDisk, AccretionDisk
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(AccretionDiskContext context, AccretionDisk self)
+    {
+        throw new NotImplementedException();
+    }
 }

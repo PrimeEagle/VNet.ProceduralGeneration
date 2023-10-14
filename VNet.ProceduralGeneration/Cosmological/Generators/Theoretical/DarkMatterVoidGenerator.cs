@@ -36,4 +36,9 @@ public class DarkMatterVoidGenerator : VoidGeneratorBase<DarkMatterVoid, DarkMat
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(DarkMatterVoidContext context, DarkMatterVoid self)
+    {
+        throw new NotImplementedException();
+    }
 }

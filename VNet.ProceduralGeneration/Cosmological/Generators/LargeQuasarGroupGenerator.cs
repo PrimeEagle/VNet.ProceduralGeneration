@@ -46,4 +46,9 @@ public class LargeQuasarGroupGenerator : GroupGeneratorBase<LargeQuasarGroup, La
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(LargeQuasarGroupContext context, LargeQuasarGroup self)
+    {
+        throw new NotImplementedException();
+    }
 }

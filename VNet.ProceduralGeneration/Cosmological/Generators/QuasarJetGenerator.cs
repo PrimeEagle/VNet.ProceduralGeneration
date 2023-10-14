@@ -31,4 +31,9 @@ public class QuasarJetGenerator : GeneratorBase<QuasarJet, QuasarJetContext>
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(QuasarJetContext context, QuasarJet self)
+    {
+        throw new NotImplementedException();
+    }
 }

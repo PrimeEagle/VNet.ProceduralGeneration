@@ -31,4 +31,9 @@ public class CosmicTornadoGenerator : GeneratorBase<CosmicTornado, CosmicTornado
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(CosmicTornadoContext context, CosmicTornado self)
+    {
+        throw new NotImplementedException();
+    }
 }

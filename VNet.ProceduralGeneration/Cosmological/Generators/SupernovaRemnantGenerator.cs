@@ -31,4 +31,9 @@ public class SupernovaRemnantGenerator : GeneratorBase<SupernovaRemnant, Superno
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(SupernovaRemnantContext context, SupernovaRemnant self)
+    {
+        throw new NotImplementedException();
+    }
 }

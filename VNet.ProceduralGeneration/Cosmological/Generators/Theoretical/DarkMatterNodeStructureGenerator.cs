@@ -46,4 +46,9 @@ public class DarkMatterNodeStructureGenerator : NodeStructureGenerator<DarkMatte
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(DarkMatterNodeStructureContext context, DarkMatterNodeStructure self)
+    {
+        throw new NotImplementedException();
+    }
 }

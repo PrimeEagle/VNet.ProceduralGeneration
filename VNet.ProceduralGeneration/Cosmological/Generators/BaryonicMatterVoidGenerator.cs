@@ -42,6 +42,11 @@ public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid,
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public class SphereGenerator
@@ -113,24 +118,24 @@ public class SphereGenerator
         var intersectionCircles = new List<IntersectionCircle>();
 
         for (var i = 0; i < warpedSpheres.Count; i++)
-        for (var j = i + 1; j < warpedSpheres.Count; j++)
-        {
-            // Check warped points of sphere A against base of sphere B
-            foreach (var point in warpedSpheres[i].SurfacePoints.Where(point => IsPointInsideSphere(point, warpedSpheres[j])))
+            for (var j = i + 1; j < warpedSpheres.Count; j++)
             {
-                if (!TryGetIntersectionCircle(warpedSpheres[i], warpedSpheres[j], out var circle)) continue;
-                intersectionCircles.Add(circle);
-                break; // No need to check further for this pair
-            }
+                // Check warped points of sphere A against base of sphere B
+                foreach (var point in warpedSpheres[i].SurfacePoints.Where(point => IsPointInsideSphere(point, warpedSpheres[j])))
+                {
+                    if (!TryGetIntersectionCircle(warpedSpheres[i], warpedSpheres[j], out var circle)) continue;
+                    intersectionCircles.Add(circle);
+                    break; // No need to check further for this pair
+                }
 
-            // Check warped points of sphere B against base of sphere A
-            foreach (var point in warpedSpheres[j].SurfacePoints.Where(point => IsPointInsideSphere(point, warpedSpheres[i])))
-            {
-                if (!TryGetIntersectionCircle(warpedSpheres[i], warpedSpheres[j], out var circle)) continue;
-                intersectionCircles.Add(circle);
-                break; // No need to check further for this pair
+                // Check warped points of sphere B against base of sphere A
+                foreach (var point in warpedSpheres[j].SurfacePoints.Where(point => IsPointInsideSphere(point, warpedSpheres[i])))
+                {
+                    if (!TryGetIntersectionCircle(warpedSpheres[i], warpedSpheres[j], out var circle)) continue;
+                    intersectionCircles.Add(circle);
+                    break; // No need to check further for this pair
+                }
             }
-        }
 
         return intersectionCircles;
     }
@@ -155,16 +160,16 @@ public class SphereGenerator
         float sum = 0;
 
         for (var i = -1; i <= 1; i++)
-        for (var j = -1; j <= 1; j++)
-        for (var k = -1; k <= 1; k++)
-            if (IsInBounds(x + i, y + j, z + k, volumeMap))
-            {
-                sum += volumeMap[x + i, y + j, z + k];
-                count++;
-            }
+            for (var j = -1; j <= 1; j++)
+                for (var k = -1; k <= 1; k++)
+                    if (IsInBounds(x + i, y + j, z + k, volumeMap))
+                    {
+                        sum += volumeMap[x + i, y + j, z + k];
+                        count++;
+                    }
 
         var avg = sum / count;
-        return 0.5f - avg + (float) random.NextDouble() * 0.1f;
+        return 0.5f - avg + (float)random.NextDouble() * 0.1f;
     }
 
     private bool IsInBounds(int x, int y, int z, float[,,] volumeMap)
@@ -176,7 +181,7 @@ public class SphereGenerator
 
     private float CalculateSphereVolumePercentage(Sphere sphere, float[,,] volumeMap)
     {
-        var sphereVolume = 4.0f / 3.0f * (float) Math.PI * (float) Math.Pow(sphere.Radius, 3);
+        var sphereVolume = 4.0f / 3.0f * (float)Math.PI * (float)Math.Pow(sphere.Radius, 3);
         float totalVolume = volumeMap.GetLength(0) * volumeMap.GetLength(1) * volumeMap.GetLength(2);
         return sphereVolume / totalVolume * 100;
     }
@@ -189,11 +194,11 @@ public class SphereGenerator
 
     private Vector3 RandomPointOnSphere(Vector3 center, float radius)
     {
-        var theta = (float) (2 * Math.PI * random.NextDouble());
-        var phi = (float) Math.Acos(2 * random.NextDouble() - 1);
-        var x = center.X + radius * (float) Math.Sin(phi) * (float) Math.Cos(theta);
-        var y = center.Y + radius * (float) Math.Sin(phi) * (float) Math.Sin(theta);
-        var z = center.Z + radius * (float) Math.Cos(phi);
+        var theta = (float)(2 * Math.PI * random.NextDouble());
+        var phi = (float)Math.Acos(2 * random.NextDouble() - 1);
+        var x = center.X + radius * (float)Math.Sin(phi) * (float)Math.Cos(theta);
+        var y = center.Y + radius * (float)Math.Sin(phi) * (float)Math.Sin(theta);
+        var z = center.Z + radius * (float)Math.Cos(phi);
         return new Vector3(x, y, z);
     }
 
@@ -209,7 +214,7 @@ public class SphereGenerator
 
         var aToCenter = (a.BaseRadius * a.BaseRadius - b.BaseRadius * b.BaseRadius + dist * dist) / (2.0f * dist);
         var center = a.Center + aToCenter * Vector3.Normalize(d);
-        var circleRadius = (float) Math.Sqrt(a.BaseRadius * a.BaseRadius - aToCenter * aToCenter);
+        var circleRadius = (float)Math.Sqrt(a.BaseRadius * a.BaseRadius - aToCenter * aToCenter);
 
         circle = new IntersectionCircle(center, circleRadius, Vector3.Normalize(d));
         return true;

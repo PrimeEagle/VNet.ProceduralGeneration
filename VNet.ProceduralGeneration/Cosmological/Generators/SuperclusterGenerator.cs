@@ -46,4 +46,9 @@ public class SuperclusterGenerator : GroupGeneratorBase<Supercluster, Superclust
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(SuperclusterContext context, Supercluster self)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -46,4 +46,9 @@ public class DarkMatterFilamentStructureGenerator : FilamentStructureGenerator<D
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(DarkMatterFilamentStructureContext context, DarkMatterFilamentStructure self)
+    {
+        throw new NotImplementedException();
+    }
 }

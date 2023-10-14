@@ -4,8 +4,4 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
 public class GalaxyCluster : AstronomicalObjectGroup
 {
-    internal override void AssignChildren()
-    {
-        throw new NotImplementedException();
-    }
 }

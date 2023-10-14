@@ -4,8 +4,4 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical
 
 public class DarkMatterNodeStructure : NodeStructure
 {
-    internal override void AssignChildren()
-    {
-        throw new NotImplementedException();
-    }
 }

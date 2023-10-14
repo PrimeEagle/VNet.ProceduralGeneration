@@ -46,4 +46,9 @@ public class StarClusterGenerator : GroupGeneratorBase<StarCluster, StarClusterC
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(StarClusterContext context, StarCluster self)
+    {
+        throw new NotImplementedException();
+    }
 }

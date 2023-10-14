@@ -4,8 +4,4 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
 public class Supercluster : AstronomicalObjectGroup
 {
-    internal override void AssignChildren()
-    {
-        throw new NotImplementedException();
-    }
 }

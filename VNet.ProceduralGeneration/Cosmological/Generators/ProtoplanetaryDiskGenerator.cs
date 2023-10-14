@@ -46,4 +46,9 @@ public class ProtoplanetaryDiskGenerator : GroupGeneratorBase<ProtoplanetaryDisk
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
+    {
+        throw new NotImplementedException();
+    }
 }

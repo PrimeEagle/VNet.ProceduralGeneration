@@ -31,4 +31,9 @@ public class AsteroidGenerator : GeneratorBase<Asteroid, AsteroidContext>
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(AsteroidContext context, Asteroid self)
+    {
+        throw new NotImplementedException();
+    }
 }

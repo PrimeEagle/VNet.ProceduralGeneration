@@ -31,4 +31,9 @@ public class NakedSingularityGenerator : GeneratorBase<NakedSingularity, NakedSi
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(NakedSingularityContext context, NakedSingularity self)
+    {
+        throw new NotImplementedException();
+    }
 }

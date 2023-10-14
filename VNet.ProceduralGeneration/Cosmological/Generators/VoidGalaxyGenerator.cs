@@ -1,7 +1,5 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
-using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
-using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.System.Events;
@@ -45,6 +43,11 @@ public class VoidGalaxyGenerator : GroupGeneratorBase<VoidGalaxy, VoidGalaxyCont
     }
 
     protected override void GenerateSurfaceNoiseAlgorithm(VoidGalaxyContext context, VoidGalaxy self)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal override void AssignChildren(VoidGalaxyContext context, VoidGalaxy self)
     {
         throw new NotImplementedException();
     }

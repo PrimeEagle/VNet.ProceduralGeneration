@@ -31,4 +31,9 @@ public class CometGenerator : GeneratorBase<Comet, CometContext>
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(CometContext context, Comet self)
+    {
+        throw new NotImplementedException();
+    }
 }

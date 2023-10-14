@@ -46,4 +46,9 @@ public class DarkMatterSheetGenerator : SheetGeneratorBase<DarkMatterSheet, Dark
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(DarkMatterSheetContext context, DarkMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
 }

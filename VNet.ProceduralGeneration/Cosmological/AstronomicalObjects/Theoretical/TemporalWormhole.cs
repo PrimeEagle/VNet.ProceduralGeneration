@@ -1,9 +1,7 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
+
+namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 
 public class TemporalWormhole : TheoreticalAstronomicalObject
 {
-    internal override void AssignChildren()
-    {
-        throw new NotImplementedException();
-    }
 }

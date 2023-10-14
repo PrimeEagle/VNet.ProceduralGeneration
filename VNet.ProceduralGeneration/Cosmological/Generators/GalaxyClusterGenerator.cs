@@ -46,4 +46,9 @@ public class GalaxyClusterGenerator : GroupGeneratorBase<GalaxyCluster, GalaxyCl
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(GalaxyClusterContext context, GalaxyCluster self)
+    {
+        throw new NotImplementedException();
+    }
 }

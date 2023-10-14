@@ -31,4 +31,9 @@ public class StarGenerator : GeneratorBase<Star, StarContext>
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(StarContext context, Star self)
+    {
+        throw new NotImplementedException();
+    }
 }

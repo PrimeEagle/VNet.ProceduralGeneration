@@ -31,4 +31,9 @@ public class CubewanoGenerator : GeneratorBase<Cubewano, CubewanoContext>
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(CubewanoContext context, Cubewano self)
+    {
+        throw new NotImplementedException();
+    }
 }

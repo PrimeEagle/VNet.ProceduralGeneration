@@ -31,4 +31,9 @@ public class IntergalacticMediumGenerator : GeneratorBase<IntergalacticMedium, I
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(IntergalacticMediumContext context, IntergalacticMedium self)
+    {
+        throw new NotImplementedException();
+    }
 }

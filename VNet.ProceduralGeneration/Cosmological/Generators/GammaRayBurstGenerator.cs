@@ -31,4 +31,9 @@ public class GammaRayBurstGenerator : GeneratorBase<GammaRayBurst, GammaRayBurst
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(GammaRayBurstContext context, GammaRayBurst self)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -31,4 +31,9 @@ public class AsteroidBeltGenerator : GeneratorBase<AsteroidBelt, AsteroidBeltCon
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(AsteroidBeltContext context, AsteroidBelt self)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -51,4 +51,9 @@ public class BaryonicMatterSheetGenerator : SheetGeneratorBase<BaryonicMatterShe
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
 }

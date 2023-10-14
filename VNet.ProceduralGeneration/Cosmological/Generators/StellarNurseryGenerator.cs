@@ -31,4 +31,9 @@ public class StellarNurseryGenerator : GeneratorBase<StellarNursery, StellarNurs
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(StellarNurseryContext context, StellarNursery self)
+    {
+        throw new NotImplementedException();
+    }
 }

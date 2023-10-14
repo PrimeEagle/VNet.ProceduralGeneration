@@ -46,4 +46,9 @@ public class GalaxyGroupGenerator : GroupGeneratorBase<GalaxyGroup, GalaxyGroupC
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(GalaxyGroupContext context, GalaxyGroup self)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -31,4 +31,9 @@ public class NeutronStarGenerator : GeneratorBase<NeutronStar, NeutronStarContex
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(NeutronStarContext context, NeutronStar self)
+    {
+        throw new NotImplementedException();
+    }
 }

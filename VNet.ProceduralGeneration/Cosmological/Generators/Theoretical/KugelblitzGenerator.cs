@@ -31,4 +31,9 @@ public class KugelblitzGenerator : GeneratorBase<Kugelblitz, KugelblitzContext>
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(KugelblitzContext context, Kugelblitz self)
+    {
+        throw new NotImplementedException();
+    }
 }

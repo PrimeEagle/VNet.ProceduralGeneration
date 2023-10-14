@@ -70,10 +70,4 @@ public class Universe : AstronomicalObjectGroup
     {
         return settings.Advanced.Universe.InflationEnd > 0;
     }
-
-
-    internal override void AssignChildren()
-    {
-        Children.Add(CosmicWeb);
-    }
 }

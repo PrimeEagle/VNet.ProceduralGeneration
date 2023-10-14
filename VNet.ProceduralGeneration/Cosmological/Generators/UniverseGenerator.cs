@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
@@ -122,5 +121,10 @@ public class UniverseGenerator : GroupGeneratorBase<Universe, UniverseContext>
         base.GenerateBaseProperties(context, self);
         GenerateAge(context, self);
         GenerateLifespan(context, self);
+    }
+
+    internal override void AssignChildren(UniverseContext context, Universe self)
+    {
+        throw new NotImplementedException();
     }
 }

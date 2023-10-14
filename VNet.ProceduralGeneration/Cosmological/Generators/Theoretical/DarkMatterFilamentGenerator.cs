@@ -46,4 +46,9 @@ public class DarkMatterFilamentGenerator : FilamentGeneratorBase<DarkMatterFilam
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(DarkMatterFilamentContext context, DarkMatterFilament self)
+    {
+        throw new NotImplementedException();
+    }
 }

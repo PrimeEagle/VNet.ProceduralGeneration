@@ -31,4 +31,9 @@ public class JumboGenerator : GeneratorBase<Jumbo, JumboContext>
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(JumboContext context, Jumbo self)
+    {
+        throw new NotImplementedException();
+    }
 }

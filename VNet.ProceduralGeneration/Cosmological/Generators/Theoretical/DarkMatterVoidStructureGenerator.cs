@@ -46,4 +46,9 @@ public class DarkMatterVoidStructureGenerator : VoidStructureGenerator<DarkMatte
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(DarkMatterVoidStructureContext context, DarkMatterVoidStructure self)
+    {
+        throw new NotImplementedException();
+    }
 }

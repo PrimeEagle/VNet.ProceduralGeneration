@@ -31,4 +31,9 @@ public class PlanetGenerator : GeneratorBase<Planet, PlanetContext>
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(PlanetContext context, Planet self)
+    {
+        throw new NotImplementedException();
+    }
 }

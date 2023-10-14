@@ -31,4 +31,9 @@ public class MagnetarGenerator : GeneratorBase<Magnetar, MagnetarContext>
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(MagnetarContext context, Magnetar self)
+    {
+        throw new NotImplementedException();
+    }
 }

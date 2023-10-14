@@ -51,4 +51,9 @@ public class BaryonicMatterFilamentGenerator : FilamentGeneratorBase<BaryonicMat
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(BaryonicMatterFilamentContext context, BaryonicMatterFilament self)
+    {
+        throw new NotImplementedException();
+    }
 }

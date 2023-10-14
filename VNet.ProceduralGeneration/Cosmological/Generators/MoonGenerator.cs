@@ -31,4 +31,9 @@ public class MoonGenerator : GeneratorBase<Moon, MoonContext>
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(MoonContext context, Moon self)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -46,4 +46,9 @@ public class StarSystemGenerator : GroupGeneratorBase<StarSystem, StarSystemCont
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(StarSystemContext context, StarSystem self)
+    {
+        throw new NotImplementedException();
+    }
 }

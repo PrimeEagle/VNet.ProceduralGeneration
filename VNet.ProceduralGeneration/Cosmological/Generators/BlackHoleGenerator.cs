@@ -31,4 +31,9 @@ public class BlackHoleGenerator : GeneratorBase<BlackHole, BlackHoleContext>
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(BlackHoleContext context, BlackHole self)
+    {
+        throw new NotImplementedException();
+    }
 }

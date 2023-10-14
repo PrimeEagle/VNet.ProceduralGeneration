@@ -31,4 +31,9 @@ public class PlanckStarGenerator : GeneratorBase<PlanckStar, PlanckStarContext>
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(PlanckStarContext context, PlanckStar self)
+    {
+        throw new NotImplementedException();
+    }
 }

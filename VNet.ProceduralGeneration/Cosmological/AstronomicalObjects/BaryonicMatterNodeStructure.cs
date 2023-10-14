@@ -4,8 +4,4 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
 public class BaryonicMatterNodeStructure : NodeStructure
 {
-    internal override void AssignChildren()
-    {
-        throw new NotImplementedException();
-    }
 }

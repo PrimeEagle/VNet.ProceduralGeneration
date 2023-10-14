@@ -46,4 +46,9 @@ public class DebrisDiskGenerator : GroupGeneratorBase<DebrisDisk, DebrisDiskCont
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(DebrisDiskContext context, DebrisDisk self)
+    {
+        throw new NotImplementedException();
+    }
 }

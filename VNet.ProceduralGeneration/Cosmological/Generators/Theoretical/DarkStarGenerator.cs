@@ -31,4 +31,9 @@ public class DarkStarGenerator : GeneratorBase<DarkStar, DarkStarContext>
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(DarkStarContext context, DarkStar self)
+    {
+        throw new NotImplementedException();
+    }
 }

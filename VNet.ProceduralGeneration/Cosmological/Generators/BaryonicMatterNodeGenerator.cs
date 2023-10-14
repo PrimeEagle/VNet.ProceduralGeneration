@@ -95,4 +95,9 @@ public class BaryonicMatterNodeGenerator : NodeGeneratorBase<BaryonicMatterNode,
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
 }

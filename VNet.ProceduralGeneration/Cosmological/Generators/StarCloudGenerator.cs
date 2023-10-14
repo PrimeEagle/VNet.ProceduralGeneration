@@ -46,4 +46,9 @@ public class StarCloudGenerator : GroupGeneratorBase<StarCloud, StarCloudContext
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(StarCloudContext context, StarCloud self)
+    {
+        throw new NotImplementedException();
+    }
 }

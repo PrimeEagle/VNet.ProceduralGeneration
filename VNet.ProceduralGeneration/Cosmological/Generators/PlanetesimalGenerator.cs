@@ -31,4 +31,9 @@ public class PlanetesimalGenerator : GeneratorBase<Planetesimal, PlanetesimalCon
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(PlanetesimalContext context, Planetesimal self)
+    {
+        throw new NotImplementedException();
+    }
 }

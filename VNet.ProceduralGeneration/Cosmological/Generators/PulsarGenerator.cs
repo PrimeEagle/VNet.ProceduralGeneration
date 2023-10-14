@@ -31,4 +31,9 @@ public class PulsarGenerator : GeneratorBase<Pulsar, PulsarContext>
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(PulsarContext context, Pulsar self)
+    {
+        throw new NotImplementedException();
+    }
 }

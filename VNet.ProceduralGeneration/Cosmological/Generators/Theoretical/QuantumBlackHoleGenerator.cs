@@ -31,4 +31,9 @@ public class QuantumBlackHoleGenerator : GeneratorBase<QuantumBlackHole, Quantum
     {
         throw new NotImplementedException();
     }
+
+    internal override void AssignChildren(QuantumBlackHoleContext context, QuantumBlackHole self)
+    {
+        throw new NotImplementedException();
+    }
 }
