@@ -3,7 +3,7 @@ using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
-using Void = VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Void;
+using Void = VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base.Void;
 
 // ReSharper disable SuggestBaseTypeForParameter
 #pragma warning disable IDE0051

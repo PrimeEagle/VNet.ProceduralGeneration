@@ -1,5 +1,7 @@
 ﻿using System.Numerics;
+using VNet.Mathematics.Randomization.Generation;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.Scientific.Noise;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable InconsistentNaming
@@ -77,7 +79,10 @@ public abstract class AstronomicalObjectGroup : AstronomicalObject
         }
     }
 
-    protected List<AstronomicalObject> Children { get; set; }
+    public virtual INoiseAlgorithm? SurfaceNoiseAlgorithm { get; set; }
+    public virtual IRandomGenerationAlgorithm? InteriorRandomizationAlgorithm { get; set; }
+
+    internal List<AstronomicalObject> Children { get; set; }
 
     public List<IUndefinedAstronomicalObject> InteriorObjects { get; set; }
 

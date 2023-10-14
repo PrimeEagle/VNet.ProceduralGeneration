@@ -4,5 +4,6 @@ public enum MatterType
 {
     None,
     BaryonicMatter,
-    DarkMatter
+    DarkMatter,
+    Mixed
 }

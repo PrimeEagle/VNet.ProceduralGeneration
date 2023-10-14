@@ -15,15 +15,6 @@ public abstract class GroupGeneratorBase<T, TContext> : GeneratorBase<T, TContex
     {
     }
 
-    public override async Task<T> Generate(TContext context, AstronomicalObject parent)
-    {
-        var self = await base.Generate(context, parent);
-        GenerateWarpedSurface(context, self);
-        GenerateInteriorObjects(context, self);
-
-        return self;
-    }
-
     protected abstract void GenerateWarpedSurface(TContext context, T self);
     protected abstract void GenerateInteriorObjects(TContext context, T self);
     protected abstract void GenerateInteriorRandomizationAlgorithm(TContext context, T self);
@@ -91,6 +82,6 @@ public abstract class GroupGeneratorBase<T, TContext> : GeneratorBase<T, TContex
 
     protected bool PointsOverlap(IEnumerable<IUndefinedAstronomicalObject> points, IUndefinedAstronomicalObject newPoint)
     {
-        return points.Any(i => Vector3.Distance(i.Position, newPoint.Position) < 0.01f);
+        return points.Any(i => Vector3.Distance(i.Position, newPoint.Position) < 0.001f);
     }
 }

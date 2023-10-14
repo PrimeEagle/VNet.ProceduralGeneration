@@ -78,7 +78,7 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
 
         if (!Enabled) return self;
         GenerateBaseProperties(context, self);
-        self.AssignChildren();
+        AssignChildren(context, self);
         EventBuilder.CreateGeneratedEvent(EventAggregator, nameof(T), self);
 
         EventBuilder.CreatePostProcessingEvent(EventAggregator, nameof(T), self);
@@ -131,6 +131,7 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
         _disposed = true;
     }
 
+    internal abstract void AssignChildren(TContext context, T self);
     public virtual void GenerateBoundingBox(TContext context, T self)
     {
         self.BoundingBox = new BoundingBox<float>(self.Position, 1, self.Orientation);

@@ -1,5 +1,6 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
+using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.System.Events;
 // ReSharper disable MemberCanBeProtected.Global

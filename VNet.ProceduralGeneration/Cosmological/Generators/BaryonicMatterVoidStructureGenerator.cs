@@ -1,4 +1,4 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
@@ -6,46 +6,50 @@ using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
-public class BaryonicMatterVoidStructureGenerator<T, TContext> : VoidStructureGenerator<T, TContext>
-                                                                where T : VoidStructure, new()
-                                                                where TContext : VoidStructureContext
+public class BaryonicMatterVoidStructureGenerator : VoidStructureGenerator<BaryonicMatterVoidStructure, BaryonicMatterVoidStructureContext>
 {
     public BaryonicMatterVoidStructureGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
     {
+        Enabled = ObjectToggles.BaryonicMatterVoidStructureEnabled;
+    }   
+
+    protected override Task GenerateChildren(BaryonicMatterVoidStructureContext context, BaryonicMatterVoidStructure self)
+    {
+
+
+
     }
 
-    protected override Task<T> GenerateSelf(TContext context, T self)
+    protected override void GenerateInteriorObjects(BaryonicMatterVoidStructureContext context, BaryonicMatterVoidStructure self)
     {
-        throw new NotImplementedException();
     }
 
-    protected override Task GenerateChildren(TContext context, T self)
+    protected override void GenerateInteriorRandomizationAlgorithm(BaryonicMatterVoidStructureContext context, BaryonicMatterVoidStructure self)
     {
-        throw new NotImplementedException();
+        self.InteriorRandomizationAlgorithm = null;
     }
 
-    protected override void SetMatterType(TContext context, T self)
+    protected async override Task<BaryonicMatterVoidStructure> GenerateSelf(BaryonicMatterVoidStructureContext context, BaryonicMatterVoidStructure self)
     {
-        throw new NotImplementedException();
+        return self;
     }
 
-    protected override void GenerateWarpedSurface(TContext context, T self)
+    protected override void GenerateSurfaceNoiseAlgorithm(BaryonicMatterVoidStructureContext context, BaryonicMatterVoidStructure self)
     {
-        throw new NotImplementedException();
+        self.SurfaceNoiseAlgorithm = null;
     }
 
-    protected override void GenerateInteriorObjects(TContext context, T self)
+    protected override void GenerateWarpedSurface(BaryonicMatterVoidStructureContext context, BaryonicMatterVoidStructure self)
     {
-        throw new NotImplementedException();
     }
 
-    protected override void GenerateInteriorRandomizationAlgorithm(TContext context, T self)
+    protected override void SetMatterType(BaryonicMatterVoidStructureContext context, BaryonicMatterVoidStructure self)
     {
-        throw new NotImplementedException();
+        self.MatterType = MatterType.BaryonicMatter;
     }
 
-    protected override void GenerateSurfaceNoiseAlgorithm(TContext context, T self)
+    internal override void AssignChildren(BaryonicMatterVoidStructureContext context, BaryonicMatterVoidStructure self)
     {
-        throw new NotImplementedException();
+        self.Children.AddRange(self.BaryonicMatterVoids);
     }
 }

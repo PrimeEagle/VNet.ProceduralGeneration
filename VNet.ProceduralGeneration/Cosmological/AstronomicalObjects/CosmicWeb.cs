@@ -1,4 +1,8 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+// ReSharper disable CollectionNeverUpdated.Global
+// ReSharper disable MemberCanBePrivate.Global
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
@@ -14,17 +18,4 @@ public class CosmicWeb : AstronomicalObjectGroup
     public List<DarkMatterFilament> DarkMatterFilaments { get; set; } = new();
     public List<DarkMatterSheet> DarkMatterSheets { get; set; } = new();
     public List<DarkMatterVoid> DarkMatterVoids { get; set; } = new();
-
-    internal override void AssignChildren()
-    {
-        Children.Add(IntergalacticMedium);
-        Children.AddRange(BaryonicMatterNodes);
-        Children.AddRange(BaryonicMatterFilaments);
-        Children.AddRange(BaryonicMatterSheets);
-        Children.AddRange(BaryonicMatterVoids);
-        Children.AddRange(DarkMatterNodes);
-        Children.AddRange(DarkMatterFilaments);
-        Children.AddRange(DarkMatterSheets);
-        Children.AddRange(DarkMatterVoids);
-    }
 }

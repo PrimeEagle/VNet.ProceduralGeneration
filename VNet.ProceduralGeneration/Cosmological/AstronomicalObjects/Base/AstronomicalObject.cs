@@ -116,8 +116,6 @@ public abstract class AstronomicalObject : IAstronomicalObject
         return (Universe)main;
     }
 
-    internal abstract void AssignChildren();
-
     #region Base Properties
 
     public string Id { get; init; }

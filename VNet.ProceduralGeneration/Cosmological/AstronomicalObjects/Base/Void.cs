@@ -1,8 +1,7 @@
 ﻿using System.Numerics;
-using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 using VNet.Scientific.NumericalVolumes;
 
-namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 
 public abstract class Void : AstronomicalObjectGroup
 {

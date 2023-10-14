@@ -4,8 +4,5 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
 public class BaryonicMatterVoidStructure : VoidStructure
 {
-    internal override void AssignChildren()
-    {
-        throw new NotImplementedException();
-    }
+    public List<BaryonicMatterVoid> BaryonicMatterVoids { get; set; }
 }

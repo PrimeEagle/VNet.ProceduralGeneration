@@ -1,6 +1,4 @@
-﻿using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
-
-namespace VNet.ProceduralGeneration.Cosmological.Contexts;
+﻿namespace VNet.ProceduralGeneration.Cosmological.Contexts.Base;
 
 public class VoidStructureContext : GroupContextBase
 {

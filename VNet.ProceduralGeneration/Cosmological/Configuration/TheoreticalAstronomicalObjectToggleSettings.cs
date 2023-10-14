@@ -1,10 +1,15 @@
 ﻿using System.ComponentModel;
 using VNet.Configuration;
+using VNet.Configuration.Attributes;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
 public class TheoreticalAstronomicalObjectToggleSettings : ISettings
 {
+    [DisplayName("Dark Matter")]
+    [Tooltip("Controls whether the effects of dark matter are taken into account for various calculations, such as gravity.")]
+    public bool DarkMatterEnabled { get; init; }
+
     [DisplayName("Branes")]
     [Tooltip("Multidimensional structures postulated in string theory and other theoretical physics models.")]
     public bool BranesEnabled { get; init; }
@@ -108,4 +113,44 @@ public class TheoreticalAstronomicalObjectToggleSettings : ISettings
     [DisplayName("White Holes")]
     [Tooltip("Region of spacetime which cannot be entered from the outside, but from which matter and light may escape.")]
     public bool WhiteHolesEnabled { get; init; }
+
+    [FalseIfFalse(nameof(DarkMatterEnabled))]
+    [DisplayName("Filaments (Dark Matter)")]
+    [Tooltip("Structures in the universe formed primarily by dark matter and linking galaxy clusters.")]
+    public bool DarkMatterFilamentsEnabled { get; init; }
+
+    [FalseIfFalse(nameof(DarkMatterEnabled))]
+    [DisplayName("Nodes (Dark Matter)")]
+    [Tooltip("Regions of high dark matter density, often marking the intersection of cosmic filaments.")]
+    public bool DarkMatterNodesEnabled { get; init; }
+
+    [FalseIfFalse(nameof(DarkMatterEnabled))]
+    [DisplayName("Sheets (Dark Matter)")]
+    [Tooltip("Thin, expansive regions dense with dark matter.")]
+    public bool DarkMatterSheetsEnabled { get; init; }
+
+    [FalseIfFalse(nameof(DarkMatterEnabled))]
+    [DisplayName("Voids (Dark Matter)")]
+    [Tooltip("Regions with low concentrations of galaxies and dark matter.")]
+    public bool DarkMatterVoidsEnabled { get; init; }
+
+    [FalseIfFalse(nameof(DarkMatterEnabled))]
+    [DisplayName("Filament Structure (Dark Matter)")]
+    [Tooltip("Structures formed by dark matter, often forming the boundaries between cosmic voids.")]
+    public bool DarkMatterFilamentStructureEnabled { get; init; }
+
+    [FalseIfFalse(nameof(DarkMatterEnabled))]
+    [DisplayName("Node Structure (Dark Matter)")]
+    [Tooltip("Structure of dense regions where dark matter accumulates at the intersection of filaments.")]
+    public bool DarkMatterNodeStructureEnabled { get; init; }
+
+    [FalseIfFalse(nameof(DarkMatterEnabled))]
+    [DisplayName("Sheet Structure (Dark Matter)")]
+    [Tooltip("Structure of flat structures formed by dark matter in the cosmic web.")]
+    public bool DarkMatterSheetStructureEnabled { get; init; }
+
+    [FalseIfFalse(nameof(DarkMatterEnabled))]
+    [DisplayName("Voids Structure (Dark Matter)")]
+    [Tooltip("Structure of expansive regions of space with relatively low dark matter density.")]
+    public bool DarkMatterVoidStructureEnabled { get; init; }
 }

@@ -1,8 +1,8 @@
 ﻿using Void = VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base.Void;
 
-namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 
-public class BaryonicMatterVoid : Void
+public class DarkMatterVoid : Void
 {
     internal override void AssignChildren()
     {

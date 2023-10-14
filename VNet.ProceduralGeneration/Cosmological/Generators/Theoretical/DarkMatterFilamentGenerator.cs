@@ -1,10 +1,10 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
-using VNet.ProceduralGeneration.Cosmological.Contexts;
+﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
+using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.System.Events;
 
-namespace VNet.ProceduralGeneration.Cosmological.Generators;
+namespace VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 
 public class DarkMatterFilamentGenerator : FilamentGeneratorBase<DarkMatterFilament, DarkMatterFilamentContext>
 {

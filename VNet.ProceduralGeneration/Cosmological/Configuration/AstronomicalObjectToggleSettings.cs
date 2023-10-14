@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using VNet.Configuration;
+using VNet.Configuration.Attributes;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
@@ -44,22 +45,6 @@ public class AstronomicalObjectToggleSettings : ISettings
     [DisplayName("Cosmic Web")]
     [Tooltip("Vast cosmic structure comprising filaments, nodes, sheets, and voids, which contains most galaxies.")]
     public bool CosmicWebEnabled { get; init; }
-
-    [DisplayName("Filaments (Dark Matter)")]
-    [Tooltip("Structures in the universe formed primarily by dark matter and linking galaxy clusters.")]
-    public bool DarkMatterFilamentsEnabled { get; init; }
-
-    [DisplayName("Nodes (Dark Matter)")]
-    [Tooltip("Regions of high dark matter density, often marking the intersection of cosmic filaments.")]
-    public bool DarkMatterNodesEnabled { get; init; }
-
-    [DisplayName("Sheets (Dark Matter)")]
-    [Tooltip("Thin, expansive regions dense with dark matter.")]
-    public bool DarkMatterSheetsEnabled { get; init; }
-
-    [DisplayName("Voids (Dark Matter)")]
-    [Tooltip("Regions with low concentrations of galaxies and dark matter.")]
-    public bool DarkMatterVoidsEnabled { get; init; }
 
     [DisplayName("Galaxies")]
     [Tooltip("Massive systems consisting of stars, stellar remnants, interstellar gas and dust, and dark matter, all bound together by gravity.")]
@@ -164,4 +149,20 @@ public class AstronomicalObjectToggleSettings : ISettings
     [DisplayName("Universe")]
     [Tooltip("All of space, time, matter, and energy in existence.")]
     public bool UniverseEnabled { get; init; }
+
+    [DisplayName("Filament Structure (Baryonic Matter)")]
+    [Tooltip("Structures formed by baryonic matter, often forming the boundaries between cosmic voids.")]
+    public bool BaryonicMatterFilamentStructureEnabled { get; init; }
+
+    [DisplayName("Node Structure (Baryonic Matter)")]
+    [Tooltip("Structure of dense regions where baryonic matter accumulates at the intersection of filaments.")]
+    public bool BaryonicMatterNodeStructureEnabled { get; init; }
+
+    [DisplayName("Sheet Structure (Baryonic Matter)")]
+    [Tooltip("Structure of flat structures formed by baryonic matter in the cosmic web.")]
+    public bool BaryonicMatterSheetStructureEnabled { get; init; }
+
+    [DisplayName("Voids Structure (Baryonic Matter)")]
+    [Tooltip("Structure of expansive regions of space with relatively low baryonic matter density.")]
+    public bool BaryonicMatterVoidStructureEnabled { get; init; }
 }

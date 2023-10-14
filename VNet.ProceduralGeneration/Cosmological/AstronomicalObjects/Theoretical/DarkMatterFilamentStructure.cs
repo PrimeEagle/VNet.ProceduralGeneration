@@ -1,8 +1,8 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 
-namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Theoretical;
 
-public class DarkMatterSheetStructure : SheetStructure
+public class DarkMatterFilamentStructure : FilamentStructure
 {
     internal override void AssignChildren()
     {
