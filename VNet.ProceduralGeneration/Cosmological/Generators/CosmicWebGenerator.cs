@@ -6,7 +6,6 @@ using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 using VNet.System.Events;
 
-
 // ReSharper disable MemberCanBeMadeStatic.Local
 // ReSharper disable ClassNeverInstantiated.Global
 // ReSharper disable UnusedParameter.Local
@@ -36,40 +35,40 @@ public class CosmicWebGenerator : GroupGeneratorBase<CosmicWeb, CosmicWebContext
 
 
         var baryonicMatterVoidStructureContext = new BaryonicMatterVoidStructureContext();
-        var baryonicMatterVoidGenerator = new BaryonicMatterVoidStructureGenerator(EventAggregator, ParallelismLevel.Level1);
-        await baryonicMatterVoidGenerator.Generate(baryonicMatterVoidStructureContext, self);
+        var baryonicMatterVoidStructureGenerator = new BaryonicMatterVoidStructureGenerator(EventAggregator, ParallelismLevel.Level1);
+        await baryonicMatterVoidStructureGenerator.Generate(baryonicMatterVoidStructureContext, self);
 
         var baryonicMatterSheetStructureContext = new BaryonicMatterSheetStructureContext();
-        var baryonicMatterSheetGenerator = new BaryonicMatterSheetStructureGenerator(EventAggregator, ParallelismLevel.Level1);
-        await baryonicMatterSheetGenerator.Generate(baryonicMatterSheetStructureContext, self);
+        var baryonicMatterSheetStructureGenerator = new BaryonicMatterSheetStructureGenerator(EventAggregator, ParallelismLevel.Level1);
+        await baryonicMatterSheetStructureGenerator.Generate(baryonicMatterSheetStructureContext, self);
 
         var baryonicMatterFilamentStructureContext = new BaryonicMatterFilamentStructureContext();
-        var baryonicMatterFilamentGenerator = new BaryonicMatterFilamentStructureGenerator(EventAggregator, ParallelismLevel.Level1);
-        await baryonicMatterFilamentGenerator.Generate(baryonicMatterFilamentStructureContext, self);
+        var baryonicMatterFilamentStructureGenerator = new BaryonicMatterFilamentStructureGenerator(EventAggregator, ParallelismLevel.Level1);
+        await baryonicMatterFilamentStructureGenerator.Generate(baryonicMatterFilamentStructureContext, self);
 
         var baryonicMatterNodeStructureContext = new BaryonicMatterNodeStructureContext();
-        var baryonicMatterNodeGenerator = new BaryonicMatterNodeStructureGenerator(EventAggregator, ParallelismLevel.Level1);
-        await baryonicMatterNodeGenerator.Generate(baryonicMatterNodeStructureContext, self);
+        var baryonicMatterNodeStructureGenerator = new BaryonicMatterNodeStructureGenerator(EventAggregator, ParallelismLevel.Level1);
+        await baryonicMatterNodeStructureGenerator.Generate(baryonicMatterNodeStructureContext, self);
 
 
 
         if (TheoreticalObjectToggles.DarkMatterEnabled)
         {
             var darkMatterVoidStructureContext = new DarkMatterVoidStructureContext();
-            var darkMatterVoidGenerator = new DarkMatterVoidStructureGenerator(EventAggregator, ParallelismLevel.Level1);
-            await darkMatterVoidGenerator.Generate(darkMatterVoidStructureContext, self);
+            var darkMatterVoidStructureGenerator = new DarkMatterVoidStructureGenerator(EventAggregator, ParallelismLevel.Level1);
+            await darkMatterVoidStructureGenerator.Generate(darkMatterVoidStructureContext, self);
 
             var darkMatterSheetStructureContext = new DarkMatterSheetStructureContext();
-            var darkMatterSheetGenerator = new DarkMatterSheetStructureGenerator(EventAggregator, ParallelismLevel.Level1);
-            await darkMatterSheetGenerator.Generate(darkMatterSheetStructureContext, self);
+            var darkMatterSheetStructureGenerator = new DarkMatterSheetStructureGenerator(EventAggregator, ParallelismLevel.Level1);
+            await darkMatterSheetStructureGenerator.Generate(darkMatterSheetStructureContext, self);
 
             var darkMatterFilamentStructureContext = new DarkMatterFilamentStructureContext();
-            var darkMatterFilamentGenerator = new DarkMatterFilamentStructureGenerator(EventAggregator, ParallelismLevel.Level1);
-            await darkMatterFilamentGenerator.Generate(darkMatterFilamentStructureContext, self);
+            var darkMatterFilamentStructureGenerator = new DarkMatterFilamentStructureGenerator(EventAggregator, ParallelismLevel.Level1);
+            await darkMatterFilamentStructureGenerator.Generate(darkMatterFilamentStructureContext, self);
 
             var darkMatterNodeStructureContext = new DarkMatterNodeStructureContext();
-            var darkMatterNodeGenerator = new DarkMatterNodeStructureGenerator(EventAggregator, ParallelismLevel.Level1);
-            await darkMatterNodeGenerator.Generate(darkMatterNodeStructureContext, self);
+            var darkMatterNodeStructureGenerator = new DarkMatterNodeStructureGenerator(EventAggregator, ParallelismLevel.Level1);
+            await darkMatterNodeStructureGenerator.Generate(darkMatterNodeStructureContext, self);
         }
     }
 

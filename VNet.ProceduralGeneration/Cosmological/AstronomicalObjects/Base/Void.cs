@@ -3,7 +3,7 @@ using VNet.Scientific.NumericalVolumes;
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 
-public abstract class Void : AstronomicalObjectGroup
+public abstract class Void : AstronomicalObjectGroup, IVoid
 {
     public override void UpdateBoundingBox()
     {

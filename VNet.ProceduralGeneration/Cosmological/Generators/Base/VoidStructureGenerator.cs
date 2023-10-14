@@ -8,9 +8,6 @@ using Void = VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base.Voi
 // ReSharper disable SuggestBaseTypeForParameter
 // ReSharper disable UnusedMember.Local
 // ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
-#pragma warning disable IDE0051
-#pragma warning disable CA1822
-
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Base;
 
 public abstract class VoidStructureGenerator<T, TContext> : GroupGeneratorBase<T, TContext>
@@ -21,7 +18,7 @@ public abstract class VoidStructureGenerator<T, TContext> : GroupGeneratorBase<T
     {
     }
 
-    private float CalculateOverlapAmount(Void voidItem, List<Void> existingVoids)
+    protected float CalculateOverlapAmount(Void voidItem, IEnumerable<IVoid> existingVoids)
     {
         float overlapAmount = 0;
 

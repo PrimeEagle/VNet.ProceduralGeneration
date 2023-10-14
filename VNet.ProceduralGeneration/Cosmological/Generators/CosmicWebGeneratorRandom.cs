@@ -72,6 +72,7 @@
 //                    totalVoidVolume += newDarkMatterVoid.Volume;
 //                    break;
 //                case MatterType.None:
+//                case MatterType.Mixed:
 //                default:
 //                    throw new ArgumentOutOfRangeException(nameof(matterType), matterType, null);
 //            }
@@ -83,7 +84,7 @@
 //                var overlapAmount = CalculateOverlapAmount(sphere, spheres);
 
 //                if (overlapAmount < GetMinimumVoidOverlap(matterType) || overlapAmount > GetMaximumVoidOverlap(matterType) ||
-//                    spheres.Count(x => CalculateOverlapAmount(sphere, new List<VSphere> {x}) > 0) / (float) spheres.Count > GetPercentageOfOverlappingVoids(matterType))
+//                    spheres.Count(x => CalculateOverlapAmount(sphere, new List<VSphere> { x }) > 0) / (float)spheres.Count > GetPercentageOfOverlappingVoids(matterType))
 //                    sphere = new VSphere(new Vector3(
 //                        RandomAlgorithm.NextSingle() * (volume.GetLength(0) - diameter),
 //                        RandomAlgorithm.NextSingle() * (volume.GetLength(1) - diameter),
