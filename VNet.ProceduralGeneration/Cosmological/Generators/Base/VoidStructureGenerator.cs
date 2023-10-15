@@ -8,6 +8,7 @@ using Void = VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base.Voi
 // ReSharper disable SuggestBaseTypeForParameter
 // ReSharper disable UnusedMember.Local
 // ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
+// ReSharper disable LoopCanBeConvertedToQuery
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Base;
 
 public abstract class VoidStructureGenerator<T, TContext> : GroupGeneratorBase<T, TContext>

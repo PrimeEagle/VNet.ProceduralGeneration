@@ -6,10 +6,6 @@ using VNet.System.Events;
 using Void = VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base.Void;
 
 // ReSharper disable SuggestBaseTypeForParameter
-#pragma warning disable IDE0051
-#pragma warning disable CA1822
-
-
 // ReSharper disable MemberCanBeMadeStatic.Local
 
 
@@ -33,10 +29,10 @@ public abstract class VoidGeneratorBase<T, TContext> : GroupGeneratorBase<T, TCo
                 for (var k = 0; k < pointsPerAxis; k++)
                 {
                     var point = new Vector3(
-                        i / context.SurfaceResolution,
-                        j / context.SurfaceResolution,
-                        k / context.SurfaceResolution
-                    ) - new Vector3(radius, radius, radius) + self.Position;
+                                            i / context.SurfaceResolution,
+                                            j / context.SurfaceResolution,
+                                            k / context.SurfaceResolution
+                                        ) - new Vector3(radius, radius, radius) + self.Position;
 
                     if (!((point - self.Position).Length() <= radius)) continue;
 

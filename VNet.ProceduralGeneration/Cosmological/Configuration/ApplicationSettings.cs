@@ -128,4 +128,9 @@ public class ApplicationSettings : ISettings
     [DisplayName("Baryonic Matter Dampening Factor")]
     [Tooltip("If 'Dampen Baryonic Matter' is enabled, the dampening factor applied to baryonic matter.")]
     public float BaryonicMatterDampeningFactor { get; init; }
+
+    [Range(0, float.MaxValue)]
+    [DisplayName("Interior Object Overlap Threshold")]
+    [Tooltip("The threshold for when interior objects are considered to be overlapping.")]
+    public float InteriorObjectOverlapThreshold { get; init; }
 }

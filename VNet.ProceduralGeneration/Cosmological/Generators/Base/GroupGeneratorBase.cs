@@ -19,7 +19,6 @@ public abstract class GroupGeneratorBase<T, TContext> : GeneratorBase<T, TContex
     protected abstract void GenerateInteriorObjects(TContext context, T self);
     protected abstract void GenerateInteriorRandomizationAlgorithm(TContext context, T self);
     protected abstract void GenerateSurfaceNoiseAlgorithm(TContext context, T self);
-
     protected override void GenerateBaseProperties(TContext context, T self)
     {
         SetMatterType(context, self);
@@ -30,6 +29,7 @@ public abstract class GroupGeneratorBase<T, TContext> : GeneratorBase<T, TContex
         GenerateSurfaceNoiseAlgorithm(context, self);
         GenerateInteriorRandomizationAlgorithm(context, self);
         GenerateWarpedSurface(context, self);
+        GenerateInteriorObjects(context, self);
     }
 
     protected virtual void ApplyGravitationalEffectsToInterior(TContext context, T self, float timeInYears)
@@ -82,6 +82,6 @@ public abstract class GroupGeneratorBase<T, TContext> : GeneratorBase<T, TContex
 
     protected bool PointsOverlap(IEnumerable<IUndefinedAstronomicalObject> points, IUndefinedAstronomicalObject newPoint)
     {
-        return points.Any(i => Vector3.Distance(i.Position, newPoint.Position) < 0.001f);
+        return points.Any(i => Vector3.Distance(i.Position, newPoint.Position) < Settings.Advanced.Application.InteriorObjectOverlapThreshold);
     }
 }

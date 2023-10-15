@@ -1,4 +1,5 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
@@ -74,10 +75,12 @@ public class CosmicWebGenerator : GroupGeneratorBase<CosmicWeb, CosmicWebContext
 
     protected override void GenerateWarpedSurface(CosmicWebContext context, CosmicWeb self)
     {
+        self.WarpedSurface = new List<Vector3>();
     }
 
     protected override void GenerateInteriorObjects(CosmicWebContext context, CosmicWeb self)
     {
+        self.InteriorObjects = new List<IUndefinedAstronomicalObject>();
     }
 
     protected override void GenerateInteriorRandomizationAlgorithm(CosmicWebContext context, CosmicWeb self)

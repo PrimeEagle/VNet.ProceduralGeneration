@@ -39,8 +39,10 @@ public class BaryonicMatterVoidStructureGenerator : VoidStructureGenerator<Baryo
             while (!acceptableOverlap)
             {
                 var overlapAmount = CalculateOverlapAmount(newBaryonicMatterVoid, self.BaryonicMatterVoids);
-                if (overlapAmount < Settings.Advanced.CosmicWeb.Randomized.MinimumBaryonicMatterVoidOverlap || overlapAmount > Settings.Advanced.CosmicWeb.Randomized.MaximumBaryonicMatterVoidOverlap ||
-                    self.BaryonicMatterVoids.Count(x => CalculateOverlapAmount(newBaryonicMatterVoid, new List<BaryonicMatterVoid> {x}) > 0) / (float) self.BaryonicMatterVoids.Count > Settings.Advanced.CosmicWeb.Randomized.PercentageOfOverlappingBaryonicMatterVoids)
+                if (overlapAmount < Settings.Advanced.CosmicWeb.Randomized.MinimumBaryonicMatterVoidOverlap || 
+                    overlapAmount > Settings.Advanced.CosmicWeb.Randomized.MaximumBaryonicMatterVoidOverlap ||
+                    self.BaryonicMatterVoids.Count(x => 
+                        CalculateOverlapAmount(newBaryonicMatterVoid, new List<BaryonicMatterVoid> {x}) > 0) / (float) self.BaryonicMatterVoids.Count > Settings.Advanced.CosmicWeb.Randomized.PercentageOfOverlappingBaryonicMatterVoids)
                 {
                     baryonicMatterVoidContext.PositionXCreateRange = (0, Settings.Basic.DimensionX - newBaryonicMatterVoid.Diameter);
                     baryonicMatterVoidContext.PositionYCreateRange = (0, Settings.Basic.DimensionY - newBaryonicMatterVoid.Diameter);

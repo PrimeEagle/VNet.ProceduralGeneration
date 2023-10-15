@@ -23,5 +23,6 @@ internal static partial class ConfigConstants
         internal static bool ApplyGravitationalEffectsDampenBaryonicMatter { get; } = true;
         internal static float MinimumDarkMatterDistanceToPreventClumping { get; } = 0.1f;
         internal static float BaryonicMatterDampeningFactor { get; } = 0.5f;
+        internal static float InteriorObjectOverlapThreshold { get; } = 0.0005f;
     }
 }
