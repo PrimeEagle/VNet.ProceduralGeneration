@@ -21,21 +21,20 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
 {
     private readonly ParallelismLevel _parallelismLevel;
     private readonly SemaphoreSlim _semaphore;
-    protected readonly AdvancedGenerationSettings AdvancedSettings;
-    protected readonly BasicGenerationSettings BasicSettings;
+
+    protected readonly AdvancedSettings AdvancedSettings;
+    protected readonly BasicSettings BasicSettings;
     protected readonly EventAggregator EventAggregator;
     protected readonly AstronomicalObjectToggleSettings ObjectToggles;
-    protected readonly GeneratorSettings Settings;
+    protected readonly Settings Settings;
     protected readonly TheoreticalAstronomicalObjectToggleSettings TheoreticalObjectToggles;
     private bool _disposed;
     protected TContext Context;
-
-
     protected bool Enabled;
 
     protected GeneratorBase(EventAggregator eventAggregator, ParallelismLevel parallelismLevel)
     {
-        Settings = ConfigurationSettings<GeneratorSettings>.AppSettings;
+        Settings = ConfigurationSettings<Settings>.AppSettings;
         BasicSettings = Settings.Basic;
         AdvancedSettings = Settings.Advanced;
         ObjectToggles = Settings.ObjectToggles;
@@ -51,7 +50,7 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
         GC.SuppressFinalize(this);
     }
 
-    public virtual async Task<T> Generate(TContext context, AstronomicalObject parent)
+    public virtual async Task<T> Generate(TContext context, AstronomicalObject? parent)
     {
         T self;
         Context = context;
@@ -72,7 +71,7 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
         }
 
         self.Parent = parent;
-        if (!parent.Enabled) self.Universe.NonHierarchyObjects.Add(self);
+        if (parent is not null && !parent.Enabled) self.Universe.NonHierarchyObjects.Add(self);
 
         await GenerateChildren(context, self);
 

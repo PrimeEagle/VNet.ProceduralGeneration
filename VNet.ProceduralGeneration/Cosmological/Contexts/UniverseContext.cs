@@ -1,11 +1,12 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
+// ReSharper disable ClassNeverInstantiated.Global
 
 namespace VNet.ProceduralGeneration.Cosmological.Contexts;
 
 public class UniverseContext : GroupContextBase
 {
-    public UniverseContext(GeneratorSettings settings)
+    public UniverseContext(Settings settings)
     {
         MinDarkEnergyPercent = settings.Basic.MinDarkEnergyPercent;
         MaxDarkEnergyPercent = settings.Basic.MaxDarkEnergyPercent;
@@ -15,8 +16,8 @@ public class UniverseContext : GroupContextBase
         MaxBaryonicMatterPercent = settings.Basic.MaxBaryonicMatterPercent;
         MinUniverseAge = settings.Basic.MinUniverseAge;
         MaxUniverseAge = settings.Basic.MaxUniverseAge;
-        MinConnectivityFactor = settings.Advanced.Universe.MinConnectivityFactor;
-        MaxConnectivityFactor = settings.Advanced.Universe.MaxConnectivityFactor;
+        MinConnectivityFactor = settings.Advanced.Objects.Universe.MinConnectivityFactor;
+        MaxConnectivityFactor = settings.Advanced.Objects.Universe.MaxConnectivityFactor;
     }
 
     public double MinDarkEnergyPercent { get; set; }

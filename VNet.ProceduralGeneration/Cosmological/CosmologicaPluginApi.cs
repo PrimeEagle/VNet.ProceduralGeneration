@@ -7,13 +7,13 @@ public class CosmologicaPluginApi : ICosmologicaPluginApi
 {
     public string ApiVersion
     {
-        get => ConfigurationSettings<GeneratorSettings>.AppSettings.Advanced.Plugin.ApiVersion;
+        get => ConfigurationSettings<Settings>.AppSettings.Advanced.Plugin.ApiVersion;
         init { }
     }
 
     public string[] CompatibleApiVersions
     {
-        get => ConfigurationSettings<GeneratorSettings>.AppSettings.Advanced.Plugin.CompatibleApiVersions;
+        get => ConfigurationSettings<Settings>.AppSettings.Advanced.Plugin.CompatibleApiVersions;
         init { }
     }
 }

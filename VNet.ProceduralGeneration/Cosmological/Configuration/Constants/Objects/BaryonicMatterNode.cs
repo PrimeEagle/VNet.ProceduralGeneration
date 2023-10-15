@@ -1,0 +1,27 @@
+﻿namespace VNet.ProceduralGeneration.Cosmological.Configuration;
+
+internal static partial class Constants
+{
+    internal static partial class Advanced
+    {
+        internal static partial class Objects
+        {
+            internal static class BaryonicMatterNode
+            {
+                internal static float CountAgeFactor { get; } = 5.0e-9f;
+                internal static float CountBaryonicMatterPercentFactor { get; } = 100;
+                internal static float CountDarkEnergyPercentFactor { get; } = 100;
+                internal static float CountDarkMatterPercentFactor { get; } = 200;
+                internal static float CountMassFactor { get; } = 1 / 1e30f;
+                internal static float CountSizeFactor { get; } = 1 / 1e9f;
+                internal static float CountTolerancePercentage { get; } = 10.0f;
+                internal static float TopologyGradientMagnitudeThresholdFactor { get; } = 0.2f;
+                internal static float TopologyIntensityThresholdFactor { get; } = 1.2f;
+                internal static float TopologyMaxPositionalOffset { get; } = 0.2f;
+                internal static float TopologyMergeDistanceThresholdFactor { get; } = 0.2f;
+                internal static float TopologyMinDistanceThresholdFactor { get; } = 1.2f;
+                internal static float TopologyZVariancePercent { get; } = 100.0f;
+            }
+        }
+    }
+}

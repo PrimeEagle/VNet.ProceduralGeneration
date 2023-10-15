@@ -5,7 +5,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Events;
 
 public static class EventBuilder
 {
-    public static async void CreateGeneratingEvent(EventAggregator eventAggregator, string source, AstronomicalObject astronomicalObject)
+    public static async void CreateGeneratingEvent(EventAggregator eventAggregator, string source, AstronomicalObject? astronomicalObject)
     {
         var sourceName = GetName(source);
         var id = astronomicalObject != null ? astronomicalObject.Id : string.Empty;

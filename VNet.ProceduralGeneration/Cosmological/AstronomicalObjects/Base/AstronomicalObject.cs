@@ -19,7 +19,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 
 public abstract class AstronomicalObject : IAstronomicalObject
 {
-    protected readonly GeneratorSettings settings;
+    protected readonly Settings settings;
     protected float? absoluteMagnitude;
     protected float? age;
     protected float? apparentMagnitude;
@@ -52,7 +52,7 @@ public abstract class AstronomicalObject : IAstronomicalObject
     {
         Id = GenerateId();
         Enabled = true;
-        settings = ConfigurationSettings<GeneratorSettings>.AppSettings;
+        settings = ConfigurationSettings<Settings>.AppSettings;
     }
 
     protected AstronomicalObject(AstronomicalObject parent)
@@ -60,7 +60,7 @@ public abstract class AstronomicalObject : IAstronomicalObject
         Id = GenerateId();
         Parent = parent;
         Enabled = true;
-        settings = ConfigurationSettings<GeneratorSettings>.AppSettings;
+        settings = ConfigurationSettings<Settings>.AppSettings;
     }
 
     public AstronomicalObject? Parent { get; set; }

@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations;
 using VNet.Configuration;
 using VNet.Configuration.Attributes;
-using VNet.ProceduralGeneration.Cosmological.Configuration.Constants;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
@@ -15,21 +14,21 @@ public class ApplicationSettings : ISettings
 {
     public ApplicationSettings()
     {
-        MaxDegreesOfParallelismLevel1 = ConfigConstants.Application.MaxDegreesOfParallelismLevel1;
-        MaxDegreesOfParallelismLevel2 = ConfigConstants.Application.MaxDegreesOfParallelismLevel2;
-        MaxDegreesOfParallelismLevel3 = ConfigConstants.Application.MaxDegreesOfParallelismLevel3;
-        MaxDegreesOfParallelismLevel4 = ConfigConstants.Application.MaxDegreesOfParallelismLevel4;
-        LengthConversionFactor = ConfigConstants.Application.LengthConversionFactor;
-        MassConversionFactor = ConfigConstants.Application.MassConversionFactor;
-        TemperatureConversionFactor = ConfigConstants.Application.TemperatureConversionFactor;
-        TimeConversionFactor = ConfigConstants.Application.TimeConversionFactor;
-        LuminosityConversionFactor = ConfigConstants.Application.LuminosityConversionFactor;
-        ElectricalCurrentConversionFactor = ConfigConstants.Application.ElectricalCurrentConversionFactor;
-        SizeMeaning = ConfigConstants.Application.SizeMeaning;
-        ApplyGravitationalEffectsPreventDarkMatterClumping = ConfigConstants.Application.ApplyGravitationalEffectsPreventDarkMatterClumping;
-        ApplyGravitationalEffectsDampenBaryonicMatter = ConfigConstants.Application.ApplyGravitationalEffectsDampenBaryonicMatter;
-        MinimumDarkMatterDistanceToPreventClumping = ConfigConstants.Application.MinimumDarkMatterDistanceToPreventClumping;
-        BaryonicMatterDampeningFactor = ConfigConstants.Application.BaryonicMatterDampeningFactor;
+        MaxDegreesOfParallelismLevel1 = Constants.Advanced.Application.MaxDegreesOfParallelismLevel1;
+        MaxDegreesOfParallelismLevel2 = Constants.Advanced.Application.MaxDegreesOfParallelismLevel2;
+        MaxDegreesOfParallelismLevel3 = Constants.Advanced.Application.MaxDegreesOfParallelismLevel3;
+        MaxDegreesOfParallelismLevel4 = Constants.Advanced.Application.MaxDegreesOfParallelismLevel4;
+        LengthConversionFactor = Constants.Advanced.Application.LengthConversionFactor;
+        MassConversionFactor = Constants.Advanced.Application.MassConversionFactor;
+        TemperatureConversionFactor = Constants.Advanced.Application.TemperatureConversionFactor;
+        TimeConversionFactor = Constants.Advanced.Application.TimeConversionFactor;
+        LuminosityConversionFactor = Constants.Advanced.Application.LuminosityConversionFactor;
+        ElectricalCurrentConversionFactor = Constants.Advanced.Application.ElectricalCurrentConversionFactor;
+        SizeMeaning = Constants.Advanced.Application.SizeMeaning;
+        ApplyGravitationalEffectsPreventDarkMatterClumping = Constants.Advanced.Application.ApplyGravitationalEffectsPreventDarkMatterClumping;
+        ApplyGravitationalEffectsDampenBaryonicMatter = Constants.Advanced.Application.ApplyGravitationalEffectsDampenBaryonicMatter;
+        MinimumDarkMatterDistanceToPreventClumping = Constants.Advanced.Application.MinimumDarkMatterDistanceToPreventClumping;
+        BaryonicMatterDampeningFactor = Constants.Advanced.Application.BaryonicMatterDampeningFactor;
     }
 
     [Range(1, 64)]
