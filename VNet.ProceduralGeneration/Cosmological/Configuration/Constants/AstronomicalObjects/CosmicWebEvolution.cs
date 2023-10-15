@@ -2,6 +2,7 @@
 using VNet.Scientific.Noise;
 using VNet.Scientific.Noise.Other;
 
+// ReSharper disable CheckNamespace
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
 internal static partial class Constants

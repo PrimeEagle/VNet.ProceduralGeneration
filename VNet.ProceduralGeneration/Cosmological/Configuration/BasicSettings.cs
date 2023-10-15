@@ -28,12 +28,14 @@ public class BasicSettings : ISettings
 
     [RangeLimitedToPercent]
     [RangeIsPercentageWithProperties(new[] { nameof(BaryonicMatterPercentRange), nameof(DarkMatterPercentRange) })]
+    [RangeIfFalse(0, 0, "VNet.ProceduralGeneration.Cosmological.Configuration.TheoreticalAstronomicalObjectToggleSettings.DarkMatterEnabled")]
     [DisplayName("Dark Energy Percent Range")]
     [Tooltip("Range of dark energy in the universe, as a percentage.")]
     public Range<float> DarkEnergyPercentRange { get; init; }
 
     [RangeLimitedToPercent]
     [RangeIsPercentageWithProperties(new[] { nameof(BaryonicMatterPercentRange), nameof(DarkEnergyPercentRange) })]
+    [RangeIfFalse(0, 0, "VNet.ProceduralGeneration.Cosmological.Configuration.TheoreticalAstronomicalObjectToggleSettings.DarkMatterEnabled")]
     [DisplayName("Dark Matter Percent Range")]
     [Tooltip("Range of dark matter in the universe, as a percentage.")]
     public Range<float> DarkMatterPercentRange { get; init; }

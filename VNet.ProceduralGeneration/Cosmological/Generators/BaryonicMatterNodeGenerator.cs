@@ -22,26 +22,26 @@ public class BaryonicMatterNodeGenerator : NodeGeneratorBase<BaryonicMatterNode,
             if (!basePosition.HasValue) return self;
 
             self.Position = TransformBasePosition(basePosition.Value);
-            self.Position += Util.GetRandomOffset(AdvancedSettings.BaryonicMatterNode.TopologyMaxPositionalOffset);
+            self.Position += Util.GetRandomOffset(AdvancedSettings.Objects.BaryonicMatterNode.TopologyMaxPositionalOffset);
             self.Luminosity = context.Topology.VolumeMap[basePosition.Value.Item1, basePosition.Value.Item2, basePosition.Value.Item3];
         }
         else
         {
-            var xStart = -1 * BasicSettings.DimensionX / 2;
-            var xEnd = BasicSettings.DimensionX / 2;
+            var xStart = -1 * BasicSettings.MapDimensions.X / 2;
+            var xEnd = BasicSettings.MapDimensions.X / 2;
 
-            var yStart = -1 * BasicSettings.DimensionY / 2;
-            var yEnd = BasicSettings.DimensionY / 2;
+            var yStart = -1 * BasicSettings.MapDimensions.Y / 2;
+            var yEnd = BasicSettings.MapDimensions.Y / 2;
 
-            var zStart = -1 * BasicSettings.DimensionZ / 2;
-            var zEnd = BasicSettings.DimensionZ / 2;
+            var zStart = -1 * BasicSettings.MapDimensions.Z / 2;
+            var zEnd = BasicSettings.MapDimensions.Z / 2;
 
-            var x = xStart + (xEnd - xStart) * AdvancedSettings.Universe.RandomGenerator.NextSingle();
-            var y = yStart + (yEnd - yStart) * AdvancedSettings.Universe.RandomGenerator.NextSingle();
-            var z = zStart + (zEnd - zStart) * AdvancedSettings.Universe.RandomGenerator.NextSingle();
+            var x = xStart + (xEnd - xStart) * AdvancedSettings.Objects.Universe.RandomGenerator.NextSingle();
+            var y = yStart + (yEnd - yStart) * AdvancedSettings.Objects.Universe.RandomGenerator.NextSingle();
+            var z = zStart + (zEnd - zStart) * AdvancedSettings.Objects.Universe.RandomGenerator.NextSingle();
 
             self.Position = new Vector3(x, y, z);
-            self.Luminosity = -30 + 60 * AdvancedSettings.Universe.RandomGenerator.NextSingle();
+            self.Luminosity = -30 + 60 * AdvancedSettings.Objects.Universe.RandomGenerator.NextSingle();
         }
 
         return self;
@@ -67,9 +67,9 @@ public class BaryonicMatterNodeGenerator : NodeGeneratorBase<BaryonicMatterNode,
         var posY = basePosition.Item2;
         var posZ = basePosition.Item3;
 
-        var mapX = BasicSettings.DimensionX;
-        var mapY = BasicSettings.DimensionY;
-        var mapZ = BasicSettings.DimensionZ;
+        var mapX = BasicSettings.MapDimensions.X;
+        var mapY = BasicSettings.MapDimensions.Y;
+        var mapZ = BasicSettings.MapDimensions.Z;
 
         var xScale = posX / mapX;
         var yScale = posY / mapY;

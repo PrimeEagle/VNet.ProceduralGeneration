@@ -26,7 +26,7 @@
 //    {
 //        var heightMapImage = new Bitmap(BasicSettings.HeightmapFile);
 
-//        if (AdvancedSettings.Universe.GaussianSigma > 0f) heightMapImage = Enhancement.GaussianBlur(heightMapImage, AdvancedSettings.Universe.GaussianKernelSize, AdvancedSettings.Universe.GaussianSigma);
+//        if (AdvancedSettings.Objects.Universe.GaussianSigma > 0f) heightMapImage = Enhancement.GaussianBlur(heightMapImage, AdvancedSettings.Objects.Universe.GaussianKernelSize, AdvancedSettings.Objects.Universe.GaussianSigma);
 
 //        var heightMap = HeightmapUtil.ImageToHeightmap(heightMapImage);
 

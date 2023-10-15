@@ -37,8 +37,8 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
         Settings = ConfigurationSettings<Settings>.AppSettings;
         BasicSettings = Settings.Basic;
         AdvancedSettings = Settings.Advanced;
-        ObjectToggles = Settings.ObjectToggles;
-        TheoreticalObjectToggles = Settings.TheoreticalObjectToggles;
+        ObjectToggles = Settings.Basic.ObjectToggles;
+        TheoreticalObjectToggles = Settings.Basic.ObjectToggles.Theoretical;
         _parallelismLevel = parallelismLevel;
         EventAggregator = eventAggregator;
         _semaphore = new SemaphoreSlim(GetDegreesOfParallelism());

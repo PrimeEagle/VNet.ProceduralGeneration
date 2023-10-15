@@ -18,6 +18,7 @@ public class ApplicationSettings : ISettings
     public bool ApplyGravitationalEffectsDampenBaryonicMatter { get; init; }
 
     [DisplayName("Prevent Dark Matter Clumping")]
+    [FalseIfFalse("VNet.ProceduralGeneration.Cosmological.Configuration.TheoreticalAstronomicalObjectToggleSettings.DarkMatterEnabled")]
     [Tooltip("If 'Apply Gravitational Effects' is enabled, determines whether dark matter clumping should be prevented.")]
     public bool ApplyGravitationalEffectsPreventDarkMatterClumping { get; init; }
 

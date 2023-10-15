@@ -1,4 +1,5 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿// ReSharper disable CheckNamespace
+namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
 internal static partial class Constants
 {
