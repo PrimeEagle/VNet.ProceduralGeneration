@@ -92,6 +92,8 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
     protected abstract Task GenerateChildren(TContext context, T self);
     protected abstract void SetMatterType(TContext context, T self);
     protected abstract void PostProcess(TContext context, T self);
+    public abstract void GenerateRandomGenerationAlgorithm(TContext context, T self);
+
 
     protected async Task<T> ExecuteWithConcurrencyControlAsync<T>(Func<Task<T>> taskFactory)
     {
@@ -212,6 +214,7 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
     protected virtual void GenerateBaseProperties(TContext context, T self)
     {
         SetMatterType(context, self);
+        GenerateRandomGenerationAlgorithm(context, self);
         GenerateDiameter(context, self);
         GeneratePosition(context, self);
         GenerateOrientation(context, self);

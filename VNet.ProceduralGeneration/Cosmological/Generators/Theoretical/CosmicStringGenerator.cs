@@ -32,6 +32,11 @@ public class CosmicStringGenerator : GeneratorBase<CosmicString, CosmicStringCon
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(CosmicStringContext context, CosmicString self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(CosmicStringContext context, CosmicString self)
     {
         throw new NotImplementedException();

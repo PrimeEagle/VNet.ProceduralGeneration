@@ -32,6 +32,11 @@ public class PreonStarGenerator : GeneratorBase<PreonStar, PreonStarContext>
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(PreonStarContext context, PreonStar self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(PreonStarContext context, PreonStar self)
     {
         throw new NotImplementedException();

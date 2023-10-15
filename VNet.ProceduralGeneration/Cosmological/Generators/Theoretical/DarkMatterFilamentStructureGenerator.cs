@@ -27,6 +27,11 @@ public class DarkMatterFilamentStructureGenerator : FilamentStructureGenerator<D
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(DarkMatterFilamentStructureContext context, DarkMatterFilamentStructure self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateWarpedSurface(DarkMatterFilamentStructureContext context, DarkMatterFilamentStructure self)
     {
         throw new NotImplementedException();

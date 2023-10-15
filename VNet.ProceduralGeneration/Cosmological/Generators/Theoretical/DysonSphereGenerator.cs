@@ -32,6 +32,11 @@ public class DysonSphereGenerator : GeneratorBase<DysonSphere, DysonSphereContex
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(DysonSphereContext context, DysonSphere self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(DysonSphereContext context, DysonSphere self)
     {
         throw new NotImplementedException();

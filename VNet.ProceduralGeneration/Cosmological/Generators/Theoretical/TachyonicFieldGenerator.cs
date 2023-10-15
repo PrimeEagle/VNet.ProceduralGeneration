@@ -32,6 +32,11 @@ public class TachyonicFieldGenerator : GeneratorBase<TachyonicField, TachyonicFi
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(TachyonicFieldContext context, TachyonicField self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(TachyonicFieldContext context, TachyonicField self)
     {
         throw new NotImplementedException();

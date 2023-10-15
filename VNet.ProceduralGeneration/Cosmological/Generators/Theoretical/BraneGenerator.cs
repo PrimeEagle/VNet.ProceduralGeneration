@@ -32,6 +32,11 @@ public class BraneGenerator : GeneratorBase<Brane, BraneContext>
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(BraneContext context, Brane self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(BraneContext context, Brane self)
     {
         throw new NotImplementedException();

@@ -32,6 +32,11 @@ public class StarGenerator : GeneratorBase<Star, StarContext>
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(StarContext context, Star self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(StarContext context, Star self)
     {
         throw new NotImplementedException();

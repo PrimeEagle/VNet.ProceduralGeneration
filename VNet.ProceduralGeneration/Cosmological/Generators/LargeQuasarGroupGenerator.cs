@@ -27,6 +27,11 @@ public class LargeQuasarGroupGenerator : GroupGeneratorBase<LargeQuasarGroup, La
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(LargeQuasarGroupContext context, LargeQuasarGroup self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateWarpedSurface(LargeQuasarGroupContext context, LargeQuasarGroup self)
     {
         throw new NotImplementedException();

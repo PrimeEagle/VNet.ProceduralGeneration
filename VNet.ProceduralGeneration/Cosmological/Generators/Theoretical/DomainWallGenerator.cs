@@ -32,6 +32,11 @@ public class DomainWallGenerator : GeneratorBase<DomainWall, DomainWallContext>
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(DomainWallContext context, DomainWall self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(DomainWallContext context, DomainWall self)
     {
         throw new NotImplementedException();

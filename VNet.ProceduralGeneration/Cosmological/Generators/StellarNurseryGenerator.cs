@@ -32,6 +32,11 @@ public class StellarNurseryGenerator : GeneratorBase<StellarNursery, StellarNurs
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(StellarNurseryContext context, StellarNursery self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(StellarNurseryContext context, StellarNursery self)
     {
         throw new NotImplementedException();

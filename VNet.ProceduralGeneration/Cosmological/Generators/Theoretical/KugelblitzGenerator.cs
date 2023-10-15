@@ -32,6 +32,11 @@ public class KugelblitzGenerator : GeneratorBase<Kugelblitz, KugelblitzContext>
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(KugelblitzContext context, Kugelblitz self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(KugelblitzContext context, Kugelblitz self)
     {
         throw new NotImplementedException();

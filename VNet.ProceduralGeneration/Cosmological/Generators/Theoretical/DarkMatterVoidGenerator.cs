@@ -27,6 +27,11 @@ public class DarkMatterVoidGenerator : VoidGeneratorBase<DarkMatterVoid, DarkMat
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(DarkMatterVoidContext context, DarkMatterVoid self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateInteriorRandomizationAlgorithm(DarkMatterVoidContext context, DarkMatterVoid self)
     {
         throw new NotImplementedException();

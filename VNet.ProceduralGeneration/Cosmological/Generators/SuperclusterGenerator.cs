@@ -27,6 +27,11 @@ public class SuperclusterGenerator : GroupGeneratorBase<Supercluster, Superclust
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(SuperclusterContext context, Supercluster self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateWarpedSurface(SuperclusterContext context, Supercluster self)
     {
         throw new NotImplementedException();

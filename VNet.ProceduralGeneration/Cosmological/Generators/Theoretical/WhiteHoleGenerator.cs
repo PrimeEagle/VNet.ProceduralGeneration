@@ -32,6 +32,11 @@ public class WhiteHoleGenerator : GeneratorBase<WhiteHole, WhiteHoleContext>
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(WhiteHoleContext context, WhiteHole self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(WhiteHoleContext context, WhiteHole self)
     {
         throw new NotImplementedException();

@@ -28,6 +28,11 @@ public class BaryonicMatterSheetStructureGenerator : SheetStructureGenerator<Bar
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(BaryonicMatterSheetStructureContext context, BaryonicMatterSheetStructure self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateWarpedSurface(BaryonicMatterSheetStructureContext context, BaryonicMatterSheetStructure self)
     {
         throw new NotImplementedException();

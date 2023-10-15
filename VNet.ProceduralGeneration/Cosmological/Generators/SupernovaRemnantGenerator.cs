@@ -32,6 +32,11 @@ public class SupernovaRemnantGenerator : GeneratorBase<SupernovaRemnant, Superno
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(SupernovaRemnantContext context, SupernovaRemnant self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(SupernovaRemnantContext context, SupernovaRemnant self)
     {
         throw new NotImplementedException();

@@ -27,6 +27,11 @@ public class StarSystemGenerator : GroupGeneratorBase<StarSystem, StarSystemCont
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(StarSystemContext context, StarSystem self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateWarpedSurface(StarSystemContext context, StarSystem self)
     {
         throw new NotImplementedException();

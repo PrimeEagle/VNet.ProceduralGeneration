@@ -27,6 +27,11 @@ public class BaryonicMatterFilamentStructureGenerator : FilamentStructureGenerat
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(BaryonicMatterFilamentStructureContext context, BaryonicMatterFilamentStructure self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateWarpedSurface(BaryonicMatterFilamentStructureContext context, BaryonicMatterFilamentStructure self)
     {
         throw new NotImplementedException();

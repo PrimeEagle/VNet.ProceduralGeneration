@@ -32,6 +32,11 @@ public class FermiBubbleGenerator : GeneratorBase<FermiBubble, FermiBubbleContex
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(FermiBubbleContext context, FermiBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(FermiBubbleContext context, FermiBubble self)
     {
         throw new NotImplementedException();

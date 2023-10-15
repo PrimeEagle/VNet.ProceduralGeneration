@@ -27,6 +27,11 @@ public class DarkMatterSheetStructureGenerator : SheetStructureGenerator<DarkMat
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(DarkMatterSheetStructureContext context, DarkMatterSheetStructure self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateWarpedSurface(DarkMatterSheetStructureContext context, DarkMatterSheetStructure self)
     {
         throw new NotImplementedException();

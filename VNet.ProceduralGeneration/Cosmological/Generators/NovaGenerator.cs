@@ -32,6 +32,11 @@ public class NovaGenerator : GeneratorBase<Nova, NovaContext>
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(NovaContext context, Nova self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(NovaContext context, Nova self)
     {
         throw new NotImplementedException();

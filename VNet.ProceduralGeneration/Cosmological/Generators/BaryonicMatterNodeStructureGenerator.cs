@@ -47,6 +47,11 @@ public class BaryonicMatterNodeStructureGenerator : NodeStructureGenerator<Baryo
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(BaryonicMatterNodeStructureContext context, BaryonicMatterNodeStructure self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(BaryonicMatterNodeStructureContext context, BaryonicMatterNodeStructure self)
     {
         throw new NotImplementedException();

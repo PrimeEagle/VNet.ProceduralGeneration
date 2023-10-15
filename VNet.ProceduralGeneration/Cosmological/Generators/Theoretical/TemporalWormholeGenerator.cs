@@ -32,6 +32,11 @@ public class TemporalWormholeGenerator : GeneratorBase<TemporalWormhole, Tempora
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(TemporalWormholeContext context, TemporalWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(TemporalWormholeContext context, TemporalWormhole self)
     {
         throw new NotImplementedException();

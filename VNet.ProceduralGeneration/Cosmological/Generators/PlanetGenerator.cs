@@ -32,6 +32,11 @@ public class PlanetGenerator : GeneratorBase<Planet, PlanetContext>
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(PlanetContext context, Planet self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(PlanetContext context, Planet self)
     {
         throw new NotImplementedException();

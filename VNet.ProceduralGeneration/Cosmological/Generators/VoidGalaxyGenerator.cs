@@ -27,6 +27,11 @@ public class VoidGalaxyGenerator : GroupGeneratorBase<VoidGalaxy, VoidGalaxyCont
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(VoidGalaxyContext context, VoidGalaxy self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateWarpedSurface(VoidGalaxyContext context, VoidGalaxy self)
     {
         throw new NotImplementedException();

@@ -32,6 +32,11 @@ public class GammaRayBurstGenerator : GeneratorBase<GammaRayBurst, GammaRayBurst
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(GammaRayBurstContext context, GammaRayBurst self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(GammaRayBurstContext context, GammaRayBurst self)
     {
         throw new NotImplementedException();

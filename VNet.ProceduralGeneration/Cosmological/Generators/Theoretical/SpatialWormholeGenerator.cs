@@ -32,6 +32,11 @@ public class SpatialWormholeGenerator : GeneratorBase<SpatialWormhole, SpatialWo
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(SpatialWormholeContext context, SpatialWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(SpatialWormholeContext context, SpatialWormhole self)
     {
         throw new NotImplementedException();

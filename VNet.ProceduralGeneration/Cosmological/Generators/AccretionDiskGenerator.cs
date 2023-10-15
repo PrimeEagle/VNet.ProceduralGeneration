@@ -32,6 +32,11 @@ public class AccretionDiskGenerator : GeneratorBase<AccretionDisk, AccretionDisk
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(AccretionDiskContext context, AccretionDisk self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(AccretionDiskContext context, AccretionDisk self)
     {
         throw new NotImplementedException();

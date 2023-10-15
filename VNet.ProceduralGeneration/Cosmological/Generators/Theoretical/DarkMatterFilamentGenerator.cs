@@ -27,6 +27,11 @@ public class DarkMatterFilamentGenerator : FilamentGeneratorBase<DarkMatterFilam
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(DarkMatterFilamentContext context, DarkMatterFilament self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateWarpedSurface(DarkMatterFilamentContext context, DarkMatterFilament self)
     {
         throw new NotImplementedException();

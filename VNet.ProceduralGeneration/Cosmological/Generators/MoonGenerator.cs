@@ -32,6 +32,11 @@ public class MoonGenerator : GeneratorBase<Moon, MoonContext>
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(MoonContext context, Moon self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(MoonContext context, Moon self)
     {
         throw new NotImplementedException();

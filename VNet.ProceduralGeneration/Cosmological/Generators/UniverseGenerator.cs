@@ -41,6 +41,11 @@ public class UniverseGenerator : GroupGeneratorBase<Universe, UniverseContext>
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(UniverseContext context, Universe self)
+    {
+        throw new NotImplementedException();
+    }
+
     private static void RebalanceMatterEnergyPercentages(UniverseContext context, Universe self)
     {
         var sum = self.DarkEnergyPercent + self.DarkMatterPercent + self.BaryonicMatterPercent;

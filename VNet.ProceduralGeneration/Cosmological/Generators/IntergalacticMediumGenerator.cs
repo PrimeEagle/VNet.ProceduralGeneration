@@ -32,6 +32,11 @@ public class IntergalacticMediumGenerator : GeneratorBase<IntergalacticMedium, I
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(IntergalacticMediumContext context, IntergalacticMedium self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(IntergalacticMediumContext context, IntergalacticMedium self)
     {
         throw new NotImplementedException();

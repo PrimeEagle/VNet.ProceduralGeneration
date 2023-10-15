@@ -32,6 +32,11 @@ public class CosmicTopologicalDefectGenerator : GeneratorBase<CosmicTopologicalD
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
     {
         throw new NotImplementedException();

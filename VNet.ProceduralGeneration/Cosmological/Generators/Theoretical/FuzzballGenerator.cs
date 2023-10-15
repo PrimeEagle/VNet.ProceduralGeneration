@@ -32,6 +32,11 @@ public class FuzzballGenerator : GeneratorBase<Fuzzball, FuzzballContext>
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(FuzzballContext context, Fuzzball self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(FuzzballContext context, Fuzzball self)
     {
         throw new NotImplementedException();

@@ -90,6 +90,11 @@ public class BaryonicMatterVoidStructureGenerator : VoidStructureGenerator<Baryo
         self.MatterType = MatterType.BaryonicMatter;
     }
 
+    public override void GenerateRandomGenerationAlgorithm(BaryonicMatterVoidStructureContext context, BaryonicMatterVoidStructure self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(BaryonicMatterVoidStructureContext context, BaryonicMatterVoidStructure self)
     {
         self.Children.AddRange(self.BaryonicMatterVoids);

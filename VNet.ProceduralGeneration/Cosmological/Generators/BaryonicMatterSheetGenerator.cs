@@ -52,6 +52,11 @@ public class BaryonicMatterSheetGenerator : SheetGeneratorBase<BaryonicMatterShe
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(BaryonicMatterSheetContext context, BaryonicMatterSheet self)
     {
         throw new NotImplementedException();

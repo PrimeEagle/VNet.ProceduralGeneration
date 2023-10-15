@@ -27,6 +27,11 @@ public class StarClusterGenerator : GroupGeneratorBase<StarCluster, StarClusterC
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(StarClusterContext context, StarCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateWarpedSurface(StarClusterContext context, StarCluster self)
     {
         throw new NotImplementedException();

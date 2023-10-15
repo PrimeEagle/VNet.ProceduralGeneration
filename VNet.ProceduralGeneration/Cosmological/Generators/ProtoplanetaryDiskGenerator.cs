@@ -27,6 +27,11 @@ public class ProtoplanetaryDiskGenerator : GroupGeneratorBase<ProtoplanetaryDisk
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateWarpedSurface(ProtoplanetaryDiskContext context, ProtoplanetaryDisk self)
     {
         throw new NotImplementedException();

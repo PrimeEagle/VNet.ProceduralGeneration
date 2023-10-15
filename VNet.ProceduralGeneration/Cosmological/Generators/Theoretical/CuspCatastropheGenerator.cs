@@ -32,6 +32,11 @@ public class CuspCatastropheGenerator : GeneratorBase<CuspCatastrophe, CuspCatas
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(CuspCatastropheContext context, CuspCatastrophe self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(CuspCatastropheContext context, CuspCatastrophe self)
     {
         throw new NotImplementedException();

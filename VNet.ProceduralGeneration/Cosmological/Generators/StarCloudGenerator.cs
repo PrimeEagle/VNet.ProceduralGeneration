@@ -27,6 +27,11 @@ public class StarCloudGenerator : GroupGeneratorBase<StarCloud, StarCloudContext
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(StarCloudContext context, StarCloud self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateWarpedSurface(StarCloudContext context, StarCloud self)
     {
         throw new NotImplementedException();

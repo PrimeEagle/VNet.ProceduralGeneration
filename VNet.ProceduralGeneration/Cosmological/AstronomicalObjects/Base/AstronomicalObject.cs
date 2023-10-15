@@ -16,6 +16,7 @@ using VNet.Scientific.NumericalVolumes;
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 
+
 public abstract class AstronomicalObject : IAstronomicalObject
 {
     protected readonly GeneratorSettings settings;
@@ -24,7 +25,6 @@ public abstract class AstronomicalObject : IAstronomicalObject
     protected float? apparentMagnitude;
     protected Vector3? apparentMagnitudeSource;
     protected double? density;
-    protected float? diameter;
     protected float? displayAbsoluteMagnitude;
     protected double? displayAge;
     protected double? displayDensity;
@@ -40,7 +40,6 @@ public abstract class AstronomicalObject : IAstronomicalObject
     protected float? lifespan;
     protected float? luminosity;
     protected double? mass;
-    protected Vector3? orientation;
     protected Vector3 position;
 
 
@@ -64,7 +63,7 @@ public abstract class AstronomicalObject : IAstronomicalObject
         settings = ConfigurationSettings<GeneratorSettings>.AppSettings;
     }
 
-    public AstronomicalObject Parent { get; set; }
+    public AstronomicalObject? Parent { get; set; }
     public Universe Universe => FindUniverse();
 
     public float EstimateMemorySize()
@@ -120,18 +119,20 @@ public abstract class AstronomicalObject : IAstronomicalObject
 
     public string Id { get; init; }
     public bool Enabled { get; set; }
-    public virtual float Age { get; set; } // years
-    public virtual float Lifespan { get; set; } // years
-    public virtual double Mass { get; set; } // kg
-    public virtual float Diameter { get; set; } // AU
-    public virtual float Temperature { get; set; } // Kelvin
-    public virtual float Luminosity { get; set; } // L⊙
-    public virtual Vector3 Position { get; set; } // AU
+    public virtual float Age { get; set; }                                  // years
+    public virtual float Lifespan { get; set; }                             // years
+    public virtual double Mass { get; set; }                                // kg
+    public virtual float Diameter { get; set; }                             // AU
+    public virtual float Temperature { get; set; }                          // Kelvin
+    public virtual float Luminosity { get; set; }                           // L⊙
+    public virtual Vector3 Position { get; set; }                           // AU
     public virtual BoundingBox<float> BoundingBox { get; set; }
     public virtual Vector3 Orientation { get; set; }
     public MatterType MatterType { get; set; }
+    public IRandomGenerationAlgorithm RandomGenerationAlgorithm { get; set; }
 
-    public virtual float Radius // AU
+
+    public virtual float Radius                                             // AU
     {
         get
         {

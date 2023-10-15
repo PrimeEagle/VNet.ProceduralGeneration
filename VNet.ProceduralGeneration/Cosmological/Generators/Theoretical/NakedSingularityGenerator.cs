@@ -32,6 +32,11 @@ public class NakedSingularityGenerator : GeneratorBase<NakedSingularity, NakedSi
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(NakedSingularityContext context, NakedSingularity self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(NakedSingularityContext context, NakedSingularity self)
     {
         throw new NotImplementedException();

@@ -27,6 +27,11 @@ public class DebrisDiskGenerator : GroupGeneratorBase<DebrisDisk, DebrisDiskCont
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(DebrisDiskContext context, DebrisDisk self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateWarpedSurface(DebrisDiskContext context, DebrisDisk self)
     {
         throw new NotImplementedException();

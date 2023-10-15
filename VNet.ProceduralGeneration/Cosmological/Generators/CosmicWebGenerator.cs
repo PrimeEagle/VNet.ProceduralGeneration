@@ -98,6 +98,11 @@ public class CosmicWebGenerator : GroupGeneratorBase<CosmicWeb, CosmicWebContext
         self.MatterType = TheoreticalObjectToggles.DarkMatterEnabled ? MatterType.Mixed : MatterType.BaryonicMatter;
     }
 
+    public override void GenerateRandomGenerationAlgorithm(CosmicWebContext context, CosmicWeb self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(CosmicWebContext context, CosmicWeb self)
     {
         self.Children.Add(self.IntergalacticMedium);

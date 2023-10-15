@@ -32,6 +32,11 @@ public class QuarkStarGenerator : GeneratorBase<QuarkStar, QuarkStarContext>
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(QuarkStarContext context, QuarkStar self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(QuarkStarContext context, QuarkStar self)
     {
         throw new NotImplementedException();

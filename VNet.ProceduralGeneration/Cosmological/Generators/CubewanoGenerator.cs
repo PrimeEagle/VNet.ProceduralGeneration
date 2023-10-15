@@ -32,6 +32,11 @@ public class CubewanoGenerator : GeneratorBase<Cubewano, CubewanoContext>
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(CubewanoContext context, Cubewano self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(CubewanoContext context, Cubewano self)
     {
         throw new NotImplementedException();

@@ -56,6 +56,11 @@ public class BaryonicMatterNodeGenerator : NodeGeneratorBase<BaryonicMatterNode,
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
     private Vector3 TransformBasePosition((int, int, int) basePosition)
     {
         var posX = basePosition.Item1;

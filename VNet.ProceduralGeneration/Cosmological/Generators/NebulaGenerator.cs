@@ -32,6 +32,11 @@ public class NebulaGenerator : GeneratorBase<Nebula, NebulaContext>
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(NebulaContext context, Nebula self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(NebulaContext context, Nebula self)
     {
         throw new NotImplementedException();

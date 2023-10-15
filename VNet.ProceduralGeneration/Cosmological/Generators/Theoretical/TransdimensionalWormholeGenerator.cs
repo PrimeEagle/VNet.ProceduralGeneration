@@ -32,6 +32,11 @@ public class TransdimensionalWormholeGenerator : GeneratorBase<TransdimensionalW
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(TransdimensionalWormholeContext context, TransdimensionalWormhole self)
     {
         throw new NotImplementedException();

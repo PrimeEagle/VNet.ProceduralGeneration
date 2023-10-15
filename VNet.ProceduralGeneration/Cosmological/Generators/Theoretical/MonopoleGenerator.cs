@@ -32,6 +32,11 @@ public class MonopoleGenerator : GeneratorBase<Monopole, MonopoleContext>
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(MonopoleContext context, Monopole self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(MonopoleContext context, Monopole self)
     {
         throw new NotImplementedException();

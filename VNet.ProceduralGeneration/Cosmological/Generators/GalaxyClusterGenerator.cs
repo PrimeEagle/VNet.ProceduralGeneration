@@ -27,6 +27,11 @@ public class GalaxyClusterGenerator : GroupGeneratorBase<GalaxyCluster, GalaxyCl
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(GalaxyClusterContext context, GalaxyCluster self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateWarpedSurface(GalaxyClusterContext context, GalaxyCluster self)
     {
         throw new NotImplementedException();

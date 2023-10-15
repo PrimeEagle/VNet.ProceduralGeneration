@@ -19,7 +19,7 @@ public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid,
 
     protected override async Task GenerateChildren(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
     {
-        const int numGalaxyGroups = self.RandomizationAlgorithm.NextInclusive(0, 10);
+        var numGalaxyGroups = self.RandomGenerationAlgorithm.NextInclusive(0, 10);
         for (var i = 0; i < numGalaxyGroups; i++)
         {
             var galaxyGroupContext = new GalaxyGroupContext()
@@ -31,7 +31,7 @@ public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid,
             self.GalaxyGroups.Add(newGalaxyGroup);
         }
 
-        const int numGalaxies = self.RandomizationAlgorithm.NextInclusive(0, 10);
+        var numGalaxies = self.RandomGenerationAlgorithm.NextInclusive(0, 10);
         for (var i = 0; i < numGalaxies; i++)
         {
             var galaxyContext = new GalaxyContext()
@@ -43,7 +43,7 @@ public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid,
             self.Galaxies.Add(newGalaxy);
         }
 
-        const int numVoidGalaxies = self.RandomizationAlgorithm.NextInclusive(0, 10);
+        var numVoidGalaxies = self.RandomGenerationAlgorithm.NextInclusive(0, 10);
         for (var i = 0; i < numVoidGalaxies; i++)
         {
             var voidGalaxyContext = new VoidGalaxyContext()
@@ -59,6 +59,11 @@ public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid,
     protected override void SetMatterType(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
     {
         self.MatterType = MatterType.BaryonicMatter;
+    }
+
+    public override void GenerateRandomGenerationAlgorithm(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
+    {
+        throw new NotImplementedException();
     }
 
     protected override void GenerateInteriorRandomizationAlgorithm(BaryonicMatterVoidContext context, BaryonicMatterVoid self)

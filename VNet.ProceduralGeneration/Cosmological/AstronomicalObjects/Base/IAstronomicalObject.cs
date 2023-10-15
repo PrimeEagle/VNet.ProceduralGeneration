@@ -19,7 +19,7 @@ public interface IAstronomicalObject : IUndefinedAstronomicalObject
     public double Density { get; } // kg/AU³
     public double Size { get; } // AU or AU³
     public float AbsoluteMagnitude { get; }
-    public AstronomicalObject Parent { get; set; }
+    public AstronomicalObject? Parent { get; set; }
     public Universe Universe { get; }
 
 

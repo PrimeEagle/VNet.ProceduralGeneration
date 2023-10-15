@@ -32,6 +32,11 @@ public class CosmicBubbleGenerator : GeneratorBase<CosmicBubble, CosmicBubbleCon
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(CosmicBubbleContext context, CosmicBubble self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(CosmicBubbleContext context, CosmicBubble self)
     {
         throw new NotImplementedException();

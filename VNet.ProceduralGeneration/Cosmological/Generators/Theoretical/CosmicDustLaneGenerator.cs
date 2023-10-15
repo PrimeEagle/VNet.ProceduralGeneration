@@ -32,6 +32,11 @@ public class CosmicDustLaneGenerator : GeneratorBase<CosmicDustLane, CosmicDustL
         throw new NotImplementedException();
     }
 
+    public override void GenerateRandomGenerationAlgorithm(CosmicDustLaneContext context, CosmicDustLane self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(CosmicDustLaneContext context, CosmicDustLane self)
     {
         throw new NotImplementedException();
