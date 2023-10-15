@@ -1,23 +1,20 @@
-﻿namespace VNet.ProceduralGeneration.Cosmological.Configuration;
+﻿using System.Numerics;
+using VNet.Configuration;
+// ReSharper disable CheckNamespace
+
+namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
 internal static partial class Constants
 {
     internal static partial class Basic
     {
         internal static bool ApplyGravitationalEffects { get; } = true;
-        internal static float DimensionX { get; } = 100f;
-        internal static float DimensionY { get; } = 100f;
-        internal static float DimensionZ { get; } = 100f;
+        internal static Vector3 MapDimensions { get; } = new Vector3(100f, 100f, 100f);
         internal static string HeightmapFile { get; } = "default_heightmap.png";
         internal static string HeightmapFolder { get; } = "heightmaps";
-        internal static float MaxBaryonicMatterPercent { get; } = 6.0f;
-        internal static float MaxDarkEnergyPercent { get; } = 75.0f;
-        internal static float MaxDarkMatterPercent { get; } = 30.0f;
-        internal static float MaxUniverseAge { get; } = 20e9f;
-        internal static float MinBaryonicMatterPercent { get; } = 4.0f;
-        internal static float MinDarkEnergyPercent { get; } = 65.0f;
-        internal static float MinDarkMatterPercent { get; } = 20.0f;
-        internal static float MinUniverseAge { get; } = 5e9f; // years
-                                                              // years
+        internal static Range<float> BaryonicMatterPercentRange { get; } = new Range<float>(5.2f, 5.2f);
+        internal static Range<float> DarkMatterPercentRange { get; } = new Range<float>(26.5f, 26.5f);
+        internal static Range<float> DarkEnergyPercentRange { get; } = new Range<float>(68.6f, 68.6f);
+        internal static Range<float> UniverseAgeRange { get; } = new Range<float>(5e9f, 30e9f);                                                  // years
     }
 }

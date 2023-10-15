@@ -12,7 +12,7 @@ public class AdvancedSettings : ISettings
 
     public PluginSettings Plugin { get; init; }
 
-    public TheoreticalAstronomicalObjectSettings TheoreticalObjects { get; init; }
+    
 
     public AdvancedSettings()
     {
@@ -20,6 +20,5 @@ public class AdvancedSettings : ISettings
         Plugin = new PluginSettings();
         PhysicalConstants = new PhysicalConstantsSettings();
         Objects = new AstronomicalObjectSettings();
-        TheoreticalObjects = new TheoreticalAstronomicalObjectSettings();
     }
 }

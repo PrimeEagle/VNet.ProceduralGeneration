@@ -6,6 +6,9 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
 public class AstronomicalObjectToggleSettings : ISettings
 {
+    public TheoreticalAstronomicalObjectToggleSettings Theoretical { get; init; }
+
+
     [DisplayName("Accretion Disks")]
     [Tooltip("Flat, spiraled disk of matter that spirals inward onto a celestial body, often a black hole or star.")]
     public bool AccretionDisksEnabled { get; init; }
@@ -181,4 +184,11 @@ public class AstronomicalObjectToggleSettings : ISettings
     [DisplayName("Void Galaxies")]
     [Tooltip(".")]
     public bool VoidGalaxiesEnabled { get; init; }
+
+
+
+    public AstronomicalObjectToggleSettings()
+    {
+        Theoretical = new TheoreticalAstronomicalObjectToggleSettings();
+    }
 }

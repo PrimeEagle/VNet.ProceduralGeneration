@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using VNet.Configuration;
 using VNet.Configuration.Attributes;
+using VNet.Configuration.Attributes.Validation;
 using VNet.Scientific.Interpolation;
 using VNet.Scientific.Noise;
 

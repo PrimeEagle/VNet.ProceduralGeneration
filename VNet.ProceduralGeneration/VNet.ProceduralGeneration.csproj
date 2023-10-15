@@ -8,6 +8,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Cosmological\Configuration\AstronomicalObjects\run.ps1" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Folder Include="Terrestrial\Creatures\" />
 		<Folder Include="Terrestrial\Cities\" />
 		<Folder Include="Terrestrial\Dungeons\" />

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using VNet.Configuration;
 using VNet.Configuration.Attributes;
+#pragma warning disable IDE1006
 
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
@@ -17,6 +18,7 @@ public class PhysicalConstantsSettings : ISettings
 
     [DisplayName("c (Speed of Light in a Vacuum)")]
     [Tooltip("The speed of light.")]
+    // ReSharper disable once InconsistentNaming
     public float c { get; init; }
 
     [DisplayName("C (Zero Point Magnitude Constant")]
@@ -29,6 +31,7 @@ public class PhysicalConstantsSettings : ISettings
 
     [DisplayName("h (Planck Constant)")]
     [Tooltip("The zero point magnitude constant.")]
+    // ReSharper disable once InconsistentNaming
     public double h { get; init; }
 
     [DisplayName("H\u2080 (Hubble Constant)")]
@@ -37,6 +40,7 @@ public class PhysicalConstantsSettings : ISettings
 
     [DisplayName("kB (Boltzmann Constant)")]
     [Tooltip("The Boltzmann Constant.")]
+    // ReSharper disable once InconsistentNaming
     public float kB { get; init; }
 
     public PhysicalConstantsSettings()

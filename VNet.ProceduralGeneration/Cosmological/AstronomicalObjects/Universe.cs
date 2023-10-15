@@ -68,6 +68,6 @@ public class Universe : AstronomicalObjectGroup
 
     private bool CalculateInflationOccurred()
     {
-        return settings.Advanced.Objects.Universe.InflationEnd > 0;
+        return settings.Advanced.Objects.Universe.InflationRange.Start > 0;
     }
 }
