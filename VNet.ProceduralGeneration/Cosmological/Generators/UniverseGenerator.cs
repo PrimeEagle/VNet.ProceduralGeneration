@@ -1,11 +1,11 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using System.Numerics;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.System.Events;
-#pragma warning disable IDE0060
-#pragma warning disable IDE0060
 
+#pragma warning disable IDE0060
 // ReSharper disable UnusedParameter.Local
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
@@ -105,33 +105,40 @@ public class UniverseGenerator : GroupGeneratorBase<Universe, UniverseContext>
 
     protected override void GenerateWarpedSurface(UniverseContext context, Universe self)
     {
-        throw new NotImplementedException();
+        self.WarpedSurface = new List<Vector3>();   
     }
 
     protected override void GenerateInteriorObjects(UniverseContext context, Universe self)
     {
-        throw new NotImplementedException();
+        self.InteriorObjects = new List<IUndefinedAstronomicalObject>();
     }
 
     protected override void GenerateInteriorRandomizationAlgorithm(UniverseContext context, Universe self)
     {
-        throw new NotImplementedException();
+        self.InteriorRandomizationAlgorithm = null;
     }
 
     protected override void GenerateSurfaceNoiseAlgorithm(UniverseContext context, Universe self)
     {
-        throw new NotImplementedException();
+        self.SurfaceNoiseAlgorithm = null;
     }
 
     protected override void GenerateBaseProperties(UniverseContext context, Universe self)
     {
         base.GenerateBaseProperties(context, self);
+
+        GenerateCosmicMicrowaveBackground(context, self);
+        GenerateBaryonicMatterPercent(context, self);
+        GenerateDarkMatterPercent(context, self);
+        GenerateDarkEnergyPercent(context, self);
+        GenerateConnectivityFactor(context, self);
+        GenerateCurvature(context, self);
         GenerateAge(context, self);
         GenerateLifespan(context, self);
     }
 
     internal override void AssignChildren(UniverseContext context, Universe self)
     {
-        throw new NotImplementedException();
+        self.Children.Add(self.CosmicWeb);
     }
 }

@@ -53,7 +53,7 @@ public class CosmicWebGenerator : GroupGeneratorBase<CosmicWeb, CosmicWebContext
 
 
 
-        if (TheoreticalObjectToggles.DarkMatterEnabled)
+        if (TheoreticalObjectToggles.DarkMatterAndDarkEnergyEnabled)
         {
             var darkMatterVoidStructureContext = new DarkMatterVoidStructureContext();
             var darkMatterVoidStructureGenerator = new DarkMatterVoidStructureGenerator(EventAggregator, ParallelismLevel.Level1);
@@ -95,7 +95,7 @@ public class CosmicWebGenerator : GroupGeneratorBase<CosmicWeb, CosmicWebContext
 
     protected override void SetMatterType(CosmicWebContext context, CosmicWeb self)
     {
-        self.MatterType = TheoreticalObjectToggles.DarkMatterEnabled ? MatterType.Mixed : MatterType.BaryonicMatter;
+        self.MatterType = TheoreticalObjectToggles.DarkMatterAndDarkEnergyEnabled ? MatterType.Mixed : MatterType.BaryonicMatter;
     }
 
     public override void GenerateRandomGenerationAlgorithm(CosmicWebContext context, CosmicWeb self)
@@ -106,13 +106,13 @@ public class CosmicWebGenerator : GroupGeneratorBase<CosmicWeb, CosmicWebContext
     internal override void AssignChildren(CosmicWebContext context, CosmicWeb self)
     {
         self.Children.Add(self.IntergalacticMedium);
-        self.Children.AddRange(self.BaryonicMatterNodes);
-        self.Children.AddRange(self.BaryonicMatterFilaments);
-        self.Children.AddRange(self.BaryonicMatterSheets);
-        self.Children.AddRange(self.BaryonicMatterVoids);
-        self.Children.AddRange(self.DarkMatterNodes);
-        self.Children.AddRange(self.DarkMatterFilaments);
-        self.Children.AddRange(self.DarkMatterSheets);
-        self.Children.AddRange(self.DarkMatterVoids);
+        self.Children.Add(self.BaryonicMatterFilamentStructure);
+        self.Children.Add(self.BaryonicMatterNodeStructure);
+        self.Children.Add(self.BaryonicMatterSheetStructure);
+        self.Children.Add(self.BaryonicMatterVoidStructure);
+        self.Children.Add(self.DarkMatterFilamentStructure);
+        self.Children.Add(self.DarkMatterNodeStructure);
+        self.Children.Add(self.DarkMatterSheetStructure);
+        self.Children.Add(self.DarkMatterVoidStructure);
     }
 }

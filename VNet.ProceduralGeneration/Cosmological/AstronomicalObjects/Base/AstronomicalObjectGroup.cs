@@ -82,7 +82,7 @@ public abstract class AstronomicalObjectGroup : AstronomicalObject
     public virtual INoiseAlgorithm? SurfaceNoiseAlgorithm { get; set; }
     public virtual IRandomGenerationAlgorithm? InteriorRandomizationAlgorithm { get; set; }
 
-    internal List<AstronomicalObject> Children { get; set; }
+    internal List<IAstronomicalObject> Children { get; set; }
 
     public List<IUndefinedAstronomicalObject> InteriorObjects { get; set; }
 

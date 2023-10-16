@@ -35,46 +35,46 @@ public class TheoreticalAstronomicalObjectToggleSettings : ISettings
     [Tooltip("Mathematical concepts in catastrophe theory which might have applications in cosmological scenarios.")]
     public bool CuspCatastrophesEnabled { get; init; }
 
-    [DisplayName("Dark Matter")]
+    [DisplayName("Dark Matter and Dark Energy")]
     [Tooltip("Controls whether the effects of dark matter are taken into account for various calculations, such as gravity.")]
-    public bool DarkMatterEnabled { get; init; }
+    public bool DarkMatterAndDarkEnergyEnabled { get; init; }
 
-    [FalseIfFalse(nameof(DarkMatterEnabled))]
+    [FalseIfFalse(nameof(DarkMatterAndDarkEnergyEnabled))]
     [DisplayName("Filaments (Dark Matter)")]
     [Tooltip("Structures in the universe formed primarily by dark matter and linking galaxy clusters.")]
     public bool DarkMatterFilamentsEnabled { get; init; }
 
-    [FalseIfFalse(nameof(DarkMatterEnabled))]
+    [FalseIfFalse(nameof(DarkMatterAndDarkEnergyEnabled))]
     [DisplayName("Filament Structure (Dark Matter)")]
     [Tooltip("Structure consisting of all dark matter filaments.")]
     public bool DarkMatterFilamentStructureEnabled { get; init; }
 
-    [FalseIfFalse(nameof(DarkMatterEnabled))]
+    [FalseIfFalse(nameof(DarkMatterAndDarkEnergyEnabled))]
     [DisplayName("Nodes (Dark Matter)")]
     [Tooltip("Regions of high dark matter density, often marking the intersection of cosmic filaments.")]
     public bool DarkMatterNodesEnabled { get; init; }
 
-    [FalseIfFalse(nameof(DarkMatterEnabled))]
+    [FalseIfFalse(nameof(DarkMatterAndDarkEnergyEnabled))]
     [DisplayName("Node Structure (Dark Matter)")]
     [Tooltip("Structure consisting of all dark matter nodes.")]
     public bool DarkMatterNodeStructureEnabled { get; init; }
 
-    [FalseIfFalse(nameof(DarkMatterEnabled))]
+    [FalseIfFalse(nameof(DarkMatterAndDarkEnergyEnabled))]
     [DisplayName("Sheets (Dark Matter)")]
     [Tooltip("Thin, expansive regions dense with dark matter.")]
     public bool DarkMatterSheetsEnabled { get; init; }
 
-    [FalseIfFalse(nameof(DarkMatterEnabled))]
+    [FalseIfFalse(nameof(DarkMatterAndDarkEnergyEnabled))]
     [DisplayName("Sheet Structure (Dark Matter)")]
     [Tooltip("Structure consisting of all dark matter sheets.")]
     public bool DarkMatterSheetStructureEnabled { get; init; }
 
-    [FalseIfFalse(nameof(DarkMatterEnabled))]
+    [FalseIfFalse(nameof(DarkMatterAndDarkEnergyEnabled))]
     [DisplayName("Voids (Dark Matter)")]
     [Tooltip("Regions with low concentrations of galaxies and dark matter.")]
     public bool DarkMatterVoidsEnabled { get; init; }
 
-    [FalseIfFalse(nameof(DarkMatterEnabled))]
+    [FalseIfFalse(nameof(DarkMatterAndDarkEnergyEnabled))]
     [DisplayName("Voids Structure (Dark Matter)")]
     [Tooltip("Structure consisting of all dark matter voids.")]
     public bool DarkMatterVoidStructureEnabled { get; init; }
