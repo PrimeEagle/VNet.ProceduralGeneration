@@ -58,27 +58,27 @@ public class UniverseGenerator : GroupGeneratorBase<Universe, UniverseContext>
 
     private void GenerateCosmicMicrowaveBackground(UniverseContext context, Universe self)
     {
-        self.CosmicMicrowaveBackground = AdvancedSettings.Objects.Universe.RandomGenerator.NextSingleInclusive(AdvancedSettings.Objects.Universe.CosmicMicrowaveBackgroundRange);
+        self.CosmicMicrowaveBackground = AdvancedSettings.Objects.Universe.RandomGenerationAlgorithm.NextSingleInclusive(AdvancedSettings.Objects.CosmicWeb.CosmicMicrowaveBackgroundRange);
     }
 
     private void GenerateBaryonicMatterPercent(UniverseContext context, Universe self)
     {
-        self.BaryonicMatterPercent = AdvancedSettings.Objects.Universe.RandomGenerator.NextSingleInclusive(BasicSettings.BaryonicMatterPercentRange);
+        self.BaryonicMatterPercent = AdvancedSettings.Objects.Universe.RandomGenerationAlgorithm.NextSingleInclusive(BasicSettings.BaryonicMatterPercentRange);
     }
 
     private void GenerateDarkMatterPercent(UniverseContext context, Universe self)
     {
-        self.DarkMatterPercent = AdvancedSettings.Objects.Universe.RandomGenerator.NextSingleInclusive(BasicSettings.DarkMatterPercentRange);
+        self.DarkMatterPercent = AdvancedSettings.Objects.Universe.RandomGenerationAlgorithm.NextSingleInclusive(BasicSettings.DarkMatterPercentRange);
     }
 
     private void GenerateDarkEnergyPercent(UniverseContext context, Universe self)
     {
-        self.DarkEnergyPercent = AdvancedSettings.Objects.Universe.RandomGenerator.NextSingleInclusive(BasicSettings.DarkEnergyPercentRange);
+        self.DarkEnergyPercent = AdvancedSettings.Objects.Universe.RandomGenerationAlgorithm.NextSingleInclusive(BasicSettings.DarkEnergyPercentRange);
     }
 
     private void GenerateConnectivityFactor(UniverseContext context, Universe self)
     {
-        self.ConnectivityFactor = AdvancedSettings.Objects.Universe.RandomGenerator.NextSingleInclusive(AdvancedSettings.Objects.Universe.ConnectivityFactorRange);
+        self.ConnectivityFactor = AdvancedSettings.Objects.Universe.RandomGenerationAlgorithm.NextSingleInclusive(AdvancedSettings.Objects.Universe.ConnectivityFactorRange);
     }
 
     private void GenerateCurvature(UniverseContext context, Universe self)
@@ -92,7 +92,7 @@ public class UniverseGenerator : GroupGeneratorBase<Universe, UniverseContext>
             var flatVal = AdvancedSettings.Objects.Universe.CurvatureFlatPercentage / 100;
             var sphericalVal = flatVal + AdvancedSettings.Objects.Universe.CurvatureSphericalPercentage / 100;
 
-            var randValue = AdvancedSettings.Objects.Universe.RandomGenerator.NextDouble();
+            var randValue = AdvancedSettings.Objects.Universe.RandomGenerationAlgorithm.NextDouble();
 
             if (randValue < flatVal)
                 self.Curvature = CurvatureType.Flat;

@@ -143,7 +143,7 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
         if (context.Diameter.HasValue)
             self.Diameter = context.Diameter.Value;
         else if (context is { DiameterCreateRange: not null, RandomizationAlgorithm: not null })
-            self.Diameter = context.RandomizationAlgorithm.NextSingle(context.DiameterCreateRange.Value.Item1, context.DiameterCreateRange.Value.Item2);
+            self.Diameter = context.RandomizationAlgorithm.NextSingleInclusive(context.DiameterCreateRange.Start, context.DiameterCreateRange.End);
     }
 
     public virtual void GeneratePosition(TContext context, T self)
@@ -152,9 +152,9 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
             self.Position = context.Position.Value;
         else if (context is { PositionXCreateRange: not null, PositionYCreateRange: not null, PositionZCreateRange: not null, RandomizationAlgorithm: not null })
             self.Position = new Vector3(
-                context.RandomizationAlgorithm.NextSingle(context.PositionXCreateRange.Value.Item1, context.PositionXCreateRange.Value.Item2),
-                context.RandomizationAlgorithm.NextSingle(context.PositionYCreateRange.Value.Item1, context.PositionYCreateRange.Value.Item2),
-                context.RandomizationAlgorithm.NextSingle(context.PositionZCreateRange.Value.Item1, context.PositionZCreateRange.Value.Item2)
+                context.RandomizationAlgorithm.NextSingleInclusive(context.PositionXCreateRange.Start, context.PositionXCreateRange.End),
+                context.RandomizationAlgorithm.NextSingleInclusive(context.PositionYCreateRange.Start, context.PositionYCreateRange.End),
+                context.RandomizationAlgorithm.NextSingleInclusive(context.PositionZCreateRange.Start, context.PositionZCreateRange.End)
             );
     }
 
@@ -164,9 +164,9 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
             self.Orientation = context.Orientation.Value;
         else if (context is { OrientationXCreateRange: not null, OrientationYCreateRange: not null, OrientationZCreateRange: not null, RandomizationAlgorithm: not null })
             self.Orientation = new Vector3(
-                context.RandomizationAlgorithm.NextSingle(context.OrientationXCreateRange.Value.Item1, context.OrientationXCreateRange.Value.Item2),
-                context.RandomizationAlgorithm.NextSingle(context.OrientationYCreateRange.Value.Item1, context.OrientationYCreateRange.Value.Item2),
-                context.RandomizationAlgorithm.NextSingle(context.OrientationZCreateRange.Value.Item1, context.OrientationZCreateRange.Value.Item2)
+                context.RandomizationAlgorithm.NextSingleInclusive(context.OrientationXCreateRange.Start, context.OrientationXCreateRange.End),
+                context.RandomizationAlgorithm.NextSingleInclusive(context.OrientationYCreateRange.Start, context.OrientationYCreateRange.End),
+                context.RandomizationAlgorithm.NextSingleInclusive(context.OrientationZCreateRange.Start, context.OrientationZCreateRange.End)
             );
     }
 
@@ -175,7 +175,7 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
         if (context.Age.HasValue)
             self.Age = context.Age.Value;
         else if (context is { AgeCreateRange: not null, RandomizationAlgorithm: not null })
-            self.Age = context.RandomizationAlgorithm.NextSingle(context.AgeCreateRange.Value.Item1, context.AgeCreateRange.Value.Item2);
+            self.Age = context.RandomizationAlgorithm.NextSingleInclusive(context.AgeCreateRange.Start, context.AgeCreateRange.End);
     }
 
     public virtual void GenerateLifespan(TContext context, T self)
@@ -183,7 +183,7 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
         if (context.Lifespan.HasValue)
             self.Lifespan = context.Lifespan.Value;
         else if (context is { LifespanCreateRange: not null, RandomizationAlgorithm: not null })
-            self.Lifespan = context.RandomizationAlgorithm.NextSingle(context.LifespanCreateRange.Value.Item1, context.LifespanCreateRange.Value.Item2);
+            self.Lifespan = context.RandomizationAlgorithm.NextSingleInclusive(context.LifespanCreateRange.Start, context.LifespanCreateRange.End);
     }
 
     public virtual void GenerateMass(TContext context, T self)
@@ -191,7 +191,7 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
         if (context.Mass.HasValue)
             self.Mass = context.Mass.Value;
         else if (context is { MassCreateRange: not null, RandomizationAlgorithm: not null })
-            self.Mass = context.RandomizationAlgorithm.NextDouble(context.MassCreateRange.Value.Item1, context.MassCreateRange.Value.Item2);
+            self.Mass = context.RandomizationAlgorithm.NextDoubleInclusive(context.MassCreateRange.Start, context.MassCreateRange.End);
     }
 
     public virtual void GenerateLuminosity(TContext context, T self)
@@ -199,7 +199,7 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
         if (context.Luminosity.HasValue)
             self.Luminosity = context.Luminosity.Value;
         else if (context is { LuminosityCreateRange: not null, RandomizationAlgorithm: not null })
-            self.Luminosity = context.RandomizationAlgorithm.NextSingle(context.LuminosityCreateRange.Value.Item1, context.LuminosityCreateRange.Value.Item2);
+            self.Luminosity = context.RandomizationAlgorithm.NextSingleInclusive(context.LuminosityCreateRange.Start, context.LuminosityCreateRange.End);
     }
 
     public virtual void GenerateTemperature(TContext context, T self)
@@ -207,7 +207,7 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
         if (context.Temperature.HasValue)
             self.Temperature = context.Temperature.Value;
         else if (context is { TemperatureCreateRange: not null, RandomizationAlgorithm: not null })
-            self.Temperature = context.RandomizationAlgorithm.NextSingle(context.TemperatureCreateRange.Value.Item1, context.TemperatureCreateRange.Value.Item2);
+            self.Temperature = context.RandomizationAlgorithm.NextSingleInclusive(context.TemperatureCreateRange.Start, context.TemperatureCreateRange.End);
     }
 
     protected virtual void GenerateBaseProperties(TContext context, T self)

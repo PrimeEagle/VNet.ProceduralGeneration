@@ -16,33 +16,33 @@ public class BaryonicMatterNodeGenerator : NodeGeneratorBase<BaryonicMatterNode,
 
     protected override async Task<BaryonicMatterNode> GenerateSelf(BaryonicMatterNodeContext context, BaryonicMatterNode self)
     {
-        if (context.SpatialGrid != null)
-        {
-            var basePosition = context.SpatialGrid.FetchNextAvailableCell();
-            if (!basePosition.HasValue) return self;
+        //if (context.SpatialGrid != null)
+        //{
+        //    var basePosition = context.SpatialGrid.FetchNextAvailableCell();
+        //    if (!basePosition.HasValue) return self;
 
-            self.Position = TransformBasePosition(basePosition.Value);
-            self.Position += Util.GetRandomOffset(AdvancedSettings.Objects.BaryonicMatterNode.TopologyMaxPositionalOffset);
-            self.Luminosity = context.Topology.VolumeMap[basePosition.Value.Item1, basePosition.Value.Item2, basePosition.Value.Item3];
-        }
-        else
-        {
-            var xStart = -1 * BasicSettings.MapDimensions.X / 2;
-            var xEnd = BasicSettings.MapDimensions.X / 2;
+        //    self.Position = TransformBasePosition(basePosition.Value);
+        //    self.Position += Util.GetRandomOffset(AdvancedSettings.Objects.BaryonicMatterNode.TopologyMaxPositionalOffset);
+        //    self.Luminosity = context.Topology.VolumeMap[basePosition.Value.Item1, basePosition.Value.Item2, basePosition.Value.Item3];
+        //}
+        //else
+        //{
+        //    var xStart = -1 * BasicSettings.MapDimensions.X / 2;
+        //    var xEnd = BasicSettings.MapDimensions.X / 2;
 
-            var yStart = -1 * BasicSettings.MapDimensions.Y / 2;
-            var yEnd = BasicSettings.MapDimensions.Y / 2;
+        //    var yStart = -1 * BasicSettings.MapDimensions.Y / 2;
+        //    var yEnd = BasicSettings.MapDimensions.Y / 2;
 
-            var zStart = -1 * BasicSettings.MapDimensions.Z / 2;
-            var zEnd = BasicSettings.MapDimensions.Z / 2;
+        //    var zStart = -1 * BasicSettings.MapDimensions.Z / 2;
+        //    var zEnd = BasicSettings.MapDimensions.Z / 2;
 
-            var x = xStart + (xEnd - xStart) * AdvancedSettings.Objects.Universe.RandomGenerator.NextSingle();
-            var y = yStart + (yEnd - yStart) * AdvancedSettings.Objects.Universe.RandomGenerator.NextSingle();
-            var z = zStart + (zEnd - zStart) * AdvancedSettings.Objects.Universe.RandomGenerator.NextSingle();
+        //    var x = xStart + (xEnd - xStart) * AdvancedSettings.Objects.Universe.RandomGenerationAlgorithm.NextSingle();
+        //    var y = yStart + (yEnd - yStart) * AdvancedSettings.Objects.Universe.RandomGenerationAlgorithm.NextSingle();
+        //    var z = zStart + (zEnd - zStart) * AdvancedSettings.Objects.Universe.RandomGenerationAlgorithm.NextSingle();
 
-            self.Position = new Vector3(x, y, z);
-            self.Luminosity = -30 + 60 * AdvancedSettings.Objects.Universe.RandomGenerator.NextSingle();
-        }
+        //    self.Position = new Vector3(x, y, z);
+        //    self.Luminosity = -30 + 60 * AdvancedSettings.Objects.Universe.RandomGenerationAlgorithm.NextSingle();
+        //}
 
         return self;
     }
@@ -61,25 +61,25 @@ public class BaryonicMatterNodeGenerator : NodeGeneratorBase<BaryonicMatterNode,
         throw new NotImplementedException();
     }
 
-    private Vector3 TransformBasePosition((int, int, int) basePosition)
-    {
-        var posX = basePosition.Item1;
-        var posY = basePosition.Item2;
-        var posZ = basePosition.Item3;
+    //private Vector3 TransformBasePosition((int, int, int) basePosition)
+    //{
+    //    var posX = basePosition.Item1;
+    //    var posY = basePosition.Item2;
+    //    var posZ = basePosition.Item3;
 
-        var mapX = BasicSettings.MapDimensions.X;
-        var mapY = BasicSettings.MapDimensions.Y;
-        var mapZ = BasicSettings.MapDimensions.Z;
+    //    var mapX = BasicSettings.MapDimensions.X;
+    //    var mapY = BasicSettings.MapDimensions.Y;
+    //    var mapZ = BasicSettings.MapDimensions.Z;
 
-        var xScale = posX / mapX;
-        var yScale = posY / mapY;
-        var zScale = posZ / mapZ;
+    //    var xScale = posX / mapX;
+    //    var yScale = posY / mapY;
+    //    var zScale = posZ / mapZ;
 
-        var baseVector = new Vector3(posX / xScale, posY / yScale, posZ / zScale);
-        var shiftedVector = baseVector - new Vector3(mapX / 2, mapY / 2, mapZ / 2);
+    //    var baseVector = new Vector3(posX / xScale, posY / yScale, posZ / zScale);
+    //    var shiftedVector = baseVector - new Vector3(mapX / 2, mapY / 2, mapZ / 2);
 
-        return shiftedVector;
-    }
+    //    return shiftedVector;
+    //}
 
     protected override void GenerateWarpedSurface(BaryonicMatterNodeContext context, BaryonicMatterNode self)
     {

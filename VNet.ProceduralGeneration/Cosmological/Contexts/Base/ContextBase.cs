@@ -26,18 +26,18 @@ public abstract class ContextBase
     public float? Luminosity { get; set; } //  L⊙
     public Vector3? Position { get; set; } // AU
     public Vector3? Orientation { get; set; }
-    public (float, float)? AgeCreateRange { get; set; } // years
-    public (float, float)? LifespanCreateRange { get; set; } // years
-    public (double, double)? MassCreateRange { get; set; } // kg
-    public (float, float)? DiameterCreateRange { get; set; } // AU
-    public (float, float)? TemperatureCreateRange { get; set; } // Kelvin
-    public (float, float)? LuminosityCreateRange { get; set; } //  L⊙
-    public (float, float)? PositionXCreateRange { get; set; } // AU
-    public (float, float)? PositionYCreateRange { get; set; } // AU
-    public (float, float)? PositionZCreateRange { get; set; } // AU
-    public (float, float)? OrientationXCreateRange { get; set; }
-    public (float, float)? OrientationYCreateRange { get; set; }
-    public (float, float)? OrientationZCreateRange { get; set; }
+    public VNet.Configuration.Range<float>? AgeCreateRange { get; set; } // years
+    public VNet.Configuration.Range<float>? LifespanCreateRange { get; set; } // years
+    public VNet.Configuration.Range<double>? MassCreateRange { get; set; } // kg
+    public VNet.Configuration.Range<float>? DiameterCreateRange { get; set; } // AU
+    public VNet.Configuration.Range<float>? TemperatureCreateRange { get; set; } // Kelvin
+    public VNet.Configuration.Range<float>? LuminosityCreateRange { get; set; } //  L⊙
+    public VNet.Configuration.Range<float>? PositionXCreateRange { get; set; } // AU
+    public VNet.Configuration.Range<float>? PositionYCreateRange { get; set; } // AU
+    public VNet.Configuration.Range<float>? PositionZCreateRange { get; set; } // AU
+    public VNet.Configuration.Range<float>? OrientationXCreateRange { get; set; }
+    public VNet.Configuration.Range<float>? OrientationYCreateRange { get; set; }
+    public VNet.Configuration.Range<float>? OrientationZCreateRange { get; set; }
     public IRandomGenerationAlgorithm RandomizationAlgorithm { get; set; }
 
 

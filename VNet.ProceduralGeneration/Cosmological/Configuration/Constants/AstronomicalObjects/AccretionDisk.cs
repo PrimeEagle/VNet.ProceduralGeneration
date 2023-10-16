@@ -1,4 +1,7 @@
 // ReSharper disable CheckNamespace
+
+using VNet.Mathematics.Randomization.Generation;
+
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
 
@@ -10,6 +13,7 @@ internal static partial class Constants
         {
             internal static class AccretionDisk
             {
+                internal static IRandomGenerationAlgorithm RandomGenerationAlgorithm { get; } = new DotNetGenerator();
             }
         }
     }

@@ -18,35 +18,34 @@ public class BaryonicMatterVoidStructureGenerator : VoidStructureGenerator<Baryo
     {
         var baryonicMatterVoidContext = new BaryonicMatterVoidContext
         {
-            DiameterCreateRange = (Settings.Advanced.Objects.CosmicWeb.Randomized.MinimumBaryonicMatterVoidDiameter, Settings.Advanced.Objects.CosmicWeb.Randomized.MaximumBaryonicMatterVoidDiameter),
-            RandomizationAlgorithm = Settings.Advanced.Objects.CosmicWeb.Randomized.BaryonicMatterVoidRandomizationAlgorithm
+            DiameterCreateRange = Settings.Advanced.Objects.BaryonicMatterVoid.DiameterRange,
+            RandomizationAlgorithm = Settings.Advanced.Objects.CosmicWeb.RandomGenerationAlgorithm,
         };
         var baryonicMatterVoidGenerator = new BaryonicMatterVoidGenerator(EventAggregator, ParallelismLevel.Level1);
 
         var volumeSize = Settings.Basic.MapDimensions.X * Settings.Basic.MapDimensions.Y * Settings.Basic.MapDimensions.Z;
-        var targetTotalVoidVolume = volumeSize * Settings.Advanced.Objects.CosmicWeb.Randomized.PercentageOfVolumeCoveredByBaryonicMatterVoids / 100;
+        var targetTotalVoidVolume = volumeSize * Settings.Advanced.Objects.BaryonicMatterVoidStructure.VolumeCoveredByPercentRange / 100;
         var totalVoidVolume = 0d;
 
         while (totalVoidVolume < targetTotalVoidVolume)
         {
             var newBaryonicMatterVoid = await baryonicMatterVoidGenerator.Generate(baryonicMatterVoidContext, self.Parent);
-            baryonicMatterVoidContext.PositionXCreateRange = (0, Settings.Basic.MapDimensions.X - newBaryonicMatterVoid.Diameter);
-            baryonicMatterVoidContext.PositionYCreateRange = (0, Settings.Basic.MapDimensions.Y - newBaryonicMatterVoid.Diameter);
-            baryonicMatterVoidContext.PositionZCreateRange = (0, Settings.Basic.MapDimensions.Z - newBaryonicMatterVoid.Diameter);
+            baryonicMatterVoidContext.PositionXCreateRange = new VNet.Configuration.Range<float>(0f, Settings.Basic.MapDimensions.X - newBaryonicMatterVoid.Diameter);
+            baryonicMatterVoidContext.PositionYCreateRange = new VNet.Configuration.Range<float>(0f, Settings.Basic.MapDimensions.Y - newBaryonicMatterVoid.Diameter);
+            baryonicMatterVoidContext.PositionZCreateRange = new VNet.Configuration.Range<float>(0f, Settings.Basic.MapDimensions.Z - newBaryonicMatterVoid.Diameter);
             baryonicMatterVoidGenerator.GeneratePosition(baryonicMatterVoidContext, newBaryonicMatterVoid);
 
             var acceptableOverlap = false;
             while (!acceptableOverlap)
             {
                 var overlapAmount = CalculateOverlapAmount(newBaryonicMatterVoid, self.BaryonicMatterVoids);
-                if (overlapAmount < Settings.Advanced.Objects.CosmicWeb.Randomized.MinimumBaryonicMatterVoidOverlap ||
-                    overlapAmount > Settings.Advanced.Objects.CosmicWeb.Randomized.MaximumBaryonicMatterVoidOverlap ||
+                if (!Settings.Advanced.Objects.BaryonicMatterVoidStructure.OverlapRange.IsInRange(overlapAmount) ||
                     self.BaryonicMatterVoids.Count(x =>
-                        CalculateOverlapAmount(newBaryonicMatterVoid, new List<BaryonicMatterVoid> {x}) > 0) / (float) self.BaryonicMatterVoids.Count > Settings.Advanced.CosmicWeb.Randomized.PercentageOfOverlappingBaryonicMatterVoids)
+                        CalculateOverlapAmount(newBaryonicMatterVoid, new List<BaryonicMatterVoid> {x}) > 0) / (float) self.BaryonicMatterVoids.Count > Settings.Advanced.Objects.BaryonicMatterVoidStructure.OverlappingPercentRange)
                 {
-                    baryonicMatterVoidContext.PositionXCreateRange = (0, Settings.Basic.MapDimensions.X - newBaryonicMatterVoid.Diameter);
-                    baryonicMatterVoidContext.PositionYCreateRange = (0, Settings.Basic.MapDimensions.Y - newBaryonicMatterVoid.Diameter);
-                    baryonicMatterVoidContext.PositionZCreateRange = (0, Settings.Basic.MapDimensions.Z - newBaryonicMatterVoid.Diameter);
+                    baryonicMatterVoidContext.PositionXCreateRange = new VNet.Configuration.Range<float>(0, Settings.Basic.MapDimensions.X - newBaryonicMatterVoid.Diameter);
+                    baryonicMatterVoidContext.PositionYCreateRange = new VNet.Configuration.Range<float>(0, Settings.Basic.MapDimensions.Y - newBaryonicMatterVoid.Diameter);
+                    baryonicMatterVoidContext.PositionZCreateRange = new VNet.Configuration.Range<float>(0, Settings.Basic.MapDimensions.Z - newBaryonicMatterVoid.Diameter);
                     baryonicMatterVoidGenerator.GeneratePosition(baryonicMatterVoidContext, newBaryonicMatterVoid);
                 }
                 else
