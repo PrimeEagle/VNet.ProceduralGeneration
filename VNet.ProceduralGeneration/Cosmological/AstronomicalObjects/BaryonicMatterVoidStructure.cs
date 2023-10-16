@@ -7,5 +7,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 
 public class BaryonicMatterVoidStructure : VoidStructure
 {
+    public float VolumeCoveredByPercent { get; set; }
+    public float OverlappingPercent { get; set; }
     public List<BaryonicMatterVoid> BaryonicMatterVoids { get; set; }
 }

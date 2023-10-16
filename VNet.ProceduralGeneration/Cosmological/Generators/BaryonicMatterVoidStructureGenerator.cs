@@ -24,7 +24,7 @@ public class BaryonicMatterVoidStructureGenerator : VoidStructureGenerator<Baryo
         var baryonicMatterVoidGenerator = new BaryonicMatterVoidGenerator(EventAggregator, ParallelismLevel.Level1);
 
         var volumeSize = Settings.Basic.MapDimensions.X * Settings.Basic.MapDimensions.Y * Settings.Basic.MapDimensions.Z;
-        var targetTotalVoidVolume = volumeSize * Settings.Advanced.Objects.BaryonicMatterVoidStructure.VolumeCoveredByPercentRange / 100;
+        var targetTotalVoidVolume = volumeSize * self.VolumeCoveredByPercent / 100;
         var totalVoidVolume = 0d;
 
         while (totalVoidVolume < targetTotalVoidVolume)
@@ -41,7 +41,7 @@ public class BaryonicMatterVoidStructureGenerator : VoidStructureGenerator<Baryo
                 var overlapAmount = CalculateOverlapAmount(newBaryonicMatterVoid, self.BaryonicMatterVoids);
                 if (!Settings.Advanced.Objects.BaryonicMatterVoidStructure.OverlapRange.IsInRange(overlapAmount) ||
                     self.BaryonicMatterVoids.Count(x =>
-                        CalculateOverlapAmount(newBaryonicMatterVoid, new List<BaryonicMatterVoid> {x}) > 0) / (float) self.BaryonicMatterVoids.Count > Settings.Advanced.Objects.BaryonicMatterVoidStructure.OverlappingPercentRange)
+                        CalculateOverlapAmount(newBaryonicMatterVoid, new List<BaryonicMatterVoid> {x}) > 0) / (float)self.BaryonicMatterVoids.Count > self.OverlappingPercent)
                 {
                     baryonicMatterVoidContext.PositionXCreateRange = new VNet.Configuration.Range<float>(0, Settings.Basic.MapDimensions.X - newBaryonicMatterVoid.Diameter);
                     baryonicMatterVoidContext.PositionYCreateRange = new VNet.Configuration.Range<float>(0, Settings.Basic.MapDimensions.Y - newBaryonicMatterVoid.Diameter);
@@ -71,6 +71,9 @@ public class BaryonicMatterVoidStructureGenerator : VoidStructureGenerator<Baryo
 
     protected async override Task<BaryonicMatterVoidStructure> GenerateSelf(BaryonicMatterVoidStructureContext context, BaryonicMatterVoidStructure self)
     {
+        self.VolumeCoveredByPercent = self.RandomGenerationAlgorithm.NextSingleInclusive(Settings.Advanced.Objects.BaryonicMatterVoidStructure.VolumeCoveredByPercentRange);
+        self.OverlappingPercent = self.RandomGenerationAlgorithm.NextSingleInclusive(Settings.Advanced.Objects.BaryonicMatterVoidStructure.OverlappingPercentRange);
+
         return self;
     }
 
