@@ -1,5 +1,6 @@
 ﻿using VNet.Mathematics.Randomization.Generation;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+// ReSharper disable CheckNamespace
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
@@ -11,6 +12,7 @@ internal static partial class Constants
         {
             internal static bool ApplyGravitationalEffectsDampenBaryonicMatter { get; } = true;
             internal static bool ApplyGravitationalEffectsPreventDarkMatterClumping { get; } = true;
+            internal static bool ApplyGravitationalEffectsApplyDarkEnergy { get; } = true;
             internal static float BaryonicMatterDampeningFactor { get; } = 0.5f;
             internal static double ElectricalCurrentConversionFactor { get; } = 0d;
             internal static float InteriorObjectOverlapThreshold { get; } = 0.0005f;

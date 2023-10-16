@@ -22,6 +22,11 @@ public class ApplicationSettings : ISettings
     [Tooltip("If 'Apply Gravitational Effects' is enabled, determines whether dark matter clumping should be prevented.")]
     public bool ApplyGravitationalEffectsPreventDarkMatterClumping { get; init; }
 
+    [DisplayName("Apply Dark Energy Effects")]
+    [FalseIfFalse("VNet.ProceduralGeneration.Cosmological.Configuration.TheoreticalAstronomicalObjectToggleSettings.DarkMatterEnabled")]
+    [Tooltip("If 'Apply Gravitational Effects' is enabled, determines whether dark energy repulsion should be applied.")]
+    public bool ApplyGravitationalEffectsApplyDarkEnergy { get; init; }
+
     [RequiredIfTrue(nameof(ApplyGravitationalEffectsDampenBaryonicMatter))]
     [Range(0, 1)]
     [DisplayName("Baryonic Matter Dampening Factor")]
@@ -131,7 +136,9 @@ public class ApplicationSettings : ISettings
         SizeMeaning = Constants.Advanced.Application.SizeMeaning;
         ApplyGravitationalEffectsPreventDarkMatterClumping = Constants.Advanced.Application.ApplyGravitationalEffectsPreventDarkMatterClumping;
         ApplyGravitationalEffectsDampenBaryonicMatter = Constants.Advanced.Application.ApplyGravitationalEffectsDampenBaryonicMatter;
+        ApplyGravitationalEffectsApplyDarkEnergy = Constants.Advanced.Application.ApplyGravitationalEffectsApplyDarkEnergy;
         MinimumDarkMatterDistanceToPreventClumping = Constants.Advanced.Application.MinimumDarkMatterDistanceToPreventClumping;
         BaryonicMatterDampeningFactor = Constants.Advanced.Application.BaryonicMatterDampeningFactor;
+        InteriorObjectOverlapThreshold = Constants.Advanced.Application.InteriorObjectOverlapThreshold;
     }
 }
