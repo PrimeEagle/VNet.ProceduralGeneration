@@ -1,5 +1,6 @@
 ﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+// ReSharper disable MemberCanBePrivate.Global
 #pragma warning disable CS8629 // Nullable value type may be null.
 
 // ReSharper disable CollectionNeverQueried.Global
@@ -27,9 +28,9 @@ public class Universe : AstronomicalObjectGroup
         NonHierarchyObjects = new List<IAstronomicalObject>();
     }
 
-    public float DimensionX { get; init; }
-    public float DimensionY { get; init; }
-    public float DimensionZ { get; init; }
+    public int DimensionX { get; init; }
+    public int DimensionY { get; init; }
+    public int DimensionZ { get; init; }
     public double DarkEnergyPercent { get; set; }
     public double DarkMatterPercent { get; set; }
     public double BaryonicMatterPercent { get; set; }
@@ -37,10 +38,10 @@ public class Universe : AstronomicalObjectGroup
     public double ConnectivityFactor { get; set; }
     public CosmicWeb CosmicWeb { get; set; }
     public List<IAstronomicalObject> NonHierarchyObjects { get; init; }
-    public float OmegaBaryonicMatter => (float)BaryonicMatterPercent / 100.0f;
-    public float OmegaDarkMatter => (float)DarkMatterPercent / 100.0f;
-    public float OmegaDarkEnergy => (float)DarkEnergyPercent / 100.0f;
-    public float OmegaMatter => OmegaBaryonicMatter + OmegaDarkMatter;
+    public float ΩBaryonicMatter => (float)BaryonicMatterPercent / 100.0f;
+    public float ΩDarkMatter => (float)DarkMatterPercent / 100.0f;
+    public float ΩDarkEnergy => (float)DarkEnergyPercent / 100.0f;
+    public float ΩMatter => ΩBaryonicMatter + ΩDarkMatter;
     public float CosmicMicrowaveBackground { get; set; }
 
 

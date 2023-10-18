@@ -1,10 +1,14 @@
-﻿using VNet.Mathematics.LinearAlgebra.Matrix;
+﻿using System.Numerics;
+using VNet.Mathematics.LinearAlgebra.Matrix;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.Scientific.NumericalVolumes;
 using VNet.System.Events;
+// ReSharper disable AccessToModifiedClosure
+// ReSharper disable SuggestBaseTypeForParameter
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
 // ReSharper disable MemberCanBeMadeStatic.Local
 // ReSharper disable ClassNeverInstantiated.Global
@@ -28,7 +32,6 @@ public partial class CosmicWebGeneratorEvo : GroupGeneratorBase<CosmicWeb, Cosmi
     private readonly double[,,] _velocityYArray;
     private readonly double[,,] _velocityZArray;
     private double[,,] _baryonicVolume;
-    private double _darkEnergyEffect;
     private double[,,] _darkMatterVolume;
     private double[,,] _temperatureVolume;
     private double _totalEnergy;
@@ -36,15 +39,14 @@ public partial class CosmicWebGeneratorEvo : GroupGeneratorBase<CosmicWeb, Cosmi
 
     private void GenerateCosmicWebByEvolution(CosmicWebContext context, CosmicWeb self)
     {
-        _darkEnergyEffect = Math.Pow(1 + Context.DarkEnergyPercentage / 100.0, 0.5) - 1;
-
         InitializeVolumes();
 
         double currentTime = 0;
 
         while (currentTime < Context.Age)
         {
-            ApplyGravity(context, self, currentTime);
+            ApplyBaryonicGravity(context, self, currentTime);
+            ApplyDarkMatterGravity(context, self, currentTime);
             UpdateVelocitiesBasedOnForces(context, self, currentTime);
             ApplyRadiation(context, self, currentTime);
             ApplyBaryonicFeedback(context, self, currentTime);
@@ -53,8 +55,8 @@ public partial class CosmicWebGeneratorEvo : GroupGeneratorBase<CosmicWeb, Cosmi
             ApplyShockHeating(context, self, currentTime);
             ApplyMerging();
             ApplyGalacticFeedback(context, self, currentTime);
-            ApplyExpansion(context, self, currentTime);
             AdvectMass(context, self, currentTime);
+            ApplyDarkEnergy(context, self, currentTime);
             HandleBoundaries();
 
             currentTime += AdvancedSettings.Objects.CosmicWeb.EvolutionTimeStep;
@@ -239,52 +241,253 @@ public partial class CosmicWebGeneratorEvo : GroupGeneratorBase<CosmicWeb, Cosmi
     {
         VolumeFunctions.RunVolumeFunction(Context.MapX, Context.MapY, Context.MapZ, (i, j, k) =>
         {
-            var densityGradient = CalculateDensityGradient(i, j, k);
-            if (densityGradient > AdvancedSettings.Objects.CosmicWeb.EvolutionShockHeatingMinimumDensityThreshold) _temperatureVolume[i, j, k] += AdvancedSettings.Objects.CosmicWeb.EvolutionTemperatureIncreaseDueToShockHeating;
+            // CalculateDensityGradient now returns a Vector3 representing the gradient.
+            var densityGradientVector = CalculateDensityGradient(i, j, k);
+
+            // Calculate the magnitude of the density gradient vector.
+            // This represents the rate of change of the density field, ignoring the direction.
+            var densityGradientMagnitude = densityGradientVector.Length(); // or .Magnitude, depending on the Vector3 implementation
+
+            // Compare the magnitude against the threshold to determine if shock heating should be applied.
+            if (densityGradientMagnitude > AdvancedSettings.Objects.CosmicWeb.EvolutionShockHeatingMinimumDensityThreshold)
+            {
+                // If the gradient's magnitude is above the threshold, increase the temperature.
+                _temperatureVolume[i, j, k] += AdvancedSettings.Objects.CosmicWeb.EvolutionTemperatureIncreaseDueToShockHeating;
+            }
         });
     }
 
-    private double CalculateDensityGradient(int i, int j, int k)
-    {
-        double gradient = 0;
 
-        VolumeFunctions.RunNeighborFunction(-1, 1, (dx, dy, dz) =>
+    private Vector3 CalculateDensityGradient(int i, int j, int k)
+    {
+        // Initialize partial derivatives.
+        var dDensity_dx = 0.0;
+        var dDensity_dy = 0.0;
+        var dDensity_dz = 0.0;
+
+        // Check the bounds before accessing the array elements.
+        // This avoids IndexOutOfRangeException for the border elements.
+        var isXInBounds = i > 0 && i < Context.MapX - 1;
+        var isYInBounds = j > 0 && j < Context.MapY - 1;
+        var isZInBounds = k > 0 && k < Context.MapZ - 1;
+
+        // Compute partial derivatives. 
+        // The gradient vector points in the direction of greatest rate of increase of the density function.
+        if (isXInBounds)
         {
-            if (!IsWithinBounds(i + dx, j + dy, k + dz)) return;
-            gradient += Math.Abs(_baryonicVolume[i + dx, j + dy, k + dz] - _baryonicVolume[i, j, k]);
-        });
+            dDensity_dx = (_baryonicVolume[i + 1, j, k] - _baryonicVolume[i - 1, j, k]) / 2.0;
+        }
+        if (isYInBounds)
+        {
+            dDensity_dy = (_baryonicVolume[i, j + 1, k] - _baryonicVolume[i, j - 1, k]) / 2.0;
+        }
+        if (isZInBounds)
+        {
+            dDensity_dz = (_baryonicVolume[i, j, k + 1] - _baryonicVolume[i, j, k - 1]) / 2.0;
+        }
 
-        // Normalize by number of neighbors (for a 3x3x3 cube it's 27 cells minus the center cell)
-        gradient /= 26.0;
-        return gradient;
+        // Construct the gradient vector from the partial derivatives.
+        var gradient = new Vector3((float)dDensity_dx, (float)dDensity_dy, (float)dDensity_dz);
+
+        return gradient; // This is now a vector that includes directionality information.
     }
 
-    private void ApplyGravity(CosmicWebContext context, CosmicWeb self, double timeInYears)
+
+    private void ApplyBaryonicGravity(CosmicWebContext context, CosmicWeb self, double timeInYears)
     {
-        var updatedBaryonicVolume = new double[Context.MapX, Context.MapY, Context.MapZ];
-        var updatedDarkMatterVolume = new double[Context.MapX, Context.MapY, Context.MapZ];
+        var deltaPositionsBaryonic = new Vector3[Context.MapX, Context.MapY, Context.MapZ];
 
         VolumeFunctions.RunVolumeFunction(Context.MapX, Context.MapY, Context.MapZ, (i, j, k) =>
         {
-            double gravitationalEffectBaryonic = 0;
-            double gravitationalEffectDarkMatter = 0;
+            var netForceBaryonic = new Vector3();
+
+            VolumeFunctions.RunNeighborFunction(-AdvancedSettings.Objects.CosmicWeb.EvolutionMaxEffectiveRangeOfGravity,
+                                                AdvancedSettings.Objects.CosmicWeb.EvolutionMaxEffectiveRangeOfGravity, (dx, dy, dz) =>
+                {
+                    int newX = i + dx, newY = j + dy, newZ = k + dz;
+                    if (!IsWithinBounds(newX, newY, newZ)) return;
+
+                    double distanceSquared = dx * dx + dy * dy + dz * dz;
+                    if (distanceSquared <= 0.0001) return; // Avoiding singularities
+
+                    var direction = new Vector3(dx, dy, dz);
+                    direction = Vector3.Normalize(direction);
+
+                    var massProduct = (_baryonicVolume[newX, newY, newZ] * _baryonicVolume[i, j, k]) > 0
+                                     ? (_baryonicVolume[newX, newY, newZ] * _baryonicVolume[i, j, k])
+                                     : 1;
+
+                    // Apply the inverse-square law here
+                    var forceMagnitude = AdvancedSettings.PhysicalConstants.G * massProduct / distanceSquared;
+
+                    var gravitationalForce = direction * (float)forceMagnitude;
+                    netForceBaryonic += gravitationalForce;
+                });
+
+            var mass = _baryonicVolume[i, j, k] > 0 ? (float)_baryonicVolume[i, j, k] : 1;
+            var acceleration = netForceBaryonic / mass;
+
+            deltaPositionsBaryonic[i, j, k] = 0.5f * acceleration * (float)(timeInYears * timeInYears * 1E7); // Adjusted for cosmic scale.
+        });
+
+        // Update the actual volumes based on the calculated position changes.
+        ApplyMovements(context, self, _baryonicVolume, deltaPositionsBaryonic);
+        // Other properties like velocity, temperature, etc., should also be updated here based on the specific rules of your simulation.
+
+        ApplyMovements(context, self, _heliumVolume, deltaPositionsBaryonic);
+        ApplyMovements(context, self, _hydrogenVolume, deltaPositionsBaryonic);
+        ApplyMovements(context, self, _massArray, deltaPositionsBaryonic);
+        ApplyMovements(context, self, _metalVolume, deltaPositionsBaryonic);
+        ApplyMovements(context, self, _tempMassArray, deltaPositionsBaryonic);
+        ApplyMovements(context, self, _velocityXArray, deltaPositionsBaryonic);
+        ApplyMovements(context, self, _velocityYArray, deltaPositionsBaryonic);
+        ApplyMovements(context, self, _velocityZArray, deltaPositionsBaryonic);
+        ApplyMovements(context, self, _baryonicVolume, deltaPositionsBaryonic);
+        ApplyMovements(context, self, _darkMatterVolume, deltaPositionsBaryonic);
+        AdjustTemperatureVolume(context, self, timeInYears);
+        //ApplyMovements(context, self, _temperatureVolume, deltaPositionsBaryonic);
+    }
+
+    private void AdjustTemperatureVolume(CosmicWebContext context, CosmicWeb self, double timeInYears)
+    {
+        VolumeFunctions.RunVolumeFunction(Context.MapX, Context.MapY, Context.MapZ, (i, j, k) =>
+        {
+            var currentTemperature = _temperatureVolume[i, j, k];
+
+            currentTemperature *= 1.0 - (self.Universe.ExpansionRate * timeInYears);
+
+            var gravitationalHeatingFactor = CalculateGravitationalHeating(i, j, k);
+            _temperatureVolume[i, j, k] = currentTemperature;
+
+            if (_temperatureVolume[i, j, k] < self.Universe.CosmicMicrowaveBackground)
+            {
+                _temperatureVolume[i, j, k] = self.Universe.CosmicMicrowaveBackground;
+            }
+        });
+    }
+
+    private double CalculateGravitationalHeating(int i, int j, int k)
+    {
+        var massDensity = GetMassDensity(i, j, k);
+        var potentialEnergy = massDensity * AdvancedSettings.PhysicalConstants.G;
+        var efficiencyFactor = Settings.Advanced.Objects.CosmicWeb.GravitationalHeatingEfficiencyPercent / 100;
+        var heating = efficiencyFactor * potentialEnergy;
+
+        return heating;
+    }
+
+    private double GetMassDensity(int x, int y, int z)
+    {
+        if (x < 0 || x >= Context.MapX || y < 0 || y >= Context.MapY || z < 0 || z >= Context.MapZ)
+        {
+            throw new ArgumentOutOfRangeException();
+        }
+
+        var baryonicVolume = _baryonicVolume[x, y, z];
+        var darkMatterVolume = _darkMatterVolume[x, y, z];
+        var totalMass = baryonicVolume + darkMatterVolume;
+
+        return totalMass;
+    }
+
+    private void ApplyDarkMatterGravity(CosmicWebContext context, CosmicWeb self, double timeInYears)
+    {
+        var deltaPositionsDarkMatter = new Vector3[Context.MapX, Context.MapY, Context.MapZ];
+
+        VolumeFunctions.RunVolumeFunction(Context.MapX, Context.MapY, Context.MapZ, (i, j, k) =>
+        {
+            var netForceDarkMatter = new Vector3();
 
             VolumeFunctions.RunNeighborFunction(-AdvancedSettings.Objects.CosmicWeb.EvolutionMaxEffectiveRangeOfGravity, AdvancedSettings.Objects.CosmicWeb.EvolutionMaxEffectiveRangeOfGravity, (dx, dy, dz) =>
             {
-                if (!IsWithinBounds(i + dx, j + dy, k + dz)) return;
-                double distanceSquared = dx * dx + dy * dy + dz * dz;
-                if (distanceSquared == 0) return;
+                var newX = i + dx;
+                var newY = j + dy;
+                var newZ = k + dz;
 
-                gravitationalEffectBaryonic += AdvancedSettings.PhysicalConstants.G * (_baryonicVolume[i + dx, j + dy, k + dz] + _darkMatterVolume[i + dx, j + dy, k + dz]) / distanceSquared;
-                gravitationalEffectDarkMatter += AdvancedSettings.PhysicalConstants.G * (_baryonicVolume[i + dx, j + dy, k + dz] + _darkMatterVolume[i + dx, j + dy, k + dz]) / distanceSquared;
+                if (!IsWithinBounds(newX, newY, newZ)) return;
+
+                double distanceSquared = dx * dx + dy * dy + dz * dz;
+                if (distanceSquared < 0.0001) return; // Avoiding singularities
+
+                var forceDirection = new Vector3(dx, dy, dz);
+                forceDirection = Vector3.Normalize(forceDirection);
+
+                var massDensity = GetMassDensity(newX, newY, newZ);
+
+                // Apply the inverse-square law here
+                var gravitationalForceMagnitude = AdvancedSettings.PhysicalConstants.G * massDensity / distanceSquared;
+                var gravitationalForce = forceDirection * (float)gravitationalForceMagnitude;
+
+                netForceDarkMatter += gravitationalForce;
             });
 
-            updatedBaryonicVolume[i, j, k] = _baryonicVolume[i, j, k] + gravitationalEffectBaryonic * timeInYears;
-            updatedDarkMatterVolume[i, j, k] = _darkMatterVolume[i, j, k] + gravitationalEffectDarkMatter * timeInYears;
+            var massDensityAtCurrent = GetMassDensity(i, j, k);
+            var accelerationDarkMatter = netForceDarkMatter / (float)(massDensityAtCurrent > 0 ? massDensityAtCurrent : 1); // Avoid division by zero
+            deltaPositionsDarkMatter[i, j, k] = 0.5f * accelerationDarkMatter * (float)(timeInYears * timeInYears);
         });
 
-        Array.Copy(updatedBaryonicVolume, _baryonicVolume, updatedBaryonicVolume.Length);
-        Array.Copy(updatedDarkMatterVolume, _darkMatterVolume, updatedDarkMatterVolume.Length);
+        ApplyMovements(context, self, _heliumVolume, deltaPositionsDarkMatter);
+        ApplyMovements(context, self, _hydrogenVolume, deltaPositionsDarkMatter);
+        ApplyMovements(context, self, _massArray, deltaPositionsDarkMatter);
+        ApplyMovements(context, self, _metalVolume, deltaPositionsDarkMatter);
+        ApplyMovements(context, self, _tempMassArray, deltaPositionsDarkMatter);
+        ApplyMovements(context, self, _velocityXArray, deltaPositionsDarkMatter);
+        ApplyMovements(context, self, _velocityYArray, deltaPositionsDarkMatter);
+        ApplyMovements(context, self, _velocityZArray, deltaPositionsDarkMatter);
+        ApplyMovements(context, self, _baryonicVolume, deltaPositionsDarkMatter);
+        ApplyMovements(context, self, _darkMatterVolume, deltaPositionsDarkMatter);
+        AdjustTemperatureVolume(context, self, timeInYears);
+    }
+
+    private void ApplyMovements(CosmicWebContext context, CosmicWeb self, double[,,] volumeMap, Vector3[,,] deltaPositions)
+    {
+        var sizeX = self.Universe.DimensionX;
+        var sizeY = self.Universe.DimensionY;
+        var sizeZ = self.Universe.DimensionZ;
+
+        var newVolumeMap = new double[sizeX, sizeY, sizeZ];
+
+        VolumeFunctions.RunVolumeFunction(Context.MapX, Context.MapY, Context.MapZ, (i, j, k) =>
+        {
+            var newX = (int)Math.Round(i + deltaPositions[i, j, k].X);
+            var newY = (int)Math.Round(j + deltaPositions[i, j, k].Y);
+            var newZ = (int)Math.Round(k + deltaPositions[i, j, k].Z);
+
+            if (newX >= 0 && newX < sizeX && newY >= 0 && newY < sizeY && newZ >= 0 && newZ < sizeZ)
+            {
+                newVolumeMap[newX, newY, newZ] += volumeMap[i, j, k];
+            }
+            else
+            {
+                newVolumeMap[i, j, k] += volumeMap[i, j, k];
+            }
+        });
+
+        Array.Copy(newVolumeMap, volumeMap, newVolumeMap.Length);
+    }
+
+    private void ApplyDarkEnergy(CosmicWebContext context, CosmicWeb self, double timeInYears)
+    {
+        var universalExpansionDeltas = new Vector3[Context.MapX, Context.MapY, Context.MapZ];
+        var expansionRate = (float)self.Universe.ExpansionRate;
+
+        VolumeFunctions.RunVolumeFunction(Context.MapX, Context.MapY, Context.MapZ, (i, j, k) =>
+        {
+
+            universalExpansionDeltas[i, j, k] = new Vector3(i, j, k) * expansionRate * (float)timeInYears;
+        });
+
+        ApplyMovements(context, self, _heliumVolume, universalExpansionDeltas);
+        ApplyMovements(context, self, _hydrogenVolume, universalExpansionDeltas);
+        ApplyMovements(context, self, _massArray, universalExpansionDeltas);
+        ApplyMovements(context, self, _metalVolume, universalExpansionDeltas);
+        ApplyMovements(context, self, _tempMassArray, universalExpansionDeltas);
+        ApplyMovements(context, self, _velocityXArray, universalExpansionDeltas);
+        ApplyMovements(context, self, _velocityYArray, universalExpansionDeltas);
+        ApplyMovements(context, self, _velocityZArray, universalExpansionDeltas);
+        ApplyMovements(context, self, _baryonicVolume, universalExpansionDeltas);
+        ApplyMovements(context, self, _darkMatterVolume, universalExpansionDeltas);
+        AdjustTemperatureVolume(context, self, timeInYears);
     }
 
     private void ApplyRadiation(CosmicWebContext context, CosmicWeb self, double timeInYears)
@@ -308,14 +511,11 @@ public partial class CosmicWebGeneratorEvo : GroupGeneratorBase<CosmicWeb, Cosmi
         });
     }
 
-    private void ApplyExpansion(CosmicWebContext context, CosmicWeb self, double timeInYears)
-    {
-        var currentDarkEnergyDensity = self.Universe.OmegaDarkEnergy * self.Universe.CriticalDensity;
-
-
-        _baryonicVolume = VolumeProcessing.InterpolateVolume(_baryonicVolume, self.Universe.ExpansionRate, AdvancedSettings.Objects.CosmicWeb.EvolutionInterpolationAlgorithm);
-        _darkMatterVolume = VolumeProcessing.InterpolateVolume(_darkMatterVolume, self.Universe.ExpansionRate, AdvancedSettings.Objects.CosmicWeb.EvolutionInterpolationAlgorithm);
-    }
+    //private void ApplyExpansion(CosmicWebContext context, CosmicWeb self, double timeInYears)
+    //{
+    //    _baryonicVolume = VolumeProcessing.InterpolateVolume(_baryonicVolume, self.Universe.ExpansionRate, AdvancedSettings.Objects.CosmicWeb.EvolutionInterpolationAlgorithm);
+    //    _darkMatterVolume = VolumeProcessing.InterpolateVolume(_darkMatterVolume, self.Universe.ExpansionRate, AdvancedSettings.Objects.CosmicWeb.EvolutionInterpolationAlgorithm);
+    //}
 
 
     private void ApplyBaryonicFeedback(CosmicWebContext context, CosmicWeb self, double timeInYears)

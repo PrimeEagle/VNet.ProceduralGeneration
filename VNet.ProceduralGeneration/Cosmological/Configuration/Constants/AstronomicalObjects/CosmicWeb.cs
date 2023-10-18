@@ -56,6 +56,7 @@ internal static partial class Constants
                 internal static IRandomGenerationAlgorithm RandomGenerationAlgorithm { get; } = new DotNetGenerator();
                 internal static float SigmaForStructureIdentification { get; } = 1.0f;
                 internal static Range<float> CosmicMicrowaveBackgroundRange { get; } = new(2.0f, 3.0f);
+                internal static float GravitationalHeatingEfficiencyPercent { get; } = 10.0f;
             }
         }
     }

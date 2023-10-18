@@ -181,6 +181,12 @@ public class CosmicWebSettings : ISettings
     [Tooltip("")]
     public VNet.Configuration.Range<float> CosmicMicrowaveBackgroundRange { get; set; }
 
+    [Range(0, 1)]
+    [DisplayName("Gravitational Heating Efficiency Percent")]
+    [Tooltip("")]
+    public float GravitationalHeatingEfficiencyPercent { get; set; }
+
+
 
 
     public CosmicWebSettings()
@@ -224,5 +230,6 @@ public class CosmicWebSettings : ISettings
         EvolutionMaxEffectiveRangeOfRadiation = Constants.Advanced.Objects.CosmicWeb.EvolutionMaxEffectiveRangeOfRadiation;
         RandomGenerationAlgorithm = Constants.Advanced.Objects.CosmicWeb.RandomGenerationAlgorithm;
         CosmicMicrowaveBackgroundRange = Constants.Advanced.Objects.CosmicWeb.CosmicMicrowaveBackgroundRange;
+        GravitationalHeatingEfficiencyPercent = Constants.Advanced.Objects.CosmicWeb.GravitationalHeatingEfficiencyPercent;
     }
 }
