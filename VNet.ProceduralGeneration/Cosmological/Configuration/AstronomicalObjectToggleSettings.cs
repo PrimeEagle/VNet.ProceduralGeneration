@@ -73,6 +73,10 @@ public class AstronomicalObjectToggleSettings : ISettings
     [Tooltip(".")]
     public bool DebrisDisksEnabled { get; init; }
 
+    [DisplayName("Exocometary Cloud")]
+    [Tooltip(".")]
+    public bool ExocometaryCloudEnabled { get; init; }
+
     [DisplayName("Galaxies")]
     [Tooltip("Massive systems consisting of stars, stellar remnants, interstellar gas and dust, and dark matter, all bound together by gravity.")]
     public bool GalaxiesEnabled { get; init; }
