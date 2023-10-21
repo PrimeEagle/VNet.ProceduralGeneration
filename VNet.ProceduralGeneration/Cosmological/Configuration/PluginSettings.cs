@@ -1,13 +1,12 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using VNet.Configuration;
 using VNet.Configuration.Attributes;
 using VNet.Configuration.Attributes.Validation;
 
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
-public class PluginSettings : ISettings
+public class PluginSettings
 {
     [Required]
     [DisplayName("API Version")]

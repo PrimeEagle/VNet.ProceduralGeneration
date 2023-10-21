@@ -10,7 +10,7 @@ using VNet.Configuration.Attributes.Validation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
-public class BasicSettings : ISettings
+public class BasicSettings
 {
     [DisplayName("Average Dimension (Calculated)")]
     [Tooltip("Average of the map X, Y, and Z dimensions.")]
@@ -63,6 +63,9 @@ public class BasicSettings : ISettings
     [DisplayName("Universe Age Range")]
     [Tooltip("Range of the age of the universe, in years.")]
     public Range<float> UniverseAgeRange { get; init; }
+
+
+
 
     public BasicSettings()
     {

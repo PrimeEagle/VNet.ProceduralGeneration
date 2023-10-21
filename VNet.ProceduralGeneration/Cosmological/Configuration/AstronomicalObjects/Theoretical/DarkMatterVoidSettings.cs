@@ -7,7 +7,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects.Theoretical;
 
-public class DarkMatterVoidSettings : ISettings
+public class DarkMatterVoidSettings
 {
     [RangeLimitedTo(0, float.MaxValue)]
     [DisplayName("")]

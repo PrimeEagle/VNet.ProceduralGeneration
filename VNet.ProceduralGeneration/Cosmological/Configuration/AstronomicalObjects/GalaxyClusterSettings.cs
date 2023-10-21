@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
-public class GalaxyClusterSettings : ISettings
+public class GalaxyClusterSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]

@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
-public class AsteroidBeltSettings : ISettings
+public class AsteroidBeltSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]

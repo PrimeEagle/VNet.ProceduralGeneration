@@ -5,7 +5,7 @@ using VNet.Configuration.Attributes.Validation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
-public class TheoreticalAstronomicalObjectToggleSettings : ISettings
+public class TheoreticalAstronomicalObjectToggleSettings
 {
     [DisplayName("Branes")]
     [Tooltip("Multidimensional structures postulated in string theory and other theoretical physics models.")]

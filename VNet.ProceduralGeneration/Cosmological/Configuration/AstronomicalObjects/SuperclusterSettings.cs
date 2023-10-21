@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
-public class SuperclusterSettings : ISettings
+public class SuperclusterSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]

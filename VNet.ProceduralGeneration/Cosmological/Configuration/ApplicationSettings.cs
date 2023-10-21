@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using VNet.Configuration;
 using VNet.Configuration.Attributes;
 using VNet.Configuration.Attributes.Validation;
 using VNet.ProceduralGeneration.Cosmological.Enum;
@@ -11,7 +10,7 @@ using VNet.ProceduralGeneration.Cosmological.Enum;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
-public class ApplicationSettings : ISettings
+public class ApplicationSettings
 {
     [DisplayName("Dampen Baryonic Matter")]
     [Tooltip("If 'Apply Gravitational Effects' is enabled, determines whether the gravitation effects on baryonic matter should be dampened.")]
@@ -120,6 +119,9 @@ public class ApplicationSettings : ISettings
     [DisplayName("Units for Time")]
     [Tooltip("The units used for displaying all time values.")]
     public string UnitsTime { get; init; }
+
+
+
 
     public ApplicationSettings()
     {

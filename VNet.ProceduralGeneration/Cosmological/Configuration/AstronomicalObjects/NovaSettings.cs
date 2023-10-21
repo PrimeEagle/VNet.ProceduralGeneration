@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
-public class NovaSettings : ISettings
+public class NovaSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]

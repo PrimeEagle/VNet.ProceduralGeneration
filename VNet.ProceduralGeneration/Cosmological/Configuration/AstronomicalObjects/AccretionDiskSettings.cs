@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
-public class AccretionDiskSettings : ISettings
+public class AccretionDiskSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]

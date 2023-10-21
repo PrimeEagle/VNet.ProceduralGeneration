@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects.Theoretical;
 
-public class FuzzballSettings : ISettings
+public class FuzzballSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]

@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
-public class MoonSettings : ISettings
+public class MoonSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]

@@ -2,7 +2,7 @@
 using VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects.Theoretical;
 namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
-    public class TheoreticalAstronomicalObjectSettings : ISettings
+    public class TheoreticalAstronomicalObjectSettings
     {
         public BraneSettings Brane { get; init; }
         public CosmicBubbleSettings CosmicBubble { get; init; }

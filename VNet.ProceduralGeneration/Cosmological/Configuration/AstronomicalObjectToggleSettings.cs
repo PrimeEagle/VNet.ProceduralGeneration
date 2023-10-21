@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel;
-using VNet.Configuration;
 using VNet.Configuration.Attributes;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
-public class AstronomicalObjectToggleSettings : ISettings
+public class AstronomicalObjectToggleSettings
 {
+    [NotASetting]
     public TheoreticalAstronomicalObjectToggleSettings Theoretical { get; init; }
 
 
@@ -191,6 +191,7 @@ public class AstronomicalObjectToggleSettings : ISettings
 
 
 
+    
     public AstronomicalObjectToggleSettings()
     {
         Theoretical = new TheoreticalAstronomicalObjectToggleSettings();

@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects.Theoretical;
 
-public class CosmicStringSettings : ISettings
+public class CosmicStringSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]

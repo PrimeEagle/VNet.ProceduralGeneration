@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
-public class BaryonicMatterFilamentSettings : ISettings
+public class BaryonicMatterFilamentSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]

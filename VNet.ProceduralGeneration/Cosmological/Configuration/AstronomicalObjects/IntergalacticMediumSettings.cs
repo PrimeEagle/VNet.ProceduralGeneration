@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
-public class IntergalacticMediumSettings : ISettings
+public class IntergalacticMediumSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]

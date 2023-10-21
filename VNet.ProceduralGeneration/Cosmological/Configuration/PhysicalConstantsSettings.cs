@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel;
-using VNet.Configuration;
 using VNet.Configuration.Attributes;
 #pragma warning disable IDE1006
 
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
-public class PhysicalConstantsSettings : ISettings
+public class PhysicalConstantsSettings
 {
     [DisplayName("Baseline Age of the Universe")]
     [Tooltip("The age of the real universe.")]
@@ -42,6 +41,9 @@ public class PhysicalConstantsSettings : ISettings
     [Tooltip("The Boltzmann Constant.")]
     // ReSharper disable once InconsistentNaming
     public float kB { get; init; }
+
+
+
 
     public PhysicalConstantsSettings()
     {

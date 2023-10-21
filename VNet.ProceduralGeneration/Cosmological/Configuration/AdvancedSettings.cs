@@ -1,18 +1,23 @@
-﻿using VNet.Configuration;
+﻿using VNet.Configuration.Attributes;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
-public class AdvancedSettings : ISettings
+public class AdvancedSettings
 {
+    [NotASetting]
     public ApplicationSettings Application { get; init; }
 
+    [NotASetting]
     public AstronomicalObjectSettings Objects { get; init; }
 
+    [NotASetting]
     public PhysicalConstantsSettings PhysicalConstants { get; init; }
 
+    [NotASetting]
     public PluginSettings Plugin { get; init; }
 
     
+
 
     public AdvancedSettings()
     {

@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects.Theoretical;
 
-public class DarkMatterNodeSettings : ISettings
+public class DarkMatterNodeSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]

@@ -1,14 +1,14 @@
-﻿using VNet.Configuration;
+﻿using VNet.Configuration.Attributes;
 using VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
-    public class AstronomicalObjectSettings : ISettings
+    public class AstronomicalObjectSettings
     {
+        [NotASetting]
         public TheoreticalAstronomicalObjectSettings Theoretical { get; init; }
-
-
+        
         public AccretionDiskSettings AccretionDisk { get; init; }
         public AsteroidSettings Asteroid { get; init; }
         public AsteroidBeltSettings AsteroidBelt { get; init; }
@@ -52,8 +52,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration
         public SupernovaRemnantSettings SupernovaRemnant { get; init; }
         public UniverseSettings Universe { get; init; }
         public VoidGalaxySettings VoidGalaxy { get; init; }
-
-
 
 
 

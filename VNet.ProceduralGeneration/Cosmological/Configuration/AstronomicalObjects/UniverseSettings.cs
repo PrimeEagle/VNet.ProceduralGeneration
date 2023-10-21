@@ -7,7 +7,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
-public class UniverseSettings : ISettings
+public class UniverseSettings
 {
     [Required]
     [RangeLimitedTo(0, float.MaxValue)]

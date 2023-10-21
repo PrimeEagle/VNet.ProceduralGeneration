@@ -9,7 +9,7 @@ using VNet.Scientific.Noise;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
-public class CosmicWebSettings : ISettings
+public class CosmicWebSettings
 {
     [Range(1, 99)]
     [DisplayName("Heightmap Gaussian Kernel Size")]

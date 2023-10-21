@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
-public class BlackHoleSettings : ISettings
+public class BlackHoleSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]

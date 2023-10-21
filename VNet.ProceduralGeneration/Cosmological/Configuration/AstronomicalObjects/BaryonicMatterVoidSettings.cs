@@ -5,7 +5,7 @@ using VNet.Configuration.Attributes.Validation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
-public class BaryonicMatterVoidSettings : ISettings
+public class BaryonicMatterVoidSettings
 {
     [RangeLimitedTo(0, float.MaxValue)]
     [DisplayName("")]

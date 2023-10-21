@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
-public class NebulaSettings : ISettings
+public class NebulaSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]

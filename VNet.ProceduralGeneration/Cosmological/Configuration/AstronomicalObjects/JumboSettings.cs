@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
-public class JumboSettings : ISettings
+public class JumboSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]

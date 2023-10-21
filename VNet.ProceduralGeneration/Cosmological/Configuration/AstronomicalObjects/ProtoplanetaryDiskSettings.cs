@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
-public class ProtoplanetaryDiskSettings : ISettings
+public class ProtoplanetaryDiskSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]

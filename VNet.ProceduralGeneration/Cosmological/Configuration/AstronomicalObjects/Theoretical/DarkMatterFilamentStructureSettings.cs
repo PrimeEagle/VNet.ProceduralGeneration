@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects.Theoretical;
 
-public class DarkMatterFilamentStructureSettings : ISettings
+public class DarkMatterFilamentStructureSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]

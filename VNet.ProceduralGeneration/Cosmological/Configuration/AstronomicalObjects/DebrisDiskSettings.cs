@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
-public class DebrisDiskSettings : ISettings
+public class DebrisDiskSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]

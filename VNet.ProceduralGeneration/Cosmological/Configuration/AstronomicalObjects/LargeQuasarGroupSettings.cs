@@ -6,7 +6,7 @@ using VNet.Mathematics.Randomization.Generation;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 
-public class LargeQuasarGroupSettings : ISettings
+public class LargeQuasarGroupSettings
 {
     [Required]
     [DisplayName("Random Generation Algorithm")]
