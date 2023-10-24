@@ -1,9 +1,10 @@
 ﻿using System.Collections.ObjectModel;
+using VNet.Configuration;
 using VNet.Configuration.Attributes;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
-public class Settings
+public class Settings : ISettings
 {
     [NotASetting]
     public AdvancedSettings Advanced { get; init; }
