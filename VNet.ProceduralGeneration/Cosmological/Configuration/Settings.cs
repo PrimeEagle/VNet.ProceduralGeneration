@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using VNet.Configuration;
+﻿using VNet.Configuration;
 using VNet.Configuration.Attributes;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
@@ -11,10 +10,7 @@ public class Settings : ISettings
 
     [NotASetting]
     public BasicSettings Basic { get; init; }
-
-
-    public ObservableCollection<string> TabNames { get; } = new ObservableCollection<string> { "One", "Two", "Three", "Four" };
-    
+   
     
     
     
