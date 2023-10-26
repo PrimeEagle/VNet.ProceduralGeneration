@@ -9,17 +9,17 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjec
 
 public class DarkMatterVoidStructureSettings
 {
-    [RangeLimitedToPercent]
+    [RangeLimitedToPercent<double>]
     [DisplayName("")]
     [Tooltip("")]
     public Range<float> OverlappingPercentRange { get; set; }
 
-    [RangeLimitedTo(0, float.MaxValue)]
+    [RangeLimitedTo<double>(0, float.MaxValue)]
     [DisplayName("")]
     [Tooltip("")]
     public Range<float> OverlapRange { get; set; }
 
-    [RangeLimitedToPercent]
+    [RangeLimitedToPercent<double>]
     [DisplayName("")]
     [Tooltip("")]
     public Range<float> VolumeCoveredByPercentRange { get; set; }

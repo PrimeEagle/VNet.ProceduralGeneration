@@ -20,22 +20,22 @@ public class BasicSettings
     [Tooltip("Whether contents of astronomical object containers should be adjusted due to gravity. Increases processing time.")]
     public bool ApplyGravitationalEffects { get; init; }
 
-    [RangeLimitedToPercent]
-    [RangeIsPercentageWithProperties(new[] { nameof(DarkMatterPercentRange), nameof(DarkEnergyPercentRange) })]
+    [RangeLimitedToPercent<double>]
+    [RangeIsPercentageWithProperties<double>(new[] { nameof(DarkMatterPercentRange), nameof(DarkEnergyPercentRange) })]
     [DisplayName("Baryonic Matter Percent Range")]
     [Tooltip("Range of baryonic matter (normal matter) in the universe, as a percentage.")]
     public Range<float> BaryonicMatterPercentRange { get; init; }
 
-    [RangeLimitedToPercent]
-    [RangeIsPercentageWithProperties(new[] { nameof(BaryonicMatterPercentRange), nameof(DarkMatterPercentRange) })]
-    [RangeIfFalse(0, 0, "VNet.ProceduralGeneration.Cosmological.Configuration.TheoreticalAstronomicalObjectToggleSettings.DarkMatterEnabled")]
+    [RangeLimitedToPercent<double>]
+    [RangeIsPercentageWithProperties<double>(new[] { nameof(BaryonicMatterPercentRange), nameof(DarkMatterPercentRange) })]
+    [RangeIfFalse<double>(0, 0, "VNet.ProceduralGeneration.Cosmological.Configuration.TheoreticalAstronomicalObjectToggleSettings.DarkMatterEnabled")]
     [DisplayName("Dark Energy Percent Range")]
     [Tooltip("Range of dark energy in the universe, as a percentage.")]
     public Range<float> DarkEnergyPercentRange { get; init; }
 
-    [RangeLimitedToPercent]
-    [RangeIsPercentageWithProperties(new[] { nameof(BaryonicMatterPercentRange), nameof(DarkEnergyPercentRange) })]
-    [RangeIfFalse(0, 0, "VNet.ProceduralGeneration.Cosmological.Configuration.TheoreticalAstronomicalObjectToggleSettings.DarkMatterEnabled")]
+    [RangeLimitedToPercent<double>]
+    [RangeIsPercentageWithProperties<double>(new[] { nameof(BaryonicMatterPercentRange), nameof(DarkEnergyPercentRange) })]
+    [RangeIfFalse<double>(0, 0, "VNet.ProceduralGeneration.Cosmological.Configuration.TheoreticalAstronomicalObjectToggleSettings.DarkMatterEnabled")]
     [DisplayName("Dark Matter Percent Range")]
     [Tooltip("Range of dark matter in the universe, as a percentage.")]
     public Range<float> DarkMatterPercentRange { get; init; }
@@ -59,7 +59,7 @@ public class BasicSettings
 
     public AstronomicalObjectToggleSettings ObjectToggles { get; init; }
 
-    [RangeLimitedTo(0d, 100d)]
+    [RangeLimitedTo<double>(0d, 100d)]
     [DisplayName("Universe Age Range")]
     [Tooltip("Range of the age of the universe, in years.")]
     public Range<float> UniverseAgeRange { get; init; }

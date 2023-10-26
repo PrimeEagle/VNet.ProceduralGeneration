@@ -14,17 +14,17 @@ public class BaryonicMatterVoidStructureSettings
     [Tooltip("The algorithm used during object generation to generate random values.")]
     public IRandomGenerationAlgorithm RandomGenerationAlgorithm { get; init; }
 
-    [RangeLimitedToPercent]
+    [RangeLimitedToPercent<double>]
     [DisplayName("")]
     [Tooltip("")]
     public Range<float> OverlappingPercentRange { get; set; }
 
-    [RangeLimitedTo(0, float.MaxValue)]
+    [RangeLimitedTo<double>(0, float.MaxValue)]
     [DisplayName("")]
     [Tooltip("")]
     public Range<float> OverlapRange { get; set; }
 
-    [RangeLimitedToPercent]
+    [RangeLimitedToPercent<double>]
     [DisplayName("")]
     [Tooltip("")]
     public Range<float> VolumeCoveredByPercentRange { get; set; }

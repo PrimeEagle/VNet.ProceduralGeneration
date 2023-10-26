@@ -10,7 +10,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjec
 public class UniverseSettings
 {
     [Required]
-    [RangeLimitedTo(0, float.MaxValue)]
+    [RangeLimitedTo<double>(0, float.MaxValue)]
     [DisplayName("Inflation Range")]
     [Tooltip("The range of inflation for the universe.")]
     public Range<float> InflationRange { get; init; }

@@ -9,7 +9,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjec
 
 public class DarkMatterVoidSettings
 {
-    [RangeLimitedTo(0, float.MaxValue)]
+    [RangeLimitedTo<double>(0, float.MaxValue)]
     [DisplayName("")]
     [Tooltip("")]
     public Range<float> DiameterRange { get; set; }
