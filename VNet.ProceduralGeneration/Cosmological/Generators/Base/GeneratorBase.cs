@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using Microsoft.Extensions.Logging;
+using System.Numerics;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
@@ -39,7 +40,7 @@ public abstract class GeneratorBase<T, TContext> : IGenerator<T, TContext>, IDis
 
 
 
-    protected GeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService)
+    protected GeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<GeneratorBase<T, TContext>> loggerService)
     {
         EventAggregator = eventAggregator;
         GeneratorInvokerService = generatorInvokerService;

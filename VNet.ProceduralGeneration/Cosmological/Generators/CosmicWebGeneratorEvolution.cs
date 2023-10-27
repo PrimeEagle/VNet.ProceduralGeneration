@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Microsoft.Extensions.Logging;
 using VNet.Configuration;
 using VNet.Mathematics.LinearAlgebra.Matrix;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
@@ -681,7 +682,7 @@ public partial class CosmicWebGeneratorEvo : GroupGeneratorBase<CosmicWeb, Cosmi
         throw new NotImplementedException();
     }
 
-    public CosmicWebGeneratorEvo(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
+    public CosmicWebGeneratorEvo(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<CosmicWebGeneratorEvo> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
     {
     }
 }

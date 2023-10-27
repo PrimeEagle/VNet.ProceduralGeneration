@@ -1,4 +1,5 @@
-﻿using VNet.Configuration;
+﻿using Microsoft.Extensions.Logging;
+using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
@@ -9,7 +10,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class GalaxyClusterGenerator : GroupGeneratorBase<GalaxyCluster, GalaxyClusterContext>
 {
-    public GalaxyClusterGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
+    public GalaxyClusterGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<GalaxyClusterGenerator> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
     {
     }
 

@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using Microsoft.Extensions.Logging;
+using System.Numerics;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
@@ -16,7 +17,7 @@ public abstract class VoidGeneratorBase<T, TContext> : GroupGeneratorBase<T, TCo
                                                         where T : Void, new()
                                                         where TContext : VoidContext
 {
-    protected VoidGeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
+    protected VoidGeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<VoidGeneratorBase<T, TContext>> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
     {
     }
 

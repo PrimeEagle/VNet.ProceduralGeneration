@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using Microsoft.Extensions.Logging;
+using System.Numerics;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
@@ -17,7 +18,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class CosmicWebGenerator : GroupGeneratorBase<CosmicWeb, CosmicWebContext>
 {
-    public CosmicWebGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
+    public CosmicWebGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<CosmicWebGenerator> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
     {
         Enabled = ObjectToggles.CosmicWebEnabled;
     }

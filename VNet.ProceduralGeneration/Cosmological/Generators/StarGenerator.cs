@@ -1,4 +1,5 @@
-﻿using VNet.Configuration;
+﻿using Microsoft.Extensions.Logging;
+using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
@@ -9,7 +10,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class StarGenerator : GeneratorBase<Star, StarContext>
 {
-    public StarGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
+    public StarGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<StarGenerator> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
     {
     }
 

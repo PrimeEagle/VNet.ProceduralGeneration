@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using Microsoft.Extensions.Logging;
+using System.Numerics;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
@@ -13,7 +14,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class BaryonicMatterVoidStructureGenerator : VoidStructureGenerator<BaryonicMatterVoidStructure, BaryonicMatterVoidStructureContext>
 {
-    public BaryonicMatterVoidStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
+    public BaryonicMatterVoidStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<BaryonicMatterVoidStructureGenerator> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
     {
         Enabled = ObjectToggles.BaryonicMatterVoidStructureEnabled;
     }
@@ -25,19 +26,18 @@ public class BaryonicMatterVoidStructureGenerator : VoidStructureGenerator<Baryo
             DiameterCreateRange = ConfigurationService.GetConfiguration<BaryonicMatterVoidSettings>().DiameterRange,
             RandomizationAlgorithm = ConfigurationService.GetConfiguration<CosmicWebSettings>().RandomGenerationAlgorithm,
         };
-        var baryonicMatterVoidGenerator = new BaryonicMatterVoidGenerator(EventAggregator, GeneratorInvokerService, ConfigurationService);
-
+        
         var volumeSize = ConfigurationService.GetConfiguration<BasicSettings>().MapDimensions.X * ConfigurationService.GetConfiguration<BasicSettings>().MapDimensions.Y * ConfigurationService.GetConfiguration<BasicSettings>().MapDimensions.Z;
         var targetTotalVoidVolume = volumeSize * self.VolumeCoveredByPercent / 100;
         var totalVoidVolume = 0d;
 
         while (totalVoidVolume < targetTotalVoidVolume)
         {
-            var newBaryonicMatterVoid = await baryonicMatterVoidGenerator.Generate(baryonicMatterVoidContext, self.Parent);
+            var newBaryonicMatterVoid = await GeneratorInvokerService.Generate<BaryonicMatterVoid, BaryonicMatterVoidContext>(baryonicMatterVoidContext, self.Parent);
             baryonicMatterVoidContext.PositionXCreateRange = new VNet.Configuration.Range<float>(0f, ConfigurationService.GetConfiguration<BasicSettings>().MapDimensions.X - newBaryonicMatterVoid.Diameter);
             baryonicMatterVoidContext.PositionYCreateRange = new VNet.Configuration.Range<float>(0f, ConfigurationService.GetConfiguration<BasicSettings>().MapDimensions.Y - newBaryonicMatterVoid.Diameter);
             baryonicMatterVoidContext.PositionZCreateRange = new VNet.Configuration.Range<float>(0f, ConfigurationService.GetConfiguration<BasicSettings>().MapDimensions.Z - newBaryonicMatterVoid.Diameter);
-            baryonicMatterVoidGenerator.GeneratePosition(baryonicMatterVoidContext, newBaryonicMatterVoid);
+            GeneratorInvokerService.GeneratePosition<BaryonicMatterVoid, BaryonicMatterVoidContext>(baryonicMatterVoidContext, newBaryonicMatterVoid);
 
             var acceptableOverlap = false;
             while (!acceptableOverlap)
@@ -50,7 +50,7 @@ public class BaryonicMatterVoidStructureGenerator : VoidStructureGenerator<Baryo
                     baryonicMatterVoidContext.PositionXCreateRange = new VNet.Configuration.Range<float>(0, ConfigurationService.GetConfiguration<BasicSettings>().MapDimensions.X - newBaryonicMatterVoid.Diameter);
                     baryonicMatterVoidContext.PositionYCreateRange = new VNet.Configuration.Range<float>(0, ConfigurationService.GetConfiguration<BasicSettings>().MapDimensions.Y - newBaryonicMatterVoid.Diameter);
                     baryonicMatterVoidContext.PositionZCreateRange = new VNet.Configuration.Range<float>(0, ConfigurationService.GetConfiguration<BasicSettings>().MapDimensions.Z - newBaryonicMatterVoid.Diameter);
-                    baryonicMatterVoidGenerator.GeneratePosition(baryonicMatterVoidContext, newBaryonicMatterVoid);
+                    GeneratorInvokerService.GeneratePosition<BaryonicMatterVoid, BaryonicMatterVoidContext>(baryonicMatterVoidContext, newBaryonicMatterVoid);
                 }
                 else
                 {

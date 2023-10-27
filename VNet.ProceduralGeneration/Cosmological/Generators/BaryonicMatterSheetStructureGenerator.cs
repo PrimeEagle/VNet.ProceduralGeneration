@@ -1,4 +1,5 @@
-﻿using VNet.Configuration;
+﻿using Microsoft.Extensions.Logging;
+using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
@@ -10,7 +11,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 public class BaryonicMatterSheetStructureGenerator : SheetStructureGenerator<BaryonicMatterSheetStructure, BaryonicMatterSheetStructureContext>
 
 {
-    public BaryonicMatterSheetStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
+    public BaryonicMatterSheetStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<BaryonicMatterSheetStructureGenerator> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
     {
     }
 

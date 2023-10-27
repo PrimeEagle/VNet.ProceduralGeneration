@@ -1,4 +1,5 @@
-﻿using VNet.Configuration;
+﻿using Microsoft.Extensions.Logging;
+using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
@@ -12,7 +13,7 @@ public abstract class NodeGeneratorBase<T, TContext> : GroupGeneratorBase<T, TCo
     where T : Node, new()
     where TContext : NodeContext
 {
-    protected NodeGeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
+    protected NodeGeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<NodeGeneratorBase<T, TContext>> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
     {
     }
 }

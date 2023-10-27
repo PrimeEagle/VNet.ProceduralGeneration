@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Microsoft.Extensions.Logging;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
@@ -16,7 +17,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class UniverseGenerator : GroupGeneratorBase<Universe, UniverseContext>
 {
-    public UniverseGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
+    public UniverseGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<UniverseGenerator> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
     {
         Enabled = ObjectToggles.UniverseEnabled;
     }
