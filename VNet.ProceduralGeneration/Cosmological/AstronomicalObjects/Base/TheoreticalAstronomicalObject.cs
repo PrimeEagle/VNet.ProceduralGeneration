@@ -2,4 +2,5 @@
 
 public abstract class TheoreticalAstronomicalObject : AstronomicalObject
 {
+    public override bool Theoretical { get; } = true;
 }

@@ -1,5 +1,5 @@
 ﻿using VNet.Configuration;
-using VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects.Theoretical;
+using VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 namespace VNet.ProceduralGeneration.Cosmological.Configuration
 {
     public class TheoreticalAstronomicalObjectSettings

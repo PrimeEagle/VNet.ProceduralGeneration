@@ -1,10 +1,8 @@
 ﻿using System.Numerics;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
-using VNet.ProceduralGeneration.Cosmological.Contexts.Theoretical;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
-using VNet.ProceduralGeneration.Cosmological.Generators.Theoretical;
 using VNet.System.Events;
 
 // ReSharper disable MemberCanBeMadeStatic.Local

@@ -2,6 +2,7 @@
 using System.Text;
 using Diagnostics.Sizeof;
 using VNet.Configuration;
+using VNet.Configuration.Attributes.Validation;
 using VNet.Mathematics.Randomization.Generation;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Enum;
@@ -63,6 +64,7 @@ public abstract class AstronomicalObject : IAstronomicalObject
         settings = ConfigurationSettings<Settings>.AppSettings;
     }
 
+    public virtual bool Theoretical { get; } = false;
     public AstronomicalObject? Parent { get; set; }
     public Universe Universe => FindUniverse();
 
