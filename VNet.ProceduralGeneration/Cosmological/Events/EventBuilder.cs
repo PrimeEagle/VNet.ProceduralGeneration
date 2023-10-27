@@ -5,7 +5,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Events;
 
 public static class EventBuilder
 {
-    public static async void CreateGeneratingEvent(EventAggregator eventAggregator, string source, AstronomicalObject? astronomicalObject)
+    public static async void CreateGeneratingEvent(IEventAggregator eventAggregator, string source, AstronomicalObject? astronomicalObject)
     {
         var sourceName = GetName(source);
         var id = astronomicalObject != null ? astronomicalObject.Id : string.Empty;
@@ -19,7 +19,7 @@ public static class EventBuilder
         await eventAggregator.PublishAsync(e);
     }
 
-    public static async void CreateGeneratedEvent(EventAggregator eventAggregator, string source, AstronomicalObject astronomicalObject)
+    public static async void CreateGeneratedEvent(IEventAggregator eventAggregator, string source, AstronomicalObject astronomicalObject)
     {
         var sourceName = GetName(source);
         var id = astronomicalObject.Id;
@@ -33,7 +33,7 @@ public static class EventBuilder
         await eventAggregator.PublishAsync(e);
     }
 
-    public static async void CreatePostProcessingEvent(EventAggregator eventAggregator, string source, AstronomicalObject astronomicalObject)
+    public static async void CreatePostProcessingEvent(IEventAggregator eventAggregator, string source, AstronomicalObject astronomicalObject)
     {
         var sourceName = GetName(source);
         var id = astronomicalObject.Id;
@@ -47,7 +47,7 @@ public static class EventBuilder
         await eventAggregator.PublishAsync(e);
     }
 
-    public static async void CreatePostProcessedEvent(EventAggregator eventAggregator, string source, AstronomicalObject astronomicalObject)
+    public static async void CreatePostProcessedEvent(IEventAggregator eventAggregator, string source, AstronomicalObject astronomicalObject)
     {
         var sourceName = GetName(source);
         var id = astronomicalObject.Id;

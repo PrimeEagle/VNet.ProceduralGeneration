@@ -8,9 +8,11 @@ using VNet.ProceduralGeneration.Cosmological.Events;
 using VNet.Scientific.NumericalVolumes;
 using VNet.System.Events;
 
+// ReSharper disable ConvertToConstant.Global
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable MemberCanBeProtected.Global
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Base;
 
@@ -19,27 +21,23 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
                                                     where T : AstronomicalObject, new()
                                                     where TContext : ContextBase
 {
-    private readonly ParallelismLevel _parallelismLevel;
+    
     private readonly SemaphoreSlim _semaphore;
-
-    protected readonly AdvancedSettings AdvancedSettings;
-    protected readonly BasicSettings BasicSettings;
-    protected readonly EventAggregator EventAggregator;
-    protected readonly AstronomicalObjectToggleSettings ObjectToggles;
-    protected readonly Settings Settings;
-    protected readonly TheoreticalAstronomicalObjectToggleSettings TheoreticalObjectToggles;
     private bool _disposed;
+
+    protected readonly IEventAggregator EventAggregator;
+    protected readonly IConfigurationService ConfigurationService;
+    protected readonly AstronomicalObjectToggleSettings ObjectToggles;
+    protected readonly TheoreticalAstronomicalObjectToggleSettings TheoreticalObjectToggles;
+    protected readonly ParallelismLevel ParallelismLevel = ParallelismLevel.Level0;
     protected TContext Context;
     protected bool Enabled;
 
-    protected GeneratorBase(EventAggregator eventAggregator, ParallelismLevel parallelismLevel)
+    protected GeneratorBase(IEventAggregator eventAggregator, IConfigurationService configurationService)
     {
-        Settings = ConfigurationSettings<Settings>.AppSettings;
-        BasicSettings = Settings.Basic;
-        AdvancedSettings = Settings.Advanced;
-        ObjectToggles = Settings.Basic.ObjectToggles;
-        TheoreticalObjectToggles = Settings.Basic.ObjectToggles.Theoretical;
-        _parallelismLevel = parallelismLevel;
+        ConfigurationService = configurationService;
+        ObjectToggles = ConfigurationService.GetConfiguration<AstronomicalObjectToggleSettings>();
+        TheoreticalObjectToggles = ConfigurationService.GetConfiguration<TheoreticalAstronomicalObjectToggleSettings>();
         EventAggregator = eventAggregator;
         _semaphore = new SemaphoreSlim(GetDegreesOfParallelism());
     }
@@ -94,7 +92,7 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
     public abstract void GenerateRandomGenerationAlgorithm(TContext context, T self);
 
 
-    protected async Task<T> ExecuteWithConcurrencyControlAsync<T>(Func<Task<T>> taskFactory)
+    protected async Task<TResult> ExecuteWithConcurrencyControlAsync<TResult>(Func<Task<TResult>> taskFactory)
     {
         await _semaphore.WaitAsync();
         try
@@ -109,16 +107,17 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
 
     private int GetDegreesOfParallelism()
     {
+        var applicationSettings = ConfigurationService.GetConfiguration<ApplicationSettings>();
         var parallelismMap = new Dictionary<ParallelismLevel, (int calculated, int configured)>
         {
             [ParallelismLevel.Level0] = (1, 1),
-            [ParallelismLevel.Level1] = (Environment.ProcessorCount, AdvancedSettings.Application.MaxDegreesOfParallelismLevel1),
-            [ParallelismLevel.Level2] = (Convert.ToInt32(0.75 * Environment.ProcessorCount), AdvancedSettings.Application.MaxDegreesOfParallelismLevel2),
-            [ParallelismLevel.Level3] = (Convert.ToInt32(0.5 * Environment.ProcessorCount), AdvancedSettings.Application.MaxDegreesOfParallelismLevel3),
-            [ParallelismLevel.Level4] = (Convert.ToInt32(0.25 * Environment.ProcessorCount), AdvancedSettings.Application.MaxDegreesOfParallelismLevel4)
+            [ParallelismLevel.Level1] = (Environment.ProcessorCount, applicationSettings.MaxDegreesOfParallelismLevel1),
+            [ParallelismLevel.Level2] = (Convert.ToInt32(0.75 * Environment.ProcessorCount), applicationSettings.MaxDegreesOfParallelismLevel2),
+            [ParallelismLevel.Level3] = (Convert.ToInt32(0.5 * Environment.ProcessorCount), applicationSettings.MaxDegreesOfParallelismLevel3),
+            [ParallelismLevel.Level4] = (Convert.ToInt32(0.25 * Environment.ProcessorCount), applicationSettings.MaxDegreesOfParallelismLevel4)
         };
 
-        if (!parallelismMap.TryGetValue(_parallelismLevel, out var values)) throw new ArgumentOutOfRangeException();
+        if (!parallelismMap.TryGetValue(ParallelismLevel, out var values)) throw new ArgumentOutOfRangeException();
 
         return Math.Min(values.calculated, values.configured);
     }
