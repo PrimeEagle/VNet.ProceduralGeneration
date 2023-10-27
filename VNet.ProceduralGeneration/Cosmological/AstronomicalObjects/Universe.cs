@@ -1,4 +1,10 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
+
+
+
+
+
+
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 // ReSharper disable MemberCanBePrivate.Global
 #pragma warning disable CS8629 // Nullable value type may be null.
@@ -18,13 +24,11 @@ public class Universe : AstronomicalObjectGroup
 
     public Universe()
     {
-        CosmicWeb = new CosmicWeb();
         NonHierarchyObjects = new List<IAstronomicalObject>();
     }
 
     public Universe(AstronomicalObject parent) : base(parent)
     {
-        CosmicWeb = new CosmicWeb();
         NonHierarchyObjects = new List<IAstronomicalObject>();
     }
 
@@ -51,7 +55,7 @@ public class Universe : AstronomicalObjectGroup
     {
         get
         {
-            if(!_criticalDensity.HasValue) CalculateCriticalDensity();
+            if (!_criticalDensity.HasValue) CalculateCriticalDensity();
 
             return _criticalDensity.Value;
         }
@@ -61,7 +65,7 @@ public class Universe : AstronomicalObjectGroup
     {
         get
         {
-            if(!_expansionRate.HasValue) CalculateExpansionRate();
+            if (!_expansionRate.HasValue) CalculateExpansionRate();
 
             return _expansionRate.Value;
         }
@@ -71,7 +75,7 @@ public class Universe : AstronomicalObjectGroup
     {
         get
         {
-            if(!_cmbVariations.HasValue) CalculateCmbVariations();
+            if (!_cmbVariations.HasValue) CalculateCmbVariations();
 
             return _cmbVariations.Value;
         }
@@ -81,7 +85,7 @@ public class Universe : AstronomicalObjectGroup
     {
         get
         {
-            if(!_inflationOccurred.HasValue) CalculateInflationOccurred();
+            if (!_inflationOccurred.HasValue) CalculateInflationOccurred();
 
             return _inflationOccurred.Value;
         }
@@ -121,7 +125,7 @@ public class Universe : AstronomicalObjectGroup
     public override void RecalculateProperties()
     {
         base.RecalculateProperties();
-        
+
         CalculateCriticalDensity();
         CalculateExpansionRate();
         CalculateCmbVariations();

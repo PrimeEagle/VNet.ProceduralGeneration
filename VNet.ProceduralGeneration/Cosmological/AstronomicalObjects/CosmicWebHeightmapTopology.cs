@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+using System.Numerics;
+
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
@@ -11,4 +12,6 @@ public class CosmicWebHeightmapTopology
     public float[,] Heightmap { get; set; }
     public float[,,] VolumeMap { get; set; }
     public Vector3[,,] GradientMap { get; set; }
+
+    public CosmicWebHeightmapTopology() { }
 }

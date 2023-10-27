@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 using System.Text;
 using Diagnostics.Sizeof;
+using Microsoft.Extensions.Logging;
 using VNet.Configuration;
 using VNet.Configuration.Attributes.Validation;
 using VNet.Mathematics.Randomization.Generation;
