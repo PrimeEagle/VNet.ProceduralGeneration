@@ -1,20 +1,16 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
-using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class AsteroidBeltGenerator : GeneratorBase<AsteroidBelt, AsteroidBeltContext>
 {
-    public AsteroidBeltGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
+    public AsteroidBeltGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
-    }
-
-    protected override Task<AsteroidBelt> GenerateSelf(AsteroidBeltContext context, AsteroidBelt self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task GenerateChildren(AsteroidBeltContext context, AsteroidBelt self)
@@ -22,7 +18,7 @@ public class AsteroidBeltGenerator : GeneratorBase<AsteroidBelt, AsteroidBeltCon
         throw new NotImplementedException();
     }
 
-    protected override void SetMatterType(AsteroidBeltContext context, AsteroidBelt self)
+    protected override Task<AsteroidBelt> GenerateSelf(AsteroidBeltContext context, AsteroidBelt self)
     {
         throw new NotImplementedException();
     }
@@ -32,12 +28,17 @@ public class AsteroidBeltGenerator : GeneratorBase<AsteroidBelt, AsteroidBeltCon
         throw new NotImplementedException();
     }
 
-    public override void GenerateRandomGenerationAlgorithm(AsteroidBeltContext context, AsteroidBelt self)
+    protected override void SetMatterType(AsteroidBeltContext context, AsteroidBelt self)
     {
         throw new NotImplementedException();
     }
 
     internal override void AssignChildren(AsteroidBeltContext context, AsteroidBelt self)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void GenerateRandomGenerationAlgorithm(AsteroidBeltContext context, AsteroidBelt self)
     {
         throw new NotImplementedException();
     }

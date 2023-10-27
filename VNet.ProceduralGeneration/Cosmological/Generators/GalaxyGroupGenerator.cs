@@ -1,38 +1,19 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
-using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class GalaxyGroupGenerator : GroupGeneratorBase<GalaxyGroup, GalaxyGroupContext>
 {
-    public GalaxyGroupGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
+    public GalaxyGroupGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
-    }
-
-    protected override Task<GalaxyGroup> GenerateSelf(GalaxyGroupContext context, GalaxyGroup self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task GenerateChildren(GalaxyGroupContext context, GalaxyGroup self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void SetMatterType(GalaxyGroupContext context, GalaxyGroup self)
-    {
-        throw new NotImplementedException();
-    }
-
-    public override void GenerateRandomGenerationAlgorithm(GalaxyGroupContext context, GalaxyGroup self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateWarpedSurface(GalaxyGroupContext context, GalaxyGroup self)
     {
         throw new NotImplementedException();
     }
@@ -47,12 +28,32 @@ public class GalaxyGroupGenerator : GroupGeneratorBase<GalaxyGroup, GalaxyGroupC
         throw new NotImplementedException();
     }
 
+    protected override Task<GalaxyGroup> GenerateSelf(GalaxyGroupContext context, GalaxyGroup self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateSurfaceNoiseAlgorithm(GalaxyGroupContext context, GalaxyGroup self)
     {
         throw new NotImplementedException();
     }
 
+    protected override void GenerateWarpedSurface(GalaxyGroupContext context, GalaxyGroup self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void SetMatterType(GalaxyGroupContext context, GalaxyGroup self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(GalaxyGroupContext context, GalaxyGroup self)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void GenerateRandomGenerationAlgorithm(GalaxyGroupContext context, GalaxyGroup self)
     {
         throw new NotImplementedException();
     }

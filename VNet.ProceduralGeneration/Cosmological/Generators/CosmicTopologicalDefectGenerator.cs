@@ -1,20 +1,16 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
-using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class CosmicTopologicalDefectGenerator : GeneratorBase<CosmicTopologicalDefect, CosmicTopologicalDefectContext>
 {
-    public CosmicTopologicalDefectGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
+    public CosmicTopologicalDefectGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
-    }
-
-    protected override Task<CosmicTopologicalDefect> GenerateSelf(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task GenerateChildren(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
@@ -22,7 +18,7 @@ public class CosmicTopologicalDefectGenerator : GeneratorBase<CosmicTopologicalD
         throw new NotImplementedException();
     }
 
-    protected override void SetMatterType(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    protected override Task<CosmicTopologicalDefect> GenerateSelf(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
     {
         throw new NotImplementedException();
     }
@@ -32,12 +28,17 @@ public class CosmicTopologicalDefectGenerator : GeneratorBase<CosmicTopologicalD
         throw new NotImplementedException();
     }
 
-    public override void GenerateRandomGenerationAlgorithm(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    protected override void SetMatterType(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
     {
         throw new NotImplementedException();
     }
 
     internal override void AssignChildren(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void GenerateRandomGenerationAlgorithm(CosmicTopologicalDefectContext context, CosmicTopologicalDefect self)
     {
         throw new NotImplementedException();
     }

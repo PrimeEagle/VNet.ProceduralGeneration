@@ -1,20 +1,17 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid, BaryonicMatterVoidContext>
 {
-    public BaryonicMatterVoidGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
+    public BaryonicMatterVoidGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
-    }
-
-    protected override async Task<BaryonicMatterVoid> GenerateSelf(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
-    {
-        return self;
     }
 
     protected override async Task GenerateChildren(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
@@ -22,23 +19,16 @@ public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid,
         var numGalaxyGroups = self.RandomGenerationAlgorithm.NextInclusive(0, 10);
         for (var i = 0; i < numGalaxyGroups; i++)
         {
-            var galaxyGroupContext = new GalaxyGroupContext()
-            {
-            };
-            var galaxyGroupGenerator = new GalaxyGroupGenerator(EventAggregator, ParallelismLevel.Level1);
-            var newGalaxyGroup = await galaxyGroupGenerator.Generate(galaxyGroupContext, self.Parent);
-
+            var galaxyGroupContext = new GalaxyGroupContext(self);
+            var newGalaxyGroup = await GeneratorInvokerService.Generate<GalaxyGroup, GalaxyGroupContext>(galaxyGroupContext, self);
             self.GalaxyGroups.Add(newGalaxyGroup);
         }
 
         var numGalaxies = self.RandomGenerationAlgorithm.NextInclusive(0, 10);
         for (var i = 0; i < numGalaxies; i++)
         {
-            var galaxyContext = new GalaxyContext()
-            {
-            };
-            var galaxyGenerator = new GalaxyGenerator(EventAggregator, ParallelismLevel.Level1);
-            var newGalaxy = await galaxyGenerator.Generate(galaxyContext, self.Parent);
+            var galaxyContext = new GalaxyContext(self);
+            var newGalaxy = await GeneratorInvokerService.Generate<Galaxy, GalaxyContext>(galaxyContext, self);
 
             self.Galaxies.Add(newGalaxy);
         }
@@ -46,24 +36,11 @@ public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid,
         var numVoidGalaxies = self.RandomGenerationAlgorithm.NextInclusive(0, 10);
         for (var i = 0; i < numVoidGalaxies; i++)
         {
-            var voidGalaxyContext = new VoidGalaxyContext()
-            {
-            };
-            var voidGalaxyGenerator = new VoidGalaxyGenerator(EventAggregator, ParallelismLevel.Level1);
-            var newVoidGalaxy = await voidGalaxyGenerator.Generate(voidGalaxyContext, self.Parent);
+            var voidGalaxyContext = new VoidGalaxyContext(self);
+            var newVoidGalaxy = await GeneratorInvokerService.Generate<VoidGalaxy, VoidGalaxyContext>(voidGalaxyContext, self);
 
             self.VoidGalaxies.Add(newVoidGalaxy);
         }
-    }
-
-    protected override void SetMatterType(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
-    {
-        self.MatterType = MatterType.BaryonicMatter;
-    }
-
-    public override void GenerateRandomGenerationAlgorithm(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override void GenerateInteriorRandomizationAlgorithm(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
@@ -71,9 +48,19 @@ public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid,
         self.InteriorRandomizationAlgorithm = context.InteriorObjectRandomizationAlgorithm;
     }
 
+    protected override async Task<BaryonicMatterVoid> GenerateSelf(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
+    {
+        return self;
+    }
+
     protected override void GenerateSurfaceNoiseAlgorithm(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
     {
         self.SurfaceNoiseAlgorithm = context.SurfaceWarpingNoiseAlgorithm;
+    }
+
+    protected override void SetMatterType(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
+    {
+        self.MatterType = MatterType.BaryonicMatter;
     }
 
     internal override void AssignChildren(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
@@ -81,5 +68,10 @@ public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid,
         self.Children.AddRange(self.GalaxyGroups);
         self.Children.AddRange(self.Galaxies);
         self.Children.AddRange(self.VoidGalaxies);
+    }
+
+    public override void GenerateRandomGenerationAlgorithm(BaryonicMatterVoidContext context, BaryonicMatterVoid self)
+    {
+        throw new NotImplementedException();
     }
 }

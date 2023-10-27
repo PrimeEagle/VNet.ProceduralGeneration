@@ -1,20 +1,16 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
-using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class CometGenerator : GeneratorBase<Comet, CometContext>
 {
-    public CometGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
+    public CometGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
-    }
-
-    protected override Task<Comet> GenerateSelf(CometContext context, Comet self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task GenerateChildren(CometContext context, Comet self)
@@ -22,7 +18,7 @@ public class CometGenerator : GeneratorBase<Comet, CometContext>
         throw new NotImplementedException();
     }
 
-    protected override void SetMatterType(CometContext context, Comet self)
+    protected override Task<Comet> GenerateSelf(CometContext context, Comet self)
     {
         throw new NotImplementedException();
     }
@@ -32,12 +28,17 @@ public class CometGenerator : GeneratorBase<Comet, CometContext>
         throw new NotImplementedException();
     }
 
-    public override void GenerateRandomGenerationAlgorithm(CometContext context, Comet self)
+    protected override void SetMatterType(CometContext context, Comet self)
     {
         throw new NotImplementedException();
     }
 
     internal override void AssignChildren(CometContext context, Comet self)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void GenerateRandomGenerationAlgorithm(CometContext context, Comet self)
     {
         throw new NotImplementedException();
     }

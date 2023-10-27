@@ -1,7 +1,8 @@
 ﻿using System.Numerics;
+using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
-using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 using Void = VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base.Void;
 
@@ -15,7 +16,7 @@ public abstract class VoidGeneratorBase<T, TContext> : GroupGeneratorBase<T, TCo
                                                         where T : Void, new()
                                                         where TContext : VoidContext
 {
-    protected VoidGeneratorBase(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
+    protected VoidGeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
     }
 

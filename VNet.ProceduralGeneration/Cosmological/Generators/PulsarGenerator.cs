@@ -1,20 +1,16 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
-using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class PulsarGenerator : GeneratorBase<Pulsar, PulsarContext>
 {
-    public PulsarGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
+    public PulsarGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
-    }
-
-    protected override Task<Pulsar> GenerateSelf(PulsarContext context, Pulsar self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task GenerateChildren(PulsarContext context, Pulsar self)
@@ -22,7 +18,7 @@ public class PulsarGenerator : GeneratorBase<Pulsar, PulsarContext>
         throw new NotImplementedException();
     }
 
-    protected override void SetMatterType(PulsarContext context, Pulsar self)
+    protected override Task<Pulsar> GenerateSelf(PulsarContext context, Pulsar self)
     {
         throw new NotImplementedException();
     }
@@ -32,12 +28,17 @@ public class PulsarGenerator : GeneratorBase<Pulsar, PulsarContext>
         throw new NotImplementedException();
     }
 
-    public override void GenerateRandomGenerationAlgorithm(PulsarContext context, Pulsar self)
+    protected override void SetMatterType(PulsarContext context, Pulsar self)
     {
         throw new NotImplementedException();
     }
 
     internal override void AssignChildren(PulsarContext context, Pulsar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void GenerateRandomGenerationAlgorithm(PulsarContext context, Pulsar self)
     {
         throw new NotImplementedException();
     }

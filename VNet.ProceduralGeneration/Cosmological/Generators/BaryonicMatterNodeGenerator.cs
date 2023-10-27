@@ -1,17 +1,32 @@
-﻿using System.Numerics;
+﻿using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class BaryonicMatterNodeGenerator : NodeGeneratorBase<BaryonicMatterNode, BaryonicMatterNodeContext>
 {
-    public BaryonicMatterNodeGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level1)
+    public BaryonicMatterNodeGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
         Enabled = ObjectToggles.BaryonicMatterNodesEnabled;
+    }
+
+    protected override async Task GenerateChildren(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+    }
+
+    protected override void GenerateInteriorObjects(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateInteriorRandomizationAlgorithm(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
     }
 
     protected override async Task<BaryonicMatterNode> GenerateSelf(BaryonicMatterNodeContext context, BaryonicMatterNode self)
@@ -47,11 +62,24 @@ public class BaryonicMatterNodeGenerator : NodeGeneratorBase<BaryonicMatterNode,
         return self;
     }
 
-    protected override async Task GenerateChildren(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    protected override void GenerateSurfaceNoiseAlgorithm(BaryonicMatterNodeContext context, BaryonicMatterNode self)
     {
+        throw new NotImplementedException();
+    }
+
+    protected override void GenerateWarpedSurface(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
     }
 
     protected override void SetMatterType(BaryonicMatterNodeContext context, BaryonicMatterNode self)
+    {
+        throw new NotImplementedException();
+    }
+
+    //    return shiftedVector;
+    //}
+    internal override void AssignChildren(BaryonicMatterNodeContext context, BaryonicMatterNode self)
     {
         throw new NotImplementedException();
     }
@@ -77,32 +105,4 @@ public class BaryonicMatterNodeGenerator : NodeGeneratorBase<BaryonicMatterNode,
 
     //    var baseVector = new Vector3(posX / xScale, posY / yScale, posZ / zScale);
     //    var shiftedVector = baseVector - new Vector3(mapX / 2, mapY / 2, mapZ / 2);
-
-    //    return shiftedVector;
-    //}
-
-    protected override void GenerateWarpedSurface(BaryonicMatterNodeContext context, BaryonicMatterNode self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateInteriorObjects(BaryonicMatterNodeContext context, BaryonicMatterNode self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateInteriorRandomizationAlgorithm(BaryonicMatterNodeContext context, BaryonicMatterNode self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateSurfaceNoiseAlgorithm(BaryonicMatterNodeContext context, BaryonicMatterNode self)
-    {
-        throw new NotImplementedException();
-    }
-
-    internal override void AssignChildren(BaryonicMatterNodeContext context, BaryonicMatterNode self)
-    {
-        throw new NotImplementedException();
-    }
 }

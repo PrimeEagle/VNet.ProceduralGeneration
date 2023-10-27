@@ -1,38 +1,19 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
-using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class DarkMatterFilamentStructureGenerator : FilamentStructureGenerator<DarkMatterFilamentStructure, DarkMatterFilamentStructureContext>
 {
-    public DarkMatterFilamentStructureGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
+    public DarkMatterFilamentStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
-    }
-
-    protected override Task<DarkMatterFilamentStructure> GenerateSelf(DarkMatterFilamentStructureContext context, DarkMatterFilamentStructure self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task GenerateChildren(DarkMatterFilamentStructureContext context, DarkMatterFilamentStructure self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void SetMatterType(DarkMatterFilamentStructureContext context, DarkMatterFilamentStructure self)
-    {
-        throw new NotImplementedException();
-    }
-
-    public override void GenerateRandomGenerationAlgorithm(DarkMatterFilamentStructureContext context, DarkMatterFilamentStructure self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateWarpedSurface(DarkMatterFilamentStructureContext context, DarkMatterFilamentStructure self)
     {
         throw new NotImplementedException();
     }
@@ -47,12 +28,32 @@ public class DarkMatterFilamentStructureGenerator : FilamentStructureGenerator<D
         throw new NotImplementedException();
     }
 
+    protected override Task<DarkMatterFilamentStructure> GenerateSelf(DarkMatterFilamentStructureContext context, DarkMatterFilamentStructure self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateSurfaceNoiseAlgorithm(DarkMatterFilamentStructureContext context, DarkMatterFilamentStructure self)
     {
         throw new NotImplementedException();
     }
 
+    protected override void GenerateWarpedSurface(DarkMatterFilamentStructureContext context, DarkMatterFilamentStructure self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void SetMatterType(DarkMatterFilamentStructureContext context, DarkMatterFilamentStructure self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(DarkMatterFilamentStructureContext context, DarkMatterFilamentStructure self)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void GenerateRandomGenerationAlgorithm(DarkMatterFilamentStructureContext context, DarkMatterFilamentStructure self)
     {
         throw new NotImplementedException();
     }

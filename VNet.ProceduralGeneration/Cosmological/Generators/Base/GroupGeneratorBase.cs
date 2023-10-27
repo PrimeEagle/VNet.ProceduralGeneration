@@ -1,8 +1,11 @@
 ﻿using System.Numerics;
+using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
+using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 // ReSharper disable MemberCanBeMadeStatic.Local
 #pragma warning disable CA1822
@@ -13,7 +16,7 @@ public abstract class GroupGeneratorBase<T, TContext> : GeneratorBase<T, TContex
                                                         where T : AstronomicalObjectGroup, new()
                                                         where TContext : GroupContextBase
 {
-    protected GroupGeneratorBase(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
+    protected GroupGeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
     }
 
@@ -36,7 +39,7 @@ public abstract class GroupGeneratorBase<T, TContext> : GeneratorBase<T, TContex
 
     protected virtual void ApplyGravitationalEffectsToInterior(TContext context, T self, float timeInYears)
     {
-        if (!Settings.Basic.ApplyGravitationalEffects) return;
+        if (!ConfigurationService.GetConfiguration<BasicSettings>().ApplyGravitationalEffects) return;
 
         var objectCount = self.InteriorObjects.Count;
         var interactions = new InteractionData[objectCount, objectCount];
@@ -72,7 +75,7 @@ public abstract class GroupGeneratorBase<T, TContext> : GeneratorBase<T, TContex
                 var interaction = interactions[i, j];
                 var force = CalculateGravitationalForce(self.InteriorObjects[i], self.InteriorObjects[j], interaction.Distance);
 
-                if (Settings.Advanced.Application.ApplyGravitationalEffectsApplyDarkEnergy)
+                if (ConfigurationService.GetConfiguration<ApplicationSettings>().ApplyGravitationalEffectsApplyDarkEnergy)
                 {
                     force = ApplyDarkEnergyEffects(force, self, i, j, timeInYears, interaction.Direction, interaction.Distance);
                 }
@@ -89,15 +92,15 @@ public abstract class GroupGeneratorBase<T, TContext> : GeneratorBase<T, TContex
 
     private double CalculateGravitationalForce(IUndefinedAstronomicalObject object1, IUndefinedAstronomicalObject object2, float distance)
     {
-        if (Settings.Advanced.Application.ApplyGravitationalEffectsPreventDarkMatterClumping &&
+        if (ConfigurationService.GetConfiguration<ApplicationSettings>().ApplyGravitationalEffectsPreventDarkMatterClumping &&
             object1.MatterType == MatterType.DarkMatter &&
             object2.MatterType == MatterType.DarkMatter &&
-            distance < Settings.Advanced.Application.MinimumDarkMatterDistanceToPreventClumping)
+            distance < ConfigurationService.GetConfiguration<ApplicationSettings>().MinimumDarkMatterDistanceToPreventClumping)
         {
-            distance = Settings.Advanced.Application.MinimumDarkMatterDistanceToPreventClumping;
+            distance = ConfigurationService.GetConfiguration<ApplicationSettings>().MinimumDarkMatterDistanceToPreventClumping;
         }
 
-        return Settings.Advanced.PhysicalConstants.G * object1.Mass * object2.Mass / (distance * distance);
+        return ConfigurationService.GetConfiguration<PhysicalConstantsSettings>().G * object1.Mass * object2.Mass / (distance * distance);
     }
 
     private double ApplyDarkEnergyEffects(double force, T self, int i, int j, float timeInYears, Vector3 direction, float distance)
@@ -114,9 +117,9 @@ public abstract class GroupGeneratorBase<T, TContext> : GeneratorBase<T, TContex
         var velocity = acceleration * timeInYears;
         var displacement = 0.5f * acceleration * timeInYears * timeInYears;
 
-        if (Settings.Advanced.Application.ApplyGravitationalEffectsDampenBaryonicMatter)
+        if (ConfigurationService.GetConfiguration<ApplicationSettings>().ApplyGravitationalEffectsDampenBaryonicMatter)
         {
-            velocity *= Settings.Advanced.Application.BaryonicMatterDampeningFactor;
+            velocity *= ConfigurationService.GetConfiguration<ApplicationSettings>().BaryonicMatterDampeningFactor;
         }
 
         return (Vector3.Multiply(direction, (float)velocity), Vector3.Multiply(direction, (float)displacement));
@@ -137,6 +140,6 @@ public abstract class GroupGeneratorBase<T, TContext> : GeneratorBase<T, TContex
 
     protected bool PointsOverlap(IEnumerable<IUndefinedAstronomicalObject> points, IUndefinedAstronomicalObject newPoint)
     {
-        return points.Any(i => Vector3.Distance(i.Position, newPoint.Position) < Settings.Advanced.Application.InteriorObjectOverlapThreshold);
+        return points.Any(i => Vector3.Distance(i.Position, newPoint.Position) < ConfigurationService.GetConfiguration<ApplicationSettings>().InteriorObjectOverlapThreshold);
     }
 }

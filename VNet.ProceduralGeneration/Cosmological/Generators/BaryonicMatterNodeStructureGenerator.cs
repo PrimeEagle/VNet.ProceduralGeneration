@@ -1,14 +1,15 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
-using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class BaryonicMatterNodeStructureGenerator : NodeStructureGenerator<BaryonicMatterNodeStructure, BaryonicMatterNodeStructureContext>
 {
-    public BaryonicMatterNodeStructureGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
+    public BaryonicMatterNodeStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
     }
 
@@ -47,12 +48,12 @@ public class BaryonicMatterNodeStructureGenerator : NodeStructureGenerator<Baryo
         throw new NotImplementedException();
     }
 
-    public override void GenerateRandomGenerationAlgorithm(BaryonicMatterNodeStructureContext context, BaryonicMatterNodeStructure self)
+    internal override void AssignChildren(BaryonicMatterNodeStructureContext context, BaryonicMatterNodeStructure self)
     {
         throw new NotImplementedException();
     }
 
-    internal override void AssignChildren(BaryonicMatterNodeStructureContext context, BaryonicMatterNodeStructure self)
+    public override void GenerateRandomGenerationAlgorithm(BaryonicMatterNodeStructureContext context, BaryonicMatterNodeStructure self)
     {
         throw new NotImplementedException();
     }

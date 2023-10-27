@@ -1,6 +1,7 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
+﻿using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
-using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 // ReSharper disable MemberCanBeProtected.Global
 
@@ -10,7 +11,7 @@ public abstract class NodeStructureGenerator<T, TContext> : GroupGeneratorBase<T
                                                             where T : NodeStructure, new()
                                                             where TContext : NodeStructureContext
 {
-    protected NodeStructureGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
+    protected NodeStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
     }
 }

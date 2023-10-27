@@ -1,38 +1,19 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
-using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class StarSystemGenerator : GroupGeneratorBase<StarSystem, StarSystemContext>
 {
-    public StarSystemGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
+    public StarSystemGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
-    }
-
-    protected override Task<StarSystem> GenerateSelf(StarSystemContext context, StarSystem self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task GenerateChildren(StarSystemContext context, StarSystem self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void SetMatterType(StarSystemContext context, StarSystem self)
-    {
-        throw new NotImplementedException();
-    }
-
-    public override void GenerateRandomGenerationAlgorithm(StarSystemContext context, StarSystem self)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void GenerateWarpedSurface(StarSystemContext context, StarSystem self)
     {
         throw new NotImplementedException();
     }
@@ -47,12 +28,32 @@ public class StarSystemGenerator : GroupGeneratorBase<StarSystem, StarSystemCont
         throw new NotImplementedException();
     }
 
+    protected override Task<StarSystem> GenerateSelf(StarSystemContext context, StarSystem self)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void GenerateSurfaceNoiseAlgorithm(StarSystemContext context, StarSystem self)
     {
         throw new NotImplementedException();
     }
 
+    protected override void GenerateWarpedSurface(StarSystemContext context, StarSystem self)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void SetMatterType(StarSystemContext context, StarSystem self)
+    {
+        throw new NotImplementedException();
+    }
+
     internal override void AssignChildren(StarSystemContext context, StarSystem self)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void GenerateRandomGenerationAlgorithm(StarSystemContext context, StarSystem self)
     {
         throw new NotImplementedException();
     }

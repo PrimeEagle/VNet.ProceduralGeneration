@@ -1,20 +1,16 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
-using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class PlanckStarGenerator : GeneratorBase<PlanckStar, PlanckStarContext>
 {
-    public PlanckStarGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
+    public PlanckStarGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
-    }
-
-    protected override Task<PlanckStar> GenerateSelf(PlanckStarContext context, PlanckStar self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task GenerateChildren(PlanckStarContext context, PlanckStar self)
@@ -22,7 +18,7 @@ public class PlanckStarGenerator : GeneratorBase<PlanckStar, PlanckStarContext>
         throw new NotImplementedException();
     }
 
-    protected override void SetMatterType(PlanckStarContext context, PlanckStar self)
+    protected override Task<PlanckStar> GenerateSelf(PlanckStarContext context, PlanckStar self)
     {
         throw new NotImplementedException();
     }
@@ -32,12 +28,17 @@ public class PlanckStarGenerator : GeneratorBase<PlanckStar, PlanckStarContext>
         throw new NotImplementedException();
     }
 
-    public override void GenerateRandomGenerationAlgorithm(PlanckStarContext context, PlanckStar self)
+    protected override void SetMatterType(PlanckStarContext context, PlanckStar self)
     {
         throw new NotImplementedException();
     }
 
     internal override void AssignChildren(PlanckStarContext context, PlanckStar self)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void GenerateRandomGenerationAlgorithm(PlanckStarContext context, PlanckStar self)
     {
         throw new NotImplementedException();
     }

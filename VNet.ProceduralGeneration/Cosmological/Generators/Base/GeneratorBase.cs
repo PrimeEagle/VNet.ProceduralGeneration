@@ -5,6 +5,7 @@ using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Events;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.Scientific.NumericalVolumes;
 using VNet.System.Events;
 
@@ -17,7 +18,7 @@ using VNet.System.Events;
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Base;
 
 
-public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, IDisposable
+public abstract class GeneratorBase<T, TContext> : IGenerator<T, TContext>, IDisposable
                                                     where T : AstronomicalObject, new()
                                                     where TContext : ContextBase
 {
@@ -25,20 +26,26 @@ public abstract class GeneratorBase<T, TContext> : IGeneratable<T, TContext>, ID
     private readonly SemaphoreSlim _semaphore;
     private bool _disposed;
 
-    protected readonly IEventAggregator EventAggregator;
-    protected readonly IConfigurationService ConfigurationService;
     protected readonly AstronomicalObjectToggleSettings ObjectToggles;
     protected readonly TheoreticalAstronomicalObjectToggleSettings TheoreticalObjectToggles;
     protected readonly ParallelismLevel ParallelismLevel = ParallelismLevel.Level0;
     protected TContext Context;
     protected bool Enabled;
 
-    protected GeneratorBase(IEventAggregator eventAggregator, IConfigurationService configurationService)
+    protected IEventAggregator EventAggregator { get; }
+    protected IGeneratorInvokerService GeneratorInvokerService { get; }
+    protected IConfigurationService ConfigurationService { get; }
+
+
+
+
+    protected GeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService)
     {
+        EventAggregator = eventAggregator;
+        GeneratorInvokerService = generatorInvokerService;
         ConfigurationService = configurationService;
         ObjectToggles = ConfigurationService.GetConfiguration<AstronomicalObjectToggleSettings>();
         TheoreticalObjectToggles = ConfigurationService.GetConfiguration<TheoreticalAstronomicalObjectToggleSettings>();
-        EventAggregator = eventAggregator;
         _semaphore = new SemaphoreSlim(GetDegreesOfParallelism());
     }
 

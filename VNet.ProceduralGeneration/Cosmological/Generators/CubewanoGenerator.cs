@@ -1,20 +1,16 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
-using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class CubewanoGenerator : GeneratorBase<Cubewano, CubewanoContext>
 {
-    public CubewanoGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
+    public CubewanoGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
-    }
-
-    protected override Task<Cubewano> GenerateSelf(CubewanoContext context, Cubewano self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task GenerateChildren(CubewanoContext context, Cubewano self)
@@ -22,7 +18,7 @@ public class CubewanoGenerator : GeneratorBase<Cubewano, CubewanoContext>
         throw new NotImplementedException();
     }
 
-    protected override void SetMatterType(CubewanoContext context, Cubewano self)
+    protected override Task<Cubewano> GenerateSelf(CubewanoContext context, Cubewano self)
     {
         throw new NotImplementedException();
     }
@@ -32,12 +28,17 @@ public class CubewanoGenerator : GeneratorBase<Cubewano, CubewanoContext>
         throw new NotImplementedException();
     }
 
-    public override void GenerateRandomGenerationAlgorithm(CubewanoContext context, Cubewano self)
+    protected override void SetMatterType(CubewanoContext context, Cubewano self)
     {
         throw new NotImplementedException();
     }
 
     internal override void AssignChildren(CubewanoContext context, Cubewano self)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void GenerateRandomGenerationAlgorithm(CubewanoContext context, Cubewano self)
     {
         throw new NotImplementedException();
     }

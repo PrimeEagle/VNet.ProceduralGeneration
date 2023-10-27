@@ -1,21 +1,25 @@
 ﻿using System.Numerics;
+using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
-using VNet.ProceduralGeneration.Cosmological.Enum;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 using Void = VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base.Void;
+
 // ReSharper disable MemberCanBeProtected.Global
 // ReSharper disable SuggestBaseTypeForParameter
 // ReSharper disable UnusedMember.Local
 // ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
 // ReSharper disable LoopCanBeConvertedToQuery
+
+
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Base;
 
 public abstract class VoidStructureGenerator<T, TContext> : GroupGeneratorBase<T, TContext>
                                                             where T : VoidStructure, new()
                                                             where TContext : VoidStructureContext
 {
-    protected VoidStructureGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
+    protected VoidStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
     }
 

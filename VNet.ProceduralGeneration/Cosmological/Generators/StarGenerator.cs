@@ -1,20 +1,16 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+﻿using VNet.Configuration;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
-using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class StarGenerator : GeneratorBase<Star, StarContext>
 {
-    public StarGenerator(EventAggregator eventAggregator, ParallelismLevel parallelismLevel) : base(eventAggregator, parallelismLevel)
+    public StarGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
-    }
-
-    protected override Task<Star> GenerateSelf(StarContext context, Star self)
-    {
-        throw new NotImplementedException();
     }
 
     protected override Task GenerateChildren(StarContext context, Star self)
@@ -22,7 +18,7 @@ public class StarGenerator : GeneratorBase<Star, StarContext>
         throw new NotImplementedException();
     }
 
-    protected override void SetMatterType(StarContext context, Star self)
+    protected override Task<Star> GenerateSelf(StarContext context, Star self)
     {
         throw new NotImplementedException();
     }
@@ -32,12 +28,17 @@ public class StarGenerator : GeneratorBase<Star, StarContext>
         throw new NotImplementedException();
     }
 
-    public override void GenerateRandomGenerationAlgorithm(StarContext context, Star self)
+    protected override void SetMatterType(StarContext context, Star self)
     {
         throw new NotImplementedException();
     }
 
     internal override void AssignChildren(StarContext context, Star self)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void GenerateRandomGenerationAlgorithm(StarContext context, Star self)
     {
         throw new NotImplementedException();
     }

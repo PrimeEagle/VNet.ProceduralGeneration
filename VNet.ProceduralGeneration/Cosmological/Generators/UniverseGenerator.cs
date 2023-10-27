@@ -1,8 +1,12 @@
 ﻿using System.Numerics;
+using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.Configuration;
+using VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
+using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
 
 #pragma warning disable IDE0060
@@ -12,7 +16,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class UniverseGenerator : GroupGeneratorBase<Universe, UniverseContext>
 {
-    public UniverseGenerator(EventAggregator eventAggregator) : base(eventAggregator, ParallelismLevel.Level0)
+    public UniverseGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService) : base(eventAggregator, generatorInvokerService, configurationService)
     {
         Enabled = ObjectToggles.UniverseEnabled;
     }
@@ -32,10 +36,8 @@ public class UniverseGenerator : GroupGeneratorBase<Universe, UniverseContext>
 
     protected override async Task GenerateChildren(UniverseContext context, Universe self)
     {
-        var cosmicWebGenerator = new CosmicWebGenerator(EventAggregator);
         var cosmicWebContext = new CosmicWebContext(self);
-
-        self.CosmicWeb = await Task.Run(() => cosmicWebGenerator.Generate(cosmicWebContext, self));
+        self.CosmicWeb = await Task.Run(() => GeneratorInvokerService.Generate<CosmicWeb, CosmicWebContext>(cosmicWebContext, self));
     }
 
     protected override void SetMatterType(UniverseContext context, Universe self)
@@ -58,27 +60,27 @@ public class UniverseGenerator : GroupGeneratorBase<Universe, UniverseContext>
 
     private void GenerateCosmicMicrowaveBackground(UniverseContext context, Universe self)
     {
-        self.CosmicMicrowaveBackground = AdvancedSettings.Objects.Universe.RandomGenerationAlgorithm.NextSingleInclusive(AdvancedSettings.Objects.CosmicWeb.CosmicMicrowaveBackgroundRange);
+        self.CosmicMicrowaveBackground = ConfigurationService.GetConfiguration<UniverseSettings>().RandomGenerationAlgorithm.NextSingleInclusive(ConfigurationService.GetConfiguration<CosmicWebSettings>().CosmicMicrowaveBackgroundRange);
     }
 
     private void GenerateBaryonicMatterPercent(UniverseContext context, Universe self)
     {
-        self.BaryonicMatterPercent = AdvancedSettings.Objects.Universe.RandomGenerationAlgorithm.NextSingleInclusive(BasicSettings.BaryonicMatterPercentRange);
+        self.BaryonicMatterPercent = ConfigurationService.GetConfiguration<UniverseSettings>().RandomGenerationAlgorithm.NextSingleInclusive(ConfigurationService.GetConfiguration<BasicSettings>().BaryonicMatterPercentRange);
     }
 
     private void GenerateDarkMatterPercent(UniverseContext context, Universe self)
     {
-        self.DarkMatterPercent = AdvancedSettings.Objects.Universe.RandomGenerationAlgorithm.NextSingleInclusive(BasicSettings.DarkMatterPercentRange);
+        self.DarkMatterPercent = ConfigurationService.GetConfiguration<UniverseSettings>().RandomGenerationAlgorithm.NextSingleInclusive(ConfigurationService.GetConfiguration<BasicSettings>().DarkMatterPercentRange);
     }
 
     private void GenerateDarkEnergyPercent(UniverseContext context, Universe self)
     {
-        self.DarkEnergyPercent = AdvancedSettings.Objects.Universe.RandomGenerationAlgorithm.NextSingleInclusive(BasicSettings.DarkEnergyPercentRange);
+        self.DarkEnergyPercent = ConfigurationService.GetConfiguration<UniverseSettings>().RandomGenerationAlgorithm.NextSingleInclusive(ConfigurationService.GetConfiguration<BasicSettings>().DarkEnergyPercentRange);
     }
 
     private void GenerateConnectivityFactor(UniverseContext context, Universe self)
     {
-        self.ConnectivityFactor = AdvancedSettings.Objects.Universe.RandomGenerationAlgorithm.NextSingleInclusive(AdvancedSettings.Objects.Universe.ConnectivityFactorRange);
+        self.ConnectivityFactor = ConfigurationService.GetConfiguration<UniverseSettings>().RandomGenerationAlgorithm.NextSingleInclusive(ConfigurationService.GetConfiguration<UniverseSettings>().ConnectivityFactorRange);
     }
 
     private void GenerateCurvature(UniverseContext context, Universe self)
@@ -89,10 +91,10 @@ public class UniverseGenerator : GroupGeneratorBase<Universe, UniverseContext>
         }
         else
         {
-            var flatVal = AdvancedSettings.Objects.Universe.CurvatureFlatPercentage / 100;
-            var sphericalVal = flatVal + AdvancedSettings.Objects.Universe.CurvatureSphericalPercentage / 100;
+            var flatVal = ConfigurationService.GetConfiguration<UniverseSettings>().CurvatureFlatPercentage / 100;
+            var sphericalVal = flatVal + ConfigurationService.GetConfiguration<UniverseSettings>().CurvatureSphericalPercentage / 100;
 
-            var randValue = AdvancedSettings.Objects.Universe.RandomGenerationAlgorithm.NextDouble();
+            var randValue = ConfigurationService.GetConfiguration<UniverseSettings>().RandomGenerationAlgorithm.NextDouble();
 
             if (randValue < flatVal)
                 self.Curvature = CurvatureType.Flat;
@@ -105,7 +107,7 @@ public class UniverseGenerator : GroupGeneratorBase<Universe, UniverseContext>
 
     protected override void GenerateWarpedSurface(UniverseContext context, Universe self)
     {
-        self.WarpedSurface = new List<Vector3>();   
+        self.WarpedSurface = new List<Vector3>();
     }
 
     protected override void GenerateInteriorObjects(UniverseContext context, Universe self)
