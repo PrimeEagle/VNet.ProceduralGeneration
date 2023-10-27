@@ -1,9 +1,9 @@
-﻿using VNet.Configuration;
-using VNet.Configuration.Attributes;
+﻿using VNet.Configuration.Attributes;
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
-public class Settings : ISettings
+
+public class Settings
 {
     [NotASetting]
     public AdvancedSettings Advanced { get; init; }
