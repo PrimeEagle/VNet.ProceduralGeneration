@@ -1,9 +1,7 @@
-﻿using System.Numerics;
+﻿using Diagnostics.Sizeof;
+using System.Numerics;
 using System.Text;
-using Diagnostics.Sizeof;
-using Microsoft.Extensions.Logging;
 using VNet.Configuration;
-using VNet.Configuration.Attributes.Validation;
 using VNet.Mathematics.Randomization.Generation;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Enum;
@@ -299,7 +297,7 @@ public abstract class AstronomicalObject : IAstronomicalObject
 
     protected virtual void CalculateVolume()
     {
-        volume = 4 / 3 * Math.PI * Math.Pow(Radius, 3);
+        volume = 4.0 / 3.0 * Math.PI * Math.Pow(Radius, 3);
     }
 
     protected virtual void CalculateDensity()

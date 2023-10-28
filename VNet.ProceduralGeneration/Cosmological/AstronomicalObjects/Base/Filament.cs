@@ -1,10 +1,8 @@
-﻿
-
-namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
+﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 
 public abstract class Filament : AstronomicalObjectGroup
 {
-    public Filament()
+    protected Filament()
     {
 
     }

@@ -3,7 +3,7 @@ using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Services
 {
-    public class GeneratorInvokerService
+    public class GeneratorInvokerService : IGeneratorInvokerService
     {
         private readonly IGeneratorFactoryService _generatorFactoryService;
 

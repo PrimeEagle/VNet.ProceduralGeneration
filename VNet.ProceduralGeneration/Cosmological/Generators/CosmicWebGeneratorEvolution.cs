@@ -1,5 +1,5 @@
-﻿using System.Numerics;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
+using System.Numerics;
 using VNet.Configuration;
 using VNet.Mathematics.LinearAlgebra.Matrix;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;

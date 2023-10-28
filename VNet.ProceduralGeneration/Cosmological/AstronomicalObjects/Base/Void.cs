@@ -1,12 +1,11 @@
-﻿
-using System.Numerics;
+﻿using System.Numerics;
 using VNet.Scientific.NumericalVolumes;
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 
 public abstract class Void : AstronomicalObjectGroup, IVoid
 {
-    public Void()
+    protected Void()
     {
 
     }

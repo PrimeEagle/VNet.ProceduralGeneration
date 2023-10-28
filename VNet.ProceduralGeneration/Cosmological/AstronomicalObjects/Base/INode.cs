@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base
+﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base
 {
     public interface INode
     {
