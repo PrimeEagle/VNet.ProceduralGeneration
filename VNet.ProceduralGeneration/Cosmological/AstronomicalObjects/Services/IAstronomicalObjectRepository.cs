@@ -4,8 +4,8 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services;
 
 public interface IAstronomicalObjectRepository<TEntity> where TEntity : IAstronomicalObject
 {
-    Task<TEntity?> GetByIdAsync(int id);
-    Task<List<TEntity>> GetByIdWithChildrenAsync(int id);
+    Task<TEntity?> GetByIdAsync(string id);
+    Task<TEntity?> GetByIdWithChildrenAsync(string id);
     Task<List<TEntity>> GetAllAsync();
     Task AddAsync(TEntity entity);
     Task UpdateAsync(TEntity entity);
