@@ -34,4 +34,33 @@ public interface IAstronomicalCalculationService
     double CalculateGroupMass(IAstronomicalObjectGroup group);
     float CalculateGroupLuminosity(IAstronomicalObjectGroup group);
     float CalculateGroupTemperature(IAstronomicalObjectGroup group);
+    Task<double> CalculateSizeAsync(IAstronomicalObject astroObject);
+    Task<double> CalculateDisplayAgeAsync(IAstronomicalObject astroObject);
+    Task<float> CalculateAbsoluteMagnitudeAsync(IAstronomicalObject astroObject);
+    Task<double> CalculateDisplayLifespanAsync(IAstronomicalObject astroObject);
+    Task<double> CalculateDisplayMassAsync(IAstronomicalObject astroObject);
+    Task<double> CalculateDisplayDiameterAsync(IAstronomicalObject astroObject);
+    Task<double> CalculateDisplayTemperatureAsync(IAstronomicalObject astroObject);
+    Task<float> CalculateDisplayLuminosityAsync(IAstronomicalObject astroObject);
+    Task<Vector3> CalculateDisplayPositionAsync(IAstronomicalObject astroObject);
+    Task<double> CalculateDisplayRadiusAsync(IAstronomicalObject astroObject);
+    Task<double> CalculateDisplayVolumeAsync(IAstronomicalObject astroObject);
+    Task<double> CalculateDisplaySizeAsync(IAstronomicalObject astroObject);
+    Task<double> CalculateDisplayDensityAsync(IAstronomicalObject astroObject);
+    Task<float> CalculateApparentMagnitudeAsync(Vector3 source, AstronomicalObject astroObject);
+    Task<double> CalculateRadiusAsync(IAstronomicalObject astroObject);
+    Task<double> CalculateVolumeAsync(IAstronomicalObject astroObject);
+    Task<double> CalculateDensityAsync(IAstronomicalObject astroObject);
+    Task<float> CalculateDisplayAbsoluteMagnitudeAsync(IAstronomicalObject astroObject);
+    Task<double> CalculateUniverseVolumeAsync(Universe universe);
+    Task<double> CalculateUniverseCriticalDensityAsync(); // kg/AU³
+    Task<double> CalculateUniverseExpansionRateAsync(Universe universe); // kg/s/Mpc
+    Task<float> CalculateUniverseCmbVariationsAsync(Universe universe); // Kelvin
+    Task<bool> CalculateUniverseInflationOccurredAsync(Universe universe);
+    Task<float> CalculateGroupAbsoluteMagnitudeAsync(IAstronomicalObjectGroup group);
+    Task<float> CalculateGroupAgeAsync(IAstronomicalObjectGroup group);
+    Task<float> CalculateGroupLifespanAsync(IAstronomicalObjectGroup group);
+    Task<double> CalculateGroupMassAsync(IAstronomicalObjectGroup group);
+    Task<float> CalculateGroupLuminosityAsync(IAstronomicalObjectGroup group);
+    Task<float> CalculateGroupTemperatureAsync(IAstronomicalObjectGroup group);
 }

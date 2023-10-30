@@ -28,5 +28,13 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators.Services
         {
             return _serviceProvider.GetRequiredService<IGenerator<T, TContext>>();
         }
+
+        public Task<IGenerator<T, TContext>> CreateAsync<T, TContext>()
+            where T : AstronomicalObject
+            where TContext : ContextBase
+        {
+            var service = _serviceProvider.GetRequiredService<IGenerator<T, TContext>>();
+            return Task.FromResult(service);
+        }
     }
 }

@@ -22,7 +22,7 @@ public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid,
         for (var i = 0; i < numGalaxyGroups; i++)
         {
             var galaxyGroupContext = new GalaxyGroupContext(self);
-            var newGalaxyGroup = await GeneratorInvokerService.Generate<GalaxyGroup, GalaxyGroupContext>(galaxyGroupContext, self);
+            var newGalaxyGroup = await GeneratorInvokerService.GenerateAsync<GalaxyGroup, GalaxyGroupContext>(galaxyGroupContext, self);
             self.GalaxyGroups.Add(newGalaxyGroup);
         }
 
@@ -30,7 +30,7 @@ public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid,
         for (var i = 0; i < numGalaxies; i++)
         {
             var galaxyContext = new GalaxyContext(self);
-            var newGalaxy = await GeneratorInvokerService.Generate<Galaxy, GalaxyContext>(galaxyContext, self);
+            var newGalaxy = await GeneratorInvokerService.GenerateAsync<Galaxy, GalaxyContext>(galaxyContext, self);
 
             self.Galaxies.Add(newGalaxy);
         }
@@ -39,7 +39,7 @@ public class BaryonicMatterVoidGenerator : VoidGeneratorBase<BaryonicMatterVoid,
         for (var i = 0; i < numVoidGalaxies; i++)
         {
             var voidGalaxyContext = new VoidGalaxyContext(self);
-            var newVoidGalaxy = await GeneratorInvokerService.Generate<VoidGalaxy, VoidGalaxyContext>(voidGalaxyContext, self);
+            var newVoidGalaxy = await GeneratorInvokerService.GenerateAsync<VoidGalaxy, VoidGalaxyContext>(voidGalaxyContext, self);
 
             self.VoidGalaxies.Add(newVoidGalaxy);
         }

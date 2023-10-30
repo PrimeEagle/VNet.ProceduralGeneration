@@ -41,7 +41,7 @@ public abstract class GeneratorBase<T, TContext> : IGenerator<T, TContext>, IDis
 
 
 
-    protected GeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, 
+    protected GeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService,
                             IConfigurationService configurationService, ILogger<GeneratorBase<T, TContext>> loggerService,
                             IAstronomicalCalculationService calculationService)
     {
@@ -60,43 +60,6 @@ public abstract class GeneratorBase<T, TContext> : IGenerator<T, TContext>, IDis
         GC.SuppressFinalize(this);
     }
 
-    public virtual async Task<T> Generate(TContext context, AstronomicalObject? parent)
-    {
-        T self;
-        Context = context;
-
-        if (Enabled)
-        {
-            EventBuilder.CreateGeneratingEvent(EventAggregator, nameof(T), null);
-            self = new T
-            {
-                Parent = parent,
-                Enabled = true
-            };
-            self = await ExecuteWithConcurrencyControlAsync(() => GenerateSelf(context, self));
-        }
-        else
-        {
-            self = new T();
-        }
-
-        self.Parent = parent;
-        if (parent is not null && !parent.Enabled) self.Universe.NonHierarchyObjects.Add(self);
-
-        await GenerateChildren(context, self);
-
-        if (!Enabled) return self;
-        GenerateBaseProperties(context, self);
-        AssignChildren(context, self);
-        EventBuilder.CreateGeneratedEvent(EventAggregator, nameof(T), self);
-
-        EventBuilder.CreatePostProcessingEvent(EventAggregator, nameof(T), self);
-        PostProcess(context, self);
-        EventBuilder.CreatePostProcessedEvent(EventAggregator, nameof(T), self);
-
-        return self;
-    }
-
     protected abstract Task<T> GenerateSelf(TContext context, T self);
     protected abstract Task GenerateChildren(TContext context, T self);
     protected abstract void SetMatterType(TContext context, T self);
@@ -109,7 +72,7 @@ public abstract class GeneratorBase<T, TContext> : IGenerator<T, TContext>, IDis
         await _semaphore.WaitAsync();
         try
         {
-            return await Task.Run(taskFactory);
+            return await Task.Run(taskFactory).ConfigureAwait(false);
         }
         finally
         {
@@ -149,76 +112,182 @@ public abstract class GeneratorBase<T, TContext> : IGenerator<T, TContext>, IDis
         self.BoundingBox = new BoundingBox<float>(self.Position, 1, self.Orientation);
     }
 
+    public virtual T Generate(TContext context, AstronomicalObject? parent)
+    {
+        return GenerateAsync(context, parent).GetAwaiter().GetResult();
+    }
+
     public virtual void GenerateDiameter(TContext context, T self)
     {
-        if (context.Diameter.HasValue)
-            self.Diameter = context.Diameter.Value;
-        else if (context is { DiameterCreateRange: not null, RandomizationAlgorithm: not null })
-            self.Diameter = context.RandomizationAlgorithm.NextSingleInclusive(context.DiameterCreateRange.Start, context.DiameterCreateRange.End);
+        GenerateDiameterAsync(context, self).GetAwaiter().GetResult();
     }
 
     public virtual void GeneratePosition(TContext context, T self)
     {
-        if (context.Position.HasValue)
-            self.Position = context.Position.Value;
-        else if (context is { PositionXCreateRange: not null, PositionYCreateRange: not null, PositionZCreateRange: not null, RandomizationAlgorithm: not null })
-            self.Position = new Vector3(
-                context.RandomizationAlgorithm.NextSingleInclusive(context.PositionXCreateRange.Start, context.PositionXCreateRange.End),
-                context.RandomizationAlgorithm.NextSingleInclusive(context.PositionYCreateRange.Start, context.PositionYCreateRange.End),
-                context.RandomizationAlgorithm.NextSingleInclusive(context.PositionZCreateRange.Start, context.PositionZCreateRange.End)
-            );
+        GeneratePositionAsync(context, self).GetAwaiter().GetResult();
     }
 
     public virtual void GenerateOrientation(TContext context, T self)
     {
-        if (context.Orientation.HasValue)
-            self.Orientation = context.Orientation.Value;
-        else if (context is { OrientationXCreateRange: not null, OrientationYCreateRange: not null, OrientationZCreateRange: not null, RandomizationAlgorithm: not null })
-            self.Orientation = new Vector3(
-                context.RandomizationAlgorithm.NextSingleInclusive(context.OrientationXCreateRange.Start, context.OrientationXCreateRange.End),
-                context.RandomizationAlgorithm.NextSingleInclusive(context.OrientationYCreateRange.Start, context.OrientationYCreateRange.End),
-                context.RandomizationAlgorithm.NextSingleInclusive(context.OrientationZCreateRange.Start, context.OrientationZCreateRange.End)
-            );
+        GenerateOrientationAsync(context, self).GetAwaiter().GetResult();
     }
 
     public virtual void GenerateAge(TContext context, T self)
     {
-        if (context.Age.HasValue)
-            self.Age = context.Age.Value;
-        else if (context is { AgeCreateRange: not null, RandomizationAlgorithm: not null })
-            self.Age = context.RandomizationAlgorithm.NextSingleInclusive(context.AgeCreateRange.Start, context.AgeCreateRange.End);
+        GenerateAgeAsync(context, self).GetAwaiter().GetResult();
     }
 
     public virtual void GenerateLifespan(TContext context, T self)
     {
-        if (context.Lifespan.HasValue)
-            self.Lifespan = context.Lifespan.Value;
-        else if (context is { LifespanCreateRange: not null, RandomizationAlgorithm: not null })
-            self.Lifespan = context.RandomizationAlgorithm.NextSingleInclusive(context.LifespanCreateRange.Start, context.LifespanCreateRange.End);
+        GenerateLifespanAsync(context, self).GetAwaiter().GetResult();
     }
 
     public virtual void GenerateMass(TContext context, T self)
     {
-        if (context.Mass.HasValue)
-            self.Mass = context.Mass.Value;
-        else if (context is { MassCreateRange: not null, RandomizationAlgorithm: not null })
-            self.Mass = context.RandomizationAlgorithm.NextDoubleInclusive(context.MassCreateRange.Start, context.MassCreateRange.End);
+        GenerateMassAsync(context, self).GetAwaiter().GetResult();
     }
 
     public virtual void GenerateLuminosity(TContext context, T self)
     {
-        if (context.Luminosity.HasValue)
-            self.Luminosity = context.Luminosity.Value;
-        else if (context is { LuminosityCreateRange: not null, RandomizationAlgorithm: not null })
-            self.Luminosity = context.RandomizationAlgorithm.NextSingleInclusive(context.LuminosityCreateRange.Start, context.LuminosityCreateRange.End);
+        GenerateLuminosityAsync(context, self).GetAwaiter().GetResult();
     }
 
     public virtual void GenerateTemperature(TContext context, T self)
     {
-        if (context.Temperature.HasValue)
-            self.Temperature = context.Temperature.Value;
-        else if (context is { TemperatureCreateRange: not null, RandomizationAlgorithm: not null })
-            self.Temperature = context.RandomizationAlgorithm.NextSingleInclusive(context.TemperatureCreateRange.Start, context.TemperatureCreateRange.End);
+        GenerateTemperatureAsync(context, self).GetAwaiter().GetResult();
+    }
+
+    public virtual async Task<T> GenerateAsync(TContext context, AstronomicalObject? parent)
+    {
+        T self;
+        Context = context;
+
+        if (Enabled)
+        {
+            EventBuilder.CreateGeneratingEvent(EventAggregator, nameof(T), null);
+            self = new T
+            {
+                Parent = parent,
+                Enabled = true
+            };
+            self = await ExecuteWithConcurrencyControlAsync(() => GenerateSelf(context, self));
+        }
+        else
+        {
+            self = new T();
+        }
+
+        self.Parent = parent;
+        if (parent is not null && !parent.Enabled) self.Universe.NonHierarchyObjects.Add(self);
+
+        await GenerateChildren(context, self).ConfigureAwait(false);
+
+        if (!Enabled) return self;
+        GenerateBaseProperties(context, self);
+        AssignChildren(context, self);
+        EventBuilder.CreateGeneratedEvent(EventAggregator, nameof(T), self);
+
+        EventBuilder.CreatePostProcessingEvent(EventAggregator, nameof(T), self);
+        PostProcess(context, self);
+        EventBuilder.CreatePostProcessedEvent(EventAggregator, nameof(T), self);
+
+        return self;
+    }
+
+    public virtual Task GenerateDiameterAsync(TContext context, T self)
+    {
+        return Task.Run(() =>
+        {
+            if (context.Diameter.HasValue)
+                self.Diameter = context.Diameter.Value;
+            else if (context is { DiameterCreateRange: not null, RandomizationAlgorithm: not null })
+                self.Diameter = context.RandomizationAlgorithm.NextSingleInclusive(context.DiameterCreateRange.Start, context.DiameterCreateRange.End);
+        });
+    }
+
+    public virtual Task GeneratePositionAsync(TContext context, T self)
+    {
+        return Task.Run(() =>
+        {
+            if (context.Position.HasValue)
+                self.Position = context.Position.Value;
+            else if (context is { PositionXCreateRange: not null, PositionYCreateRange: not null, PositionZCreateRange: not null, RandomizationAlgorithm: not null })
+                self.Position = new Vector3(
+                    context.RandomizationAlgorithm.NextSingleInclusive(context.PositionXCreateRange.Start, context.PositionXCreateRange.End),
+                    context.RandomizationAlgorithm.NextSingleInclusive(context.PositionYCreateRange.Start, context.PositionYCreateRange.End),
+                    context.RandomizationAlgorithm.NextSingleInclusive(context.PositionZCreateRange.Start, context.PositionZCreateRange.End)
+                );
+        });
+    }
+
+    public virtual Task GenerateOrientationAsync(TContext context, T self)
+    {
+        return Task.Run(() =>
+        {
+            if (context.Orientation.HasValue)
+                self.Orientation = context.Orientation.Value;
+            else if (context is { OrientationXCreateRange: not null, OrientationYCreateRange: not null, OrientationZCreateRange: not null, RandomizationAlgorithm: not null })
+                self.Orientation = new Vector3(
+                    context.RandomizationAlgorithm.NextSingleInclusive(context.OrientationXCreateRange.Start, context.OrientationXCreateRange.End),
+                    context.RandomizationAlgorithm.NextSingleInclusive(context.OrientationYCreateRange.Start, context.OrientationYCreateRange.End),
+                    context.RandomizationAlgorithm.NextSingleInclusive(context.OrientationZCreateRange.Start, context.OrientationZCreateRange.End)
+                );
+        });
+    }
+
+    public virtual Task GenerateAgeAsync(TContext context, T self)
+    {
+        return Task.Run(() =>
+        {
+            if (context.Age.HasValue)
+                self.Age = context.Age.Value;
+            else if (context is { AgeCreateRange: not null, RandomizationAlgorithm: not null })
+                self.Age = context.RandomizationAlgorithm.NextSingleInclusive(context.AgeCreateRange.Start, context.AgeCreateRange.End);
+        });
+    }
+
+    public virtual Task GenerateLifespanAsync(TContext context, T self)
+    {
+        return Task.Run(() =>
+        {
+            if (context.Lifespan.HasValue)
+                self.Lifespan = context.Lifespan.Value;
+            else if (context is { LifespanCreateRange: not null, RandomizationAlgorithm: not null })
+                self.Lifespan = context.RandomizationAlgorithm.NextSingleInclusive(context.LifespanCreateRange.Start, context.LifespanCreateRange.End);
+        });
+    }
+
+    public virtual Task GenerateMassAsync(TContext context, T self)
+    {
+        return Task.Run(() =>
+        {
+            if (context.Mass.HasValue)
+                self.Mass = context.Mass.Value;
+            else if (context is { MassCreateRange: not null, RandomizationAlgorithm: not null })
+                self.Mass = context.RandomizationAlgorithm.NextDoubleInclusive(context.MassCreateRange.Start, context.MassCreateRange.End);
+        });
+    }
+
+    public virtual Task GenerateLuminosityAsync(TContext context, T self)
+    {
+        return Task.Run(() =>
+        {
+            if (context.Luminosity.HasValue)
+                self.Luminosity = context.Luminosity.Value;
+            else if (context is { LuminosityCreateRange: not null, RandomizationAlgorithm: not null })
+                self.Luminosity = context.RandomizationAlgorithm.NextSingleInclusive(context.LuminosityCreateRange.Start, context.LuminosityCreateRange.End);
+        });
+    }
+
+    public virtual Task GenerateTemperatureAsync(TContext context, T self)
+    {
+        return Task.Run(() =>
+        {
+            if (context.Temperature.HasValue)
+                self.Temperature = context.Temperature.Value;
+            else if (context is { TemperatureCreateRange: not null, RandomizationAlgorithm: not null })
+                self.Temperature = context.RandomizationAlgorithm.NextSingleInclusive(context.TemperatureCreateRange.Start, context.TemperatureCreateRange.End);
+        });
     }
 
     protected virtual void GenerateBaseProperties(TContext context, T self)

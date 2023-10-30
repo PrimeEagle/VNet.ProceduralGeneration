@@ -9,4 +9,8 @@ public interface IGeneratorFactoryService
     IGenerator<T, TContext> Create<T, TContext>()
         where T : AstronomicalObject
         where TContext : ContextBase;
+
+    Task<IGenerator<T, TContext>> CreateAsync<T, TContext>()
+        where T : AstronomicalObject
+        where TContext : ContextBase;
 }

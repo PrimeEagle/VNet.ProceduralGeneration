@@ -28,35 +28,35 @@ public class CosmicWebGenerator : GroupGeneratorBase<CosmicWeb, CosmicWebContext
     protected override async Task GenerateChildren(CosmicWebContext context, CosmicWeb self)
     {
         var intergalacticMediumContext = new IntergalacticMediumContext(self);
-        self.IntergalacticMedium = await GeneratorInvokerService.Generate<IntergalacticMedium, IntergalacticMediumContext>(intergalacticMediumContext, self);
+        self.IntergalacticMedium = await GeneratorInvokerService.GenerateAsync<IntergalacticMedium, IntergalacticMediumContext>(intergalacticMediumContext, self);
 
         var baryonicMatterVoidStructureContext = new BaryonicMatterVoidStructureContext(self);
-        self.BaryonicMatterVoidStructure = await GeneratorInvokerService.Generate<BaryonicMatterVoidStructure, BaryonicMatterVoidStructureContext>(baryonicMatterVoidStructureContext, self);
+        self.BaryonicMatterVoidStructure = await GeneratorInvokerService.GenerateAsync<BaryonicMatterVoidStructure, BaryonicMatterVoidStructureContext>(baryonicMatterVoidStructureContext, self);
 
         var baryonicMatterSheetStructureContext = new BaryonicMatterSheetStructureContext(self);
-        self.BaryonicMatterSheetStructure = await GeneratorInvokerService.Generate<BaryonicMatterSheetStructure, BaryonicMatterSheetStructureContext>(baryonicMatterSheetStructureContext, self);
+        self.BaryonicMatterSheetStructure = await GeneratorInvokerService.GenerateAsync<BaryonicMatterSheetStructure, BaryonicMatterSheetStructureContext>(baryonicMatterSheetStructureContext, self);
 
         var baryonicMatterFilamentStructureContext = new BaryonicMatterFilamentStructureContext(self);
-        self.BaryonicMatterFilamentStructure = await GeneratorInvokerService.Generate<BaryonicMatterFilamentStructure, BaryonicMatterFilamentStructureContext>(baryonicMatterFilamentStructureContext, self);
+        self.BaryonicMatterFilamentStructure = await GeneratorInvokerService.GenerateAsync<BaryonicMatterFilamentStructure, BaryonicMatterFilamentStructureContext>(baryonicMatterFilamentStructureContext, self);
 
         var baryonicMatterNodeStructureContext = new BaryonicMatterNodeStructureContext(self);
-        self.BaryonicMatterNodeStructure = await GeneratorInvokerService.Generate<BaryonicMatterNodeStructure, BaryonicMatterNodeStructureContext>(baryonicMatterNodeStructureContext, self);
+        self.BaryonicMatterNodeStructure = await GeneratorInvokerService.GenerateAsync<BaryonicMatterNodeStructure, BaryonicMatterNodeStructureContext>(baryonicMatterNodeStructureContext, self);
 
 
 
         if (ConfigurationService.GetConfiguration<AstronomicalObjectToggleSettings>().DarkMatterAndDarkEnergyEnabled)
         {
             var darkMatterVoidStructureContext = new DarkMatterVoidStructureContext(self);
-            self.DarkMatterVoidStructure = await GeneratorInvokerService.Generate<DarkMatterVoidStructure, DarkMatterVoidStructureContext>(darkMatterVoidStructureContext, self);
+            self.DarkMatterVoidStructure = await GeneratorInvokerService.GenerateAsync<DarkMatterVoidStructure, DarkMatterVoidStructureContext>(darkMatterVoidStructureContext, self);
 
             var darkMatterSheetStructureContext = new DarkMatterSheetStructureContext(self);
-            self.DarkMatterSheetStructure = await GeneratorInvokerService.Generate<DarkMatterSheetStructure, DarkMatterSheetStructureContext>(darkMatterSheetStructureContext, self);
+            self.DarkMatterSheetStructure = await GeneratorInvokerService.GenerateAsync<DarkMatterSheetStructure, DarkMatterSheetStructureContext>(darkMatterSheetStructureContext, self);
 
             var darkMatterFilamentStructureContext = new DarkMatterFilamentStructureContext(self);
-            self.DarkMatterFilamentStructure = await GeneratorInvokerService.Generate<DarkMatterFilamentStructure, DarkMatterFilamentStructureContext>(darkMatterFilamentStructureContext, self);
+            self.DarkMatterFilamentStructure = await GeneratorInvokerService.GenerateAsync<DarkMatterFilamentStructure, DarkMatterFilamentStructureContext>(darkMatterFilamentStructureContext, self);
 
             var darkMatterNodeStructureContext = new DarkMatterNodeStructureContext(self);
-            self.DarkMatterNodeStructure = await GeneratorInvokerService.Generate<DarkMatterNodeStructure, DarkMatterNodeStructureContext>(darkMatterNodeStructureContext, self);
+            self.DarkMatterNodeStructure = await GeneratorInvokerService.GenerateAsync<DarkMatterNodeStructure, DarkMatterNodeStructureContext>(darkMatterNodeStructureContext, self);
         }
     }
 
