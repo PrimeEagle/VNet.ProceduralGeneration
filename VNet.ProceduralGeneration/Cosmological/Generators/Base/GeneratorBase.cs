@@ -24,7 +24,6 @@ public abstract class GeneratorBase<T, TContext> : IGenerator<T, TContext>, IDis
                                                     where T : AstronomicalObject, new()
                                                     where TContext : ContextBase
 {
-    
     private readonly SemaphoreSlim _semaphore;
     private bool _disposed;
 
