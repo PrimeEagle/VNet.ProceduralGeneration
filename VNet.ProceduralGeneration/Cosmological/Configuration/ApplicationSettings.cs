@@ -4,9 +4,9 @@ using VNet.Configuration.Attributes;
 using VNet.Configuration.Attributes.Validation;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 
+// ReSharper disable ClassNeverInstantiated.Global
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
-// ReSharper disable ClassNeverInstantiated.Global
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
@@ -120,7 +120,40 @@ public class ApplicationSettings
     [Tooltip("The units used for displaying all time values.")]
     public string UnitsTime { get; init; }
 
+    [DisplayName("Enable Logging")]
+    [Tooltip("Whether logging is enabled.")]
+    public bool EnableLogging { get; init; }
 
+    [Required]
+    [DisplayName("Log File Path")]
+    [Tooltip("The path to the log file.")]
+    public string LogFilePath { get; init; }
+
+    [Required]
+    [DisplayName("Language")]
+    [Tooltip("The language used in the interface.")]
+    public string Language { get; init; }
+
+    [DisplayName("Enable Undo")]
+    [Tooltip("Whether undo is enabled.")]
+    public bool EnableUndo { get; init; }
+
+    [Range(1, 100)]
+    [DisplayName("Undo Levels")]
+    [Tooltip("The number of undo levels.")]
+    public int UndoLevels { get; init; }
+
+    [Required]
+    [DirectoryExists]
+    [DisplayName("Temp Directory Path")]
+    [Tooltip("The path to the temp directory.")]
+    public string TempDirectoryPath { get; init; }
+
+    [Required]
+    [DirectoryExists]
+    [DisplayName("Assets Directory Path")]
+    [Tooltip("The path to the assets directory.")]
+    public string AssetsDirectoryPath { get; init; }
 
 
     public ApplicationSettings()
@@ -142,5 +175,12 @@ public class ApplicationSettings
         MinimumDarkMatterDistanceToPreventClumping = Constants.Advanced.Application.MinimumDarkMatterDistanceToPreventClumping;
         BaryonicMatterDampeningFactor = Constants.Advanced.Application.BaryonicMatterDampeningFactor;
         InteriorObjectOverlapThreshold = Constants.Advanced.Application.InteriorObjectOverlapThreshold;
+        EnableLogging = Constants.Advanced.Application.EnableLogging;
+        LogFilePath = Constants.Advanced.Application.LogFilePath;
+        Language = Constants.Advanced.Application.Language;
+        EnableUndo = Constants.Advanced.Application.EnableUndo;
+        UndoLevels = Constants.Advanced.Application.UndoLevels;
+        TempDirectoryPath = Constants.Advanced.Application.TempDirectoryPath;
+        AssetsDirectoryPath = Constants.Advanced.Application.AssetsDirectoryPath;
     }
 }

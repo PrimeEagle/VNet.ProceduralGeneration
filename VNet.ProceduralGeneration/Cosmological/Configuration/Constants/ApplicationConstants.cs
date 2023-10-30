@@ -28,6 +28,13 @@ internal static partial class Constants
             internal static SizeType SizeMeaning { get; } = SizeType.Diameter;
             internal static double TemperatureConversionFactor { get; } = 0d;
             internal static double TimeConversionFactor { get; } = 0d;
+            internal static bool EnableLogging { get; } = true;
+            internal static string LogFilePath { get; } = @"\";
+            internal static string Language { get; } = "English";
+            internal static bool EnableUndo { get; } = true;
+            internal static int UndoLevels { get; } = 5;
+            internal static string TempDirectoryPath { get; } = @"\Temp\";
+            internal static string AssetsDirectoryPath { get; } = @"\Assets\";
         }
     }
 }

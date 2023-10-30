@@ -28,7 +28,6 @@ public abstract class GeneratorBase<T, TContext> : IGenerator<T, TContext>, IDis
     private bool _disposed;
 
     protected readonly AstronomicalObjectToggleSettings ObjectToggles;
-    protected readonly TheoreticalAstronomicalObjectToggleSettings TheoreticalObjectToggles;
     protected readonly ParallelismLevel ParallelismLevel = ParallelismLevel.Level0;
     protected TContext Context;
     protected bool Enabled;
@@ -46,7 +45,6 @@ public abstract class GeneratorBase<T, TContext> : IGenerator<T, TContext>, IDis
         GeneratorInvokerService = generatorInvokerService;
         ConfigurationService = configurationService;
         ObjectToggles = ConfigurationService.GetConfiguration<AstronomicalObjectToggleSettings>();
-        TheoreticalObjectToggles = ConfigurationService.GetConfiguration<TheoreticalAstronomicalObjectToggleSettings>();
         _semaphore = new SemaphoreSlim(GetDegreesOfParallelism());
     }
 
