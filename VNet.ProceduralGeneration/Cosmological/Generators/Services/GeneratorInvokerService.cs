@@ -1,16 +1,23 @@
-﻿using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
+﻿using Microsoft.Extensions.Logging;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
+
+// ReSharper disable NotAccessedField.Local
+#pragma warning disable IDE0052
+
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Services
 {
     public class GeneratorInvokerService : IGeneratorInvokerService
     {
         private readonly IGeneratorFactoryService _generatorFactoryService;
+        private readonly ILogger<GeneratorInvokerService> _loggerService;
 
 
-        public GeneratorInvokerService(IGeneratorFactoryService generatorFactoryService)
+        public GeneratorInvokerService(IGeneratorFactoryService generatorFactoryService, ILogger<GeneratorInvokerService> logger)
         {
             _generatorFactoryService = generatorFactoryService;
+            _loggerService = logger;
         }
 
         public async Task<T> Generate<T, TContext>(TContext context, AstronomicalObject parent)
