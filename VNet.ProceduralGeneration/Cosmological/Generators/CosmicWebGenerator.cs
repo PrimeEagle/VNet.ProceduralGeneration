@@ -2,6 +2,8 @@
 using System.Numerics;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services;
+using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
@@ -18,7 +20,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class CosmicWebGenerator : GroupGeneratorBase<CosmicWeb, CosmicWebContext>
 {
-    public CosmicWebGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<CosmicWebGenerator> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
+    public CosmicWebGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<CosmicWebGenerator> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
         Enabled = ObjectToggles.CosmicWebEnabled;
     }
@@ -27,10 +29,10 @@ public class CosmicWebGenerator : GroupGeneratorBase<CosmicWeb, CosmicWebContext
     {
         var intergalacticMediumContext = new IntergalacticMediumContext(self);
         self.IntergalacticMedium = await GeneratorInvokerService.Generate<IntergalacticMedium, IntergalacticMediumContext>(intergalacticMediumContext, self);
-        
+
         var baryonicMatterVoidStructureContext = new BaryonicMatterVoidStructureContext(self);
         self.BaryonicMatterVoidStructure = await GeneratorInvokerService.Generate<BaryonicMatterVoidStructure, BaryonicMatterVoidStructureContext>(baryonicMatterVoidStructureContext, self);
-        
+
         var baryonicMatterSheetStructureContext = new BaryonicMatterSheetStructureContext(self);
         self.BaryonicMatterSheetStructure = await GeneratorInvokerService.Generate<BaryonicMatterSheetStructure, BaryonicMatterSheetStructureContext>(baryonicMatterSheetStructureContext, self);
 
@@ -42,7 +44,7 @@ public class CosmicWebGenerator : GroupGeneratorBase<CosmicWeb, CosmicWebContext
 
 
 
-        if (TheoreticalObjectToggles.DarkMatterAndDarkEnergyEnabled)
+        if (ConfigurationService.GetConfiguration<AstronomicalObjectToggleSettings>().DarkMatterAndDarkEnergyEnabled)
         {
             var darkMatterVoidStructureContext = new DarkMatterVoidStructureContext(self);
             self.DarkMatterVoidStructure = await GeneratorInvokerService.Generate<DarkMatterVoidStructure, DarkMatterVoidStructureContext>(darkMatterVoidStructureContext, self);
@@ -85,7 +87,7 @@ public class CosmicWebGenerator : GroupGeneratorBase<CosmicWeb, CosmicWebContext
 
     protected override void SetMatterType(CosmicWebContext context, CosmicWeb self)
     {
-        self.MatterType = TheoreticalObjectToggles.DarkMatterAndDarkEnergyEnabled ? MatterType.Mixed : MatterType.BaryonicMatter;
+        self.MatterType = ConfigurationService.GetConfiguration<AstronomicalObjectToggleSettings>().DarkMatterAndDarkEnergyEnabled ? MatterType.Mixed : MatterType.BaryonicMatter;
     }
 
     internal override void AssignChildren(CosmicWebContext context, CosmicWeb self)

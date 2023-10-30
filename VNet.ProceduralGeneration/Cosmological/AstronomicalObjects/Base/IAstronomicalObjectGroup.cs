@@ -2,4 +2,5 @@
 
 public interface IAstronomicalObjectGroup : IAstronomicalObject
 {
+    List<IAstronomicalObject> Children { get; set; }
 }

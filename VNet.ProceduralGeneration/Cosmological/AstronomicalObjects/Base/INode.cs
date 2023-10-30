@@ -1,6 +1,6 @@
 ﻿namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base
 {
-    public interface INode
+    public interface INode : IAstronomicalObjectGroup
     {
     }
 }

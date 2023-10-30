@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.ProceduralGeneration.Cosmological.Generators.Services;
@@ -10,7 +11,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class DarkMatterFilamentStructureGenerator : FilamentStructureGenerator<DarkMatterFilamentStructure, DarkMatterFilamentStructureContext>
 {
-    public DarkMatterFilamentStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<DarkMatterFilamentStructureGenerator> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
+    public DarkMatterFilamentStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<DarkMatterFilamentStructureGenerator> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }
 

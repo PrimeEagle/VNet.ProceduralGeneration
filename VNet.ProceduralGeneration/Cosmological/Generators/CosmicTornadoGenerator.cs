@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
 using VNet.ProceduralGeneration.Cosmological.Generators.Base;
 using VNet.ProceduralGeneration.Cosmological.Generators.Services;
@@ -10,7 +11,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class CosmicTornadoGenerator : GeneratorBase<CosmicTornado, CosmicTornadoContext>
 {
-    public CosmicTornadoGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<CosmicTornadoGenerator> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
+    public CosmicTornadoGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<CosmicTornadoGenerator> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }
 

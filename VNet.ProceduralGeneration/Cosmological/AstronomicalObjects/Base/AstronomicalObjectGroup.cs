@@ -28,45 +28,11 @@ public abstract class AstronomicalObjectGroup : AstronomicalObject
     public virtual INoiseAlgorithm? SurfaceNoiseAlgorithm { get; set; }
     public virtual IRandomGenerationAlgorithm? InteriorRandomizationAlgorithm { get; set; }
 
-    internal List<IAstronomicalObject> Children { get; set; }
+    public List<IAstronomicalObject> Children { get; set; }
 
     public List<IUndefinedAstronomicalObject> InteriorObjects { get; set; }
 
     public List<Vector3> WarpedSurface { get; set; }
 
     #endregion Base Properties
-
-    #region Property Calculation Methods
-
-    protected virtual void CalculateAge()
-    {
-        age = Children.Max(c => c.Age);
-    }
-
-    protected virtual void CalculateLifespan()
-    {
-        age = Children.Max(c => c.Lifespan);
-    }
-
-    protected virtual void CalculateMass()
-    {
-        mass = Children.Sum(c => c.Mass);
-    }
-
-    protected virtual void CalculateLuminosity()
-    {
-        luminosity = Children.Sum(c => c.Luminosity);
-    }
-
-    protected virtual void CalculateTemperature()
-    {
-        temperature = Children.Sum(c => c.Luminosity * c.Temperature) / Luminosity;
-    }
-
-    protected override void CalculateAbsoluteMagnitude()
-    {
-        absoluteMagnitude = (float)(-2.5 * Math.Log10(Luminosity) + settings.Advanced.PhysicalConstants.C);
-    }
-
-    #endregion Property Calculation Methods
 }

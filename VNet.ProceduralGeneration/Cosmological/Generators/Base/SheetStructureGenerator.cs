@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
 using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
@@ -13,7 +14,7 @@ public abstract class SheetStructureGenerator<T, TContext> : GroupGeneratorBase<
                                                             where T : SheetStructure, new()
                                                             where TContext : SheetStructureContext
 {
-    protected SheetStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<SheetStructureGenerator<T, TContext>> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
+    protected SheetStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<SheetStructureGenerator<T, TContext>> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }
 }

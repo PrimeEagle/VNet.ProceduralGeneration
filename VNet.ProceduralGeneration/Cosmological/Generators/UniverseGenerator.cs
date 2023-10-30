@@ -1,7 +1,8 @@
-﻿using System.Numerics;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
+using System.Numerics;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
@@ -17,7 +18,10 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class UniverseGenerator : GroupGeneratorBase<Universe, UniverseContext>
 {
-    public UniverseGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<UniverseGenerator> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
+    public UniverseGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService,
+                            IConfigurationService configurationService, ILogger<UniverseGenerator> loggerService,
+                            IAstronomicalObjectCalculationService calculationService)
+                            : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
         Enabled = ObjectToggles.UniverseEnabled;
     }
@@ -86,7 +90,7 @@ public class UniverseGenerator : GroupGeneratorBase<Universe, UniverseContext>
 
     private void GenerateCurvature(UniverseContext context, Universe self)
     {
-        if (self.InflationOccurred)
+        if (CalculationService.CalculateUniverseInflationOccurred(self))
         {
             self.Curvature = CurvatureType.Flat;
         }

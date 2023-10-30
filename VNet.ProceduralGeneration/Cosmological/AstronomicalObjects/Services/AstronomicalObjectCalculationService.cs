@@ -3,12 +3,17 @@ using System.Numerics;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
+using VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 
+// ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBeMadeStatic.Global
 // ReSharper disable MemberCanBeProtected.Global
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable NotAccessedField.Local
+// ReSharper disable UnusedParameter.Global
+#pragma warning disable IDE0060
+#pragma warning disable CA1822
 
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services
@@ -27,7 +32,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services
             Logger = logger;
         }
 
-        public virtual double CalculateSize(AstronomicalObject astroObject)
+        public virtual double CalculateSize(IAstronomicalObject astroObject)
         {
             return ConfigurationService.GetConfiguration<ApplicationSettings>().SizeMeaning switch
             {
@@ -38,7 +43,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services
             };
         }
 
-        public virtual double CalculateDisplayAge(AstronomicalObject astroObject)
+        public virtual double CalculateDisplayAge(IAstronomicalObject astroObject)
         {
             if (ConfigurationService.GetConfiguration<ApplicationSettings>().TimeConversionFactor == 0)
                 return astroObject.Age;
@@ -46,12 +51,12 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services
                 return astroObject.Age * ConfigurationService.GetConfiguration<ApplicationSettings>().TimeConversionFactor;
         }
 
-        public virtual float CalculateAbsoluteMagnitude(AstronomicalObject astroObject)
+        public virtual float CalculateAbsoluteMagnitude(IAstronomicalObject astroObject)
         {
             return (float)(-2.5 * Math.Log10(astroObject.Luminosity) + ConfigurationService.GetConfiguration<PhysicalConstantsSettings>().C);
         }
 
-        public virtual double CalculateDisplayLifespan(AstronomicalObject astroObject)
+        public virtual double CalculateDisplayLifespan(IAstronomicalObject astroObject)
         {
             if (ConfigurationService.GetConfiguration<ApplicationSettings>().TimeConversionFactor == 0)
                 return astroObject.Lifespan;
@@ -59,7 +64,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services
                 return astroObject.Lifespan * ConfigurationService.GetConfiguration<ApplicationSettings>().TimeConversionFactor;
         }
 
-        public virtual double CalculateDisplayMass(AstronomicalObject astroObject)
+        public virtual double CalculateDisplayMass(IAstronomicalObject astroObject)
         {
             if (ConfigurationService.GetConfiguration<ApplicationSettings>().MassConversionFactor == 0)
                 return astroObject.Mass;
@@ -67,7 +72,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services
                 return astroObject.Mass * ConfigurationService.GetConfiguration<ApplicationSettings>().MassConversionFactor;
         }
 
-        public virtual double CalculateDisplayDiameter(AstronomicalObject astroObject)
+        public virtual double CalculateDisplayDiameter(IAstronomicalObject astroObject)
         {
             if (ConfigurationService.GetConfiguration<ApplicationSettings>().LengthConversionFactor == 0)
                 return astroObject.Diameter;
@@ -75,7 +80,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services
                 return astroObject.Diameter * ConfigurationService.GetConfiguration<ApplicationSettings>().LengthConversionFactor;
         }
 
-        public virtual double CalculateDisplayTemperature(AstronomicalObject astroObject)
+        public virtual double CalculateDisplayTemperature(IAstronomicalObject astroObject)
         {
             if (ConfigurationService.GetConfiguration<ApplicationSettings>().TemperatureConversionFactor == 0)
                 return astroObject.Temperature;
@@ -83,7 +88,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services
                 return astroObject.Temperature * ConfigurationService.GetConfiguration<ApplicationSettings>().LengthConversionFactor;
         }
 
-        public virtual float CalculateDisplayLuminosity(AstronomicalObject astroObject)
+        public virtual float CalculateDisplayLuminosity(IAstronomicalObject astroObject)
         {
             if (ConfigurationService.GetConfiguration<ApplicationSettings>().LuminosityConversionFactor == 0)
                 return astroObject.Luminosity;
@@ -91,7 +96,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services
                 return astroObject.Luminosity * ConfigurationService.GetConfiguration<ApplicationSettings>().LuminosityConversionFactor;
         }
 
-        public virtual Vector3 CalculateDisplayPosition(AstronomicalObject astroObject)
+        public virtual Vector3 CalculateDisplayPosition(IAstronomicalObject astroObject)
         {
             if (ConfigurationService.GetConfiguration<ApplicationSettings>().LengthConversionFactor == 0)
                 return astroObject.Position;
@@ -101,7 +106,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services
                     astroObject.Position.Z * (float)ConfigurationService.GetConfiguration<ApplicationSettings>().LengthConversionFactor);
         }
 
-        public virtual double CalculateDisplayRadius(AstronomicalObject astroObject)
+        public virtual double CalculateDisplayRadius(IAstronomicalObject astroObject)
         {
             if (ConfigurationService.GetConfiguration<ApplicationSettings>().LengthConversionFactor == 0)
                 return CalculateRadius(astroObject);
@@ -109,7 +114,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services
                 return astroObject.Diameter * ConfigurationService.GetConfiguration<ApplicationSettings>().LengthConversionFactor;
         }
 
-        public virtual double CalculateDisplayVolume(AstronomicalObject astroObject)
+        public virtual double CalculateDisplayVolume(IAstronomicalObject astroObject)
         {
             if (ConfigurationService.GetConfiguration<ApplicationSettings>().LengthConversionFactor == 0)
                 return CalculateVolume(astroObject);
@@ -117,7 +122,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services
                 return astroObject.Diameter * Math.Pow(ConfigurationService.GetConfiguration<ApplicationSettings>().LengthConversionFactor, 3);
         }
 
-        public virtual double CalculateDisplaySize(AstronomicalObject astroObject)
+        public virtual double CalculateDisplaySize(IAstronomicalObject astroObject)
         {
             return ConfigurationService.GetConfiguration<ApplicationSettings>().SizeMeaning switch
             {
@@ -128,7 +133,7 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services
             };
         }
 
-        public virtual double CalculateDisplayDensity(AstronomicalObject astroObject)
+        public virtual double CalculateDisplayDensity(IAstronomicalObject astroObject)
         {
             return CalculateDisplayMass(astroObject) / CalculateDisplayVolume(astroObject);
         }
@@ -142,24 +147,85 @@ namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services
             return apparentMagnitude;
         }
 
-        public virtual double CalculateRadius(AstronomicalObject astroObject)
+        public virtual float CalculateRadius(IAstronomicalObject astroObject)
         {
             return astroObject.Diameter / 2;
         }
 
-        public virtual double CalculateVolume(AstronomicalObject astroObject)
+        public virtual double CalculateVolume(IAstronomicalObject astroObject)
         {
             return 4.0 / 3.0 * Math.PI * Math.Pow(CalculateRadius(astroObject), 3);
         }
 
-        public virtual double CalculateDensity(AstronomicalObject astroObject)
+        public virtual double CalculateDensity(IAstronomicalObject astroObject)
         {
             return astroObject.Mass / CalculateVolume(astroObject);
         }
 
-        public virtual float CalculateDisplayAbsoluteMagnitude(AstronomicalObject astroObject)
+        public virtual float CalculateDisplayAbsoluteMagnitude(IAstronomicalObject astroObject)
         {
             return CalculateAbsoluteMagnitude(astroObject);
+        }
+
+        public double CalculateUniverseVolume(Universe universe)
+        {
+            return universe.DimensionX * universe.DimensionY * universe.DimensionZ;
+        }
+
+        public double CalculateUniverseCriticalDensity() // kg/AU³
+        {
+            return 3 * Math.Pow(1.496e11, 3) * Math.Pow(ConfigurationService.GetConfiguration<PhysicalConstantsSettings>().H0 * 2.09e-13, 2) / (8 * Math.PI * ConfigurationService.GetConfiguration<PhysicalConstantsSettings>().G);
+        }
+
+        public double CalculateUniverseExpansionRate(Universe universe) // kg/s/Mpc
+        {
+            var omegaB = universe.BaryonicMatterPercent / 100.0;
+            var omegaDm = universe.DarkMatterPercent / 100.0;
+            var omegaLambda = universe.DarkEnergyPercent / 100.0;
+
+            var h2 = Math.Pow(ConfigurationService.GetConfiguration<PhysicalConstantsSettings>().H0, 2) * (omegaB + omegaDm + omegaLambda);
+
+            return Math.Sqrt(h2);
+        }
+
+        public float CalculateUniverseCmbVariations(Universe universe) // Kelvin
+        {
+            return Math.Abs(ConfigurationService.GetConfiguration<PhysicalConstantsSettings>().BaselineCosmicMicrowaveBackground - universe.CosmicMicrowaveBackground);
+        }
+
+        public bool CalculateUniverseInflationOccurred(Universe universe)
+        {
+            return ConfigurationService.GetConfiguration<UniverseSettings>().InflationRange.Start > 0;
+        }
+
+        public float CalculateGroupAbsoluteMagnitude(IAstronomicalObjectGroup group)
+        {
+            return (float)(-2.5 * Math.Log10(CalculateGroupLuminosity(group)) + ConfigurationService.GetConfiguration<PhysicalConstantsSettings>().C);
+        }
+
+        public float CalculateGroupAge(IAstronomicalObjectGroup group)
+        {
+            return group.Children.Max(c => c.Age);
+        }
+
+        public float CalculateGroupLifespan(IAstronomicalObjectGroup group)
+        {
+            return group.Children.Max(c => c.Lifespan);
+        }
+
+        public double CalculateGroupMass(IAstronomicalObjectGroup group)
+        {
+            return group.Children.Sum(c => c.Mass);
+        }
+
+        public float CalculateGroupLuminosity(IAstronomicalObjectGroup group)
+        {
+            return group.Children.Sum(c => c.Luminosity);
+        }
+
+        public float CalculateGroupTemperature(IAstronomicalObjectGroup group)
+        {
+            return group.Children.Sum(c => c.Luminosity * c.Temperature) / CalculateGroupLuminosity(group);
         }
     }
 }

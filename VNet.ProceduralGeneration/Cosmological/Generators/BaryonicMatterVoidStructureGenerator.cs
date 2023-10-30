@@ -2,6 +2,7 @@
 using System.Numerics;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
@@ -14,7 +15,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class BaryonicMatterVoidStructureGenerator : VoidStructureGenerator<BaryonicMatterVoidStructure, BaryonicMatterVoidStructureContext>
 {
-    public BaryonicMatterVoidStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<BaryonicMatterVoidStructureGenerator> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
+    public BaryonicMatterVoidStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<BaryonicMatterVoidStructureGenerator> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
         Enabled = ObjectToggles.BaryonicMatterVoidStructureEnabled;
     }
@@ -26,7 +27,7 @@ public class BaryonicMatterVoidStructureGenerator : VoidStructureGenerator<Baryo
             DiameterCreateRange = ConfigurationService.GetConfiguration<BaryonicMatterVoidSettings>().DiameterRange,
             RandomizationAlgorithm = ConfigurationService.GetConfiguration<CosmicWebSettings>().RandomGenerationAlgorithm,
         };
-        
+
         var volumeSize = ConfigurationService.GetConfiguration<BasicSettings>().MapDimensions.X * ConfigurationService.GetConfiguration<BasicSettings>().MapDimensions.Y * ConfigurationService.GetConfiguration<BasicSettings>().MapDimensions.Z;
         var targetTotalVoidVolume = volumeSize * self.VolumeCoveredByPercent / 100;
         var totalVoidVolume = 0d;
@@ -59,7 +60,7 @@ public class BaryonicMatterVoidStructureGenerator : VoidStructureGenerator<Baryo
             }
 
             self.BaryonicMatterVoids.Add(newBaryonicMatterVoid);
-            totalVoidVolume += newBaryonicMatterVoid.Volume;
+            totalVoidVolume += CalculationService.CalculateVolume(newBaryonicMatterVoid);
         }
     }
 

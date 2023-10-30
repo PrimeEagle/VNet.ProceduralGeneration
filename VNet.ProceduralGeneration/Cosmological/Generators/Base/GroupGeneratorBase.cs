@@ -3,13 +3,16 @@ using System.Numerics;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
 using VNet.ProceduralGeneration.Cosmological.Enum;
 using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
+
 // ReSharper disable MemberCanBeMadeStatic.Local
 #pragma warning disable CA1822
+
 
 namespace VNet.ProceduralGeneration.Cosmological.Generators.Base;
 
@@ -17,7 +20,10 @@ public abstract class GroupGeneratorBase<T, TContext> : GeneratorBase<T, TContex
                                                         where T : AstronomicalObjectGroup, new()
                                                         where TContext : GroupContextBase
 {
-    protected GroupGeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<GroupGeneratorBase<T, TContext>> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
+    protected GroupGeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, 
+                                 IConfigurationService configurationService, ILogger<GroupGeneratorBase<T, TContext>> loggerService,
+                                 IAstronomicalObjectCalculationService calculationService) 
+                                 : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }
 
@@ -106,7 +112,7 @@ public abstract class GroupGeneratorBase<T, TContext> : GeneratorBase<T, TContex
 
     private double ApplyDarkEnergyEffects(double force, T self, int i, int j, float timeInYears, Vector3 direction, float distance)
     {
-        var darkEnergyInfluence = self.Universe.DarkEnergyPercent * distance * self.Universe.ExpansionRate * timeInYears;
+        var darkEnergyInfluence = self.Universe.DarkEnergyPercent * distance * CalculationService.CalculateUniverseExpansionRate(self.Universe) * timeInYears;
         var darkEnergyForce = direction * (float)darkEnergyInfluence;
 
         return force - darkEnergyForce.Length();

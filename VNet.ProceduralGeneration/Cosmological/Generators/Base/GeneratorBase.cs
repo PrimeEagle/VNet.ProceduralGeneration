@@ -2,6 +2,7 @@
 using System.Numerics;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
 using VNet.ProceduralGeneration.Cosmological.Enum;
@@ -35,15 +36,21 @@ public abstract class GeneratorBase<T, TContext> : IGenerator<T, TContext>, IDis
     protected IEventAggregator EventAggregator { get; }
     protected IGeneratorInvokerService GeneratorInvokerService { get; }
     protected IConfigurationService ConfigurationService { get; }
+    protected ILogger<GeneratorBase<T, TContext>> Logger { get; }
+    protected IAstronomicalObjectCalculationService CalculationService { get; }
 
 
 
 
-    protected GeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<GeneratorBase<T, TContext>> loggerService)
+    protected GeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, 
+                            IConfigurationService configurationService, ILogger<GeneratorBase<T, TContext>> loggerService,
+                            IAstronomicalObjectCalculationService calculationService)
     {
         EventAggregator = eventAggregator;
         GeneratorInvokerService = generatorInvokerService;
         ConfigurationService = configurationService;
+        Logger = loggerService;
+        CalculationService = calculationService;
         ObjectToggles = ConfigurationService.GetConfiguration<AstronomicalObjectToggleSettings>();
         _semaphore = new SemaphoreSlim(GetDegreesOfParallelism());
     }

@@ -3,6 +3,7 @@ using System.Numerics;
 using VNet.Configuration;
 using VNet.Mathematics.LinearAlgebra.Matrix;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services;
 using VNet.ProceduralGeneration.Cosmological.Configuration;
 using VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjects;
 using VNet.ProceduralGeneration.Cosmological.Contexts;
@@ -359,7 +360,7 @@ public partial class CosmicWebGeneratorEvo : GroupGeneratorBase<CosmicWeb, Cosmi
         {
             var currentTemperature = _temperatureVolume[i, j, k];
 
-            currentTemperature *= 1.0 - (self.Universe.ExpansionRate * timeInYears);
+            currentTemperature *= 1.0 - (CalculationService.CalculateUniverseExpansionRate(self.Universe) * timeInYears);
 
             var gravitationalHeatingFactor = CalculateGravitationalHeating(i, j, k);
             _temperatureVolume[i, j, k] = currentTemperature;
@@ -474,7 +475,7 @@ public partial class CosmicWebGeneratorEvo : GroupGeneratorBase<CosmicWeb, Cosmi
     private void ApplyDarkEnergy(CosmicWebContext context, CosmicWeb self, double timeInYears)
     {
         var universalExpansionDeltas = new Vector3[Context.MapX, Context.MapY, Context.MapZ];
-        var expansionRate = (float)self.Universe.ExpansionRate;
+        var expansionRate = (float)CalculationService.CalculateUniverseExpansionRate(self.Universe);
 
         VolumeFunctions.RunVolumeFunction(Context.MapX, Context.MapY, Context.MapZ, (i, j, k) =>
         {
@@ -682,7 +683,7 @@ public partial class CosmicWebGeneratorEvo : GroupGeneratorBase<CosmicWeb, Cosmi
         throw new NotImplementedException();
     }
 
-    public CosmicWebGeneratorEvo(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<CosmicWebGeneratorEvo> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
+    public CosmicWebGeneratorEvo(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<CosmicWebGeneratorEvo> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }
 }

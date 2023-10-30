@@ -2,6 +2,7 @@
 using System.Numerics;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
 using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
@@ -17,7 +18,7 @@ public abstract class VoidGeneratorBase<T, TContext> : GroupGeneratorBase<T, TCo
                                                         where T : Void, new()
                                                         where TContext : VoidContext
 {
-    protected VoidGeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<VoidGeneratorBase<T, TContext>> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
+    protected VoidGeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<VoidGeneratorBase<T, TContext>> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }
 
@@ -57,14 +58,14 @@ public abstract class VoidGeneratorBase<T, TContext> : GroupGeneratorBase<T, TCo
                 context.InteriorObjectRandomizationAlgorithm.NextSingle() * self.Diameter,
                 context.InteriorObjectRandomizationAlgorithm.NextSingle() * self.Diameter,
                 context.InteriorObjectRandomizationAlgorithm.NextSingle() * self.Diameter
-            ) - new Vector3(self.Radius, self.Radius, self.Radius) + self.Position;
+            ) - new Vector3(CalculationService.CalculateRadius(self), CalculationService.CalculateRadius(self), CalculationService.CalculateRadius(self)) + self.Position;
 
             var randomObject = new UndefinedAstronomicalObject
             {
                 Position = randomPoint
             };
 
-            if (!((randomPoint - self.Position).Length() < self.Radius) || PointsOverlap(internalObjects, randomObject)) continue;
+            if (!((randomPoint - self.Position).Length() < CalculationService.CalculateRadius(self)) || PointsOverlap(internalObjects, randomObject)) continue;
             var newInteriorObject = new UndefinedAstronomicalObject
             {
                 Position = randomPoint

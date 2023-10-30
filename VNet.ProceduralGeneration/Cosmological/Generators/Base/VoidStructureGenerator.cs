@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using VNet.Configuration;
 using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
+using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services;
 using VNet.ProceduralGeneration.Cosmological.Contexts.Base;
 using VNet.ProceduralGeneration.Cosmological.Generators.Services;
 using VNet.System.Events;
@@ -20,7 +21,7 @@ public abstract class VoidStructureGenerator<T, TContext> : GroupGeneratorBase<T
                                                             where T : VoidStructure, new()
                                                             where TContext : VoidStructureContext
 {
-    protected VoidStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<VoidStructureGenerator<T, TContext>> loggerService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService)
+    protected VoidStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<VoidStructureGenerator<T, TContext>> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }
 
@@ -31,7 +32,7 @@ public abstract class VoidStructureGenerator<T, TContext> : GroupGeneratorBase<T
         foreach (var existingVoid in existingVoids)
         {
             var distanceBetweenCenters = Vector3.Distance(voidItem.Position, existingVoid.Position);
-            var combinedRadii = voidItem.Radius + existingVoid.Radius;
+            var combinedRadii = CalculationService.CalculateRadius(voidItem) + CalculationService.CalculateRadius(existingVoid);
 
             if (distanceBetweenCenters < combinedRadii) overlapAmount += combinedRadii - distanceBetweenCenters;
         }
