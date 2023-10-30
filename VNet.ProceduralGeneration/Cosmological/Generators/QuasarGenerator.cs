@@ -11,7 +11,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class QuasarGenerator : GeneratorBase<Quasar, QuasarContext>
 {
-    public QuasarGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<QuasarGenerator> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
+    public QuasarGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<QuasarGenerator> loggerService, IAstronomicalCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }
 

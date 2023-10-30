@@ -11,7 +11,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class BaryonicMatterNodeGenerator : NodeGeneratorBase<BaryonicMatterNode, BaryonicMatterNodeContext>
 {
-    public BaryonicMatterNodeGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<BaryonicMatterNodeGenerator> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
+    public BaryonicMatterNodeGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<BaryonicMatterNodeGenerator> loggerService, IAstronomicalCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
         Enabled = ObjectToggles.BaryonicMatterNodesEnabled;
     }

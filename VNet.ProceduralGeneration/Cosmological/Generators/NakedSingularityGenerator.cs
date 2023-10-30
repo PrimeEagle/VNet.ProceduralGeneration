@@ -11,7 +11,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class NakedSingularityGenerator : GeneratorBase<NakedSingularity, NakedSingularityContext>
 {
-    public NakedSingularityGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<NakedSingularityGenerator> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
+    public NakedSingularityGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<NakedSingularityGenerator> loggerService, IAstronomicalCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }
 

@@ -11,7 +11,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class JumboGenerator : GeneratorBase<Jumbo, JumboContext>
 {
-    public JumboGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<JumboGenerator> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
+    public JumboGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<JumboGenerator> loggerService, IAstronomicalCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }
 

@@ -13,7 +13,7 @@ public class TransdimensionalWormholeGenerator : GeneratorBase<TransdimensionalW
 {
     public TransdimensionalWormholeGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService,
                                         IConfigurationService configurationService, ILogger<TransdimensionalWormholeGenerator> loggerService,
-                                        IAstronomicalObjectCalculationService calculationService)
+                                        IAstronomicalCalculationService calculationService)
                             : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }

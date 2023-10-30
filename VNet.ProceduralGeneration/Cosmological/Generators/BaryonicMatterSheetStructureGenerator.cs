@@ -12,7 +12,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 public class BaryonicMatterSheetStructureGenerator : SheetStructureGenerator<BaryonicMatterSheetStructure, BaryonicMatterSheetStructureContext>
 
 {
-    public BaryonicMatterSheetStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<BaryonicMatterSheetStructureGenerator> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
+    public BaryonicMatterSheetStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<BaryonicMatterSheetStructureGenerator> loggerService, IAstronomicalCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }
 

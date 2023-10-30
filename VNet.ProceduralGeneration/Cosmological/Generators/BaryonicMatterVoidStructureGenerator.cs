@@ -15,7 +15,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class BaryonicMatterVoidStructureGenerator : VoidStructureGenerator<BaryonicMatterVoidStructure, BaryonicMatterVoidStructureContext>
 {
-    public BaryonicMatterVoidStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<BaryonicMatterVoidStructureGenerator> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
+    public BaryonicMatterVoidStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<BaryonicMatterVoidStructureGenerator> loggerService, IAstronomicalCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
         Enabled = ObjectToggles.BaryonicMatterVoidStructureEnabled;
     }

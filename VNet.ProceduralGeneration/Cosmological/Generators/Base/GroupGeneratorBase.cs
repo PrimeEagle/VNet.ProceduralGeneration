@@ -22,7 +22,7 @@ public abstract class GroupGeneratorBase<T, TContext> : GeneratorBase<T, TContex
 {
     protected GroupGeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, 
                                  IConfigurationService configurationService, ILogger<GroupGeneratorBase<T, TContext>> loggerService,
-                                 IAstronomicalObjectCalculationService calculationService) 
+                                 IAstronomicalCalculationService calculationService) 
                                  : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }

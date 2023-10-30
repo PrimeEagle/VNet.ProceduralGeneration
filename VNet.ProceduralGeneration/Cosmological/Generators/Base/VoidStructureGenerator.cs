@@ -21,7 +21,7 @@ public abstract class VoidStructureGenerator<T, TContext> : GroupGeneratorBase<T
                                                             where T : VoidStructure, new()
                                                             where TContext : VoidStructureContext
 {
-    protected VoidStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<VoidStructureGenerator<T, TContext>> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
+    protected VoidStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<VoidStructureGenerator<T, TContext>> loggerService, IAstronomicalCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }
 

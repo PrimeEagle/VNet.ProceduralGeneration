@@ -12,7 +12,7 @@ public abstract class NodeGeneratorBase<T, TContext> : GroupGeneratorBase<T, TCo
     where T : Node, new()
     where TContext : NodeContext
 {
-    protected NodeGeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<NodeGeneratorBase<T, TContext>> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
+    protected NodeGeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<NodeGeneratorBase<T, TContext>> loggerService, IAstronomicalCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }
 }

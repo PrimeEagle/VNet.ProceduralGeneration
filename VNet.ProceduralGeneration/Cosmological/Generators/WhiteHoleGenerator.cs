@@ -13,7 +13,7 @@ public class WhiteHoleGenerator : GeneratorBase<WhiteHole, WhiteHoleContext>
 {
     public WhiteHoleGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService,
                               IConfigurationService configurationService, ILogger<WhiteHoleGenerator> loggerService,
-                              IAstronomicalObjectCalculationService calculationService)
+                              IAstronomicalCalculationService calculationService)
                               : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }

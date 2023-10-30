@@ -683,7 +683,7 @@ public partial class CosmicWebGeneratorEvo : GroupGeneratorBase<CosmicWeb, Cosmi
         throw new NotImplementedException();
     }
 
-    public CosmicWebGeneratorEvo(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<CosmicWebGeneratorEvo> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
+    public CosmicWebGeneratorEvo(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<CosmicWebGeneratorEvo> loggerService, IAstronomicalCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }
 }

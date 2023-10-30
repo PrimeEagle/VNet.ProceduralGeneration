@@ -20,7 +20,7 @@ public class UniverseGenerator : GroupGeneratorBase<Universe, UniverseContext>
 {
     public UniverseGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService,
                             IConfigurationService configurationService, ILogger<UniverseGenerator> loggerService,
-                            IAstronomicalObjectCalculationService calculationService)
+                            IAstronomicalCalculationService calculationService)
                             : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
         Enabled = ObjectToggles.UniverseEnabled;

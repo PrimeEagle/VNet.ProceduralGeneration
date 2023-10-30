@@ -13,7 +13,7 @@ public class VoidGalaxyGenerator : GroupGeneratorBase<VoidGalaxy, VoidGalaxyCont
 {
     public VoidGalaxyGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService,
                             IConfigurationService configurationService, ILogger<VoidGalaxyGenerator> loggerService,
-                            IAstronomicalObjectCalculationService calculationService)
+                            IAstronomicalCalculationService calculationService)
                             : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }

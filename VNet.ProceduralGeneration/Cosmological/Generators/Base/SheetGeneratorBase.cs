@@ -12,7 +12,7 @@ public abstract class SheetGeneratorBase<T, TContext> : GroupGeneratorBase<T, TC
     where T : Sheet, new()
     where TContext : SheetContext
 {
-    protected SheetGeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<SheetGeneratorBase<T, TContext>> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
+    protected SheetGeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<SheetGeneratorBase<T, TContext>> loggerService, IAstronomicalCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }
 }

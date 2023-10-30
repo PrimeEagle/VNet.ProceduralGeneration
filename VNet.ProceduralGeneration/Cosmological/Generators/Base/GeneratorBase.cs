@@ -37,14 +37,14 @@ public abstract class GeneratorBase<T, TContext> : IGenerator<T, TContext>, IDis
     protected IGeneratorInvokerService GeneratorInvokerService { get; }
     protected IConfigurationService ConfigurationService { get; }
     protected ILogger<GeneratorBase<T, TContext>> Logger { get; }
-    protected IAstronomicalObjectCalculationService CalculationService { get; }
+    protected IAstronomicalCalculationService CalculationService { get; }
 
 
 
 
     protected GeneratorBase(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, 
                             IConfigurationService configurationService, ILogger<GeneratorBase<T, TContext>> loggerService,
-                            IAstronomicalObjectCalculationService calculationService)
+                            IAstronomicalCalculationService calculationService)
     {
         EventAggregator = eventAggregator;
         GeneratorInvokerService = generatorInvokerService;

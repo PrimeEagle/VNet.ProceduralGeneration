@@ -13,7 +13,7 @@ public abstract class FilamentStructureGenerator<T, TContext> : GroupGeneratorBa
                                                                 where T : FilamentStructure, new()
                                                                 where TContext : FilamentStructureContext
 {
-    protected FilamentStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<FilamentStructureGenerator<T, TContext>> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
+    protected FilamentStructureGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<FilamentStructureGenerator<T, TContext>> loggerService, IAstronomicalCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
     }
 }

@@ -3,7 +3,7 @@ using VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Base;
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services;
 
-public interface IAstronomicalObjectCalculationService
+public interface IAstronomicalCalculationService
 {
     double CalculateSize(IAstronomicalObject astroObject);
     double CalculateDisplayAge(IAstronomicalObject astroObject);

@@ -20,7 +20,7 @@ namespace VNet.ProceduralGeneration.Cosmological.Generators;
 
 public class CosmicWebGenerator : GroupGeneratorBase<CosmicWeb, CosmicWebContext>
 {
-    public CosmicWebGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<CosmicWebGenerator> loggerService, IAstronomicalObjectCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
+    public CosmicWebGenerator(IEventAggregator eventAggregator, IGeneratorInvokerService generatorInvokerService, IConfigurationService configurationService, ILogger<CosmicWebGenerator> loggerService, IAstronomicalCalculationService calculationService) : base(eventAggregator, generatorInvokerService, configurationService, loggerService, calculationService)
     {
         Enabled = ObjectToggles.CosmicWebEnabled;
     }

@@ -12,21 +12,19 @@ using VNet.ProceduralGeneration.Cosmological.Enum;
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable NotAccessedField.Local
 // ReSharper disable UnusedParameter.Global
-#pragma warning disable IDE0060
-#pragma warning disable CA1822
 
 
 namespace VNet.ProceduralGeneration.Cosmological.AstronomicalObjects.Services
 {
-    public class AstronomicalObjectCalculationService
+    public class AstronomicalCalculationService : IAstronomicalCalculationService
     {
         protected readonly IConfigurationService ConfigurationService;
-        protected readonly ILogger<AstronomicalObjectCalculationService> Logger;
+        protected readonly ILogger<AstronomicalCalculationService> Logger;
 
 
 
 
-        public AstronomicalObjectCalculationService(IConfigurationService configurationService, ILogger<AstronomicalObjectCalculationService> logger)
+        public AstronomicalCalculationService(IConfigurationService configurationService, ILogger<AstronomicalCalculationService> logger)
         {
             ConfigurationService = configurationService;
             Logger = logger;
