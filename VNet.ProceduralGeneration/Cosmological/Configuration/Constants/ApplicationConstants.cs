@@ -1,6 +1,8 @@
 ﻿using VNet.Mathematics.Randomization.Generation;
 using VNet.ProceduralGeneration.Cosmological.Enum;
+
 // ReSharper disable CheckNamespace
+
 
 namespace VNet.ProceduralGeneration.Cosmological.Configuration;
 
