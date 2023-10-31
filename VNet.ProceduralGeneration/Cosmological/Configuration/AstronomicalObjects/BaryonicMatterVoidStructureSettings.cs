@@ -9,11 +9,6 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjec
 
 public class BaryonicMatterVoidStructureSettings
 {
-    [Required]
-    [DisplayName("Random Generation Algorithm")]
-    [Tooltip("The algorithm used during object generation to generate random values.")]
-    public IRandomGenerationAlgorithm RandomGenerationAlgorithm { get; init; }
-
     [RangeLimitedToPercent<double>]
     [DisplayName("")]
     [Tooltip("")]
@@ -23,6 +18,16 @@ public class BaryonicMatterVoidStructureSettings
     [DisplayName("")]
     [Tooltip("")]
     public Range<float> OverlapRange { get; set; }
+
+    [Range(0, 5)]
+    [DisplayName("Parallelism Level")]
+    [Tooltip("The level of parallelism used during generation. Higher numbers mean more parallel processes. Value = 0 means no parallelism.")]
+    public int ParallelismLevel { get; init; }
+
+    [Required]
+    [DisplayName("Random Generation Algorithm")]
+    [Tooltip("The algorithm used during object generation to generate random values.")]
+    public IRandomGenerationAlgorithm RandomGenerationAlgorithm { get; init; }
 
     [RangeLimitedToPercent<double>]
     [DisplayName("")]
@@ -38,5 +43,6 @@ public class BaryonicMatterVoidStructureSettings
         OverlapRange = Constants.Advanced.Objects.BaryonicMatterVoidStructure.OverlapRange;
         OverlappingPercentRange = Constants.Advanced.Objects.BaryonicMatterVoidStructure.OverlappingPercentRange;
         RandomGenerationAlgorithm = Constants.Advanced.Objects.BaryonicMatterVoidStructure.RandomGenerationAlgorithm;
+        ParallelismLevel = Constants.Advanced.Objects.BaryonicMatterVoidStructure.ParallelismLevel;
     }
 }

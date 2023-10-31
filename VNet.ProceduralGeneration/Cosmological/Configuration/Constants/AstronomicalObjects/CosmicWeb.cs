@@ -17,6 +17,7 @@ internal static partial class Constants
         {
             internal static partial class CosmicWeb
             {
+                internal static Range<float> CosmicMicrowaveBackgroundRange { get; } = new(2.0f, 3.0f);
                 internal static float DensityThresholdForStructureIdentification { get; } = 0.5f;
                 internal static float DensityThresholdForVoidIdentification { get; } = 0.2f;
                 internal static float EvolutionBaryonicFeedbackSpread { get; } = 1.2f;
@@ -51,12 +52,12 @@ internal static partial class Constants
                 internal static float EvolutionTemperatureIncreaseDueToShockHeating { get; } = 10.0f;
                 internal static INoiseAlgorithm EvolutionTemperatureNoiseAlgorithm { get; } = new PerlinNoise(new PerlinNoiseAlgorithmArgs());
                 internal static float EvolutionTimeStep { get; } = 1.0f;
+                internal static float GravitationalHeatingEfficiencyPercent { get; } = 10.0f;
                 internal static int HeightmapGaussianKernelSize { get; } = 3;
                 internal static float HeightmapGaussianSigma { get; } = 1.0f;
+                internal static int ParallelismLevel { get; } = 0;
                 internal static IRandomGenerationAlgorithm RandomGenerationAlgorithm { get; } = new DotNetGenerator();
                 internal static float SigmaForStructureIdentification { get; } = 1.0f;
-                internal static Range<float> CosmicMicrowaveBackgroundRange { get; } = new(2.0f, 3.0f);
-                internal static float GravitationalHeatingEfficiencyPercent { get; } = 10.0f;
             }
         }
     }

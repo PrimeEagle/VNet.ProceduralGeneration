@@ -12,6 +12,7 @@ internal static partial class Constants
         {
             internal static class BaryonicMatterNodeStructure
             {
+                internal static int ParallelismLevel { get; } = 0;
                 internal static IRandomGenerationAlgorithm RandomGenerationAlgorithm { get; } = new DotNetGenerator();
             }
         }

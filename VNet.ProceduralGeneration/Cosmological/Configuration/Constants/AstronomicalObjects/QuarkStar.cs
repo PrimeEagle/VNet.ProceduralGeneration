@@ -10,12 +10,10 @@ internal static partial class Constants
     {
         internal static partial class Objects
         {
-            internal static partial class Theoretical
+            internal static class QuarkStar
             {
-                internal static class QuarkStar
-                {
-                    internal static IRandomGenerationAlgorithm RandomGenerationAlgorithm { get; } = new DotNetGenerator();
-                }
+                internal static int ParallelismLevel { get; } = 0;
+                internal static IRandomGenerationAlgorithm RandomGenerationAlgorithm { get; } = new DotNetGenerator();
             }
         }
     }

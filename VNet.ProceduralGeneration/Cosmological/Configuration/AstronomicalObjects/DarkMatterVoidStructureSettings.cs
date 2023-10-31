@@ -19,24 +19,27 @@ public class DarkMatterVoidStructureSettings
     [Tooltip("")]
     public Range<float> OverlapRange { get; set; }
 
-    [RangeLimitedToPercent<double>]
-    [DisplayName("")]
-    [Tooltip("")]
-    public Range<float> VolumeCoveredByPercentRange { get; set; }
+    [Range(0, 5)]
+    [DisplayName("Parallelism Level")]
+    [Tooltip("The level of parallelism used during generation. Higher numbers mean more parallel processes. Value = 0 means no parallelism.")]
+    public int ParallelismLevel { get; init; }
 
     [Required]
     [DisplayName("Random Generation Algorithm")]
     [Tooltip("The algorithm used during object generation to generate random values.")]
     public IRandomGenerationAlgorithm RandomGenerationAlgorithm { get; init; }
 
-
-
+    [RangeLimitedToPercent<double>]
+    [DisplayName("")]
+    [Tooltip("")]
+    public Range<float> VolumeCoveredByPercentRange { get; set; }
 
     public DarkMatterVoidStructureSettings()
     {
-        OverlapRange = Constants.Advanced.Objects.Theoretical.DarkMatterVoidStructure.OverlapRange;
-        OverlappingPercentRange = Constants.Advanced.Objects.Theoretical.DarkMatterVoidStructure.OverlappingPercentRange;
-        VolumeCoveredByPercentRange = Constants.Advanced.Objects.Theoretical.DarkMatterVoidStructure.VolumeCoveredByPercentRange;
-        RandomGenerationAlgorithm = Constants.Advanced.Objects.Theoretical.DarkMatterVoidStructure.RandomGenerationAlgorithm;
+        OverlapRange = Constants.Advanced.Objects.DarkMatterVoidStructure.OverlapRange;
+        OverlappingPercentRange = Constants.Advanced.Objects.DarkMatterVoidStructure.OverlappingPercentRange;
+        VolumeCoveredByPercentRange = Constants.Advanced.Objects.DarkMatterVoidStructure.VolumeCoveredByPercentRange;
+        RandomGenerationAlgorithm = Constants.Advanced.Objects.DarkMatterVoidStructure.RandomGenerationAlgorithm;
+        ParallelismLevel = Constants.Advanced.Objects.DarkMatterVoidStructure.ParallelismLevel;
     }
 }

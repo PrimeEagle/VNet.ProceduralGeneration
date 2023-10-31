@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using VNet.Configuration;
 using VNet.Configuration.Attributes;
 using VNet.Configuration.Attributes.Validation;
 using VNet.Mathematics.Randomization.Generation;
@@ -11,15 +10,10 @@ namespace VNet.ProceduralGeneration.Cosmological.Configuration.AstronomicalObjec
 
 public class CosmicWebSettings
 {
-    [Range(1, 99)]
-    [DisplayName("Heightmap Gaussian Kernel Size")]
-    [Tooltip("This value creates an n x n grid and, for each pixel, looks at other pixels contained in the grid to determine the amount of blur to apply.")]
-    public int HeightmapGaussianKernelSize { get; init; }
-
-    [Range(0, float.MaxValue)]
-    [DisplayName("Heightmap Gaussian Sigma")]
-    [Tooltip("The amount of gaussian blur to apply to the Heightmap Image File (0 = none).")]
-    public float HeightmapGaussianSigma { get; init; }
+    [Required]
+    [DisplayName("")]
+    [Tooltip("")]
+    public VNet.Configuration.Range<float> CosmicMicrowaveBackgroundRange { get; set; }
 
     [DisplayName("")]
     [Tooltip("")]
@@ -144,10 +138,6 @@ public class CosmicWebSettings
 
     [DisplayName("")]
     [Tooltip("")]
-    public double SigmaForStructureIdentification { get; set; }
-
-    [DisplayName("")]
-    [Tooltip("")]
     public double EvolutionStarFormationMaximumTemperatureThreshold { get; set; }
 
     [DisplayName("")]
@@ -171,23 +161,34 @@ public class CosmicWebSettings
     [Tooltip("")]
     public double EvolutionTimeStep { get; set; }
 
-    [Required]
-    [DisplayName("Random Generation Algorithm")]
-    [Tooltip("The algorithm used during object generation to generate random values.")]
-    public IRandomGenerationAlgorithm RandomGenerationAlgorithm { get; init; }
-
-    [Required]
-    [DisplayName("")]
-    [Tooltip("")]
-    public VNet.Configuration.Range<float> CosmicMicrowaveBackgroundRange { get; set; }
-
     [Range(0, 1)]
     [DisplayName("Gravitational Heating Efficiency Percent")]
     [Tooltip("")]
     public float GravitationalHeatingEfficiencyPercent { get; set; }
 
+    [Range(1, 99)]
+    [DisplayName("Heightmap Gaussian Kernel Size")]
+    [Tooltip("This value creates an n x n grid and, for each pixel, looks at other pixels contained in the grid to determine the amount of blur to apply.")]
+    public int HeightmapGaussianKernelSize { get; init; }
 
+    [Range(0, float.MaxValue)]
+    [DisplayName("Heightmap Gaussian Sigma")]
+    [Tooltip("The amount of gaussian blur to apply to the Heightmap Image File (0 = none).")]
+    public float HeightmapGaussianSigma { get; init; }
 
+    [Range(0, 5)]
+    [DisplayName("Parallelism Level")]
+    [Tooltip("The level of parallelism used during generation. Higher numbers mean more parallel processes. Value = 0 means no parallelism.")]
+    public int ParallelismLevel { get; init; }
+
+    [Required]
+    [DisplayName("Random Generation Algorithm")]
+    [Tooltip("The algorithm used during object generation to generate random values.")]
+    public IRandomGenerationAlgorithm RandomGenerationAlgorithm { get; init; }
+
+    [DisplayName("")]
+    [Tooltip("")]
+    public double SigmaForStructureIdentification { get; set; }
 
     public CosmicWebSettings()
     {
@@ -231,5 +232,6 @@ public class CosmicWebSettings
         RandomGenerationAlgorithm = Constants.Advanced.Objects.CosmicWeb.RandomGenerationAlgorithm;
         CosmicMicrowaveBackgroundRange = Constants.Advanced.Objects.CosmicWeb.CosmicMicrowaveBackgroundRange;
         GravitationalHeatingEfficiencyPercent = Constants.Advanced.Objects.CosmicWeb.GravitationalHeatingEfficiencyPercent;
+        ParallelismLevel = Constants.Advanced.Objects.CosmicWeb.ParallelismLevel;
     }
 }
