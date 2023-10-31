@@ -29,13 +29,13 @@ internal static partial class Constants
             internal static double TemperatureConversionFactor { get; } = 0d;
             internal static double TimeConversionFactor { get; } = 0d;
             internal static bool EnableLogging { get; } = true;
-            internal static string LogFilePath { get; } = @"\";
+            internal static string LogFileFileName { get; } = @"\";
             internal static string Language { get; } = "English";
             internal static bool EnableUndo { get; } = true;
             internal static int UndoLevels { get; } = 5;
-            internal static string TempDirectoryPath { get; } = @"\Temp\";
-            internal static string ResourceKeysFilePath { get; } = @"\Config\ResourceKeys.json";
-            internal static string AssetsDirectoryPath { get; } = @"\Assets\";
+            internal static string TempDirectoryName { get; } = @"\Temp\";
+            internal static string ResourceKeysFileName { get; } = @"\Config\ResourceKeys.json";
+            internal static string AssetsDirectoryName { get; } = @"\Assets\";
         }
     }
 }

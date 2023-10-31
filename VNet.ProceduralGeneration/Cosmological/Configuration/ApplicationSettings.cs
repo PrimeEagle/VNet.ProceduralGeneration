@@ -127,7 +127,7 @@ public class ApplicationSettings
     [Required]
     [DisplayName("Log File Path")]
     [Tooltip("The path to the log file.")]
-    public string LogFilePath { get; init; }
+    public string LogFileFileName { get; init; }
 
     [Required]
     [DisplayName("Language")]
@@ -147,19 +147,19 @@ public class ApplicationSettings
     [DirectoryExists]
     [DisplayName("Temp Directory Path")]
     [Tooltip("The path to the temp directory.")]
-    public string TempDirectoryPath { get; init; }
+    public string TempDirectoryName { get; init; }
 
     [Required]
     [DirectoryExists]
     [DisplayName("Assets Directory Path")]
     [Tooltip("The path to the assets directory.")]
-    public string AssetsDirectoryPath { get; init; }
+    public string AssetsDirectoryName { get; init; }
 
     [Required]
     [FileExists]
-    [DisplayName("Resource Keys Config Filename")]
+    [DisplayName("Resource Keys Config File Name")]
     [Tooltip("The path to the resource keys configuration file name.")]
-    public string ResourceKeysFilePath { get; init; }
+    public string ResourceKeysFileName { get; init; }
 
 
     public ApplicationSettings()
@@ -182,12 +182,12 @@ public class ApplicationSettings
         BaryonicMatterDampeningFactor = Constants.Advanced.Application.BaryonicMatterDampeningFactor;
         InteriorObjectOverlapThreshold = Constants.Advanced.Application.InteriorObjectOverlapThreshold;
         EnableLogging = Constants.Advanced.Application.EnableLogging;
-        LogFilePath = Constants.Advanced.Application.LogFilePath;
+        LogFileFileName = Constants.Advanced.Application.LogFileFileName;
         Language = Constants.Advanced.Application.Language;
         EnableUndo = Constants.Advanced.Application.EnableUndo;
         UndoLevels = Constants.Advanced.Application.UndoLevels;
-        TempDirectoryPath = Constants.Advanced.Application.TempDirectoryPath;
-        AssetsDirectoryPath = Constants.Advanced.Application.AssetsDirectoryPath;
-        ResourceKeysFilePath = Constants.Advanced.Application.ResourceKeysFilePath;
+        TempDirectoryName = Constants.Advanced.Application.TempDirectoryName;
+        AssetsDirectoryName = Constants.Advanced.Application.AssetsDirectoryName;
+        ResourceKeysFileName = Constants.Advanced.Application.ResourceKeysFileName;
     }
 }
