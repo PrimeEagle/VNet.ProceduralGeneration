@@ -155,6 +155,12 @@ public class ApplicationSettings
     [Tooltip("The path to the assets directory.")]
     public string AssetsDirectoryPath { get; init; }
 
+    [Required]
+    [FileExists]
+    [DisplayName("Resource Keys Config Filename")]
+    [Tooltip("The path to the resource keys configuration file name.")]
+    public string ResourceKeysFilePath { get; init; }
+
 
     public ApplicationSettings()
     {
@@ -182,5 +188,6 @@ public class ApplicationSettings
         UndoLevels = Constants.Advanced.Application.UndoLevels;
         TempDirectoryPath = Constants.Advanced.Application.TempDirectoryPath;
         AssetsDirectoryPath = Constants.Advanced.Application.AssetsDirectoryPath;
+        ResourceKeysFilePath = Constants.Advanced.Application.ResourceKeysFilePath;
     }
 }

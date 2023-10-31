@@ -34,6 +34,7 @@ internal static partial class Constants
             internal static bool EnableUndo { get; } = true;
             internal static int UndoLevels { get; } = 5;
             internal static string TempDirectoryPath { get; } = @"\Temp\";
+            internal static string ResourceKeysFilePath { get; } = @"\Config\ResourceKeys.json";
             internal static string AssetsDirectoryPath { get; } = @"\Assets\";
         }
     }
