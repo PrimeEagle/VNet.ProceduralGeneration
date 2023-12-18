@@ -8,32 +8,29 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Cosmological\Configuration\AstronomicalObjects\run.ps1" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Terrestrial\Creatures\" />
-		<Folder Include="Terrestrial\Cities\" />
-		<Folder Include="Terrestrial\Dungeons\" />
-		<Folder Include="Terrestrial\Caves\" />
-		<Folder Include="Terrestrial\Plants\" />
-		<Folder Include="Terrestrial\Rocks\" />
-		<Folder Include="Terrestrial\Trees\" />
-		<Folder Include="Terrestrial\Terrain\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="Diagnostics.Sizeof" Version="1.0.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
 		<PackageReference Include="NLua" Version="1.6.3" />
+	</ItemGroup>
+
+	<PropertyGroup Condition="'$(ServerBuild)' != ''">
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(ServerBuild)' != ''">
 		<PackageReference Include="VNet.Configuration" Version="1.0.0" />
 		<PackageReference Include="VNet.ImageProcessing" Version="1.0.0" />
 		<PackageReference Include="VNet.Mathematics" Version="1.0.0" />
 		<PackageReference Include="VNet.Scientific" Version="1.0.1" />
 	</ItemGroup>
 
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	<ItemGroup Condition="'$(ServerBuild)' == ''">
+		<ProjectReference Include="..\..\VNet.Configuration\VNet.Configuration\VNet.Configuration.csproj" />
+		<ProjectReference Include="..\..\VNet.ImageProcessing\VNet.ImageProcessing\VNet.ImageProcessing.csproj" />
+		<ProjectReference Include="..\..\VNet.Mathematics\VNet.Mathematics\VNet.Mathematics.csproj" />
+		<ProjectReference Include="..\..\VNet.Scientific\VNet.Scientific\VNet.Scientific.csproj" />
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(ServerBuild)' == ''">
 		<Exec Command="xcopy /e /y &quot;$(TargetPath)&quot; &quot;D:\My Code\VNet bin\&quot;" />
 	</Target>
-
 </Project>
