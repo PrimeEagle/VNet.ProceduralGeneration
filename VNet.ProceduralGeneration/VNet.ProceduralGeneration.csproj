@@ -7,6 +7,27 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<PackageId>VNet.ProceduralGeneration</PackageId>
+		<Authors>PrimeEagle</Authors>
+		<Product>VNet.ProceduralGeneration</Product>
+		<Description>Class library of various procedural generation algorithms.</Description>
+		<PackageTags>dotnet;dotnet-core;dotnet-library;procedural-generation</PackageTags>
+		<PackageReleaseNotes>Add NuGet metadata.</PackageReleaseNotes>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/PrimeEagle/VNet.ProceduralGeneration</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/PrimeEagle/VNet.ProceduralGeneration</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<TargetFramework>net8.0</TargetFramework>
+		<AssemblyName>VNet.ProceduralGeneration</AssemblyName>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="icon.png" Pack="true" PackagePath="" />
+	</ItemGroup>
+	
 	<ItemGroup>
 		<PackageReference Include="Diagnostics.Sizeof" Version="1.0.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
